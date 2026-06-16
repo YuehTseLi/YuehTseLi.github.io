@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>加東賞楓 10/1–10/12 × 六人最終規劃</title>
+<style>
+:root{
+  --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;
+  --p:#534AB7;--pl:#EEEDFE;
+  --o:#BA7517;--ol:#FEF3E2;
+  --b:#1E7FD8;--bl:#E6F1FB;
+  --r:#C0392B;--rl:#FDEAEA;
+  --bg:#F6F6F4;--card:#fff;--bdr:#E4E3DF;
+  --tx:#1A1916;--sub:#686764;
+  --rd:12px;--rs:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--tx);font-size:14px;line-height:1.55;}
+.w{max-width:960px;margin:0 auto;padding:20px 16px 60px;}
+h1{font-size:21px;font-weight:700;margin-bottom:4px;}
+.hero-sub{color:var(--sub);font-size:13px;margin-bottom:6px;}
+.flight-banner{background:var(--pl);border-radius:var(--rs);padding:9px 14px;margin-bottom:20px;font-size:13px;color:#3C3489;display:flex;gap:24px;flex-wrap:wrap;}
+.fb-item{display:flex;flex-direction:column;gap:1px;}
+.fb-label{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#6560B0;}
+.fb-val{font-weight:600;}
+
+/* TABS */
+.tabs{display:flex;gap:2px;border-bottom:2px solid var(--bdr);margin-bottom:20px;}
+.tab{padding:8px 16px;border-radius:var(--rs) var(--rs) 0 0;font-size:13px;font-weight:500;cursor:pointer;color:var(--sub);border:1.5px solid transparent;border-bottom:none;background:none;transition:.15s;}
+.tab.on{background:var(--card);border-color:var(--bdr);color:var(--tx);margin-bottom:-2px;}
+.pane{display:none;}.pane.on{display:block;}
+
+/* UTIL */
+.sl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);margin:14px 0 7px;}
+.alert{border-radius:var(--rs);padding:9px 13px;margin-bottom:10px;font-size:13px;line-height:1.65;}
+.ag{background:var(--gl);border-left:3px solid var(--g);color:var(--gd);}
+.ab{background:var(--bl);border-left:3px solid var(--b);color:#0B3D70;}
+.ao{background:var(--ol);border-left:3px solid var(--o);color:#5C3D00;}
+.ar{background:var(--rl);border-left:3px solid var(--r);color:#7B1A1A;}
+
+/* DAY CARDS */
+.dc{background:var(--card);border:1px solid var(--bdr);border-radius:var(--rd);overflow:hidden;margin-bottom:8px;}
+.dh{display:flex;align-items:flex-start;gap:12px;padding:11px 15px;cursor:pointer;user-select:none;}
+.dh:hover{background:var(--bg);}
+.dbadge{min-width:54px;border-radius:var(--rs);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;flex-shrink:0;text-align:center;}
+.dbadge .date{font-size:10px;font-weight:700;letter-spacing:.04em;}
+.dbadge .dow{font-size:10px;margin-bottom:2px;}
+.dbadge .ic{font-size:17px;}
+.di{flex:1;min-width:0;}
+.dt{font-size:14px;font-weight:600;margin-bottom:2px;}
+.ds{font-size:12px;color:var(--sub);line-height:1.45;}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px;}
+.tag{font-size:11px;padding:2px 8px;border-radius:20px;}
+.chv{font-size:20px;color:var(--sub);margin-top:2px;flex-shrink:0;transition:transform .2s;line-height:1;}
+.db{display:none;padding:12px 15px 14px;border-top:1px solid var(--bdr);background:var(--bg);}
+.db.on{display:block;}
+
+/* ACCOM */
+.apt-box{background:#E8F5E9;border:1.5px solid #81C784;border-radius:var(--rs);padding:10px 13px;margin-bottom:10px;}
+.apt-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#1B5E20;margin-bottom:4px;}
+.apt-name{font-size:13px;font-weight:600;margin-bottom:2px;}
+.apt-price{font-size:12px;color:var(--sub);}
+.apt-dist{font-size:11px;color:var(--b);margin-top:3px;font-weight:500;}
+.apt-note{font-size:11px;color:var(--sub);margin-top:4px;line-height:1.5;}
+
+/* SCHEDULE TABLE */
+.sched{width:100%;border-collapse:collapse;margin-bottom:10px;font-size:13px;}
+.sched tr{border-bottom:1px solid var(--bdr);}
+.sched tr:last-child{border-bottom:none;}
+.sched td{padding:5px 6px;vertical-align:top;}
+.sched td:first-child{color:var(--sub);white-space:nowrap;width:52px;font-size:12px;padding-top:6px;}
+.sched td:last-child{color:var(--tx);line-height:1.6;}
+.sched strong{color:var(--tx);}
+.tip{background:var(--gl);border-left:3px solid var(--g);padding:7px 11px;font-size:12px;color:var(--gd);line-height:1.6;border-radius:0 var(--rs) var(--rs) 0;margin-top:6px;}
+
+/* BUDGET */
+.bsec{margin-bottom:16px;}
+.bst{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--bdr);}
+.br{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;padding:8px 12px;background:var(--card);border:1px solid var(--bdr);border-radius:var(--rs);margin-bottom:5px;}
+.br .bl{flex:1;}
+.br .bn{font-size:13px;font-weight:500;}
+.br .bnt{font-size:11px;color:var(--sub);margin-top:2px;line-height:1.5;}
+.br .bv{font-size:13px;font-weight:600;white-space:nowrap;text-align:right;flex-shrink:0;}
+.br .bv .bs{font-size:11px;font-weight:400;color:var(--sub);display:block;margin-top:1px;}
+.br.flight-row{border-color:var(--p);background:var(--pl);}
+.br.apt-row{border-color:#81C784;background:#E8F5E9;}
+.br.train-row{border-color:var(--p);background:var(--pl);}
+.br.total-row{border-color:var(--g);background:var(--gl);margin-top:4px;}
+.br.total-row .bn{font-weight:700;color:var(--gd);}
+.br.total-row .bv{font-size:14px;color:var(--gd);}
+
+.mode-row{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;align-items:center;}
+.mode-row label{font-size:13px;color:var(--sub);}
+.pill{padding:5px 14px;border-radius:20px;border:1px solid var(--bdr);cursor:pointer;font-size:13px;background:var(--card);color:var(--sub);transition:.15s;}
+.pill.on{background:var(--g);color:#fff;border-color:var(--g);}
+
+/* GRAND TOTAL BOX */
+.grand-box{background:var(--gl);border:2px solid var(--g);border-radius:var(--rd);padding:16px 18px;margin-top:16px;}
+.grand-box h3{font-size:13px;font-weight:700;color:var(--gd);margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em;}
+.gt-row{display:flex;justify-content:space-between;font-size:13px;padding:3px 0;border-bottom:1px dashed #A8DFC7;}
+.gt-row:last-of-type{border-bottom:none;}
+.gt-row span:first-child{color:var(--gd);}
+.gt-row span:last-child{color:var(--gd);font-weight:600;}
+.gt-final{display:flex;justify-content:space-between;padding-top:10px;margin-top:8px;border-top:2px solid var(--g);}
+.gt-final .lbl{font-size:15px;font-weight:700;color:var(--gd);}
+.gt-final .val{font-size:26px;font-weight:800;color:var(--gd);}
+.pp-note{font-size:12px;color:var(--gd);margin-top:6px;text-align:right;}
+
+/* BAR */
+.barr{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+.barl{font-size:12px;color:var(--sub);width:96px;flex-shrink:0;text-align:right;line-height:1.3;}
+.barbg{flex:1;background:var(--bdr);border-radius:4px;height:10px;overflow:hidden;}
+.barfill{height:100%;border-radius:4px;}
+.barv{font-size:12px;color:var(--sub);width:80px;flex-shrink:0;text-align:right;}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:18px;}
+.stat{background:var(--card);border:1px solid var(--bdr);border-radius:var(--rs);padding:9px 8px;text-align:center;}
+.sv{font-size:18px;font-weight:700;}
+.sl2{font-size:10px;color:var(--sub);margin-top:2px;line-height:1.3;}
+
+.notice{font-size:12px;color:var(--sub);background:var(--card);border:1px solid var(--bdr);border-radius:var(--rs);padding:10px 14px;margin-top:14px;line-height:1.7;}
+
+@media(max-width:640px){
+  .stats{grid-template-columns:repeat(3,1fr);}
+  .flight-banner{gap:14px;}
+  .barl{width:70px;font-size:11px;}
+}
+</style>
+</head>
+<body>
+<div class="w">
+
+<h1>🍁 加東賞楓 10/1–10/12 × 六人家族最終規劃</h1>
+<p class="hero-sub">五大一小（9歲）・6 件行李・長榮經濟艙直飛・公寓住宿・Chrysler Pacifica 自駕</p>
+
+<div class="flight-banner">
+  <div class="fb-item"><span class="fb-label">去程</span><span class="fb-val">10/1（四）BR036 TPE 19:20 → YYZ 21:20（+1）</span></div>
+  <div class="fb-item"><span class="fb-label">回程</span><span class="fb-val">10/11（六）深夜 BR035 YYZ 02:10 → TPE 10/12（日）05:40</span></div>
+  <div class="fb-item"><span class="fb-label">飛行時間</span><span class="fb-val">去程 14h / 回程 15h55m（直飛）</span></div>
+</div>
+
+<div class="tabs">
+  <button class="tab on" onclick="sw('itinerary')">🗺 每日行程</button>
+  <button class="tab" onclick="sw('accom')">🏠 住宿總覽</button>
+  <button class="tab" onclick="sw('budget')">💰 費用明細</button>
+</div>
+
+<!-- ========== ITINERARY ========== -->
+<div id="pane-itinerary" class="pane on">
+  <div class="stats">
+    <div class="stat"><div class="sv">11</div><div class="sl2">在外天數</div></div>
+    <div class="stat"><div class="sv">5+1</div><div class="sl2">五大一小</div></div>
+    <div class="stat"><div class="sv">1台</div><div class="sl2">Pacifica</div></div>
+    <div class="stat"><div class="sv" style="color:var(--g)">1~2</div><div class="sl2">次叫計程車</div></div>
+    <div class="stat"><div class="sv">3🍁</div><div class="sl2">賞楓精華</div></div>
+  </div>
+  <div id="days"></div>
+</div>
+
+<!-- ========== ACCOM ========== -->
+<div id="pane-accom" class="pane">
+  <div class="alert ag">所有住宿均為 <strong>整套 3 臥公寓</strong>，6 人同住，含廚房・洗衣機・停車（或附近車位）。以下為具體推薦地點與搜尋關鍵字。</div>
+  <div id="accom-list"></div>
+</div>
+
+<!-- ========== BUDGET ========== -->
+<div id="pane-budget" class="pane">
+  <div class="mode-row">
+    <label>顯示：</label>
+    <button class="pill on" id="p-tot" onclick="sp('tot')">全家合計</button>
+    <button class="pill" id="p-pp" onclick="sp('pp')">每人平均（÷5）</button>
+  </div>
+  <div class="bsec"><div class="bst">✈️ 長榮直飛機票（BR036 / BR035）</div><div id="s-flight"></div></div>
+  <div class="bsec"><div class="bst">🏠 住宿（10晚 整套公寓）</div><div id="s-hotel"></div></div>
+  <div class="bsec"><div class="bst">🚗 Chrysler Pacifica 租車（多倫多→尼加拉→阿岡昆→多倫多，4天）</div><div id="s-car"></div></div>
+  <div class="bsec"><div class="bst">✈️ 加國內陸航班（多倫多 YYZ → 魁北克 YQB）</div><div id="s-domestic"></div></div>
+  <div class="bsec"><div class="bst">🚄 VIA Rail 商務艙（2段）</div><div id="s-train"></div></div>
+  <div class="bsec"><div class="bst">🚕 計程車 / 機場接駁</div><div id="s-taxi"></div></div>
+  <div class="bsec"><div class="bst">🍽️ 餐飲（10天）</div><div id="s-food"></div></div>
+  <div class="bsec"><div class="bst">🎟️ 景點門票</div><div id="s-attractions"></div></div>
+  <div class="bsec"><div class="bst">🛍️ 購物 / 雜支 / 保險</div><div id="s-misc"></div></div>
+  <div class="bsec"><div class="bst">📊 費用結構圖</div><div id="s-bar"></div></div>
+  <div id="grand-box" class="grand-box"></div>
+  <div class="notice">
+    匯率：1 CAD ≈ 22.67 TWD（2026/06）｜長榮經濟艙 10 月來回台北–多倫多官網參考票價約 NT$54,099–71,400/人，本表以賞楓旺季預估 NT$65,000/人計算。公寓住宿為 Airbnb 整套 3 臥公寓，含清潔費及服務費（約+14%）。VIA Rail 以商務艙計算（含熱食・行李額度・貴賓室）。Chrysler Pacifica 以傳統租車公司 CAD $170/天×4天估算，無限里程。所有金額均為概估，賞楓旺季（10月）請提前 3–4 個月訂票訂房。
+  </div>
+</div>
+
+</div>
+
+<script>
+const CAD = 22.67;
+let pMode = 'tot';
+
+// ========== DATA ==========
+
+const days = [
+  {
+    date:'10/1', dow:'四', ic:'✈️', bg:'#EEEDFE', tc:'#3C3489',
+    title:'台北 出發 → 多倫多 抵達',
+    sub:'BR036 TPE 19:20 起飛 → YYZ 10/2 21:20 抵達（飛行 14 小時）',
+    tags:[{t:'長榮直飛',b:'#EEEDFE',c:'#3C3489'},{t:'跨日抵達',b:'#FEF3E2',c:'#8B4513'}],
+    apt:null,
+    sched:[
+      ['下午','建議 15:00 前到達桃園機場 T2，長榮 Check-in、辦理行李托運（6件）'],
+      ['19:20','BR036 準時起飛，直飛不轉機'],
+      ['（飛行中）','機上用餐・睡眠・抵達前補眠，抵達後當地時間已是 10/2 晚間'],
+    ],
+    tip:'BR036 從 TPE T2 出發，抵達 YYZ T1。由於是跨夜長程，建議帶頸枕・眼罩・壓縮襪。'
+  },
+  {
+    date:'10/2', dow:'五', ic:'🏙️', bg:'#E6F1FB', tc:'#0C447C',
+    title:'多倫多 抵達 + 市區初探',
+    sub:'YYZ 21:20 抵達，UP Express 入住，輕鬆適應時差',
+    tags:[{t:'抵達日',b:'#E6F1FB',c:'#0C447C'},{t:'步行入住',b:'#EAF3DE',c:'#27500A'}],
+    apt:{
+      name:'CityPlace 3 臥公寓（整套）— 近 Union Station',
+      price:'CAD $220–280/晚（整套）',
+      dist:'🚶 步行 7 分到 Union Station・UP Express 直通機場',
+      note:'搜尋關鍵字：Airbnb「3 bedroom CityPlace downtown Toronto walk Union Station」。含廚房・洗衣機・電梯。20 John St 一帶有多棟可短租整套公寓，離 CN Tower 步行 8 分。',
+      nights: 2
+    },
+    sched:[
+      ['21:20','YYZ T1 入境・領行李（6件）'],
+      ['22:00','搭 UP Express（$7/人×6=$42）至 Union Station，25 分'],
+      ['22:30','步行 7 分到 CityPlace 公寓 Check-in'],
+      ['深夜','採買明日早餐食材（公寓樓下便利店或附近 Sobeys）'],
+    ],
+    tip:'抵達已接近深夜，建議只買明日早餐食材，其他安排好好休息。10/2 是過渡日，不安排景點。'
+  },
+  {
+    date:'10/3', dow:'六', ic:'🏙️', bg:'#E6F1FB', tc:'#0C447C',
+    title:'多倫多市區全日探索',
+    sub:'CN Tower・水族館・St. Lawrence Market・古釀酒廠區',
+    tags:[{t:'全程步行',b:'#EAF3DE',c:'#27500A'},{t:'市區觀光',b:'#E6F1FB',c:'#0C447C'}],
+    apt:null,
+    sched:[
+      ['08:30','公寓自備早餐（省 6 人早餐費約 $60 CAD）'],
+      ['09:30','CN Tower（建議提前網購，成人 $40・兒童 $27），玻璃地板觀景台'],
+      ['11:00','Ripley\'s 水族館（成人 $31・兒童 $21），9 歲小孩最愛'],
+      ['13:00','St. Lawrence Market 午餐（週六最熱鬧，各國美食攤）'],
+      ['15:00','Distillery District 古釀酒廠區，石板路・咖啡廳・拍照'],
+      ['17:30','Harbourfront 湖邊散步，欣賞多倫多島夕陽'],
+      ['19:00','返回公寓自炊晚餐或附近餐廳'],
+    ],
+    tip:'週六 St. Lawrence Market 最熱鬧，下午 3 點前到比較好。Distillery District 免費逛，買咖啡即可。'
+  },
+  {
+    date:'10/4', dow:'日', ic:'🚗', bg:'#FEF3E2', tc:'#8B4513',
+    title:'多倫多 → 尼加拉瓦瀑布',
+    sub:'取 Chrysler Pacifica，QEW 西行 130 km，約 1.5 小時',
+    tags:[{t:'🚗 自駕開始',b:'#FEF3E2',c:'#8B4513'},{t:'瀑布夜景',b:'#FDEAEA',c:'#C0392B'}],
+    apt:{
+      name:'Clifton Hill 步行圈 3 臥獨棟（整套）',
+      price:'CAD $250–350/晚（整套，含停車）',
+      dist:'🚶 步行 12–18 分到 Horseshoe Falls・含私人車位省停車費 $25/天',
+      note:'搜尋關鍵字：Airbnb「Niagara Falls 3 bedroom house walk to falls parking」，選加拿大 Ontario 側，避開美國側。Clifton Hill 周邊住宅區有多棟 3 臥房型，含廚房・庭院。',
+      nights: 1
+    },
+    sched:[
+      ['08:00','公寓退房，步行至市區取 Chrysler Pacifica（Enterprise/Avis 均在市中心有取車點）'],
+      ['09:00','6 人上車・行李全入，出發沿 QEW 西行'],
+      ['10:30','抵達尼加拉瓦，Check-in 公寓（早 Check-in 需確認）'],
+      ['11:30','<strong>Maid of the Mist 遊船</strong>（穿雨衣近距離感受瀑布，成人 $22・兒童 $14）'],
+      ['13:30','Horseshoe Falls 觀景台・Journey Behind the Falls（可選）'],
+      ['16:00','Niagara-on-the-Lake 小鎮（車程 20 分），酒莊・維多利亞建築'],
+      ['19:00','回公寓備餐或 Clifton Hill 餐廳'],
+      ['22:00','🎆 彩燈煙火秀（每晚 10pm，10/12 前均有）'],
+    ],
+    tip:'Pacifica 含私人停車位的公寓，每天省 $25 停車費。煙火可從公寓附近步行前往觀看點，9 歲小孩超愛煙火。'
+  },
+  {
+    date:'10/5', dow:'一', ic:'🌲', bg:'#EAF3DE', tc:'#27500A',
+    title:'尼加拉瓦 → 阿岡昆省立公園',
+    sub:'Hwy 400 北上約 380 km，中途 Barrie 休息，約 4–4.5 小時',
+    tags:[{t:'🚗 長途自駕',b:'#FEF3E2',c:'#8B4513'},{t:'楓紅前夕',b:'#FDEAEA',c:'#C0392B'}],
+    apt:{
+      name:'Huntsville Muskoka 湖邊木屋 Cottage（3 臥）',
+      price:'CAD $220–320/晚（整套，含停車）',
+      dist:'🌲 距阿岡昆 West Gate 約 40 分鐘・含湖景・BBQ・私人停車',
+      note:'搜尋關鍵字：VRBO/Airbnb「Huntsville cottage 3 bedroom lake Muskoka」。Muskoka 湖區木屋（Cottage）是加拿大最具代表性的度假體驗，6 人同住超有家庭感。建議選有洗衣機的物件，可洗衣省行李重量。',
+      nights: 2
+    },
+    sched:[
+      ['08:00','公寓退房，Hwy 420→QEW→Hwy 400 北上'],
+      ['10:30','Barrie 休息加油（Tim Hortons 咖啡・加拿大必試），加滿油'],
+      ['12:30','沿 Hwy 60 進入阿岡昆走廊，沿途觀景站開始有楓紅'],
+      ['13:30','Algonquin Visitor Centre 停車，午餐・購買入園許可（$20/天，需線上預購）'],
+      ['15:00','<strong>Lookout Trail</strong>（1.9 km 來回，30–40 分），山頂俯瞰湖海楓景，9 歲完全沒問題'],
+      ['17:00','Check-in Huntsville 木屋，採買晚餐食材'],
+      ['19:00','木屋自炊晚餐，BBQ 或火爐料理'],
+    ],
+    tip:'10 月初阿岡昆楓葉約 60–80% 轉色，是最佳觀賞窗口。Ontario Parks 入園許可必須提前線上購買，現場有時售罄。'
+  },
+  {
+    date:'10/6', dow:'二', ic:'🍁', bg:'#FDEAEA', tc:'#8B0000',
+    title:'阿岡昆深度賞楓日',
+    sub:'全天留在公園，多條步道・Hwy 60 觀景站・野餐',
+    tags:[{t:'🍁 賞楓高峰',b:'#FDEAEA',c:'#8B0000'},{t:'自然探索',b:'#EAF3DE',c:'#27500A'}],
+    apt:null,
+    sched:[
+      ['07:30','木屋自炊早餐（省餐費）'],
+      ['08:30','出發進公園（車程 40 分），沿 Hwy 60 先看各觀景站'],
+      ['09:30','<strong>Track and Tower Trail</strong>（7.7 km，適合體力好的大人），或留 Lookout Trail 讓小孩再走一次'],
+      ['12:00','公園內野餐（自備），楓紅環繞最佳拍照點'],
+      ['14:00','<strong>Algonquin Logging Museum</strong>（免費），了解公園歷史・小孩喜歡的展示'],
+      ['15:30','Hwy 60 尾端 Lake of Two Rivers 皮划艇觀賞（可租划艇 $30/hr）'],
+      ['17:30','返回木屋，晚餐自炊'],
+      ['20:00','木屋旁夜觀星空（阿岡昆光害極低，晴天可見銀河）'],
+    ],
+    tip:'10 月的阿岡昆日落約 18:30，早出晚歸效率高。若遇晴天，傍晚的金色光線打在楓葉上是最美的時刻。'
+  },
+  {
+    date:'10/7', dow:'三', ic:'🛫', bg:'#FDEAEA', tc:'#8B0000',
+    title:'阿岡昆 → 多倫多還車 → 飛魁北克',
+    sub:'Hwy 400 南下 4h 還車，Air Canada YYZ→YQB，計程車入古城',
+    tags:[{t:'還車',b:'#FEF3E2',c:'#8B4513'},{t:'國內航班',b:'#EEEDFE',c:'#3C3489'}],
+    apt:{
+      name:'魁北克舊城內 3 臥石牆公寓（整套）',
+      price:'CAD $200–280/晚（整套）',
+      dist:'🏰 步行 5–10 分到 Château Frontenac・達費林平台・纜車站',
+      note:'搜尋關鍵字：Airbnb「Quebec City Old Town apartment 3 bedroom walk Dufferin Terrace」。Rue Saint-Louis、Rue d\'Auteuil 一帶有歷史建築整修的公寓，部分為 1900 年代石牆建築，評分 4.9/5，有實際案例。',
+      nights: 2
+    },
+    sched:[
+      ['07:00','木屋退房，Hwy 60→Hwy 400 南下，約 4 小時'],
+      ['11:30','抵達多倫多 YYZ 機場租車公司還車'],
+      ['13:00','Air Canada 報到（注意行李費：$35/件第 1 件，$55/件第 2 件）'],
+      ['15:00','AC 班機 YYZ→YQB，飛行約 1.5 小時'],
+      ['16:30','抵達魁北克城（YQB），叫 <strong>XL 廂型計程車</strong>（全程唯一叫計程車時刻）'],
+      ['17:30','計程車直送舊城公寓 Check-in（車資約 $50–70 CAD，提前告知司機 6 人+6件大行李）'],
+      ['19:00','步行到小香普蘭街覓食，第一頓法式加拿大料理'],
+    ],
+    tip:'Air Canada 國內線行李費是額外支出的大項。若每人只帶 1 件托運行李，6人×$35=$210 CAD；若每人 2 件則 $570 CAD。建議盡量合併行李或只帶必需品飛這段。'
+  },
+  {
+    date:'10/8', dow:'四', ic:'🏰', bg:'#E6F1FB', tc:'#0C447C',
+    title:'魁北克古城深度巡禮',
+    sub:'達費林平台・纜車・小香普蘭街・城牆步道',
+    tags:[{t:'全程步行',b:'#EAF3DE',c:'#27500A'},{t:'UNESCO 世遺',b:'#E6F1FB',c:'#0C447C'}],
+    apt:null,
+    sched:[
+      ['08:00','公寓自備早餐（可在古城小超市採買食材）'],
+      ['09:30','<strong>達費林平台（Dufferin Terrace）</strong>清晨散步，欣賞聖羅倫斯河晨景'],
+      ['10:30','城牆步道（Promenade des Remparts），沿城牆走一段，遠眺秋葉'],
+      ['12:00','搭 <strong>Funicular 纜車</strong>（單程 $3.75）下上城，到小香普蘭街午餐'],
+      ['13:30','<strong>小香普蘭街</strong>採購楓糖漿、魁北克特產'],
+      ['15:00','<strong>大壁畫</strong>（La Fresque des Québécois）拍照，皇家廣場（Place Royale）'],
+      ['16:30','步行上城，參觀 Château Frontenac 外觀廣場・免費進大廳參觀'],
+      ['18:30','古城餐廳晚餐（推薦 Rue Saint-Jean 美食街）'],
+    ],
+    tip:'魁北克舊城地形起伏，石板路多，9 歲要穿舒適鞋。纜車往返約需排隊，可考慮走旁邊的樓梯替代（省 $3.75，運動一下）。'
+  },
+  {
+    date:'10/9', dow:'五', ic:'🚄', bg:'#EEEDFE', tc:'#3C3489',
+    title:'魁北克 → 蒙特婁（VIA Rail 商務艙）',
+    sub:'Gare du Palais 搭 VIA Rail，約 3 小時 20 分，車上含餐',
+    tags:[{t:'🚄 商務艙火車',b:'#EEEDFE',c:'#3C3489'},{t:'蒙特婁下午',b:'#E6F1FB',c:'#0C447C'}],
+    apt:{
+      name:'Vieux-Montréal 老港區 3 臥公寓（整套）',
+      price:'CAD $230–320/晚（整套）',
+      dist:'🚇 Place-d\'Armes 地鐵 3 分・距 Gare Centrale 地鐵 2 站（10 分）',
+      note:'搜尋關鍵字：Airbnb「Vieux-Montréal Old Port 3 bedroom apartment 6 guests」。老港區有大量整棟出租，石牆建築・露台，步行 Notre-Dame 大教堂 5 分鐘。VIA Rail 到 Gare Centrale 後搭 2 站地鐵可達。',
+      nights: 2
+    },
+    sched:[
+      ['08:00','公寓自備早餐，整理行李'],
+      ['09:00','計程車送至 Gare du Palais（約 $15–20 CAD，5 分鐘），VIA Rail 商務艙辦理登車'],
+      ['10:00','VIA Rail 出發，商務艙含熱食・Wi-Fi・每人 2 件行李額度'],
+      ['13:20','抵達 Montréal Gare Centrale'],
+      ['13:45','搭地鐵（Metro）橘線 2 站至老港區（Place-d\'Armes），Check-in 公寓'],
+      ['15:00','<strong>Notre-Dame 大教堂</strong>（需提前預約，成人 $15 CAD），哥德式建築震撼'],
+      ['17:00','老港區（Vieux-Port）沿河散步，鐵欄橋・倉庫藝廊'],
+      ['19:30','晚餐 Rue Notre-Dame 或 Rue Saint-Paul 法加料理'],
+    ],
+    tip:'VIA Rail 商務艙 6 人等於包下一排座位，孩子超喜歡在火車上吃正餐的體驗。建議提前 2–4 週訂票鎖定好座位。'
+  },
+  {
+    date:'10/10', dow:'六', ic:'🏔️', bg:'#EAF3DE', tc:'#27500A',
+    title:'蒙特婁 → 川特布朗山頂賞楓',
+    sub:'包廂型車往返 1.5h，景觀纜車俯瞰 360° 楓海',
+    tags:[{t:'🍁 山頂楓海',b:'#FDEAEA',c:'#8B0000'},{t:'景觀纜車',b:'#EAF3DE',c:'#27500A'}],
+    apt:null,
+    sched:[
+      ['07:30','公寓自備早餐，提早出發避開人潮'],
+      ['08:00','搭包廂型計程車出發（6 人約 $150–250 CAD 全車），行李留公寓'],
+      ['09:30','抵達 Mont-Tremblant，購景觀纜車票（成人約 $38・兒童 $25）'],
+      ['10:00','<strong>景觀纜車</strong>上山，360° 楓海鳥瞰，9 歲小孩超興奮'],
+      ['12:00','山頂村莊午餐（有兒童菜單），紀念品店採買'],
+      ['14:00','下山，可沿村莊小路散步'],
+      ['15:30','包廂型車返回蒙特婁'],
+      ['17:00','<strong>Mont-Royal 山丘</strong>（市內楓葉，步行 30–40 分上山，免費）'],
+      ['19:30','公寓附近晚餐，最後一晚正式慶祝'],
+    ],
+    tip:'週六是旺季，建議 10:00 前到纜車站避免排長隊。包廂型車比公共接駁更彈性，可依孩子狀態調整時間。'
+  },
+  {
+    date:'10/11', dow:'日', ic:'🚄', bg:'#EEEDFE', tc:'#3C3489',
+    title:'蒙特婁 → 多倫多（VIA Rail）→ 深夜 BR035 回台',
+    sub:'火車約 5 小時，PATH 採買，深夜 02:10 起飛回台',
+    tags:[{t:'🚄 商務艙火車',b:'#EEEDFE',c:'#3C3489'},{t:'回程航班',b:'#EEEDFE',c:'#3C3489'}],
+    apt:null,
+    sched:[
+      ['08:00','公寓早餐（最後一頓自炊）・整理行李'],
+      ['09:30','步行（或地鐵 2 站）至 Gare Centrale，VIA Rail 商務艙報到'],
+      ['10:00','VIA Rail 出發，蒙特婁→多倫多，約 5 小時，車上含午餐'],
+      ['15:00','抵達 Toronto Union Station'],
+      ['15:30','進入 <strong>PATH 地下街</strong>最後採買（楓糖漿放托運！）'],
+      ['17:00','步行至 Union Station 搭 UP Express（$7/人×6=$42）'],
+      ['17:30','抵達 YYZ，辦理 BR035 Check-in（建議提早 3–4 小時）'],
+      ['22:00','進入 T1 候機區，晚餐在機場解決'],
+      ['10/12 02:10','<strong>BR035 起飛</strong>，直飛台北桃園'],
+    ],
+    tip:'這天行程很長但都是交通。PATH 購物完直接出門搭 UP Express，不需再叫計程車。液體超過 100ml（楓糖漿）必須托運，不能帶上機。'
+  },
+  {
+    date:'10/12', dow:'日', ic:'🏠', bg:'#EAF3DE', tc:'#27500A',
+    title:'抵達台灣・圓滿歸來',
+    sub:'BR035 TPE 05:40 降落，全員帶著滿滿回憶回家',
+    tags:[{t:'安全抵台',b:'#EAF3DE',c:'#27500A'}],
+    apt:null,
+    sched:[
+      ['05:40','抵達桃園機場 T2，入境・領行李'],
+      ['06:30','出關，搭機場捷運或計程車回家'],
+    ],
+    tip:'3 個精華賞楓點全制霸：阿岡昆（森林湖泊型）・魁北克（古城石板路型）・川特布朗（山頂 360° 型），恭喜！'
+  },
+];
+
+const accomList = [
+  {
+    city:'多倫多（10/2–10/4，2晚）', icon:'🏙️', bg:'#E6F1FB', tc:'#0C447C',
+    name:'CityPlace 3 臥整套公寓',
+    price:'CAD $220–280/晚，2晚合計約 CAD $440–560',
+    dist:'步行 7 分到 Union Station・UP Express 直通機場・步行 8 分到 CN Tower',
+    search:'Airbnb 搜尋：「3 bedroom CityPlace Toronto walk Union Station」',
+    note:'CityPlace 社區（約 Fort York Blvd / Dan Leckie Way 一帶）是多倫多市中心最密集的 Airbnb 合法短租社區之一，20 John St 大樓及 300 Front St West 周邊有多棟整套公寓。含電梯・健身房・視角城景・全廚房。',
+    what:['樓下 Longo\'s 超市採買早餐食材','步行至所有主要景點','UP Express 取車還車均在 Union Station 附近']
+  },
+  {
+    city:'尼加拉瓦（10/4–10/5，1晚）', icon:'🌊', bg:'#E0F7FA', tc:'#006064',
+    name:'Clifton Hill 步行圈 3 臥獨棟',
+    price:'CAD $250–350/晚，1晚合計約 CAD $250–350',
+    dist:'步行 12–18 分到 Horseshoe Falls・煙火觀賞點步行可達・含私人停車',
+    search:'Airbnb 搜尋：「Niagara Falls Ontario 3 bedroom house walk falls parking included」',
+    note:'尼加拉瓦加拿大側 Clifton Hill 一帶有多棟 3 臥獨棟，停車免費（每天省 $25 CAD 停車費）。選 Ontario 側（不是 New York 側），靠近 Horseshoe Falls。',
+    what:['晚間步行看煙火（22:00）','Maid of the Mist 遊船搭車 5 分','Niagara-on-the-Lake 小鎮開車 20 分']
+  },
+  {
+    city:'阿岡昆周邊（10/5–10/7，2晚）', icon:'🌲', bg:'#E8F5E9', tc:'#1B5E20',
+    name:'Muskoka Huntsville 湖邊木屋 Cottage',
+    price:'CAD $220–320/晚，2晚合計約 CAD $440–640',
+    dist:'距阿岡昆 West Gate 約 40 分・含湖景・BBQ 設備・私人停車',
+    search:'VRBO/Airbnb 搜尋：「Huntsville cottage 3 bedroom Muskoka lake BBQ」',
+    note:'Muskoka 湖區木屋是加東旅遊最具代表性的體驗，6 人同住特別有感。選有洗衣機的物件可在此洗衣。建議找有 BBQ 及室外平台的，晚間夜觀星空光害極低。',
+    what:['公園入口開車 40 分','自炊早晚餐省大量餐費','Huntsville 鎮上有 Farm Boy 超市採買']
+  },
+  {
+    city:'魁北克（10/7–10/9，2晚）', icon:'🏰', bg:'#F3E5F5', tc:'#4A148C',
+    name:'舊城內石牆歷史建築 3 臥公寓',
+    price:'CAD $200–280/晚，2晚合計約 CAD $400–560',
+    dist:'步行 5–10 分到 Château Frontenac・達費林平台・纜車站',
+    search:'Airbnb 搜尋：「Quebec City Old Town 3 bedroom walk Dufferin Terrace historic」',
+    note:'Rue Saint-Louis 或 Rue d\'Auteuil 一帶，有 1900 年代石砌建築整修的整套公寓，部分保有原始壁爐・木樑天花。評分普遍 4.8–4.9/5。訂房要注意附近不一定有停車位（已不需要車）。',
+    what:['YQB 機場計程車直送（$50–70 CAD）','步行所有古城景點','VIA Rail Gare du Palais 步行或計程車 10 分']
+  },
+  {
+    city:'蒙特婁（10/9–10/11，2晚）', icon:'🏙️', bg:'#E3F2FD', tc:'#0D47A1',
+    name:'Vieux-Montréal 老港區 3 臥整套公寓',
+    price:'CAD $230–320/晚，2晚合計約 CAD $460–640',
+    dist:'地鐵 Place-d\'Armes 步行 3 分・步行 Notre-Dame 大教堂 5 分・老港河畔步行',
+    search:'Airbnb 搜尋：「Vieux-Montréal 3 bedroom apartment Old Port 6 guests」',
+    note:'老港區（Rue Notre-Dame / Rue Saint-Paul 一帶）是蒙特婁最有氣氛的住宿選擇，石牆建築・拱形窗・露台。距 Gare Centrale 地鐵 2 站（約 10 分），VIA Rail 抵達後拿行李直接搭車。',
+    what:['Notre-Dame 大教堂步行 5 分','老港散步・騎自行車','Gare Centrale 地鐵 10 分，VIA Rail 直達多倫多']
+  },
+];
+
+// Budget data (CAD unless noted TWD)
+const budget = {
+  flight: [
+    {n:'長榮 BR036 去程（10/1）經濟艙 × 6人', lo:390000, hi:428400, twd:true, note:'約 NT$65,000–71,400/人 × 6，10月賞楓旺季估算（官網參考 NT$54,099 起，旺季溢價）'},
+  ],
+  hotel: [
+    {n:'多倫多 CityPlace 3臥公寓（2晚）', lo:440, hi:560, note:'整套 $220–$280/晚'},
+    {n:'尼加拉瓦 Clifton Hill 3臥獨棟（1晚）', lo:250, hi:350, note:'整套 $250–$350/晚，含停車'},
+    {n:'Muskoka 湖邊木屋 Cottage（2晚）', lo:440, hi:640, note:'整套 $220–$320/晚'},
+    {n:'魁北克舊城石牆公寓（2晚）', lo:400, hi:560, note:'整套 $200–$280/晚'},
+    {n:'蒙特婁老港區公寓（2晚）', lo:460, hi:640, note:'整套 $230–$320/晚'},
+  ],
+  car: [
+    {n:'Chrysler Pacifica 租金（4天 10/4–10/7）', lo:600, hi:720, note:'$150–$180/天 × 4天，無限里程，含基本保險'},
+    {n:'油費（約 800 km）', lo:120, hi:170, note:'油耗約 11L/100km，油價約 $1.55–$1.80 CAD/L'},
+    {n:'停車費（多倫多市區取車・尼加拉）', lo:50, hi:80, note:'公寓含停車可省費用，景點停車約 $10–25/次'},
+    {n:'Ontario Parks 入園許可（2天）', lo:32, hi:44, note:'$16–22/天，提前線上購買'},
+  ],
+  domestic: [
+    {n:'Air Canada YYZ→YQB 機票（6人）', lo:900, hi:1500, note:'每人 $150–$250 CAD'},
+    {n:'行李托運費（6件，每件第 1 件）', lo:210, hi:210, note:'$35 CAD/件 × 6件，強烈建議壓縮至 6件內'},
+  ],
+  train: [
+    {n:'VIA Rail 魁北克→蒙特婁 商務艙（6人）', lo:654, hi:1104, note:'每人約 $109–$184 CAD，提前訂可低至 $109'},
+    {n:'VIA Rail 蒙特婁→多倫多 商務艙（6人）', lo:786, hi:1200, note:'每人約 $131–$200 CAD，約 5 小時含午餐'},
+  ],
+  taxi: [
+    {n:'UP Express（YYZ↔Union Station，6人×2次）', lo:84, hi:120, note:'單程每人 $7–$10 CAD'},
+    {n:'YQB 機場 XL 計程車→舊城公寓', lo:50, hi:70, note:'提前告知司機 6 人+6件行李，需 XL 廂型車'},
+    {n:'魁北克市內計程車（VIA Rail 站→公寓）', lo:15, hi:25, note:'Gare du Palais 到舊城公寓車程約 5 分'},
+    {n:'蒙特婁→川特布朗包廂型車（往返）', lo:150, hi:250, note:'比接駁巴士更彈性，可即時調整時間'},
+    {n:'蒙特婁地鐵（老港→Gare Centrale，6人×2次）', lo:30, hi:40, note:'每趟 $3.75 CAD/人'},
+  ],
+  food: [
+    {n:'餐飲（10天，含自炊省費）', lo:2200, hi:3600, note:'每人每天約 $37–$60 CAD；公寓自炊 5–6 頓早餐、2–3 頓晚餐可省 $400–700 CAD'},
+  ],
+  attractions: [
+    {n:'CN Tower（5大人 + 1兒童）', lo:227, hi:227, note:'成人 $40 × 5 + 兒童 $27 × 1'},
+    {n:'Ripley\'s 水族館（6人）', lo:176, hi:176, note:'成人 $31 × 5 + 兒童 $21 × 1'},
+    {n:'Maid of the Mist 遊船（6人）', lo:110, hi:124, note:'成人 $22 × 5 + 兒童 $14 × 1'},
+    {n:'Funicular 纜車魁北克（6人×往返2次）', lo:45, hi:45, note:'單程 $3.75 × 6人 × 2趟'},
+    {n:'Mont-Tremblant 景觀纜車（6人）', lo:215, hi:215, note:'成人 $38 × 5 + 兒童 $25 × 1（估算）'},
+    {n:'Notre-Dame 大教堂（6人）', lo:90, hi:90, note:'成人 $15 × 6（含燈光秀場次）'},
+  ],
+  misc: [
+    {n:'購物・楓糖漿・紀念品', lo:400, hi:800, note:'PATH 地下街、魁北克小香普蘭街、木屋周邊農場'},
+    {n:'旅遊保險（6人含醫療+行李）', lo:8000, hi:15000, twd:true, note:'約 NT$1,300–$2,500/人，含海外急症醫療，強烈建議'},
+    {n:'雜支（藥品・洗衣・飲料・小費）', lo:200, hi:400, note:''},
+  ],
+};
+
+function fT(v){return 'NT$'+Math.round(v).toLocaleString();}
+function fC(v){return '$'+Math.round(v).toLocaleString()+' CAD';}
+function div(){return pMode==='pp'?5:1;}
+
+function calcTotal(cat){
+  return cat.reduce((a,i)=>{
+    const lv = i.twd ? i.lo : i.lo*CAD;
+    const hv = i.twd ? i.hi : i.hi*CAD;
+    return {lo:a.lo+lv, hi:a.hi+hv};
+  },{lo:0,hi:0});
+}
+
+function renderRows(cat, elId, cls){
+  const d=div();
+  document.getElementById(elId).innerHTML = cat.map(i=>{
+    const lv=(i.twd?i.lo:i.lo*CAD)/d, hv=(i.twd?i.hi:i.hi*CAD)/d;
+    return `<div class="br${cls?' '+cls:''}">
+      <div class="bl"><div class="bn">${i.n}</div>${i.note?`<div class="bnt">${i.note}</div>`:''}  </div>
+      <div class="bv">${lv===hv?fT(lv):`${fT(lv)}<br>– ${fT(hv)}`}${!i.twd?`<span class="bs">${fC(i.lo/d)}–${fC(i.hi/d)}</span>`:''}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderBudget(){
+  renderRows(budget.flight,'s-flight','flight-row');
+  renderRows(budget.hotel,'s-hotel','apt-row');
+  renderRows(budget.car,'s-car','');
+  renderRows(budget.domestic,'s-domestic','');
+  renderRows(budget.train,'s-train','train-row');
+  renderRows(budget.taxi,'s-taxi','');
+  renderRows(budget.food,'s-food','');
+  renderRows(budget.attractions,'s-attractions','');
+  renderRows(budget.misc,'s-misc','');
+
+  const d=div();
+  const cats=[
+    {l:'✈️ 長榮機票',c:'#534AB7', t:calcTotal(budget.flight)},
+    {l:'🏠 公寓住宿',c:'#1D9E75', t:calcTotal(budget.hotel)},
+    {l:'🚗 租車',c:'#BA7517', t:calcTotal(budget.car)},
+    {l:'✈️ 國內航班',c:'#C0392B', t:calcTotal(budget.domestic)},
+    {l:'🚄 VIA Rail',c:'#534AB7', t:calcTotal(budget.train)},
+    {l:'🚕 計程車',c:'#888',t:calcTotal(budget.taxi)},
+    {l:'🍽️ 餐飲',c:'#1E7FD8',t:calcTotal(budget.food)},
+    {l:'🎟️ 景點',c:'#D4537E',t:calcTotal(budget.attractions)},
+    {l:'🛍️ 其他',c:'#5D4037',t:calcTotal(budget.misc)},
+  ];
+  const maxV=Math.max(...cats.map(c=>(c.t.lo+c.t.hi)/2/d));
+  document.getElementById('s-bar').innerHTML=cats.map(c=>{
+    const midV=(c.t.lo+c.t.hi)/2/d;
+    return `<div class="barr">
+      <div class="barl">${c.l}</div>
+      <div class="barbg"><div class="barfill" style="width:${Math.round(midV/maxV*100)}%;background:${c.c};"></div></div>
+      <div class="barv">${fT(midV)}</div>
+    </div>`;
+  }).join('');
+
+  const all = [...budget.flight,...budget.hotel,...budget.car,...budget.domestic,...budget.train,...budget.taxi,...budget.food,...budget.attractions,...budget.misc];
+  const grand = calcTotal(all);
+  const lo=grand.lo/d, hi=grand.hi/d, mid=(lo+hi)/2;
+
+  const subtotals = cats.map(c=>({l:c.l, v:(c.t.lo+c.t.hi)/2/d}));
+  document.getElementById('grand-box').innerHTML=`
+    <h3>💰 費用總覽（${pMode==='pp'?'每人平均 ÷5':'6人全家合計'}）</h3>
+    ${subtotals.map(s=>`<div class="gt-row"><span>${s.l}</span><span>${fT(s.v)}</span></div>`).join('')}
+    <div class="gt-final">
+      <span class="lbl">建議預備總金額</span>
+      <span class="val">${fT(mid)}</span>
+    </div>
+    <div class="pp-note">範圍：${fT(lo)} – ${fT(hi)}</div>`;
+}
+
+// ========== RENDER DAYS ==========
+function renderDays(){
+  const c=document.getElementById('days'); c.innerHTML='';
+  days.forEach((d,i)=>{
+    const div=document.createElement('div'); div.className='dc';
+    const tags=d.tags.map(t=>`<span class="tag" style="background:${t.b};color:${t.c};">${t.t}</span>`).join('');
+    let aptHtml='';
+    if(d.apt){
+      aptHtml=`<div class="apt-box">
+        <div class="apt-label">🏠 住宿（${d.apt.nights}晚 整套公寓）</div>
+        <div class="apt-name">${d.apt.name}</div>
+        <div class="apt-price">${d.apt.price}</div>
+        <div class="apt-dist">${d.apt.dist}</div>
+        <div class="apt-note">${d.apt.note}</div>
+      </div>`;
+    }
+    const schedRows=d.sched?`<table class="sched">${d.sched.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}</table>`:'';
+    div.innerHTML=`
+      <div class="dh" onclick="td(${i})">
+        <div class="dbadge" style="background:${d.bg};color:${d.tc};">
+          <div class="dow">${d.dow}</div>
+          <div class="ic">${d.ic}</div>
+          <div class="date">${d.date}</div>
+        </div>
+        <div class="di">
+          <div class="dt">${d.title}</div>
+          <div class="ds">${d.sub}</div>
+          <div class="tags">${tags}</div>
+        </div>
+        <div class="chv" id="chv${i}">›</div>
+      </div>
+      <div class="db" id="db${i}">
+        ${aptHtml}
+        ${schedRows}
+        ${d.tip?`<div class="tip">💡 ${d.tip}</div>`:''}
+      </div>`;
+    c.appendChild(div);
+  });
+}
+function td(i){
+  const b=document.getElementById('db'+i),cv=document.getElementById('chv'+i);
+  const op=b.classList.contains('on');
+  document.querySelectorAll('.db').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.chv').forEach(x=>x.style.transform='');
+  if(!op){b.classList.add('on');cv.style.transform='rotate(90deg)';}
+}
+
+// ========== RENDER ACCOM ==========
+function renderAccom(){
+  const c=document.getElementById('accom-list'); c.innerHTML='';
+  accomList.forEach(a=>{
+    c.innerHTML+=`
+      <div class="dc" style="margin-bottom:10px;">
+        <div style="display:flex;align-items:center;gap:10px;padding:12px 15px;background:${a.bg};border-radius:var(--rd) var(--rd) 0 0;">
+          <span style="font-size:20px;">${a.icon}</span>
+          <span style="font-size:14px;font-weight:700;color:${a.tc};">${a.city}</span>
+        </div>
+        <div style="padding:12px 15px 14px;">
+          <div class="apt-box">
+            <div class="apt-label">🏠 推薦住所</div>
+            <div class="apt-name">${a.name}</div>
+            <div class="apt-price" style="font-weight:600;color:#1B5E20;">${a.price}</div>
+            <div class="apt-dist">${a.dist}</div>
+            <div style="margin-top:8px;font-size:12px;background:#fff;border-radius:6px;padding:7px 10px;border:1px dashed #81C784;">
+              <strong>搜尋方式：</strong>${a.search}
+            </div>
+            <div class="apt-note" style="margin-top:7px;">${a.note}</div>
+          </div>
+          <div class="sl">這裡可以做什麼</div>
+          <ul style="padding-left:16px;font-size:13px;color:var(--sub);line-height:1.8;">${a.what.map(w=>`<li>${w}</li>`).join('')}</ul>
+        </div>
+      </div>`;
+  });
+}
+
+function sw(id){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('on',['itinerary','accom','budget'][i]===id));
+  document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id==='pane-'+id));
+}
+function sp(m){
+  pMode=m;
+  document.getElementById('p-tot').classList.toggle('on',m==='tot');
+  document.getElementById('p-pp').classList.toggle('on',m==='pp');
+  renderBudget();
+}
+
+renderDays();
+renderAccom();
+renderBudget();
+</script>
+</body>
+</html>
