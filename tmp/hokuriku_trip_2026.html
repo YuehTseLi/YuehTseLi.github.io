@@ -51,202 +51,142 @@
     line-height: 1.6;
   }
 
-  /* ── Header ── */
   .page-header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
     padding: 28px 24px 22px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: sticky; top: 0; z-index: 100;
   }
   .header-inner { max-width: 760px; margin: 0 auto; }
-  .header-eyebrow {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--hint);
-    margin-bottom: 6px;
-  }
-  .header-title {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 10px;
-  }
-  .pill-row { display: flex; gap: 6px; flex-wrap: wrap; }
-  .pill {
-    font-size: 11px;
-    font-weight: 500;
-    padding: 3px 10px;
-    border-radius: 20px;
-  }
+  .header-eyebrow { font-size: 11px; font-weight: 500; letter-spacing:.1em; text-transform:uppercase; color:var(--hint); margin-bottom:6px; }
+  .header-title { font-size: 22px; font-weight: 700; color:var(--text); margin-bottom:10px; }
+  .pill-row { display:flex; gap:6px; flex-wrap:wrap; }
+  .pill { font-size:11px; font-weight:500; padding:3px 10px; border-radius:20px; }
 
-  /* ── Tabs ── */
-  .tab-bar {
-    max-width: 760px;
-    margin: 0 auto;
-    display: flex;
-    gap: 0;
-    padding: 20px 24px 0;
-  }
+  .tab-bar { max-width:760px; margin:0 auto; display:flex; padding:20px 24px 0; }
   .tab-btn {
-    padding: 8px 20px;
-    border: 1px solid var(--border);
-    background: transparent;
-    cursor: pointer;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-size: 13px;
-    color: var(--muted);
-    transition: background .15s, color .15s;
+    padding:8px 20px; border:1px solid var(--border); background:transparent;
+    cursor:pointer; font-family:'Noto Sans TC',sans-serif; font-size:13px;
+    color:var(--muted); transition:background .15s,color .15s;
   }
-  .tab-btn:first-child { border-radius: var(--radius) 0 0 var(--radius); }
-  .tab-btn:last-child  { border-radius: 0 var(--radius) var(--radius) 0; border-left: none; }
-  .tab-btn.active {
-    background: var(--text);
-    color: #fff;
-    border-color: var(--text);
-  }
-  .tab-btn:not(.active):hover { background: var(--bg); }
+  .tab-btn:first-child { border-radius:var(--radius) 0 0 var(--radius); }
+  .tab-btn:last-child  { border-radius:0 var(--radius) var(--radius) 0; border-left:none; }
+  .tab-btn.active { background:var(--text); color:#fff; border-color:var(--text); }
+  .tab-btn:not(.active):hover { background:var(--bg); }
 
-  /* ── Layout ── */
-  .main { max-width: 760px; margin: 0 auto; padding: 20px 24px 60px; }
-  .tab-pane { display: none; }
-  .tab-pane.active { display: block; }
+  .main { max-width:760px; margin:0 auto; padding:20px 24px 60px; }
+  .tab-pane { display:none; }
+  .tab-pane.active { display:block; }
 
-  /* ── Flight Banner ── */
   .flight-banner {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 12px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 16px 20px;
-    margin-bottom: 16px;
+    display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:12px;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--radius-lg); padding:16px 20px; margin-bottom:16px;
   }
-  .flight-dir { }
-  .flight-label { font-size: 10px; font-weight: 500; letter-spacing:.08em; text-transform: uppercase; color: var(--hint); margin-bottom: 2px; }
-  .flight-route { font-size: 17px; font-weight: 700; font-family: 'DM Mono', monospace; }
-  .flight-time { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .flight-mid { text-align: center; }
-  .flight-arrow { font-size: 18px; color: var(--hint); }
-  .flight-type { font-size: 11px; color: var(--hint); margin-top: 2px; }
-  .flight-right { text-align: right; }
+  .flight-label { font-size:10px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--hint); margin-bottom:2px; }
+  .flight-route { font-size:17px; font-weight:700; font-family:'DM Mono',monospace; }
+  .flight-time { font-size:12px; color:var(--muted); margin-top:2px; }
+  .flight-mid { text-align:center; }
+  .flight-arrow { font-size:18px; color:var(--hint); }
+  .flight-type { font-size:11px; color:var(--hint); margin-top:2px; }
+  .flight-right { text-align:right; }
 
-  /* ── Alert box ── */
+  .pass-banner {
+    background:var(--green-bg); border:1px solid var(--ok-bd);
+    border-radius:var(--radius-lg); padding:12px 18px; margin-bottom:16px;
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  }
+  .pass-badge { font-size:22px; }
+  .pass-info { flex:1; }
+  .pass-title { font-size:13px; font-weight:700; color:var(--green); }
+  .pass-detail { font-size:12px; color:var(--ok); margin-top:2px; }
+  .pass-dates { display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
+  .pass-tag { font-size:11px; background:white; border:1px solid var(--ok-bd); border-radius:6px; padding:2px 8px; color:var(--green); font-weight:500; font-family:'DM Mono',monospace; }
+  .pass-expired { background:#FEF3E2; border-color:var(--warn-bd); color:var(--warn); }
+
   .alert-w {
-    background: var(--warn-bg); border: 1px solid var(--warn-bd);
-    border-radius: var(--radius); padding: 9px 12px;
-    font-size: 12px; color: var(--warn); margin-top: 10px;
-    display: flex; gap: 7px; align-items: flex-start;
+    background:var(--warn-bg); border:1px solid var(--warn-bd);
+    border-radius:var(--radius); padding:9px 12px;
+    font-size:12px; color:var(--warn); margin-top:10px;
+    display:flex; gap:7px; align-items:flex-start;
   }
   .alert-i {
-    background: var(--info-bg); border: 1px solid var(--info-bd);
-    border-radius: var(--radius); padding: 9px 12px;
-    font-size: 12px; color: var(--info); margin-top: 10px;
-    display: flex; gap: 7px; align-items: flex-start;
+    background:var(--info-bg); border:1px solid var(--info-bd);
+    border-radius:var(--radius); padding:9px 12px;
+    font-size:12px; color:var(--info); margin-top:10px;
+    display:flex; gap:7px; align-items:flex-start;
   }
   .alert-ok {
-    background: var(--ok-bg); border: 1px solid var(--ok-bd);
-    border-radius: var(--radius); padding: 9px 12px;
-    font-size: 12px; color: var(--ok); margin-top: 10px;
-    display: flex; gap: 7px; align-items: flex-start;
+    background:var(--ok-bg); border:1px solid var(--ok-bd);
+    border-radius:var(--radius); padding:9px 12px;
+    font-size:12px; color:var(--ok); margin-top:10px;
+    display:flex; gap:7px; align-items:flex-start;
   }
   .alert-top {
-    background: var(--warn-bg); border: 1px solid var(--warn-bd);
-    border-radius: var(--radius); padding: 10px 14px;
-    font-size: 13px; color: var(--warn);
-    display: flex; gap: 8px; align-items: flex-start;
-    margin-bottom: 14px;
+    background:var(--warn-bg); border:1px solid var(--warn-bd);
+    border-radius:var(--radius); padding:10px 14px;
+    font-size:13px; color:var(--warn);
+    display:flex; gap:8px; align-items:flex-start; margin-bottom:14px;
   }
 
-  /* ── Day cards ── */
-  .day-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    margin-bottom: 8px;
-    overflow: hidden;
-  }
-  .day-hd {
-    display: flex; align-items: center; gap: 12px;
-    padding: 13px 16px; cursor: pointer;
-    user-select: none;
-    transition: background .1s;
-  }
-  .day-hd:hover { background: var(--bg); }
-  .day-badge {
-    width: 42px; height: 42px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 700; flex-shrink: 0;
-    font-family: 'DM Mono', monospace;
-  }
-  .day-info { flex: 1; min-width: 0; }
-  .day-title { font-size: 14px; font-weight: 700; }
-  .day-sub { font-size: 12px; color: var(--muted); margin-top: 1px; }
-  .chev { font-size: 18px; color: var(--hint); transition: transform .2s; flex-shrink: 0; }
-  .chev.open { transform: rotate(180deg); }
-  .day-body { padding: 0 16px 14px; display: none; }
-  .day-body.open { display: block; }
-  .ev-list { border-left: 2px solid var(--border); margin-left: 5px; padding-left: 14px; padding-top: 4px; }
-  .ev { margin-bottom: 9px; }
-  .ev-time { font-size: 11px; font-weight: 500; color: var(--hint); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 1px; }
-  .ev-text { font-size: 13px; color: var(--text); line-height: 1.55; }
-  .ev-text small { font-size: 11px; color: var(--hint); display: block; margin-top: 2px; }
+  .day-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); margin-bottom:8px; overflow:hidden; }
+  .day-hd { display:flex; align-items:center; gap:12px; padding:13px 16px; cursor:pointer; user-select:none; transition:background .1s; }
+  .day-hd:hover { background:var(--bg); }
+  .day-badge { width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; flex-shrink:0; font-family:'DM Mono',monospace; }
+  .day-info { flex:1; min-width:0; }
+  .day-title { font-size:14px; font-weight:700; }
+  .day-sub { font-size:12px; color:var(--muted); margin-top:1px; }
+  .pass-chip { font-size:10px; padding:1px 7px; border-radius:10px; font-weight:600; display:inline-block; margin-top:3px; }
+  .chev { font-size:18px; color:var(--hint); transition:transform .2s; flex-shrink:0; }
+  .chev.open { transform:rotate(180deg); }
+  .day-body { padding:0 16px 14px; display:none; }
+  .day-body.open { display:block; }
+  .ev-list { border-left:2px solid var(--border); margin-left:5px; padding-left:14px; padding-top:4px; }
+  .ev { margin-bottom:9px; }
+  .ev-time { font-size:11px; font-weight:500; color:var(--hint); text-transform:uppercase; letter-spacing:.05em; margin-bottom:1px; }
+  .ev-text { font-size:13px; color:var(--text); line-height:1.55; }
+  .ev-text small { font-size:11px; color:var(--hint); display:block; margin-top:2px; }
 
-  /* ── Risk list ── */
-  .risk-box {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius-lg); padding: 14px 16px; margin-top: 16px;
-  }
-  .risk-title { font-size: 11px; font-weight: 700; letter-spacing:.08em; text-transform: uppercase; color: var(--hint); margin-bottom: 10px; }
-  .risk-item { display: flex; gap: 10px; font-size: 13px; color: var(--muted); margin-bottom: 7px; }
-  .risk-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--hint); padding-top: 2px; flex-shrink: 0; }
+  .risk-box { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:14px 16px; margin-top:16px; }
+  .risk-title { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--hint); margin-bottom:10px; }
+  .risk-item { display:flex; gap:10px; font-size:13px; color:var(--muted); margin-bottom:7px; }
+  .risk-num { font-family:'DM Mono',monospace; font-size:11px; color:var(--hint); padding-top:2px; flex-shrink:0; }
 
-  /* ── Budget tab ── */
-  .ctrl-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
-  .ctrl-label { font-size: 13px; color: var(--muted); white-space: nowrap; }
-  .ctrl-row input[type=range] { flex: 1; min-width: 80px; accent-color: var(--text); }
-  .r-val { font-size: 15px; font-weight: 700; min-width: 18px; text-align: center; font-family: 'DM Mono', monospace; }
+  .ctrl-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
+  .ctrl-label { font-size:13px; color:var(--muted); white-space:nowrap; }
+  .ctrl-row input[type=range] { flex:1; min-width:80px; accent-color:var(--text); }
+  .r-val { font-size:15px; font-weight:700; min-width:18px; text-align:center; font-family:'DM Mono',monospace; }
 
-  .metric-g { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; margin-bottom: 14px; }
-  .metric { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; }
-  .m-label { font-size: 11px; color: var(--hint); margin-bottom: 4px; font-weight: 500; letter-spacing: .04em; }
-  .m-val { font-size: 20px; font-weight: 700; font-family: 'DM Mono', monospace; }
-  .m-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .metric-g { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-bottom:14px; }
+  .metric { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 14px; }
+  .m-label { font-size:11px; color:var(--hint); margin-bottom:4px; font-weight:500; letter-spacing:.04em; }
+  .m-val { font-size:20px; font-weight:700; font-family:'DM Mono',monospace; }
+  .m-sub { font-size:11px; color:var(--muted); margin-top:3px; }
 
-  .bcard { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px 16px; margin-bottom: 10px; }
-  .sec-t { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--hint); margin-bottom: 10px; }
-  .brow { display: flex; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 13px; gap: 8px; }
-  .brow:last-child { border-bottom: none; padding-bottom: 0; }
-  .b-label { flex: 1; color: var(--muted); }
-  .b-note { font-size: 11px; color: var(--hint); display: block; margin-top: 1px; }
-  .b-jpy { font-weight: 700; font-family: 'DM Mono', monospace; min-width: 90px; text-align: right; }
-  .b-twd { font-size: 11px; color: var(--hint); min-width: 72px; text-align: right; }
+  .bcard { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:14px 16px; margin-bottom:10px; }
+  .sec-t { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--hint); margin-bottom:10px; }
+  .brow { display:flex; align-items:center; padding:6px 0; border-bottom:1px solid var(--border); font-size:13px; gap:8px; }
+  .brow:last-child { border-bottom:none; padding-bottom:0; }
+  .b-label { flex:1; color:var(--muted); }
+  .b-note { font-size:11px; color:var(--hint); display:block; margin-top:1px; }
+  .b-jpy { font-weight:700; font-family:'DM Mono',monospace; min-width:90px; text-align:right; }
+  .b-twd { font-size:11px; color:var(--hint); min-width:72px; text-align:right; }
 
-  .cat-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-  .cat-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
-  .bar-bg { flex: 2; height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; }
-  .bar-f { height: 100%; border-radius: 3px; transition: width .35s; }
-  .budget-alert {
-    background: var(--warn-bg); border: 1px solid var(--warn-bd);
-    border-radius: var(--radius); padding: 10px 14px;
-    font-size: 12px; color: var(--warn); margin-top: 10px;
-  }
+  .cat-row { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+  .cat-dot { width:8px; height:8px; border-radius:2px; flex-shrink:0; }
+  .bar-bg { flex:2; height:6px; background:var(--bg); border-radius:3px; overflow:hidden; }
+  .bar-f { height:100%; border-radius:3px; transition:width .35s; }
+  .budget-alert { background:var(--warn-bg); border:1px solid var(--warn-bd); border-radius:var(--radius); padding:10px 14px; font-size:12px; color:var(--warn); margin-top:10px; }
 
-  /* ── Responsive ── */
-  @media (max-width: 480px) {
-    .page-header { padding: 20px 16px 16px; }
-    .tab-bar, .main { padding-left: 16px; padding-right: 16px; }
-    .flight-banner { grid-template-columns: 1fr; gap: 8px; }
-    .flight-mid { display: none; }
-    .flight-right { text-align: left; }
-    .metric-g { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    .metric:last-child { grid-column: 1 / -1; }
-    .header-title { font-size: 18px; }
+  @media (max-width:480px) {
+    .page-header { padding:20px 16px 16px; }
+    .tab-bar, .main { padding-left:16px; padding-right:16px; }
+    .flight-banner { grid-template-columns:1fr; gap:8px; }
+    .flight-mid { display:none; }
+    .flight-right { text-align:left; }
+    .metric-g { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .metric:last-child { grid-column:1/-1; }
+    .header-title { font-size:18px; }
   }
 </style>
 </head>
@@ -255,10 +195,10 @@
 <header class="page-header">
   <div class="header-inner">
     <div class="header-eyebrow">2026 年秋季親子旅遊</div>
-    <h1 class="header-title">北陸 · 東京 · 9天8夜行程</h1>
+    <h1 class="header-title">北陸 · 東京 · 9天7夜行程</h1>
     <div class="pill-row">
       <span class="pill" style="background:var(--blue-bg);color:var(--blue);">CI 華航 TPE ⇄ NRT</span>
-      <span class="pill" style="background:var(--green-bg);color:var(--green);">北陸拱形周遊券 8天</span>
+      <span class="pill" style="background:var(--green-bg);color:var(--green);">北陸拱形周遊券 7天 11/21–27</span>
       <span class="pill" style="background:var(--amber-bg);color:var(--amber);">11月21–29日</span>
       <span class="pill" style="background:var(--bg);color:var(--muted);border:1px solid var(--border);">親子家庭</span>
     </div>
@@ -292,8 +232,24 @@
       </div>
     </div>
 
+    <!-- Pass validity banner -->
+    <div class="pass-banner">
+      <div class="pass-badge">🎫</div>
+      <div class="pass-info">
+        <div class="pass-title">北陸拱形鐵路周遊券（7天效期）</div>
+        <div class="pass-detail">11/21 抵達成田後立即啟用 → 有效至 11/27（六）</div>
+        <div class="pass-dates">
+          <span class="pass-tag">11/21 ✓ N'EX 成田→東京</span>
+          <span class="pass-tag">11/21 ✓ 新幹線→富山</span>
+          <span class="pass-tag">11/21–27 ✓ 所有 JR 北陸區間</span>
+          <span class="pass-tag">11/27 ✓ 新幹線→東京</span>
+          <span class="pass-expired">11/28 ✗ N'EX 東京→成田 需另購</span>
+        </div>
+      </div>
+    </div>
+
     <div class="alert-top">
-      ⚠️ 回程 09:20 起飛，需於 <strong>07:20 前</strong>抵達成田航廈。建議 11/28 晚住成田機場附近，確保從容出發。
+      ⚠️ 回程 11/29 09:20 起飛，需於 <strong>07:20 前</strong>抵達成田航廈。建議 11/28 晚住成田機場附近，確保從容出發。
     </div>
 
     <!-- Day 11/21 -->
@@ -301,47 +257,31 @@
       <div class="day-hd" onclick="tog(this)">
         <div class="day-badge" style="background:var(--blue-bg);color:var(--blue);">11/21</div>
         <div class="day-info">
-          <div class="day-title">抵達東京</div>
-          <div class="day-sub">去程 CI · 成田 13:30 落地</div>
+          <div class="day-title">抵達成田 → 直奔富山</div>
+          <div class="day-sub">去程 CI 09:30→13:30 · 當日入住富山</div>
+          <span class="pass-chip" style="background:var(--ok-bg);color:var(--ok);">🎫 周遊券第1天（啟用日）</span>
         </div>
         <span class="chev">▾</span>
       </div>
       <div class="day-body">
         <div class="ev-list">
-          <div class="ev"><div class="ev-time">13:30</div><div class="ev-text">抵達成田，在 JR 東日本旅行服務中心兌換並<strong>立即啟用</strong>北陸拱形周遊券（效期 8 天，涵蓋至 11/28）</div></div>
-          <div class="ev"><div class="ev-time">下午</div><div class="ev-text">搭 N'EX 成田特快進東京市區，Check-in 東京站周邊飯店</div></div>
-          <div class="ev"><div class="ev-time">傍晚</div><div class="ev-text">輕鬆逛東京車站一番街，初抵日本採買零食、點心</div></div>
+          <div class="ev"><div class="ev-time">13:30</div><div class="ev-text">抵達成田，前往 JR 東日本旅行服務中心兌換並<strong>立即啟用</strong>北陸拱形周遊券<small>效期 7 天：11/21（六）→ 11/27（六）</small></div></div>
+          <div class="ev"><div class="ev-time">14:30</div><div class="ev-text">持周遊券搭 <strong>N'EX 成田特快</strong> → 東京站（約60分鐘），不出站直接轉乘月台</div></div>
+          <div class="ev"><div class="ev-time">約16:00</div><div class="ev-text">搭乘<strong>北陸新幹線 Kagayaki</strong> → 富山（約2小時8分）<small>全程使用周遊券，無需另購票</small></div></div>
+          <div class="ev"><div class="ev-time">晚間</div><div class="ev-text">抵達富山 Check-in，晚餐推薦站內黑拉麵或海鮮迴轉壽司</div></div>
         </div>
-        <div class="alert-ok">✓ 比原計畫多出整天在東京，行程更從容，不必趕機場轉車</div>
+        <div class="alert-i">ℹ 建議在成田機場先確認當日 Kagayaki 最晚可搭班次（末班約18:00前從東京出發），確保當天能順利抵達富山。</div>
       </div>
     </div>
 
     <!-- Day 11/22 -->
     <div class="day-card">
       <div class="day-hd" onclick="tog(this)">
-        <div class="day-badge" style="background:var(--green-bg);color:var(--green);">11/22</div>
-        <div class="day-info">
-          <div class="day-title">東京 → 富山</div>
-          <div class="day-sub">新幹線 Kagayaki · 黑拉麵晚餐</div>
-        </div>
-        <span class="chev">▾</span>
-      </div>
-      <div class="day-body">
-        <div class="ev-list">
-          <div class="ev"><div class="ev-time">上午</div><div class="ev-text">東京站搭乘北陸新幹線 Kagayaki（約 2 小時 8 分）前往富山</div></div>
-          <div class="ev"><div class="ev-time">下午</div><div class="ev-text">抵達富山，Check-in 站附近飯店，輕鬆散步周邊</div></div>
-          <div class="ev"><div class="ev-time">晚餐</div><div class="ev-text">富山特產黑拉麵，或站內海鮮迴轉壽司</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Day 11/23 -->
-    <div class="day-card">
-      <div class="day-hd" onclick="tog(this)">
-        <div class="day-badge" style="background:var(--amber-bg);color:var(--amber);">11/23</div>
+        <div class="day-badge" style="background:var(--amber-bg);color:var(--amber);">11/22</div>
         <div class="day-info">
           <div class="day-title">高岡 · 哆啦A夢探險</div>
           <div class="day-sub">大佛 · 散步道 · 古城公園 · AEON</div>
+          <span class="pass-chip" style="background:var(--ok-bg);color:var(--ok);">🎫 周遊券第2天</span>
         </div>
         <span class="chev">▾</span>
       </div>
@@ -354,13 +294,14 @@
       </div>
     </div>
 
-    <!-- Day 11/24 -->
+    <!-- Day 11/23 -->
     <div class="day-card">
       <div class="day-hd" onclick="tog(this)">
-        <div class="day-badge" style="background:var(--green-bg);color:var(--green);">11/24</div>
+        <div class="day-badge" style="background:var(--green-bg);color:var(--green);">11/23</div>
         <div class="day-info">
           <div class="day-title">冰見海岸線</div>
           <div class="day-sub">雨晴海岸 · 立山連峰 · 螃蟹足湯</div>
+          <span class="pass-chip" style="background:var(--ok-bg);color:var(--ok);">🎫 周遊券第3天</span>
         </div>
         <span class="chev">▾</span>
       </div>
@@ -373,33 +314,35 @@
       </div>
     </div>
 
-    <!-- Day 11/25 -->
+    <!-- Day 11/24 -->
     <div class="day-card">
       <div class="day-hd" onclick="tog(this)">
-        <div class="day-badge" style="background:var(--purple-bg);color:var(--purple);">11/25</div>
+        <div class="day-badge" style="background:var(--purple-bg);color:var(--purple);">11/24</div>
         <div class="day-info">
           <div class="day-title">黑部峽谷小火車</div>
           <div class="day-sub">宇奈月溫泉 · 峽谷鐵道 · 延對寺莊</div>
+          <span class="pass-chip" style="background:var(--ok-bg);color:var(--ok);">🎫 周遊券第4天</span>
         </div>
         <span class="chev">▾</span>
       </div>
       <div class="day-body">
         <div class="ev-list">
-          <div class="ev"><div class="ev-time">交通</div><div class="ev-text">新幹線 Hakutaka → 黑部宇奈月溫泉站</div></div>
-          <div class="ev"><div class="ev-time">活動</div><div class="ev-text">黑部峽谷鐵道復古小火車<small>2026年限：宇奈月 ⇆ 貓又（地震修復工程中）</small></div></div>
+          <div class="ev"><div class="ev-time">交通</div><div class="ev-text">新幹線 Hakutaka → 黑部宇奈月溫泉站（周遊券涵蓋）</div></div>
+          <div class="ev"><div class="ev-time">活動</div><div class="ev-text">黑部峽谷鐵道復古小火車（需另購票）<small>2026年限：宇奈月 ⇆ 貓又（地震修復工程中）</small></div></div>
           <div class="ev"><div class="ev-time">住宿</div><div class="ev-text">入住延對寺莊（含晚餐 · 早餐）</div></div>
         </div>
         <div class="alert-w">⚠️ 小火車<strong>無廁所</strong>，11月峽谷極冷，請備妥防風防寒衣物。全線通車待 2026 年 7 月官網確認。</div>
       </div>
     </div>
 
-    <!-- Day 11/26 -->
+    <!-- Day 11/25 -->
     <div class="day-card">
       <div class="day-hd" onclick="tog(this)">
-        <div class="day-badge" style="background:var(--coral-bg);color:var(--coral);">11/26</div>
+        <div class="day-badge" style="background:var(--coral-bg);color:var(--coral);">11/25</div>
         <div class="day-info">
           <div class="day-title">魚津水族館 · 岩瀨老街</div>
           <div class="day-sub">水族館 · LRT · 磯料理松月</div>
+          <span class="pass-chip" style="background:var(--ok-bg);color:var(--ok);">🎫 周遊券第5天</span>
         </div>
         <span class="chev">▾</span>
       </div>
@@ -412,43 +355,66 @@
       </div>
     </div>
 
-    <!-- Day 11/27 -->
+    <!-- Day 11/26 -->
     <div class="day-card">
       <div class="day-hd" onclick="tog(this)">
-        <div class="day-badge" style="background:var(--pink-bg);color:var(--pink);">11/27</div>
+        <div class="day-badge" style="background:var(--pink-bg);color:var(--pink);">11/26</div>
         <div class="day-info">
           <div class="day-title">富山 → 東京</div>
           <div class="day-sub">Kagayaki · Karaksa Hotel Yaesu</div>
+          <span class="pass-chip" style="background:var(--ok-bg);color:var(--ok);">🎫 周遊券第6天</span>
         </div>
         <span class="chev">▾</span>
       </div>
       <div class="day-body">
         <div class="ev-list">
-          <div class="ev"><div class="ev-time">上午</div><div class="ev-text">悠閒早餐後搭 Kagayaki 新幹線前往東京（約 2h 8m）</div></div>
-          <div class="ev"><div class="ev-time">住宿</div><div class="ev-text">Karaksa Hotel Colors Tokyo Yaesu（東京站步行 6 分鐘，含免費點心飲料休息室）</div></div>
+          <div class="ev"><div class="ev-time">上午</div><div class="ev-text">悠閒早餐後搭 Kagayaki 新幹線前往東京（約2h 8m）</div></div>
+          <div class="ev"><div class="ev-time">住宿</div><div class="ev-text">Karaksa Hotel Colors Tokyo Yaesu（東京站步行6分鐘，含免費點心飲料休息室）</div></div>
           <div class="ev"><div class="ev-time">下午</div><div class="ev-text">東京車站一番街寶可夢 · 動漫周邊採買</div></div>
           <div class="ev"><div class="ev-time">傍晚</div><div class="ev-text">警察博物館（免費）— 孩子可換制服拍照 · 互動遊戲</div></div>
         </div>
       </div>
     </div>
 
-    <!-- Day 11/28 -->
+    <!-- Day 11/27 -->
     <div class="day-card">
       <div class="day-hd" onclick="tog(this)">
-        <div class="day-badge" style="background:var(--green-bg);color:var(--green);">11/28</div>
+        <div class="day-badge" style="background:var(--green-bg);color:var(--green);">11/27</div>
         <div class="day-info">
-          <div class="day-title">東京市區 → 成田機場旁</div>
-          <div class="day-sub">皇居銀杏 · 最後採買 · 機場附近住宿</div>
+          <div class="day-title">東京市區 · 最後一天用券</div>
+          <div class="day-sub">皇居銀杏 · 最後採買</div>
+          <span class="pass-chip" style="background:var(--ok-bg);color:var(--ok);">🎫 周遊券第7天（最後一天）</span>
         </div>
         <span class="chev">▾</span>
       </div>
       <div class="day-body">
         <div class="ev-list">
           <div class="ev"><div class="ev-time">上午</div><div class="ev-text">皇居外苑金黃銀杏步道 · 藥妝最終採買</div></div>
-          <div class="ev"><div class="ev-time">下午</div><div class="ev-text">東京地下街最後補貨 → 搭 N'EX 前往成田機場周邊</div></div>
+          <div class="ev"><div class="ev-time">下午</div><div class="ev-text">東京地下街最後補貨，輕鬆安排</div></div>
+          <div class="ev"><div class="ev-time">住宿</div><div class="ev-text">繼續住 Karaksa Hotel Yaesu（或提早移往成田附近）</div></div>
+        </div>
+        <div class="alert-ok">✓ 周遊券今日到期。若有任何需搭JR的行程，務必在今日內完成。</div>
+      </div>
+    </div>
+
+    <!-- Day 11/28 -->
+    <div class="day-card">
+      <div class="day-hd" onclick="tog(this)">
+        <div class="day-badge" style="background:var(--amber-bg);color:var(--amber);">11/28</div>
+        <div class="day-info">
+          <div class="day-title">東京 → 成田機場旁</div>
+          <div class="day-sub">N'EX 需另購票 · 機場附近住宿</div>
+          <span class="pass-chip" style="background:var(--warn-bg);color:var(--warn);">🎫 周遊券已過期，交通需自費</span>
+        </div>
+        <span class="chev">▾</span>
+      </div>
+      <div class="day-body">
+        <div class="ev-list">
+          <div class="ev"><div class="ev-time">上午</div><div class="ev-text">東京最後自由活動</div></div>
+          <div class="ev"><div class="ev-time">下午</div><div class="ev-text">東京站搭 <strong>N'EX</strong> → 成田機場周邊<small>⚠ 周遊券已失效，需自行購票。大人 ¥3,070 / 小孩 ¥1,540</small></div></div>
           <div class="ev"><div class="ev-time">住宿</div><div class="ev-text">成田機場附近飯店（APA Hotel 成田 / Comfort Hotel 等）</div></div>
         </div>
-        <div class="alert-w">⏰ 明早 09:20 起飛，07:20 前需到航廈。住機場旁是最安全的選擇。</div>
+        <div class="alert-w">⏰ 明早 09:20 起飛，07:20 前需到航廈。住機場旁是最安全的選擇，步行或免費接駁即可抵達。</div>
       </div>
     </div>
 
@@ -465,7 +431,7 @@
       <div class="day-body">
         <div class="ev-list">
           <div class="ev"><div class="ev-time">07:20</div><div class="ev-text">抵達成田機場辦理登機手續</div></div>
-          <div class="ev"><div class="ev-time">09:20</div><div class="ev-text">搭乘中華航空 / 日本航空聯營班機返台</div></div>
+          <div class="ev"><div class="ev-time">09:20</div><div class="ev-text">搭乘中華航空返台</div></div>
           <div class="ev"><div class="ev-time">12:30</div><div class="ev-text">抵達桃園國際機場，圓滿結束北陸之旅 ✓</div></div>
         </div>
       </div>
@@ -473,10 +439,11 @@
 
     <div class="risk-box">
       <div class="risk-title">⚠ 行程風險提醒</div>
-      <div class="risk-item"><span class="risk-num">01</span><span>魚津、宇奈月溫泉部分私鐵區間<strong>需另購票</strong>，不可直接刷周遊券進站</span></div>
-      <div class="risk-item"><span class="risk-num">02</span><span>黑部峽谷鐵道是否恢復全線通車，需待 2026 年 7 月官網發布最新公告</span></div>
-      <div class="risk-item"><span class="risk-num">03</span><span>建議使用 <strong>Takkyubin（宅急便）</strong>在富山與東京間寄送行李，輕鬆移動</span></div>
-      <div class="risk-item"><span class="risk-num">04</span><span>出發前務必透過<strong>華航官網</strong>確認實際班表及最新時刻</span></div>
+      <div class="risk-item"><span class="risk-num">01</span><span>周遊券效期 7 天（11/21–27），<strong>11/28 東京→成田 N'EX 需自費購票</strong>（大人 ¥3,070 / 小孩 ¥1,540）</span></div>
+      <div class="risk-item"><span class="risk-num">02</span><span>魚津、宇奈月溫泉部分私鐵區間<strong>需另購票</strong>，不可直接刷周遊券進站</span></div>
+      <div class="risk-item"><span class="risk-num">03</span><span>黑部峽谷鐵道是否恢復全線通車，需待 2026 年 7 月官網發布最新公告</span></div>
+      <div class="risk-item"><span class="risk-num">04</span><span>建議使用 <strong>Takkyubin（宅急便）</strong>在富山與東京間寄送行李，輕鬆移動</span></div>
+      <div class="risk-item"><span class="risk-num">05</span><span>出發前務必透過<strong>華航官網</strong>確認實際班表及最新時刻</span></div>
     </div>
   </div>
 
@@ -525,28 +492,27 @@
 
     <div class="bcard">
       <div class="sec-t">🚄 交通</div>
-      <div class="brow"><span class="b-label">北陸拱形周遊券 大人<span class="b-note">¥35,000 × 人數</span></span><span class="b-jpy" id="pa">—</span><span class="b-twd" id="pa-t">—</span></div>
-      <div class="brow"><span class="b-label">北陸拱形周遊券 小孩<span class="b-note">¥17,500 × 人數</span></span><span class="b-jpy" id="pk">—</span><span class="b-twd" id="pk-t">—</span></div>
+      <div class="brow"><span class="b-label">北陸拱形周遊券 大人<span class="b-note">7天 ¥35,000 × 人數</span></span><span class="b-jpy" id="pa">—</span><span class="b-twd" id="pa-t">—</span></div>
+      <div class="brow"><span class="b-label">北陸拱形周遊券 小孩<span class="b-note">7天 ¥17,500 × 人數</span></span><span class="b-jpy" id="pk">—</span><span class="b-twd" id="pk-t">—</span></div>
       <div class="brow"><span class="b-label">魚津私鐵另購票<span class="b-note">來回 × 人數</span></span><span class="b-jpy" id="uz">—</span><span class="b-twd" id="uz-t">—</span></div>
-      <div class="brow"><span class="b-label">N'EX 成田↔東京<span class="b-note">11/21 入境 + 11/28 去機場</span></span><span class="b-jpy" id="nex">—</span><span class="b-twd" id="nex-t">—</span></div>
+      <div class="brow"><span class="b-label">11/28 N'EX 東京→成田<span class="b-note">周遊券已到期，需自費</span></span><span class="b-jpy" id="nex">—</span><span class="b-twd" id="nex-t">—</span></div>
       <div class="brow"><span class="b-label">富山 LRT · 市內雜費</span><span class="b-jpy" id="loc">—</span><span class="b-twd" id="loc-t">—</span></div>
     </div>
 
     <div class="bcard">
-      <div class="sec-t">🏨 住宿（8晚）</div>
-      <div class="brow"><span class="b-label">東京 1晚 11/21<span class="b-note">東京站周邊商務飯店</span></span><span class="b-jpy" id="h0">—</span><span class="b-twd" id="h0-t">—</span></div>
-      <div class="brow"><span class="b-label">富山 3晚 11/22–24<span class="b-note">¥12,000/晚</span></span><span class="b-jpy" id="h1">—</span><span class="b-twd" id="h1-t">—</span></div>
-      <div class="brow"><span class="b-label">延對寺莊 1晚 11/25<span class="b-note">含晚餐 · 早餐</span></span><span class="b-jpy" id="h2">—</span><span class="b-twd" id="h2-t">—</span></div>
-      <div class="brow"><span class="b-label">富山 1晚 11/26</span><span class="b-jpy" id="h3">—</span><span class="b-twd" id="h3-t">—</span></div>
-      <div class="brow"><span class="b-label">Karaksa Yaesu 1晚 11/27</span><span class="b-jpy" id="h4">—</span><span class="b-twd" id="h4-t">—</span></div>
-      <div class="brow"><span class="b-label">成田機場旁 1晚 11/28<span class="b-note">新增，確保早班機出發</span></span><span class="b-jpy" id="h5">—</span><span class="b-twd" id="h5-t">—</span></div>
+      <div class="sec-t">🏨 住宿（7晚）</div>
+      <div class="brow"><span class="b-label">富山 3晚 11/21–23<span class="b-note">¥12,000/晚</span></span><span class="b-jpy" id="h1">—</span><span class="b-twd" id="h1-t">—</span></div>
+      <div class="brow"><span class="b-label">延對寺莊 1晚 11/24<span class="b-note">含晚餐 · 早餐</span></span><span class="b-jpy" id="h2">—</span><span class="b-twd" id="h2-t">—</span></div>
+      <div class="brow"><span class="b-label">富山 1晚 11/25</span><span class="b-jpy" id="h3">—</span><span class="b-twd" id="h3-t">—</span></div>
+      <div class="brow"><span class="b-label">Karaksa Yaesu 2晚 11/26–27<span class="b-note">¥18,000/晚</span></span><span class="b-jpy" id="h4">—</span><span class="b-twd" id="h4-t">—</span></div>
+      <div class="brow"><span class="b-label">成田機場旁 1晚 11/28<span class="b-note">確保早班機出發</span></span><span class="b-jpy" id="h5">—</span><span class="b-twd" id="h5-t">—</span></div>
     </div>
 
     <div class="bcard">
       <div class="sec-t">🍜 餐飲（9天）</div>
-      <div class="brow"><span class="b-label">一般早午餐<span class="b-note">約 ¥1,200/人次 × 14餐</span></span><span class="b-jpy" id="mn">—</span><span class="b-twd" id="mn-t">—</span></div>
-      <div class="brow"><span class="b-label">冰見番屋街 11/24<span class="b-note">螃蟹 / 寒鰤魚</span></span><span class="b-jpy" id="mh">—</span><span class="b-twd" id="mh-t">—</span></div>
-      <div class="brow"><span class="b-label">磯料理 松月 11/26<span class="b-note">白蝦套餐</span></span><span class="b-jpy" id="ms">—</span><span class="b-twd" id="ms-t">—</span></div>
+      <div class="brow"><span class="b-label">一般早午餐<span class="b-note">約 ¥1,200/人次 × 13餐</span></span><span class="b-jpy" id="mn">—</span><span class="b-twd" id="mn-t">—</span></div>
+      <div class="brow"><span class="b-label">冰見番屋街 11/23<span class="b-note">螃蟹 / 寒鰤魚</span></span><span class="b-jpy" id="mh">—</span><span class="b-twd" id="mh-t">—</span></div>
+      <div class="brow"><span class="b-label">磯料理 松月 11/25<span class="b-note">白蝦套餐</span></span><span class="b-jpy" id="ms">—</span><span class="b-twd" id="ms-t">—</span></div>
     </div>
 
     <div class="bcard">
@@ -564,7 +530,7 @@
     </div>
 
     <div class="budget-alert">
-      ⚠ 機票以 NT$49,080（2大1小）為基準換算；台幣匯率基準 1 JPY ≈ NT$0.215。延對寺莊依房型差異較大，建議直接洽詢家庭房方案。購物預算因人而異，可自行調整。
+      ⚠ 機票以 NT$49,080（2大1小）為基準換算；匯率 1 JPY ≈ NT$0.215。周遊券效期 7 天（11/21–27），11/28 N'EX 東京→成田需自費。延對寺莊依房型差異較大，建議直接洽詢家庭房方案。
     </div>
   </div>
 
@@ -577,7 +543,6 @@ function showTab(id, btn) {
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
 }
-
 function tog(hd) {
   const body = hd.nextElementSibling;
   const chev = hd.querySelector('.chev');
@@ -590,12 +555,12 @@ const RATE = 0.215;
 const BASE_ADULT_TWD = 19632;
 const BASE_KID_TWD   = 9816;
 const CATS = [
-  {key:'fl', label:'機票',     color:'#185FA5'},
-  {key:'tr', label:'交通',     color:'#0F6E56'},
-  {key:'ho', label:'住宿',     color:'#534AB7'},
-  {key:'fd', label:'餐飲',     color:'#993C1D'},
-  {key:'tk', label:'門票活動', color:'#854F0B'},
-  {key:'mi', label:'購物雜費', color:'#5F5E5A'},
+  {label:'機票',     color:'#185FA5'},
+  {label:'交通',     color:'#0F6E56'},
+  {label:'住宿',     color:'#534AB7'},
+  {label:'餐飲',     color:'#993C1D'},
+  {label:'門票活動', color:'#854F0B'},
+  {label:'購物雜費', color:'#5F5E5A'},
 ];
 
 function jpy(n){ return '¥' + Math.round(n).toLocaleString(); }
@@ -612,32 +577,42 @@ function calc() {
   document.getElementById('adults-out').textContent = a;
   document.getElementById('kids-out').textContent = k;
 
+  // Flight - based on actual NT$49,080 for 2A+1K
   const flA_twd = BASE_ADULT_TWD * a;
-  const flK_twd = BASE_KID_TWD   * k;
+  const flK_twd = BASE_KID_TWD * k;
   const flA = t2j(flA_twd), flK = t2j(flK_twd);
 
+  // Transport
   const passA = 35000 * a, passK = 17500 * k;
   const uozu  = 1800 * pax;
-  const nexV  = (3070 * a + 1540 * k) * 2;
+  // 11/28 only: NEX Tokyo→Narita (one way, pass expired)
+  const nexV  = 3070 * a + 1540 * k;
   const locV  = 3000 * pax;
 
-  const h0 = 15000, h1 = 12000 * 3;
-  const h2 = 25000 * Math.max(1, Math.ceil(pax / 2));
-  const h3 = 12000, h4 = 18000, h5 = 11000;
+  // Hotels - 7 nights (no Tokyo 11/21 night, Karaksa now 2 nights)
+  const h1 = 12000 * 3;  // Toyama 3 nights
+  const h2 = 25000 * Math.max(1, Math.ceil(pax / 2)); // Enreijisou
+  const h3 = 12000;      // Toyama 1 night
+  const h4 = 18000 * 2;  // Karaksa 2 nights
+  const h5 = 11000;      // Narita 1 night
 
-  const mnV = 1200 * pax * 14;
+  // Food
+  const mnV = 1200 * pax * 13;
   const mhV = 4000 * a + 2000 * k;
   const msV = 5000 * a + 2500 * k;
 
+  // Tickets
   const kbV = 2880 * a + 1440 * k;
   const aqV = 1600 * a + 800  * k;
 
+  // Misc
   const shV  = 20000 * a + 5000 * k;
-  const lugV = 2400, insV = 2000 * pax;
+  const lugV = 2400;
+  const insV = 2000 * pax;
 
   const fl = flA + flK;
   const tr = passA + passK + uozu + nexV + locV;
-  const ho = h0 + h1 + h2 + h3 + h4 + h5;
+  const ho = h1 + h2 + h3 + h4 + h5;
   const fd = mnV + mhV + msV;
   const tk = kbV + aqV;
   const mi = shV + lugV + insV;
@@ -650,7 +625,6 @@ function calc() {
   s('uz', uozu);  st('uz-t', uozu);
   s('nex', nexV); st('nex-t', nexV);
   s('loc', locV); st('loc-t', locV);
-  s('h0', h0); st('h0-t', h0);
   s('h1', h1); st('h1-t', h1);
   s('h2', h2); st('h2-t', h2);
   s('h3', h3); st('h3-t', h3);
@@ -673,7 +647,7 @@ function calc() {
   document.getElementById('pd-twd').textContent = j2t(grand / 9);
 
   const cats = [fl, tr, ho, fd, tk, mi];
-  const html = CATS.map((c, i) => {
+  document.getElementById('cat-bars').innerHTML = CATS.map((c, i) => {
     const pct = grand > 0 ? Math.round(cats[i] / grand * 100) : 0;
     return `<div class="cat-row">
       <span class="cat-dot" style="background:${c.color}"></span>
@@ -683,7 +657,6 @@ function calc() {
       <span style="font-size:11px;color:var(--hint);min-width:30px;text-align:right;">${pct}%</span>
     </div>`;
   }).join('');
-  document.getElementById('cat-bars').innerHTML = html;
 }
 calc();
 </script>
