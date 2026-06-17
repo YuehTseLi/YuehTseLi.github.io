@@ -43,10 +43,14 @@ h1{font-size:21px;font-weight:700;margin-bottom:4px;}
 .dc{background:var(--card);border:1px solid var(--bdr);border-radius:var(--rd);overflow:hidden;margin-bottom:8px;}
 .dh{display:flex;align-items:flex-start;gap:12px;padding:11px 15px;cursor:pointer;user-select:none;}
 .dh:hover{background:var(--bg);}
-.dbadge{min-width:54px;border-radius:var(--rs);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;flex-shrink:0;text-align:center;}
+.dbadge{min-width:60px;border-radius:var(--rs);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;flex-shrink:0;text-align:center;}
 .dbadge .date{font-size:10px;font-weight:700;letter-spacing:.04em;}
 .dbadge .dow{font-size:10px;margin-bottom:2px;}
 .dbadge .ic{font-size:17px;}
+.tz-pill{font-size:9px;font-weight:700;letter-spacing:.04em;padding:1px 5px;border-radius:20px;margin-top:3px;line-height:1.4;}
+.tz-tpe{background:#FDE68A;color:#78350F;}
+.tz-yyz{background:#BFDBFE;color:#1E3A5F;}
+.tz-tpe-return{background:#FDE68A;color:#78350F;}
 .di{flex:1;min-width:0;}
 .dt{font-size:14px;font-weight:600;margin-bottom:2px;}
 .ds{font-size:12px;color:var(--sub);line-height:1.45;}
@@ -136,9 +140,10 @@ h1{font-size:21px;font-weight:700;margin-bottom:4px;}
 <p class="hero-sub">五大一小（9歲）・6 件行李・長榮經濟艙直飛・公寓住宿・Chrysler Pacifica 自駕</p>
 
 <div class="flight-banner">
-  <div class="fb-item"><span class="fb-label">去程</span><span class="fb-val">10/1（四）BR036 TPE 19:20 → YYZ 21:20（+1）</span></div>
-  <div class="fb-item"><span class="fb-label">回程</span><span class="fb-val">10/11（六）深夜 BR035 YYZ 02:10 → TPE 10/12（日）05:40</span></div>
-  <div class="fb-item"><span class="fb-label">飛行時間</span><span class="fb-val">去程 14h / 回程 15h55m（直飛）</span></div>
+  <div class="fb-item"><span class="fb-label">去程</span><span class="fb-val">10/1 BR036 &nbsp;<span style="background:#FDE68A;color:#78350F;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:700;">TPE 19:20 TST</span>&nbsp;→&nbsp;<span style="background:#BFDBFE;color:#1E3A5F;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:700;">YYZ 10/2 21:20 EDT</span></span></div>
+  <div class="fb-item"><span class="fb-label">回程</span><span class="fb-val">10/11 BR035 &nbsp;<span style="background:#BFDBFE;color:#1E3A5F;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:700;">YYZ 02:10 EDT</span>&nbsp;→&nbsp;<span style="background:#FDE68A;color:#78350F;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:700;">TPE 10/12 05:40 TST</span></span></div>
+  <div class="fb-item"><span class="fb-label">時差</span><span class="fb-val"><strong>TST 比 EDT 早 12 小時</strong>（10月 EDT = UTC−4）</span></div>
+  <div class="fb-item"><span class="fb-label">飛行時間</span><span class="fb-val">去程 14h / 回程 約 15h55m（直飛）</span></div>
 </div>
 
 <div class="tabs">
@@ -196,24 +201,29 @@ let pMode = 'tot';
 
 // ========== DATA ==========
 
+// tz: 'tpe' = Taipei (UTC+8), 'yyz' = Toronto/Eastern (UTC-4 in Oct)
+// tzLabel shown in badge; schedTz shown per row when a crossover happens within same day
 const days = [
   {
     date:'10/1', dow:'四', ic:'✈️', bg:'#EEEDFE', tc:'#3C3489',
+    tz:'tpe', tzLabel:'TPE UTC+8',
     title:'台北 出發 → 多倫多 抵達',
     sub:'BR036 TPE 19:20 起飛 → YYZ 10/2 21:20 抵達（飛行 14 小時）',
     tags:[{t:'長榮直飛',b:'#EEEDFE',c:'#3C3489'},{t:'跨日抵達',b:'#FEF3E2',c:'#8B4513'}],
     apt:null,
     sched:[
-      ['下午','建議 15:00 前到達桃園機場 T2，長榮 Check-in、辦理行李托運（6件）'],
-      ['19:20','BR036 準時起飛，直飛不轉機'],
-      ['（飛行中）','機上用餐・睡眠・抵達前補眠，抵達後當地時間已是 10/2 晚間'],
+      ['15:00 TPE','建議到達桃園機場 T2，長榮 Check-in、辦理行李托運（6件）'],
+      ['19:20 TPE','BR036 起飛，直飛不轉機'],
+      ['飛行中','機上用餐・睡眠，飛越太平洋 14 小時'],
+      ['→ 10/2 21:20 EDT','降落多倫多 YYZ T1（已切換為多倫多時間）'],
     ],
-    tip:'BR036 從 TPE T2 出發，抵達 YYZ T1。由於是跨夜長程，建議帶頸枕・眼罩・壓縮襪。'
+    tip:'TPE T2 出發，YYZ T1 抵達。時差 12 小時（10月 EDT），台灣 19:20 起飛 = 多倫多當天 07:20，飛抵時當地是 10/2 晚間 21:20。帶頸枕・眼罩・壓縮襪。'
   },
   {
     date:'10/2', dow:'五', ic:'🏙️', bg:'#E6F1FB', tc:'#0C447C',
+    tz:'yyz', tzLabel:'EDT UTC-4',
     title:'多倫多 抵達 + 市區初探',
-    sub:'YYZ 21:20 抵達，UP Express 入住，輕鬆適應時差',
+    sub:'YYZ 21:20（EDT）抵達，UP Express 入住，輕鬆適應時差',
     tags:[{t:'抵達日',b:'#E6F1FB',c:'#0C447C'},{t:'步行入住',b:'#EAF3DE',c:'#27500A'}],
     apt:{
       name:'CityPlace 3 臥公寓（整套）— 近 Union Station',
@@ -226,12 +236,13 @@ const days = [
       ['21:20','YYZ T1 入境・領行李（6件）'],
       ['22:00','搭 UP Express（$7/人×6=$42）至 Union Station，25 分'],
       ['22:30','步行 7 分到 CityPlace 公寓 Check-in'],
-      ['深夜','採買明日早餐食材（公寓樓下便利店或附近 Sobeys）'],
+      ['深夜','採買明日早餐食材（公寓附近 Sobeys 或便利店）'],
     ],
-    tip:'抵達已接近深夜，建議只買明日早餐食材，其他安排好好休息。10/2 是過渡日，不安排景點。'
+    tip:'抵達已接近深夜 EDT，台灣時間是 10/3 早上 09:20，時差大，建議只採買明日早餐食材，好好休息。'
   },
   {
     date:'10/3', dow:'六', ic:'🏙️', bg:'#E6F1FB', tc:'#0C447C',
+    tz:'yyz', tzLabel:'EDT UTC-4',
     title:'多倫多市區全日探索',
     sub:'CN Tower・水族館・St. Lawrence Market・古釀酒廠區',
     tags:[{t:'全程步行',b:'#EAF3DE',c:'#27500A'},{t:'市區觀光',b:'#E6F1FB',c:'#0C447C'}],
@@ -249,6 +260,7 @@ const days = [
   },
   {
     date:'10/4', dow:'日', ic:'🚗', bg:'#FEF3E2', tc:'#8B4513',
+    tz:'yyz', tzLabel:'EDT UTC-4',
     title:'多倫多 → 尼加拉瓦瀑布',
     sub:'取 Chrysler Pacifica，QEW 西行 130 km，約 1.5 小時',
     tags:[{t:'🚗 自駕開始',b:'#FEF3E2',c:'#8B4513'},{t:'瀑布夜景',b:'#FDEAEA',c:'#C0392B'}],
@@ -267,12 +279,13 @@ const days = [
       ['13:30','Horseshoe Falls 觀景台・Journey Behind the Falls（可選）'],
       ['16:00','Niagara-on-the-Lake 小鎮（車程 20 分），酒莊・維多利亞建築'],
       ['19:00','回公寓備餐或 Clifton Hill 餐廳'],
-      ['22:00','🎆 彩燈煙火秀（每晚 10pm，10/12 前均有）'],
+      ['22:00','🎆 彩燈煙火秀（每晚 10pm EDT，10/12 前均有）'],
     ],
-    tip:'Pacifica 含私人停車位的公寓，每天省 $25 停車費。煙火可從公寓附近步行前往觀看點，9 歲小孩超愛煙火。'
+    tip:'尼加拉瓦與多倫多同屬 EDT 時區，無時差切換。含私人停車位的公寓每天省 $25 停車費。'
   },
   {
     date:'10/5', dow:'一', ic:'🌲', bg:'#EAF3DE', tc:'#27500A',
+    tz:'yyz', tzLabel:'EDT UTC-4',
     title:'尼加拉瓦 → 阿岡昆省立公園',
     sub:'Hwy 400 北上約 380 km，中途 Barrie 休息，約 4–4.5 小時',
     tags:[{t:'🚗 長途自駕',b:'#FEF3E2',c:'#8B4513'},{t:'楓紅前夕',b:'#FDEAEA',c:'#C0392B'}],
@@ -292,10 +305,11 @@ const days = [
       ['17:00','Check-in Huntsville 木屋，採買晚餐食材'],
       ['19:00','木屋自炊晚餐，BBQ 或火爐料理'],
     ],
-    tip:'10 月初阿岡昆楓葉約 60–80% 轉色，是最佳觀賞窗口。Ontario Parks 入園許可必須提前線上購買，現場有時售罄。'
+    tip:'全程保持 EDT 時區。10 月初阿岡昆楓葉約 60–80% 轉色，是最佳觀賞窗口。Ontario Parks 入園許可必須提前線上購買。'
   },
   {
     date:'10/6', dow:'二', ic:'🍁', bg:'#FDEAEA', tc:'#8B0000',
+    tz:'yyz', tzLabel:'EDT UTC-4',
     title:'阿岡昆深度賞楓日',
     sub:'全天留在公園，多條步道・Hwy 60 觀景站・野餐',
     tags:[{t:'🍁 賞楓高峰',b:'#FDEAEA',c:'#8B0000'},{t:'自然探索',b:'#EAF3DE',c:'#27500A'}],
@@ -310,10 +324,11 @@ const days = [
       ['17:30','返回木屋，晚餐自炊'],
       ['20:00','木屋旁夜觀星空（阿岡昆光害極低，晴天可見銀河）'],
     ],
-    tip:'10 月的阿岡昆日落約 18:30，早出晚歸效率高。若遇晴天，傍晚的金色光線打在楓葉上是最美的時刻。'
+    tip:'10 月的阿岡昆日落約 18:30 EDT，早出晚歸效率高。若遇晴天，傍晚的金色光線打在楓葉上是最美的時刻。'
   },
   {
     date:'10/7', dow:'三', ic:'🛫', bg:'#FDEAEA', tc:'#8B0000',
+    tz:'yyz', tzLabel:'EDT UTC-4',
     title:'阿岡昆 → 多倫多還車 → 飛魁北克',
     sub:'Hwy 400 南下 4h 還車，Air Canada YYZ→YQB，計程車入古城',
     tags:[{t:'還車',b:'#FEF3E2',c:'#8B4513'},{t:'國內航班',b:'#EEEDFE',c:'#3C3489'}],
@@ -329,14 +344,15 @@ const days = [
       ['11:30','抵達多倫多 YYZ 機場租車公司還車'],
       ['13:00','Air Canada 報到（注意行李費：$35/件第 1 件，$55/件第 2 件）'],
       ['15:00','AC 班機 YYZ→YQB，飛行約 1.5 小時'],
-      ['16:30','抵達魁北克城（YQB），叫 <strong>XL 廂型計程車</strong>（全程唯一叫計程車時刻）'],
-      ['17:30','計程車直送舊城公寓 Check-in（車資約 $50–70 CAD，提前告知司機 6 人+6件大行李）'],
+      ['16:30','抵達魁北克城（YQB）— 魁北克與多倫多同屬 EDT，無時差'],
+      ['17:30','XL 廂型計程車直送舊城公寓（$50–70 CAD，提前告知司機 6 人+6件大行李）'],
       ['19:00','步行到小香普蘭街覓食，第一頓法式加拿大料理'],
     ],
-    tip:'Air Canada 國內線行李費是額外支出的大項。若每人只帶 1 件托運行李，6人×$35=$210 CAD；若每人 2 件則 $570 CAD。建議盡量合併行李或只帶必需品飛這段。'
+    tip:'魁北克（EST/EDT）與多倫多同時區，全天 EDT 無切換。Air Canada 行李費：6人×$35=$210 CAD，建議合併行李。'
   },
   {
     date:'10/8', dow:'四', ic:'🏰', bg:'#E6F1FB', tc:'#0C447C',
+    tz:'yyz', tzLabel:'EDT UTC-4',
     title:'魁北克古城深度巡禮',
     sub:'達費林平台・纜車・小香普蘭街・城牆步道',
     tags:[{t:'全程步行',b:'#EAF3DE',c:'#27500A'},{t:'UNESCO 世遺',b:'#E6F1FB',c:'#0C447C'}],
@@ -355,6 +371,7 @@ const days = [
   },
   {
     date:'10/9', dow:'五', ic:'🚄', bg:'#EEEDFE', tc:'#3C3489',
+    tz:'yyz', tzLabel:'EDT UTC-4',
     title:'魁北克 → 蒙特婁（VIA Rail 商務艙）',
     sub:'Gare du Palais 搭 VIA Rail，約 3 小時 20 分，車上含餐',
     tags:[{t:'🚄 商務艙火車',b:'#EEEDFE',c:'#3C3489'},{t:'蒙特婁下午',b:'#E6F1FB',c:'#0C447C'}],
@@ -369,16 +386,17 @@ const days = [
       ['08:00','公寓自備早餐，整理行李'],
       ['09:00','計程車送至 Gare du Palais（約 $15–20 CAD，5 分鐘），VIA Rail 商務艙辦理登車'],
       ['10:00','VIA Rail 出發，商務艙含熱食・Wi-Fi・每人 2 件行李額度'],
-      ['13:20','抵達 Montréal Gare Centrale'],
+      ['13:20','抵達 Montréal Gare Centrale — 蒙特婁同屬 EDT，無時差'],
       ['13:45','搭地鐵（Metro）橘線 2 站至老港區（Place-d\'Armes），Check-in 公寓'],
       ['15:00','<strong>Notre-Dame 大教堂</strong>（需提前預約，成人 $15 CAD），哥德式建築震撼'],
       ['17:00','老港區（Vieux-Port）沿河散步，鐵欄橋・倉庫藝廊'],
       ['19:30','晚餐 Rue Notre-Dame 或 Rue Saint-Paul 法加料理'],
     ],
-    tip:'VIA Rail 商務艙 6 人等於包下一排座位，孩子超喜歡在火車上吃正餐的體驗。建議提前 2–4 週訂票鎖定好座位。'
+    tip:'魁北克、蒙特婁、多倫多全部都在 EDT 時區，火車全程無時差切換。VIA Rail 商務艙 6 人等於包下一排座位。'
   },
   {
     date:'10/10', dow:'六', ic:'🏔️', bg:'#EAF3DE', tc:'#27500A',
+    tz:'yyz', tzLabel:'EDT UTC-4',
     title:'蒙特婁 → 川特布朗山頂賞楓',
     sub:'包廂型車往返 1.5h，景觀纜車俯瞰 360° 楓海',
     tags:[{t:'🍁 山頂楓海',b:'#FDEAEA',c:'#8B0000'},{t:'景觀纜車',b:'#EAF3DE',c:'#27500A'}],
@@ -398,32 +416,34 @@ const days = [
   },
   {
     date:'10/11', dow:'日', ic:'🚄', bg:'#EEEDFE', tc:'#3C3489',
+    tz:'yyz', tzLabel:'EDT UTC-4',
     title:'蒙特婁 → 多倫多（VIA Rail）→ 深夜 BR035 回台',
-    sub:'火車約 5 小時，PATH 採買，深夜 02:10 起飛回台',
+    sub:'火車約 5 小時，PATH 採買，深夜 02:10（EDT）起飛回台',
     tags:[{t:'🚄 商務艙火車',b:'#EEEDFE',c:'#3C3489'},{t:'回程航班',b:'#EEEDFE',c:'#3C3489'}],
     apt:null,
     sched:[
       ['08:00','公寓早餐（最後一頓自炊）・整理行李'],
       ['09:30','步行（或地鐵 2 站）至 Gare Centrale，VIA Rail 商務艙報到'],
       ['10:00','VIA Rail 出發，蒙特婁→多倫多，約 5 小時，車上含午餐'],
-      ['15:00','抵達 Toronto Union Station'],
+      ['15:00','抵達 Toronto Union Station（EDT）'],
       ['15:30','進入 <strong>PATH 地下街</strong>最後採買（楓糖漿放托運！）'],
       ['17:00','步行至 Union Station 搭 UP Express（$7/人×6=$42）'],
       ['17:30','抵達 YYZ，辦理 BR035 Check-in（建議提早 3–4 小時）'],
       ['22:00','進入 T1 候機區，晚餐在機場解決'],
-      ['10/12 02:10','<strong>BR035 起飛</strong>，直飛台北桃園'],
+      ['10/12 02:10 EDT','<strong>BR035 起飛</strong>（= 台灣 10/12 14:10 TST），直飛台北桃園'],
     ],
-    tip:'這天行程很長但都是交通。PATH 購物完直接出門搭 UP Express，不需再叫計程車。液體超過 100ml（楓糖漿）必須托運，不能帶上機。'
+    tip:'深夜 02:10 EDT 起飛，換算台灣時間是 10/12 下午 14:10（時差 12 小時）。PATH 購物完直接出門搭 UP Express，不需再叫計程車。'
   },
   {
     date:'10/12', dow:'日', ic:'🏠', bg:'#EAF3DE', tc:'#27500A',
+    tz:'tpe', tzLabel:'TST UTC+8',
     title:'抵達台灣・圓滿歸來',
-    sub:'BR035 TPE 05:40 降落，全員帶著滿滿回憶回家',
+    sub:'BR035 TPE 05:40（TST）降落，全員帶著滿滿回憶回家',
     tags:[{t:'安全抵台',b:'#EAF3DE',c:'#27500A'}],
     apt:null,
     sched:[
-      ['05:40','抵達桃園機場 T2，入境・領行李'],
-      ['06:30','出關，搭機場捷運或計程車回家'],
+      ['05:40 TST','抵達桃園機場 T2，入境・領行李（= 多倫多 10/11 17:40 EDT）'],
+      ['06:30 TST','出關，搭機場捷運或計程車回家'],
     ],
     tip:'3 個精華賞楓點全制霸：阿岡昆（森林湖泊型）・魁北克（古城石板路型）・川特布朗（山頂 360° 型），恭喜！'
   },
@@ -616,12 +636,15 @@ function renderDays(){
       </div>`;
     }
     const schedRows=d.sched?`<table class="sched">${d.sched.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}</table>`:'';
+    const tzClass = d.tz === 'tpe' ? 'tz-tpe' : 'tz-yyz';
+    const tzDisplay = d.tz === 'tpe' ? 'TST +8' : 'EDT -4';
     div.innerHTML=`
       <div class="dh" onclick="td(${i})">
         <div class="dbadge" style="background:${d.bg};color:${d.tc};">
           <div class="dow">${d.dow}</div>
           <div class="ic">${d.ic}</div>
           <div class="date">${d.date}</div>
+          <div class="tz-pill ${tzClass}">${tzDisplay}</div>
         </div>
         <div class="di">
           <div class="dt">${d.title}</div>
