@@ -100,6 +100,11 @@
             align-items: flex-start;
             gap: 12px;
             user-select: none;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            width: 100%;
+            text-align: left;
         }
 
         .card-header:hover {
@@ -322,7 +327,7 @@
         <div class="travel-plans">
             <!-- Canada Trip Card (October 2026 - FIRST) -->
             <div class="travel-card" data-trip="canada">
-                <div class="card-header" role="button" tabindex="0" aria-expanded="false">
+                <button class="card-header" type="button" aria-expanded="false">
                     <div class="card-title-section">
                         <div class="card-title">🍁 Canada Trip - 6 People</div>
                         <div class="card-date">October 1-12, 2026</div>
@@ -331,7 +336,7 @@
                         </div>
                     </div>
                     <div class="toggle-icon" aria-hidden="true">▼</div>
-                </div>
+                </button>
                 <div class="card-content">
                     <iframe src="tmp/canada_6pax_oct1_12.html" title="Canada Trip Itinerary"></iframe>
                 </div>
@@ -339,7 +344,7 @@
 
             <!-- Hokuriku Trip Card (November 2026 - SECOND) -->
             <div class="travel-card" data-trip="hokuriku">
-                <div class="card-header" role="button" tabindex="0" aria-expanded="false">
+                <button class="card-header" type="button" aria-expanded="false">
                     <div class="card-title-section">
                         <div class="card-title">🏯 Hokuriku Trip 2026</div>
                         <div class="card-date">November 6-9, 2026</div>
@@ -348,7 +353,7 @@
                         </div>
                     </div>
                     <div class="toggle-icon" aria-hidden="true">▼</div>
-                </div>
+                </button>
                 <div class="card-content">
                     <iframe src="tmp/hokuriku_trip_2026.html" title="Hokuriku Trip Itinerary"></iframe>
                 </div>
@@ -368,19 +373,28 @@
         cards.forEach(card => {
             const header = card.querySelector('.card-header');
             
-            // Click handler
-            header.addEventListener('click', () => {
+            // Click handler - properly handle toggle
+            header.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling
                 const isExpanded = card.classList.contains('expanded');
                 
                 // Close all other cards
                 cards.forEach(c => c.classList.remove('expanded'));
+                cards.forEach(c => {
+                    c.querySelector('.card-header').setAttribute('aria-expanded', 'false');
+                });
                 
                 // Toggle current card
                 if (!isExpanded) {
                     card.classList.add('expanded');
                     header.setAttribute('aria-expanded', 'true');
-                } else {
-                    header.setAttribute('aria-expanded', 'false');
+                    
+                    // Smooth scroll on mobile
+                    if (window.innerWidth <= 640) {
+                        setTimeout(() => {
+                            header.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 150);
+                    }
                 }
             });
 
@@ -393,26 +407,16 @@
             });
         });
 
-        // Close card when clicking outside
+        // Close card when clicking outside (on desktop only)
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.travel-card')) {
+            // Only close if clicking outside travel-plans area
+            if (!e.target.closest('.travel-plans')) {
                 cards.forEach(card => card.classList.remove('expanded'));
                 cards.forEach(card => {
                     card.querySelector('.card-header').setAttribute('aria-expanded', 'false');
                 });
             }
         });
-
-        // Smooth scroll on mobile
-        if (window.innerWidth <= 640) {
-            document.querySelectorAll('.card-header').forEach(header => {
-                header.addEventListener('click', () => {
-                    setTimeout(() => {
-                        header.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 150);
-                });
-            });
-        }
     </script>
 </body>
 </html>
