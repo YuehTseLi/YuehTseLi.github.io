@@ -140,9 +140,9 @@ h1{font-size:21px;font-weight:700;margin-bottom:4px;}
 <p class="hero-sub">五大一小（9歲）・6 件行李・長榮經濟艙直飛・公寓住宿・Chrysler Pacifica 自駕</p>
 
 <div class="flight-banner">
-  <div class="fb-item"><span class="fb-label">去程</span><span class="fb-val">10/1 BR036 &nbsp;<span style="background:#FDE68A;color:#78350F;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:700;">TPE 19:20 TST</span>&nbsp;→&nbsp;<span style="background:#BFDBFE;color:#1E3A5F;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:700;">YYZ 10/2 21:20 EDT</span></span></div>
+  <div class="fb-item"><span class="fb-label">去程</span><span class="fb-val">10/1 BR036 &nbsp;<span style="background:#FDE68A;color:#78350F;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:700;">TPE 19:20 TST</span>&nbsp;→&nbsp;<span style="background:#BFDBFE;color:#1E3A5F;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:700;">YYZ 21:20 EDT（同日 10/1）</span></span></div>
   <div class="fb-item"><span class="fb-label">回程</span><span class="fb-val">10/11 BR035 &nbsp;<span style="background:#BFDBFE;color:#1E3A5F;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:700;">YYZ 02:10 EDT</span>&nbsp;→&nbsp;<span style="background:#FDE68A;color:#78350F;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:700;">TPE 10/12 05:40 TST</span></span></div>
-  <div class="fb-item"><span class="fb-label">時差</span><span class="fb-val"><strong>TST 比 EDT 早 12 小時</strong>（10月 EDT = UTC−4）</span></div>
+  <div class="fb-item"><span class="fb-label">時差說明</span><span class="fb-val"><strong>TST 比 EDT 早 12 小時</strong>（10/1 TPE 19:20 出發 = 同日 EDT 07:20，飛 14h 後降落 21:20 EDT，仍是 10/1）</span></div>
   <div class="fb-item"><span class="fb-label">飛行時間</span><span class="fb-val">去程 14h / 回程 約 15h55m（直飛）</span></div>
 </div>
 
@@ -207,24 +207,9 @@ const days = [
   {
     date:'10/1', dow:'四', ic:'✈️', bg:'#EEEDFE', tc:'#3C3489',
     tz:'tpe', tzLabel:'TPE UTC+8',
-    title:'台北 出發 → 多倫多 抵達',
-    sub:'BR036 TPE 19:20 起飛 → YYZ 10/2 21:20 抵達（飛行 14 小時）',
-    tags:[{t:'長榮直飛',b:'#EEEDFE',c:'#3C3489'},{t:'跨日抵達',b:'#FEF3E2',c:'#8B4513'}],
-    apt:null,
-    sched:[
-      ['15:00 TPE','建議到達桃園機場 T2，長榮 Check-in、辦理行李托運（6件）'],
-      ['19:20 TPE','BR036 起飛，直飛不轉機'],
-      ['飛行中','機上用餐・睡眠，飛越太平洋 14 小時'],
-      ['→ 10/2 21:20 EDT','降落多倫多 YYZ T1（已切換為多倫多時間）'],
-    ],
-    tip:'TPE T2 出發，YYZ T1 抵達。時差 12 小時（10月 EDT），台灣 19:20 起飛 = 多倫多當天 07:20，飛抵時當地是 10/2 晚間 21:20。帶頸枕・眼罩・壓縮襪。'
-  },
-  {
-    date:'10/2', dow:'五', ic:'🏙️', bg:'#E6F1FB', tc:'#0C447C',
-    tz:'yyz', tzLabel:'EDT UTC-4',
-    title:'多倫多 抵達 + 市區初探',
-    sub:'YYZ 21:20（EDT）抵達，UP Express 入住，輕鬆適應時差',
-    tags:[{t:'抵達日',b:'#E6F1FB',c:'#0C447C'},{t:'步行入住',b:'#EAF3DE',c:'#27500A'}],
+    title:'台北 出發 → 多倫多 抵達（同日）',
+    sub:'BR036 TPE 19:20 TST 起飛 → YYZ 21:20 EDT 抵達（仍是 10/1，飛行 14 小時）',
+    tags:[{t:'長榮直飛',b:'#EEEDFE',c:'#3C3489'},{t:'同日抵達',b:'#EAF3DE',c:'#27500A'}],
     apt:{
       name:'CityPlace 3 臥公寓（整套）— 近 Union Station',
       price:'CAD $220–280/晚（整套）',
@@ -233,12 +218,32 @@ const days = [
       nights: 2
     },
     sched:[
-      ['21:20','YYZ T1 入境・領行李（6件）'],
-      ['22:00','搭 UP Express（$7/人×6=$42）至 Union Station，25 分'],
-      ['22:30','步行 7 分到 CityPlace 公寓 Check-in'],
-      ['深夜','採買明日早餐食材（公寓附近 Sobeys 或便利店）'],
+      ['15:00 TST','建議到達桃園機場 T2，長榮 Check-in、辦理行李托運（6件）'],
+      ['19:20 TST','BR036 起飛（= 多倫多 EDT 07:20 同日）'],
+      ['飛行 14h','機上用餐・睡眠，向東橫越太平洋'],
+      ['21:20 EDT','降落多倫多 YYZ T1（仍是 10/1！時差讓日期「不變」）'],
+      ['22:10 EDT','入境・領行李（6件），搭 UP Express（$7/人×6=$42）至 Union Station，25 分'],
+      ['22:40 EDT','步行 7 分到 CityPlace 公寓 Check-in'],
+      ['深夜 EDT','採買明日早餐食材，早點休息（台灣此時已是 10/2 早上 10:40）'],
     ],
-    tip:'抵達已接近深夜 EDT，台灣時間是 10/3 早上 09:20，時差大，建議只採買明日早餐食材，好好休息。'
+    tip:'時區換算：台灣 19:20 出發，EDT = TST −12h，所以出發時多倫多是 07:20 EDT。飛行 14 小時後落地是 EDT 21:20，日期仍是 10/1——時差讓我們「搶回」了時間！'
+  },
+  {
+    date:'10/2', dow:'五', ic:'🏙️', bg:'#E6F1FB', tc:'#0C447C',
+    tz:'yyz', tzLabel:'EDT UTC-4',
+    title:'多倫多市區半日 — 時差恢復日',
+    sub:'昨晚 10/1 已抵達，今日輕鬆遊覽，適應時差',
+    tags:[{t:'EDT UTC-4',b:'#BFDBFE',c:'#1E3A5F'},{t:'輕鬆步行',b:'#EAF3DE',c:'#27500A'}],
+    apt:null,
+    sched:[
+      ['09:00','公寓自備早餐，睡到自然醒（昨晚深夜才入住，不要勉強早起）'],
+      ['10:30','Harbourfront 湖邊散步・多倫多島渡輪觀景（免費步行）'],
+      ['12:30','St. Lawrence Market 午餐（10/2 週五有開，各國小食）'],
+      ['14:30','Distillery District 古釀酒廠區，石板路・咖啡廳・拍照'],
+      ['17:00','超市採買明後天早餐食材（公寓旁 Sobeys 或 Longo\'s）'],
+      ['18:30','公寓附近輕鬆晚餐，早點休息繼續調整時差'],
+    ],
+    tip:'昨晚 10/1 深夜才入住，今天是調整時差的過渡日，不安排高強度景點。10/3（週六）才是多倫多全力出擊日。'
   },
   {
     date:'10/3', dow:'六', ic:'🏙️', bg:'#E6F1FB', tc:'#0C447C',
@@ -418,7 +423,7 @@ const days = [
     date:'10/11', dow:'日', ic:'🚄', bg:'#EEEDFE', tc:'#3C3489',
     tz:'yyz', tzLabel:'EDT UTC-4',
     title:'蒙特婁 → 多倫多（VIA Rail）→ 深夜 BR035 回台',
-    sub:'火車約 5 小時，PATH 採買，深夜 02:10（EDT）起飛回台',
+    sub:'火車約 5 小時，PATH 採買，10/12 凌晨 02:10 EDT 起飛（= TPE 10/12 14:10 TST）',
     tags:[{t:'🚄 商務艙火車',b:'#EEEDFE',c:'#3C3489'},{t:'回程航班',b:'#EEEDFE',c:'#3C3489'}],
     apt:null,
     sched:[
@@ -430,7 +435,7 @@ const days = [
       ['17:00','步行至 Union Station 搭 UP Express（$7/人×6=$42）'],
       ['17:30','抵達 YYZ，辦理 BR035 Check-in（建議提早 3–4 小時）'],
       ['22:00','進入 T1 候機區，晚餐在機場解決'],
-      ['10/12 02:10 EDT','<strong>BR035 起飛</strong>（= 台灣 10/12 14:10 TST），直飛台北桃園'],
+      ['10/12 02:10 EDT','<strong>BR035 起飛</strong>（= 台灣 10/12 14:10 TST），直飛台北桃園（注意：起飛時已跨到 10/12 EDT）'],
     ],
     tip:'深夜 02:10 EDT 起飛，換算台灣時間是 10/12 下午 14:10（時差 12 小時）。PATH 購物完直接出門搭 UP Express，不需再叫計程車。'
   },
@@ -438,14 +443,15 @@ const days = [
     date:'10/12', dow:'日', ic:'🏠', bg:'#EAF3DE', tc:'#27500A',
     tz:'tpe', tzLabel:'TST UTC+8',
     title:'抵達台灣・圓滿歸來',
-    sub:'BR035 TPE 05:40（TST）降落，全員帶著滿滿回憶回家',
-    tags:[{t:'安全抵台',b:'#EAF3DE',c:'#27500A'}],
+    sub:'BR035 TPE 05:40 TST 降落，全員帶著滿滿回憶回家',
+    tags:[{t:'TST UTC+8',b:'#FDE68A',c:'#78350F'},{t:'安全抵台',b:'#EAF3DE',c:'#27500A'}],
     apt:null,
     sched:[
-      ['05:40 TST','抵達桃園機場 T2，入境・領行李（= 多倫多 10/11 17:40 EDT）'],
-      ['06:30 TST','出關，搭機場捷運或計程車回家'],
+      ['05:40 TST','抵達桃園機場 T2（= 多倫多 10/11 17:40 EDT，飛行約 15h55m）'],
+      ['06:30 TST','入境・領行李（6件）'],
+      ['07:00 TST','出關，搭機場捷運或計程車回家'],
     ],
-    tip:'3 個精華賞楓點全制霸：阿岡昆（森林湖泊型）・魁北克（古城石板路型）・川特布朗（山頂 360° 型），恭喜！'
+    tip:'3 個精華賞楓點全制霸：阿岡昆（森林湖泊型）・魁北克（古城石板路型）・川特布朗（山頂 360° 型），恭喜完成！'
   },
 ];
 
@@ -636,15 +642,22 @@ function renderDays(){
       </div>`;
     }
     const schedRows=d.sched?`<table class="sched">${d.sched.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}</table>`:'';
-    const tzClass = d.tz === 'tpe' ? 'tz-tpe' : 'tz-yyz';
-    const tzDisplay = d.tz === 'tpe' ? 'TST +8' : 'EDT -4';
+    // Day 1 is special: departs TST, arrives EDT same calendar day
+    let tzPillHtml;
+    if (d.date === '10/1' && d.tz === 'tpe') {
+      tzPillHtml = `<div class="tz-pill tz-tpe" style="margin-top:3px;">TST→EDT</div>`;
+    } else if (d.tz === 'tpe') {
+      tzPillHtml = `<div class="tz-pill tz-tpe">TST +8</div>`;
+    } else {
+      tzPillHtml = `<div class="tz-pill tz-yyz">EDT -4</div>`;
+    }
     div.innerHTML=`
       <div class="dh" onclick="td(${i})">
         <div class="dbadge" style="background:${d.bg};color:${d.tc};">
           <div class="dow">${d.dow}</div>
           <div class="ic">${d.ic}</div>
           <div class="date">${d.date}</div>
-          <div class="tz-pill ${tzClass}">${tzDisplay}</div>
+          ${tzPillHtml}
         </div>
         <div class="di">
           <div class="dt">${d.title}</div>
