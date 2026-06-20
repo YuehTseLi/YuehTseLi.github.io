@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Planning Documents</title>
+    <title>Tse</title>
     <style>
         :root {
             --g: #1D9E75;
             --gl: #E1F5EE;
-            --gd: #085041;
             --p: #534AB7;
             --pl: #EEEDFE;
             --o: #BA7517;
@@ -16,7 +15,6 @@
             --b: #1E7FD8;
             --bl: #E6F1FB;
             --r: #C0392B;
-            --rl: #FDEAEA;
             --bg: #F6F6F4;
             --card: #fff;
             --bdr: #E4E3DF;
@@ -24,13 +22,10 @@
             --sub: #686764;
             --rd: 12px;
             --rs: 8px;
+            --coffee: #6B3A2A;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: -apple-system, 'Segoe UI', sans-serif;
@@ -44,11 +39,16 @@
         .w {
             max-width: 960px;
             margin: 0 auto;
-            padding: 20px 16px 60px;
+            padding: 24px 16px 60px;
+        }
+
+        /* ── Page header ── */
+        .page-header {
+            margin-bottom: 32px;
         }
 
         h1 {
-            font-size: 21px;
+            font-size: 22px;
             font-weight: 700;
             margin-bottom: 4px;
         }
@@ -56,110 +56,108 @@
         .hero-sub {
             color: var(--sub);
             font-size: 13px;
-            margin-bottom: 6px;
         }
 
-        .intro {
-            font-size: 13px;
+        /* ── Category label ── */
+        .cat-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .07em;
+            text-transform: uppercase;
             color: var(--sub);
-            margin-bottom: 30px;
-            padding: 15px;
-            background: var(--card);
-            border-radius: var(--rs);
-            border-left: 3px solid var(--p);
+            margin-bottom: 10px;
+            padding-left: 2px;
         }
 
-        /* TRAVEL PLANS GRID */
-        .travel-plans {
+        /* ── Cards grid ── */
+        .cards-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
+            gap: 16px;
+            margin-bottom: 32px;
         }
 
+
+        /* ── Travel card ── */
         .travel-card {
             background: var(--card);
             border: 1px solid var(--bdr);
             border-radius: var(--rd);
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: box-shadow .2s, border-color .2s;
             cursor: pointer;
         }
 
         .travel-card:hover {
             border-color: var(--p);
-            box-shadow: 0 5px 20px rgba(83, 74, 183, 0.1);
+            box-shadow: 0 4px 18px rgba(83,74,183,.12);
         }
 
         .card-header {
             background: linear-gradient(135deg, var(--p) 0%, #7B3FA3 100%);
             color: white;
-            padding: 20px;
+            padding: 18px 20px;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             gap: 12px;
-            user-select: none;
             cursor: pointer;
             border: none;
             font-family: inherit;
             width: 100%;
             text-align: left;
+            user-select: none;
         }
 
-        .card-header:hover {
-            background: linear-gradient(135deg, #4A3A9B 0%, #6B3894 100%);
-        }
+        .card-header:hover { background: linear-gradient(135deg,#4A3A9B 0%,#6B3894 100%); }
 
-        .card-title-section {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            flex: 1;
-            min-width: 0;
+        /* coffee variant */
+        .travel-card.coffee-card { }
+        .travel-card.coffee-card:hover {
+            border-color: var(--coffee);
+            box-shadow: 0 4px 18px rgba(107,58,42,.12);
         }
+        .coffee-card .card-header {
+            background: linear-gradient(135deg, var(--coffee) 0%, #3E1F0D 100%);
+        }
+        .coffee-card .card-header:hover { background: linear-gradient(135deg,#552E21 0%,#2E1508 100%); }
+
+        .card-title-section { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
 
         .card-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 600;
             display: flex;
             align-items: center;
             gap: 8px;
-            word-break: break-word;
         }
 
-        .card-date {
-            font-size: 13px;
-            opacity: 0.9;
-        }
+        .card-date { font-size: 12px; opacity: .9; }
 
         .card-description {
-            font-size: 13px;
-            opacity: 0.85;
-            line-height: 1.4;
+            font-size: 12px;
+            opacity: .82;
+            line-height: 1.45;
         }
 
         .toggle-icon {
-            font-size: 20px;
+            font-size: 18px;
             flex-shrink: 0;
-            transition: transform 0.3s ease;
+            transition: transform .3s;
             margin-top: 2px;
         }
 
-        .travel-card.expanded .toggle-icon {
-            transform: rotate(180deg);
-        }
+        .travel-card.expanded .toggle-icon { transform: rotate(180deg); }
 
         .card-content {
-            padding: 0;
-            background: var(--bg);
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
+            transition: max-height .35s ease;
+            background: var(--bg);
         }
 
         .travel-card.expanded .card-content {
-            max-height: 800px;
+            max-height: 820px;
             padding: 20px;
             overflow-y: auto;
         }
@@ -172,233 +170,126 @@
             background: white;
         }
 
+        /* ── Section dividers ── */
+        .section-sep {
+            border: none;
+            border-top: 1px solid var(--bdr);
+            margin: 4px 0 28px;
+        }
+
+        /* ── Footer ── */
         .footer {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 20px;
             color: var(--sub);
             font-size: 12px;
-            padding: 20px;
+            padding-top: 20px;
             border-top: 1px solid var(--bdr);
         }
 
-        /* TABS for larger screens */
-        .tabs {
-            display: flex;
-            gap: 2px;
-            border-bottom: 2px solid var(--bdr);
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .tab {
-            padding: 8px 16px;
-            border-radius: var(--rs) var(--rs) 0 0;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            color: var(--sub);
-            border: 1.5px solid transparent;
-            border-bottom: none;
-            background: none;
-            transition: .15s;
-            font-family: inherit;
-        }
-
-        .tab.on {
-            background: var(--card);
-            border-color: var(--bdr);
-            color: var(--tx);
-            margin-bottom: -2px;
-        }
-
-        .pane {
-            display: none;
-        }
-
-        .pane.on {
-            display: block;
-        }
-
-        /* Mobile Styles */
+        /* ── Mobile tweaks ── */
         @media (max-width: 640px) {
-            .w {
-                padding: 15px 12px 40px;
-            }
-
-            h1 {
-                font-size: 18px;
-            }
-
-            .card-header {
-                padding: 15px;
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .card-title {
-                font-size: 16px;
-            }
-
-            .card-date {
-                font-size: 12px;
-            }
-
-            .card-description {
-                font-size: 12px;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
-
-            .toggle-icon {
-                font-size: 18px;
-            }
-
-            .travel-card.expanded .card-content {
-                max-height: 600px;
-                padding: 15px;
-            }
-
-            iframe {
-                min-height: 500px;
-            }
-
-            .intro {
-                font-size: 12px;
-                padding: 12px;
-                margin-bottom: 20px;
-            }
-        }
-
-        /* Tablet/Desktop Styles */
-        @media (min-width: 641px) {
-            .travel-plans {
-                grid-template-columns: 1fr;
-            }
-
-            .card-title {
-                font-size: 20px;
-            }
-
-            .card-content {
-                max-height: 800px;
-                padding: 0;
-            }
-
-            .travel-card.expanded .card-content {
-                padding: 20px;
-                overflow-y: auto;
-            }
-
-            iframe {
-                min-height: 600px;
-            }
-        }
-
-        /* Accessibility */
-        .travel-card:focus-visible {
-            outline: 2px solid var(--p);
-            outline-offset: -2px;
-        }
-
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
+            .w { padding: 16px 12px 40px; }
+            h1 { font-size: 19px; }
+            .card-header { padding: 14px 16px; }
+            .card-title { font-size: 15px; }
+            .travel-card.expanded .card-content { max-height: 640px; padding: 14px; }
+            iframe { min-height: 500px; }
         }
     </style>
 </head>
 <body>
     <div class="w">
-        <h1>✈️ Travel Planning Documents</h1>
-        <p class="hero-sub">Travel Itineraries & Plans Collection</p>
-        <div class="intro">
-            📋 Browse your travel plans organized by date. Click any card to expand and view detailed itineraries, budgets, and accommodations.
+        <div class="page-header">
+            <h1>Tse</h1>
+            <p class="hero-sub">Personal notes — travel plans, coffee recipes &amp; more</p>
         </div>
 
-        <!-- TRAVEL PLANS SECTION -->
-        <div class="travel-plans">
-            <!-- Canada Trip Card (October 2026 - FIRST) -->
+        <!-- ── TRAVEL PLANS ── -->
+        <p class="cat-label">✈️ Travel Plans</p>
+        <hr class="section-sep">
+        <div class="cards-grid">
+
             <div class="travel-card" data-trip="canada">
                 <button class="card-header" type="button" aria-expanded="false">
                     <div class="card-title-section">
-                        <div class="card-title">🍁 Canada Trip - 6 People</div>
-                        <div class="card-date">October 1-12, 2026</div>
-                        <div class="card-description">
-                            Comprehensive travel itinerary for a 6-person group visiting Canada. Includes day-by-day plans, accommodation details, and activity recommendations across multiple cities.
-                        </div>
+                        <div class="card-title">🍁 Canada Trip — 6 People</div>
+                        <div class="card-date">October 1–12, 2026</div>
+                        <div class="card-description">Day-by-day plans, accommodation & activities across multiple cities.</div>
                     </div>
                     <div class="toggle-icon" aria-hidden="true">▼</div>
                 </button>
                 <div class="card-content">
-                    <iframe src="tmp/canada_6pax_oct1_12.html" title="Canada Trip Itinerary"></iframe>
+                    <iframe src="travel/canada_6pax_oct1_12.html" title="Canada Trip Itinerary" loading="lazy"></iframe>
                 </div>
             </div>
 
-            <!-- Hokuriku Trip Card (November 2026 - SECOND) -->
             <div class="travel-card" data-trip="hokuriku">
                 <button class="card-header" type="button" aria-expanded="false">
                     <div class="card-title-section">
                         <div class="card-title">🏯 Hokuriku Trip 2026</div>
-                        <div class="card-date">November 6-9, 2026</div>
-                        <div class="card-description">
-                            In-depth travel guide for exploring the Hokuriku region in Japan. Features local attractions, cultural sites, dining recommendations, and seasonal highlights.
-                        </div>
+                        <div class="card-date">November 6–9, 2026</div>
+                        <div class="card-description">Local attractions, cultural sites &amp; dining in the Hokuriku region.</div>
                     </div>
                     <div class="toggle-icon" aria-hidden="true">▼</div>
                 </button>
                 <div class="card-content">
-                    <iframe src="tmp/hokuriku_trip_2026.html" title="Hokuriku Trip Itinerary"></iframe>
+                    <iframe src="travel/hokuriku_trip_2026.html" title="Hokuriku Trip Itinerary" loading="lazy"></iframe>
                 </div>
             </div>
+
+        </div>
+
+        <!-- ── COFFEE ── -->
+        <p class="cat-label">☕ Coffee</p>
+        <hr class="section-sep">
+        <div class="cards-grid">
+
+            <div class="travel-card coffee-card" data-trip="neo-brew">
+                <button class="card-header" type="button" aria-expanded="false">
+                    <div class="card-title-section">
+                        <div class="card-title">🏆 粕谷哲 NEO BREW 十次沖煮法</div>
+                        <div class="card-date">2016 世界手沖大賽冠軍 · 2026 年度配方</div>
+                        <div class="card-description">超粗研磨 × 長時間萃取 · 10 次注水 · Comandante 40–45 Clicks · 95–96 °C</div>
+                    </div>
+                    <div class="toggle-icon" aria-hidden="true">▼</div>
+                </button>
+                <div class="card-content">
+                    <iframe src="coffee/tetsu_kasuya_neo_brew.html" title="Tetsu Kasuya NEO BREW Recipe" loading="lazy"></iframe>
+                </div>
+            </div>
+
         </div>
 
         <div class="footer">
-            <p>🎯 Generated by AI agents to help with travel planning and budgeting.</p>
-            <p style="margin-top: 8px; font-size: 11px; opacity: 0.7;">Responsive Design • Click to expand • Detailed breakdowns included</p>
+            <p>Built with care · Updated 2026</p>
         </div>
     </div>
 
     <script>
-        // Card expansion logic
         const cards = document.querySelectorAll('.travel-card');
 
         cards.forEach(card => {
             const header = card.querySelector('.card-header');
-            
-            // Click handler - properly handle toggle
+
             header.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent event bubbling
+                e.stopPropagation();
                 const isExpanded = card.classList.contains('expanded');
-                
-                // Close all other cards
-                cards.forEach(c => c.classList.remove('expanded'));
+
                 cards.forEach(c => {
+                    c.classList.remove('expanded');
                     c.querySelector('.card-header').setAttribute('aria-expanded', 'false');
                 });
-                
-                // Toggle current card
+
                 if (!isExpanded) {
                     card.classList.add('expanded');
                     header.setAttribute('aria-expanded', 'true');
-                    
-                    // Smooth scroll on mobile
                     if (window.innerWidth <= 640) {
-                        setTimeout(() => {
-                            header.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }, 150);
+                        setTimeout(() => header.scrollIntoView({ behavior: 'smooth', block: 'start' }), 150);
                     }
                 }
             });
 
-            // Keyboard support
             header.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -407,13 +298,11 @@
             });
         });
 
-        // Close card when clicking outside (on desktop only)
         document.addEventListener('click', (e) => {
-            // Only close if clicking outside travel-plans area
-            if (!e.target.closest('.travel-plans')) {
-                cards.forEach(card => card.classList.remove('expanded'));
-                cards.forEach(card => {
-                    card.querySelector('.card-header').setAttribute('aria-expanded', 'false');
+            if (!e.target.closest('.travel-card')) {
+                cards.forEach(c => {
+                    c.classList.remove('expanded');
+                    c.querySelector('.card-header').setAttribute('aria-expanded', 'false');
                 });
             }
         });

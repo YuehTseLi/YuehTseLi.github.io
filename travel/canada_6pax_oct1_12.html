@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>加東賞楓 10/1–10/12 × 六人最終規劃</title>
+<style>
+:root{
+  --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;
+  --p:#534AB7;--pl:#EEEDFE;
+  --o:#BA7517;--ol:#FEF3E2;
+  --b:#1E7FD8;--bl:#E6F1FB;
+  --r:#C0392B;--rl:#FDEAEA;
+  --bg:#F6F6F4;--card:#fff;--bdr:#E4E3DF;
+  --tx:#1A1916;--sub:#686764;
+  --rd:12px;--rs:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--tx);font-size:14px;line-height:1.55;}
+.w{max-width:980px;margin:0 auto;padding:20px 16px 60px;}
+h1{font-size:21px;font-weight:700;margin-bottom:4px;}
+.hero-sub{color:var(--sub);font-size:13px;margin-bottom:6px;}
+
+.flight-banner{background:var(--pl);border-radius:var(--rs);padding:9px 14px;margin-bottom:20px;font-size:13px;color:#3C3489;display:flex;gap:20px;flex-wrap:wrap;}
+.fb-item{display:flex;flex-direction:column;gap:1px;}
+.fb-label{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#6560B0;}
+.fb-val{font-weight:600;}
+.tz-tst{background:#FDE68A;color:#78350F;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:700;}
+.tz-edt{background:#BFDBFE;color:#1E3A5F;border-radius:4px;padding:1px 5px;font-size:11px;font-weight:700;}
+
+.tabs{display:flex;gap:2px;border-bottom:2px solid var(--bdr);margin-bottom:20px;}
+.tab{padding:8px 16px;border-radius:var(--rs) var(--rs) 0 0;font-size:13px;font-weight:500;cursor:pointer;color:var(--sub);border:1.5px solid transparent;border-bottom:none;background:none;transition:.15s;}
+.tab.on{background:var(--card);border-color:var(--bdr);color:var(--tx);margin-bottom:-2px;}
+.pane{display:none;}.pane.on{display:block;}
+
+.sl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);margin:14px 0 7px;}
+.alert{border-radius:var(--rs);padding:9px 13px;margin-bottom:10px;font-size:13px;line-height:1.65;}
+.ag{background:var(--gl);border-left:3px solid var(--g);color:var(--gd);}
+.ab{background:var(--bl);border-left:3px solid var(--b);color:#0B3D70;}
+
+/* DAY CARDS */
+.dc{background:var(--card);border:1px solid var(--bdr);border-radius:var(--rd);overflow:hidden;margin-bottom:8px;}
+.dh{display:flex;align-items:flex-start;gap:12px;padding:11px 15px;cursor:pointer;user-select:none;}
+.dh:hover{background:var(--bg);}
+.dbadge{min-width:60px;border-radius:var(--rs);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;flex-shrink:0;text-align:center;}
+.bdow{font-size:10px;margin-bottom:1px;}
+.bic{font-size:17px;margin:1px 0;}
+.bdate{font-size:10px;font-weight:700;letter-spacing:.04em;}
+.tz-pill{font-size:9px;font-weight:700;padding:1px 5px;border-radius:20px;margin-top:3px;line-height:1.4;white-space:nowrap;}
+.tz-pill.tst{background:#FDE68A;color:#78350F;}
+.tz-pill.edt{background:#BFDBFE;color:#1E3A5F;}
+.tz-pill.cross{background:linear-gradient(90deg,#FDE68A 50%,#BFDBFE 50%);color:#333;font-size:8px;}
+.di{flex:1;min-width:0;}
+.dt{font-size:14px;font-weight:600;margin-bottom:2px;}
+.ds{font-size:12px;color:var(--sub);line-height:1.45;}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px;}
+.tag{font-size:11px;padding:2px 8px;border-radius:20px;}
+.chv{font-size:20px;color:var(--sub);margin-top:2px;flex-shrink:0;transition:transform .2s;line-height:1;}
+.db{display:none;padding:12px 15px 14px;border-top:1px solid var(--bdr);background:var(--bg);}
+.db.on{display:block;}
+
+/* ACCOM COMPARISON GRID */
+.accom-compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.accom-box{border-radius:var(--rs);padding:11px 13px;border:1.5px solid transparent;}
+.accom-box.apt-style{background:#E8F5E9;border-color:#81C784;}
+.accom-box.htl-style{background:#EFF6FF;border-color:#93C5FD;}
+.accom-label{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px;}
+.accom-box.apt-style .accom-label{color:#1B5E20;}
+.accom-box.htl-style .accom-label{color:#1E40AF;}
+.accom-name{font-size:13px;font-weight:600;margin-bottom:2px;color:var(--tx);}
+.accom-price{font-size:12px;color:var(--sub);margin-bottom:3px;}
+.accom-dist{font-size:11px;color:var(--b);font-weight:500;margin-bottom:3px;}
+.accom-rating{font-size:11px;margin-bottom:3px;}
+.accom-note{font-size:11px;color:var(--sub);line-height:1.5;}
+.accom-search{font-size:11px;background:#fff;border:1px dashed #81C784;border-radius:4px;padding:4px 7px;margin-top:5px;color:var(--sub);}
+.accom-box.htl-style .accom-search{border-color:#93C5FD;}
+
+/* FOOD */
+.food-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:10px;}
+.fc{border-radius:var(--rs);padding:9px 11px;border:1.5px solid transparent;}
+.fc.food{background:#FFF8F0;border-color:#F4A460;}
+.fc.wine{background:#F8F0FB;border-color:#D8A8E8;}
+.fc.cafe{background:#FDF5EB;border-color:#D4A97A;}
+.fc-lbl{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px;}
+.fc.food .fc-lbl{color:#8B4513;}.fc.wine .fc-lbl{color:#6B2D8B;}.fc.cafe .fc-lbl{color:#5C3317;}
+.fc-name{font-size:12px;font-weight:600;margin-bottom:2px;color:var(--tx);}
+.fc-note{font-size:11px;color:var(--sub);line-height:1.4;}
+
+/* SCHEDULE */
+.sched{width:100%;border-collapse:collapse;margin-bottom:10px;font-size:13px;}
+.sched tr{border-bottom:1px solid var(--bdr);}
+.sched tr:last-child{border-bottom:none;}
+.sched td{padding:5px 6px;vertical-align:top;}
+.sched td:first-child{white-space:nowrap;width:62px;font-size:11px;padding-top:6px;font-weight:500;}
+.sched td.tst{color:#78350F;background:#FFFDE7;}
+.sched td.edt{color:#1E3A5F;background:#EFF6FF;}
+.sched td.neu{color:var(--sub);}
+.tip{background:var(--gl);border-left:3px solid var(--g);padding:7px 11px;font-size:12px;color:var(--gd);line-height:1.6;border-radius:0 var(--rs) var(--rs) 0;margin-top:6px;}
+
+/* BUDGET */
+.bsec{margin-bottom:16px;}
+.bst{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--bdr);}
+.br{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;padding:8px 12px;background:var(--card);border:1px solid var(--bdr);border-radius:var(--rs);margin-bottom:5px;}
+.br .bl{flex:1;}
+.br .bn{font-size:13px;font-weight:500;}
+.br .bnt{font-size:11px;color:var(--sub);margin-top:2px;line-height:1.5;}
+.br .bv{font-size:13px;font-weight:600;white-space:nowrap;text-align:right;flex-shrink:0;}
+.br .bv .bs{font-size:11px;font-weight:400;color:var(--sub);display:block;margin-top:1px;}
+.br.fl{border-color:var(--p);background:var(--pl);}
+.br.ap{border-color:#81C784;background:#E8F5E9;}
+.br.tr{border-color:var(--p);background:var(--pl);}
+
+.mode-row{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;align-items:center;}
+.mode-row label{font-size:13px;color:var(--sub);}
+.pill{padding:5px 14px;border-radius:20px;border:1px solid var(--bdr);cursor:pointer;font-size:13px;background:var(--card);color:var(--sub);transition:.15s;}
+.pill.on{background:var(--g);color:#fff;border-color:var(--g);}
+
+.barr{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+.barl{font-size:12px;color:var(--sub);width:96px;flex-shrink:0;text-align:right;line-height:1.3;}
+.barbg{flex:1;background:var(--bdr);border-radius:4px;height:10px;overflow:hidden;}
+.barfill{height:100%;border-radius:4px;}
+.barv{font-size:12px;color:var(--sub);width:80px;flex-shrink:0;text-align:right;}
+
+.grand-box{background:var(--gl);border:2px solid var(--g);border-radius:var(--rd);padding:16px 18px;margin-top:16px;}
+.grand-box h3{font-size:13px;font-weight:700;color:var(--gd);margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em;}
+.gt-row{display:flex;justify-content:space-between;font-size:13px;padding:3px 0;border-bottom:1px dashed #A8DFC7;}
+.gt-row:last-of-type{border-bottom:none;}
+.gt-row span:first-child{color:var(--gd);}
+.gt-row span:last-child{color:var(--gd);font-weight:600;}
+.gt-final{display:flex;justify-content:space-between;padding-top:10px;margin-top:8px;border-top:2px solid var(--g);}
+.gt-final .lbl{font-size:15px;font-weight:700;color:var(--gd);}
+.gt-final .val{font-size:26px;font-weight:800;color:var(--gd);}
+.pp-note{font-size:12px;color:var(--gd);margin-top:6px;text-align:right;}
+
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:18px;}
+.stat{background:var(--card);border:1px solid var(--bdr);border-radius:var(--rs);padding:9px 8px;text-align:center;}
+.sv{font-size:18px;font-weight:700;}
+.sl2{font-size:10px;color:var(--sub);margin-top:2px;line-height:1.3;}
+
+/* ACCOM TAB */
+.city-accom{background:var(--card);border:1px solid var(--bdr);border-radius:var(--rd);overflow:hidden;margin-bottom:10px;}
+.city-header{padding:12px 15px;display:flex;align-items:center;gap:10px;}
+.city-body{padding:12px 15px 14px;}
+
+.notice{font-size:12px;color:var(--sub);background:var(--card);border:1px solid var(--bdr);border-radius:var(--rs);padding:10px 14px;margin-top:14px;line-height:1.7;}
+
+@media(max-width:680px){
+  .stats{grid-template-columns:repeat(3,1fr);}
+  .accom-compare{grid-template-columns:1fr;}
+  .food-grid{grid-template-columns:1fr 1fr;}
+  .barl{width:70px;font-size:11px;}
+}
+</style>
+</head>
+<body>
+<div class="w">
+<h1>🍁 加東賞楓 10/1–10/12 × 六人家族最終規劃</h1>
+<p class="hero-sub">五大一小（9歲）・6 件行李・長榮經濟艙直飛・公寓或商務旅館・Chrysler Pacifica 自駕・美食美酒咖啡全收錄</p>
+
+<div class="flight-banner">
+  <div class="fb-item"><span class="fb-label">去程</span><span class="fb-val">10/1（四）BR036 &nbsp;<span class="tz-tst">TPE 19:20 TST</span>&nbsp;→&nbsp;<span class="tz-edt">YYZ 21:20 EDT（同日）</span></span></div>
+  <div class="fb-item"><span class="fb-label">回程</span><span class="fb-val">10/11（六）BR035 &nbsp;<span class="tz-edt">YYZ 02:10 EDT</span>&nbsp;→&nbsp;<span class="tz-tst">TPE 10/12 05:40 TST</span></span></div>
+  <div class="fb-item"><span class="fb-label">時差</span><span class="fb-val">TST 比 EDT 早 <strong>12 小時</strong>（10月 EDT = UTC−4）</span></div>
+</div>
+
+<div class="tabs">
+  <button class="tab on" onclick="sw('itinerary')">🗺 每日行程</button>
+  <button class="tab" onclick="sw('accom')">🏠 住宿對比</button>
+  <button class="tab" onclick="sw('budget')">💰 費用明細</button>
+</div>
+
+<div id="pane-itinerary" class="pane on">
+  <div class="stats">
+    <div class="stat"><div class="sv">11</div><div class="sl2">在外天數</div></div>
+    <div class="stat"><div class="sv">5+1</div><div class="sl2">五大一小</div></div>
+    <div class="stat"><div class="sv">1台</div><div class="sl2">Pacifica</div></div>
+    <div class="stat"><div class="sv" style="color:var(--g)">1~2</div><div class="sl2">次叫計程車</div></div>
+    <div class="stat"><div class="sv">3🍁</div><div class="sl2">賞楓精華</div></div>
+  </div>
+  <div id="days"></div>
+</div>
+
+<div id="pane-accom" class="pane">
+  <div class="alert ag">每個城市同時列出 <strong>🏠 公寓版</strong>（整套 Airbnb）與 <strong>🏨 商務旅館版</strong>（安全・乾淨・評價佳・3間客房）供選擇。價位相近，各有優缺點。</div>
+  <div id="accom-tab"></div>
+</div>
+
+<div id="pane-budget" class="pane">
+  <div class="mode-row">
+    <label>顯示：</label>
+    <button class="pill on" id="p-tot" onclick="sp('tot')">全家合計</button>
+    <button class="pill" id="p-pp" onclick="sp('pp')">每人平均（÷5）</button>
+  </div>
+  <div class="bsec"><div class="bst">✈️ 長榮直飛機票（BR036 / BR035 經濟艙）</div><div id="s-flight"></div></div>
+  <div class="bsec"><div class="bst" id="hotel-title">🏠 住宿（10晚）</div><div id="s-hotel"></div></div>
+  <div class="bsec"><div class="bst">🚗 Chrysler Pacifica 租車（4天）</div><div id="s-car"></div></div>
+  <div class="bsec"><div class="bst">✈️ 加國內陸航班（YYZ → YQB）</div><div id="s-domestic"></div></div>
+  <div class="bsec"><div class="bst">🚄 VIA Rail 商務艙（2段）</div><div id="s-train"></div></div>
+  <div class="bsec"><div class="bst">🚕 計程車 / 機場接駁</div><div id="s-taxi"></div></div>
+  <div class="bsec"><div class="bst">🍽️ 餐飲・美食・美酒（10天）</div><div id="s-food"></div></div>
+  <div class="bsec"><div class="bst">🎟️ 景點門票</div><div id="s-attr"></div></div>
+  <div class="bsec"><div class="bst">🛍️ 購物 / 雜支 / 保險</div><div id="s-misc"></div></div>
+  <div class="bsec"><div class="bst">📊 費用結構</div><div id="s-bar"></div></div>
+  <div id="grand-box" class="grand-box"></div>
+  <div class="notice">匯率：1 CAD ≈ 22.67 TWD（2026/06）｜長榮經濟艙 10 月旺季預估 NT$65,000/人計算（官網最低 NT$54,099 起）。公寓版為 Airbnb 整套 3 臥，含清潔費及服務費；旅館版為 3 間客房。VIA Rail 以商務艙計算。Pacifica 以 CAD $170/天×4天無限里程估算。所有金額概估，請提前 3–4 個月訂票訂房。</div>
+</div>
+</div>
+
+<script>
+const CAD=22.67;
+let pMode='tot';
+
+// ===================== CITY ACCOMMODATION DATA =====================
+const cities=[
+  {
+    id:'toronto', icon:'🏙️', bg:'#E6F1FB', tc:'#0C447C',
+    city:'多倫多（10/1 抵達，10/2–10/3，共 2 晚）',
+    apt:{
+      name:'CityPlace 3 臥整套公寓',
+      price:'CAD $220–280/晚（整套）',
+      total:'2晚合計 CAD $440–560',
+      dist:'🚶 步行 7 分到 Union Station・UP Express 直通機場',
+      rating:'⭐ Airbnb 4.8+/5，評語：乾淨・現代・位置極佳',
+      note:'CityPlace 社區（Fort York Blvd / Dan Leckie Way 一帶）是多倫多市中心最密集 Airbnb 社區，20 John St 大樓有多棟整套公寓出租。含電梯・全廚房・洗衣機・城景。6 人同住，含廚房可自備早餐。',
+      search:'Airbnb 搜尋：「3 bedroom CityPlace Toronto walk Union Station」',
+      pros:'廚房自炊・6人同住・費用最低',
+      cons:'需自行管理入住細節・無前台服務'
+    },
+    htl:{
+      name:'DoubleTree by Hilton Toronto Downtown',
+      price:'CAD $150–200/房/晚（×3房）',
+      total:'2晚合計 CAD $900–1,200（3房）',
+      dist:'🚶 步行 8 分到 Union Station・鄰近 PATH 地下街',
+      rating:'⭐ Booking.com 8.4/10・TripAdvisor 4/5，評語：乾淨・服務佳・位置方便',
+      note:'多倫多市中心成熟連鎖品牌，Hilton 系列品質穩定。含免費 Wi-Fi・健身房・室內游泳池。家庭入住安全有保障，24 小時前台。步行可達所有主要景點。',
+      search:'Booking.com 搜尋：「DoubleTree Hilton Toronto Downtown」或「Marriott Courtyard Toronto Downtown」',
+      pros:'24h 前台・品質穩定・游泳池',
+      cons:'3房費用高於整套公寓・無廚房'
+    }
+  },
+  {
+    id:'niagara', icon:'🌊', bg:'#E0F7FA', tc:'#006064',
+    city:'尼加拉瓦（10/3–10/4，1 晚）',
+    apt:{
+      name:'Clifton Hill 步行圈 3 臥獨棟',
+      price:'CAD $250–350/晚（整套，含停車）',
+      total:'1晚合計 CAD $250–350',
+      dist:'🚶 步行 12–18 分到 Horseshoe Falls・煙火步行可達・含私人停車',
+      rating:'⭐ Airbnb 4.7+/5，評語：乾淨・含停車・近景點',
+      note:'Ontario 側 Clifton Hill 周邊住宅區 3 臥獨棟，含廚房・庭院・私人停車（每天省 $25+ 停車費）。避開美國側，選加拿大 Ontario 側。注意瀑布景觀無法從房間直視。',
+      search:'Airbnb 搜尋：「Niagara Falls Ontario 3 bedroom house walk falls parking」',
+      pros:'含停車（省 $25/天）・廚房・庭院',
+      cons:'無法從房間直視瀑布'
+    },
+    htl:{
+      name:'Marriott Niagara Falls Fallsview Hotel & Spa',
+      price:'CAD $143–200/房/晚（×3房，非最高峰）',
+      total:'1晚合計 CAD $430–600（3房）',
+      dist:'🏞️ 直視 Horseshoe Falls 景觀・步行 5 分到瀑布邊',
+      rating:'⭐ Booking.com 8.5/10，評語：最乾淨的 Fallsview 飯店之一，服務親切',
+      note:'評分最高的 Fallsview 飯店，TripAdvisor 評語「This is one of the cleanest and nicest hotels on the Canadian side」，「friendly staff especially at front desk」。含室內泳池・Spa・餐廳。10 月非最旺季，價位相對合理。',
+      search:'Booking.com / Hotels.com 搜尋：「Marriott Niagara Falls Fallsview」',
+      pros:'直視瀑布景觀・含泳池 Spa・乾淨評價極高',
+      cons:'10月旺季仍較公寓版貴 $100–250/晚'
+    }
+  },
+  {
+    id:'algonquin', icon:'🌲', bg:'#E8F5E9', tc:'#1B5E20',
+    city:'阿岡昆周邊 Huntsville（10/4–10/6，2 晚）',
+    apt:{
+      name:'Muskoka 湖邊木屋 Cottage（3 臥）',
+      price:'CAD $220–320/晚（整套，含停車）',
+      total:'2晚合計 CAD $440–640',
+      dist:'🌲 距阿岡昆 West Gate 約 40 分鐘・含湖景・BBQ・私人停車',
+      rating:'⭐ VRBO/Airbnb 4.8+/5，評語：湖景壯觀・設施齊全・超有加拿大感',
+      note:'Muskoka 湖區木屋（Cottage）是加拿大最具代表性的家庭住宿體驗。建議選有洗衣機・BBQ 台・室外平台的物件。Huntsville 鎮上有 Farm Boy 超市可採買食材自炊。',
+      search:'VRBO / Airbnb 搜尋：「Huntsville Muskoka cottage 3 bedroom lake BBQ」',
+      pros:'最正宗加拿大體驗・湖景・BBQ',
+      cons:'距公園入口 40 分車程・全靠自炊'
+    },
+    htl:{
+      name:'Holiday Inn Express & Suites Huntsville – Muskoka（IHG）',
+      price:'CAD $100–150/房/晚（×3房）',
+      total:'2晚合計 CAD $600–900（3房）',
+      dist:'🏙️ Huntsville 鎮中心・距公園入口 40 分鐘',
+      rating:'⭐ TripAdvisor 4/5，評語：Great overnight stay, extremely clean room, nice breakfast with make your own waffles',
+      note:'IHG 旗下 Holiday Inn Express，評語特別強調「extremely clean room」和「nice breakfast with make your own waffles」，適合有小孩的家庭。含免費早餐・室內泳池・免費停車・免費 Wi-Fi。比 Motel 6（雖便宜但品質波動較大）更適合家庭。',
+      search:'Booking.com 搜尋：「Holiday Inn Express Huntsville Muskoka」或「Comfort Inn Huntsville」',
+      pros:'含免費早餐・泳池・品質穩定',
+      cons:'無湖景・體驗感不如木屋豐富'
+    }
+  },
+  {
+    id:'quebec', icon:'🏰', bg:'#F3E5F5', tc:'#4A148C',
+    city:'魁北克城（10/6–10/8，2 晚）',
+    apt:{
+      name:'舊城內石牆歷史建築 3 臥公寓（整套）',
+      price:'CAD $200–280/晚（整套）',
+      total:'2晚合計 CAD $400–560',
+      dist:'🏰 步行 5–10 分到 Château Frontenac・達費林平台・纜車站',
+      rating:'⭐ Airbnb 4.9/5，評語：位置完美・古城石牆建築很有歷史感',
+      note:'Rue Saint-Louis 或 Rue d\'Auteuil 一帶有 1900 年代石砌建築整修的整套公寓，部分保有原始壁爐・木樑天花。Airbnb 搜尋時注意選「Haute-Ville（上城）」而非下城，步行效率較高。',
+      search:'Airbnb 搜尋：「Quebec City Old Town 3 bedroom walk Dufferin Terrace historic」',
+      pros:'住在古城心臟地帶・歷史建築感',
+      cons:'石板路地形起伏，行李搬運較費力'
+    },
+    htl:{
+      name:'Hôtel Manoir d\'Auteuil（精品旅館）',
+      price:'CAD $150–220/房/晚（×3房）',
+      total:'2晚合計 CAD $900–1,320（3房）',
+      dist:'🏰 步行 2 分到 Château Frontenac・步行 5 分到達費林平台',
+      rating:'⭐ TripAdvisor 4.5/5，評語：Amazing Art Deco building, immaculate rooms, perfect location',
+      note:'1902 年 Art Deco 歷史建築改建的精品旅館，「just a short walk from the famous Chateau Frontenac and Dufferin Terrace」。房間有暖氣地板・Nespresso 機器。TripAdvisor 特別強調清潔度極佳。3 房合計比公寓貴但體驗更精緻。',
+      search:'直接搜尋：「Hotel Manoir Auteuil Quebec City」或「Hotel Nomad Quebec」',
+      pros:'Art Deco 精品旅館・位置最佳・24h 服務',
+      cons:'3房合計貴於公寓版約 $500–760'
+    }
+  },
+  {
+    id:'montreal', icon:'🏙️', bg:'#E3F2FD', tc:'#0D47A1',
+    city:'蒙特婁（10/8–10/10，2 晚）',
+    apt:{
+      name:'Vieux-Montréal 老港區 3 臥整套公寓',
+      price:'CAD $230–320/晚（整套）',
+      total:'2晚合計 CAD $460–640',
+      dist:'🚇 Place-d\'Armes 地鐵步行 3 分・Notre-Dame 步行 5 分',
+      rating:'⭐ Airbnb 4.8+/5，評語：老港區位置完美・露台景觀佳',
+      note:'老港區（Rue Notre-Dame / Rue Saint-Paul 一帶）有石牆建築・拱形窗・露台。VIA Rail Gare Centrale 搭地鐵 2 站可達（約 10 分），是蒙特婁最有生活氛圍的住宿選擇。',
+      search:'Airbnb 搜尋：「Vieux-Montréal 3 bedroom Old Port 6 guests」',
+      pros:'老港區最佳位置・露台・廚房',
+      cons:'Gare Centrale 地鐵 10 分（非步行即達）'
+    },
+    htl:{
+      name:'Auberge du Vieux-Port（精品旅館）',
+      price:'CAD $231–313/房/晚（×3房）',
+      total:'2晚合計 CAD $1,386–1,878（3房）',
+      dist:'🚇 Place-d\'Armes 地鐵步行 5 分・老港步行 2 分',
+      rating:'⭐ Booking.com 8.9/10・TripAdvisor 4.5/5，評語：Great location and rooms are very clean（2026/2 最新）',
+      note:'老港區最具歷史感的精品旅館，TripAdvisor 評語「blend of historic charm and modern comforts」「staff is frequently commended for exceptional service」「cleanliness and value earn positive feedback」。含壁爐 Lounge・法式料理餐廳。最新評語（2026/2）仍維持高分。',
+      search:'直接搜尋：「Auberge du Vieux-Port Montreal」（常有早鳥優惠）',
+      pros:'歷史建築精品旅館・老港最佳位置・高評價',
+      cons:'3房費用顯著高於公寓版'
+    }
+  }
+];
+
+// ===================== ITINERARY DATA =====================
+const days=[
+  {
+    date:'10/1',dow:'四',ic:'✈️',bg:'#EEEDFE',tc:'#3C3489',tz:'cross',
+    title:'台北 出發 → 多倫多 抵達（同日）',
+    sub:'BR036 TPE 19:20 TST 起飛 → YYZ 21:20 EDT（仍是 10/1，飛行 14 小時）',
+    tags:[{t:'長榮直飛',b:'#EEEDFE',c:'#3C3489'},{t:'同日抵達',b:'#EAF3DE',c:'#27500A'}],
+    cityId:'toronto',
+    food:[],
+    sched:[
+      {t:'15:00',tz:'tst',tx:'建議到達桃園機場 T2，長榮 Check-in・行李托運（6件）'},
+      {t:'19:20',tz:'tst',tx:'BR036 起飛（= 多倫多 EDT 07:20 同日）'},
+      {t:'飛行 14h',tz:'neu',tx:'機上用餐・睡眠，向東橫越太平洋'},
+      {t:'21:20',tz:'edt',tx:'降落多倫多 YYZ T1 — 仍是 10/1！時差幫我們省了半天'},
+      {t:'22:10',tz:'edt',tx:'入境・領行李（6件），搭 UP Express（$7/人×6=$42）至 Union Station，25 分'},
+      {t:'22:40',tz:'edt',tx:'步行 7 分到住所 Check-in，樓下便利店採買早餐食材'},
+    ],
+    tip:'時區換算：台灣 19:20 出發，EDT = TST −12h，出發時多倫多是 07:20。飛行 14 小時後落地是 EDT 21:20，日期仍是 10/1。'
+  },
+  {
+    date:'10/2',dow:'五',ic:'🏙️',bg:'#E6F1FB',tc:'#0C447C',tz:'edt',
+    title:'多倫多市區全日探索',
+    sub:'CN Tower・水族館・St. Lawrence Market（週五早市）・Distillery District',
+    tags:[{t:'EDT UTC-4',b:'#BFDBFE',c:'#1E3A5F'},{t:'全程步行',b:'#EAF3DE',c:'#27500A'}],
+    cityId:null,
+    food:[
+      {type:'cafe',icon:'☕',name:'Pilot Coffee Roasters',note:'多倫多精品咖啡代表，Adelaide St 旗艦店，Oat Milk Latte 招牌'},
+      {type:'food',icon:'🦞',name:'St. Lawrence Market',note:'週五有 North Market 早市，生蠔・楓糖培根・各國小食是重點'},
+      {type:'food',icon:'🥐',name:'Porchetta & Co.',note:'Distillery District 旁，豬肉三明治，在地必試午餐'},
+      {type:'wine',icon:'🍷',name:'Bar Buca',note:'Front St 地下酒吧，義式小菜配自然酒，晚間最佳'},
+      {type:'cafe',icon:'☕',name:'Neo Coffee Bar',note:'University Ave 附近，拿鐵拉花超精緻，下午茶首選'},
+    ],
+    sched:[
+      {t:'08:30',tz:'edt',tx:'住所自備早餐'},
+      {t:'09:00',tz:'edt',tx:'☕ Pilot Coffee Roasters 外帶咖啡，步行出發'},
+      {t:'09:30',tz:'edt',tx:'CN Tower（成人 $40・兒童 $27），玻璃地板觀景台'},
+      {t:'11:00',tz:'edt',tx:'Ripley\'s 水族館（成人 $31・兒童 $21）'},
+      {t:'13:00',tz:'edt',tx:'🦞 St. Lawrence Market 午餐 — 週五早市，生蠔、楓糖培根必試'},
+      {t:'15:00',tz:'edt',tx:'Distillery District 古釀酒廠區，石板路・咖啡・拍照'},
+      {t:'17:00',tz:'edt',tx:'Harbourfront 湖邊散步，欣賞多倫多島夕陽'},
+      {t:'19:30',tz:'edt',tx:'🍷 Bar Buca 義式小菜配自然酒，或回住所自炊'},
+    ],
+    tip:'St. Lawrence Market 週五早市 07:00 開始是最熱鬧的時段，但 09:00 到也來得及。Pilot Coffee 被 Toronto Life 評為全市前三名精品咖啡。'
+  },
+  {
+    date:'10/3',dow:'六',ic:'🚗',bg:'#FEF3E2',tc:'#8B4513',tz:'edt',
+    title:'多倫多 → 尼加拉瓦瀑布',
+    sub:'取 Chrysler Pacifica，QEW 西行 130 km，途經 Niagara-on-the-Lake 酒莊',
+    tags:[{t:'EDT UTC-4',b:'#BFDBFE',c:'#1E3A5F'},{t:'🚗 自駕開始',b:'#FEF3E2',c:'#8B4513'},{t:'🍷 冰酒莊園',b:'#F8F0FB',c:'#6B2D8B'}],
+    cityId:'niagara',
+    food:[
+      {type:'wine',icon:'🍷',name:'Peller Estates Winery',note:'Niagara-on-the-Lake 頂級酒莊，冰酒（Ice Wine）發源地，冰酒雪糕是網紅打卡'},
+      {type:'wine',icon:'🍷',name:'Jackson-Triggs Winery',note:'導覽+品酒套餐 CAD $25，含 4 款佳釀，規模最大最易預約'},
+      {type:'food',icon:'🥩',name:'AG Inspired Cuisine',note:'Peller Estates 餐廳，在地食材配冰酒，米其林等級，需提前預訂'},
+      {type:'cafe',icon:'☕',name:'Shaw Café & Wine Bar',note:'Niagara-on-the-Lake 鎮上維多利亞建築中享英式下午茶'},
+    ],
+    sched:[
+      {t:'08:00',tz:'edt',tx:'退房，步行至市區取 Chrysler Pacifica'},
+      {t:'09:00',tz:'edt',tx:'6 人上車・行李全入，沿 QEW 西行'},
+      {t:'10:30',tz:'edt',tx:'Niagara-on-the-Lake 小鎮 — 🍷 Jackson-Triggs 品酒（$25/人，建議預訂）'},
+      {t:'13:00',tz:'edt',tx:'🥩 AG Inspired Cuisine 午餐（Peller Estates，需預訂）或鎮上餐廳'},
+      {t:'14:30',tz:'edt',tx:'開車 20 分到尼加拉瓦瀑布，Check-in 住所'},
+      {t:'15:30',tz:'edt',tx:'🌊 Maid of the Mist 遊船（穿雨衣，成人 $22・兒童 $14）'},
+      {t:'18:30',tz:'edt',tx:'住所附近晚餐或自炊'},
+      {t:'22:00',tz:'edt',tx:'🎆 彩燈煙火秀（每晚 10pm EDT，步行可達觀賞點）'},
+    ],
+    tip:'Niagara-on-the-Lake 是加拿大冰酒的故鄉，10 月葡萄豐收季酒莊開放採摘體驗。Peller Estates 的冰酒雪糕（Ice Wine Soft Serve，$8 CAD）是 Instagram 必打卡。'
+  },
+  {
+    date:'10/4',dow:'日',ic:'🌲',bg:'#EAF3DE',tc:'#27500A',tz:'edt',
+    title:'尼加拉瓦 → 阿岡昆省立公園',
+    sub:'Hwy 400 北上約 380 km，中途 Barrie 休息，約 4–4.5 小時',
+    tags:[{t:'EDT UTC-4',b:'#BFDBFE',c:'#1E3A5F'},{t:'🚗 長途自駕',b:'#FEF3E2',c:'#8B4513'},{t:'楓紅前夕',b:'#FDEAEA',c:'#C0392B'}],
+    cityId:'algonquin',
+    food:[
+      {type:'cafe',icon:'☕',name:'Tim Hortons — Barrie',note:'中途休息必停，Double Double（雙倍奶油咖啡）是加拿大靈魂飲料，Timbits 是小孩最愛'},
+      {type:'food',icon:'🥞',name:'The Flour Mill（Huntsville）',note:'Huntsville 鎮上，早餐鬆餅配楓糖漿，在地最人情味的小店'},
+      {type:'food',icon:'🍺',name:'Hunter\'s Bay Ale House',note:'Huntsville 湖邊餐廳，精釀啤酒配漢堡，湖景露台超放鬆'},
+    ],
+    sched:[
+      {t:'08:00',tz:'edt',tx:'退房，Hwy 420→QEW→Hwy 400 北上'},
+      {t:'10:30',tz:'edt',tx:'☕ Barrie Tim Hortons 休息加油 — Double Double 和 Timbits 必試'},
+      {t:'12:30',tz:'edt',tx:'沿 Hwy 60 進入阿岡昆走廊，沿途觀景站開始有楓紅'},
+      {t:'13:30',tz:'edt',tx:'Algonquin Visitor Centre 停車，午餐・購買入園許可（$20/天，需線上預購）'},
+      {t:'15:00',tz:'edt',tx:'🍁 Lookout Trail（1.9 km 來回，30–40 分），山頂俯瞰湖海楓景，9 歲完全沒問題'},
+      {t:'17:00',tz:'edt',tx:'Check-in Huntsville 住所，Farm Boy 超市採買'},
+      {t:'19:00',tz:'edt',tx:'🍺 Hunter\'s Bay Ale House 晚餐（湖景），或木屋 BBQ 自炊'},
+    ],
+    tip:'Hwy 400 在 Barrie 有大型 Costco 和 Sobeys，可在此採購木屋 2 天的早餐食材（麵包・起司・水果・楓糖漿）。Tim Hortons 的 Timbits 是加拿大國民零食，9 歲小孩絕對愛。'
+  },
+  {
+    date:'10/5',dow:'一',ic:'🍁',bg:'#FDEAEA',tc:'#8B0000',tz:'edt',
+    title:'阿岡昆深度賞楓日',
+    sub:'全天留在公園，多條步道・Hwy 60 觀景站・森林野餐',
+    tags:[{t:'EDT UTC-4',b:'#BFDBFE',c:'#1E3A5F'},{t:'🍁 賞楓高峰',b:'#FDEAEA',c:'#8B0000'},{t:'自然探索',b:'#EAF3DE',c:'#27500A'}],
+    cityId:null,
+    food:[
+      {type:'food',icon:'🧺',name:'森林野餐（自製）',note:'在住所備好三明治・水果・楓糖餅乾，在公園楓樹下野餐是一生難忘體驗'},
+      {type:'cafe',icon:'☕',name:'Algonquin Visitor Centre',note:'公園內唯一咖啡販賣點，熱可可和咖啡，10 月冷天必備'},
+      {type:'food',icon:'🍽️',name:'Arowhon Pines Lodge',note:'公園內唯一高級餐廳，可單點晚餐不住宿，北美創意料理，需提前預訂'},
+    ],
+    sched:[
+      {t:'07:30',tz:'edt',tx:'住所自炊早餐，準備野餐便當'},
+      {t:'08:30',tz:'edt',tx:'出發進公園（車程 40 分），沿 Hwy 60 先看各觀景站'},
+      {t:'09:30',tz:'edt',tx:'Track and Tower Trail（7.7 km）或 Lookout Trail 再走一次'},
+      {t:'12:00',tz:'edt',tx:'🧺 森林野餐 — 楓紅環繞是最佳背景'},
+      {t:'14:00',tz:'edt',tx:'Algonquin Logging Museum（免費），小孩喜歡的歷史展示'},
+      {t:'15:30',tz:'edt',tx:'Lake of Two Rivers 皮划艇（$30/hr）或湖邊散步'},
+      {t:'18:30',tz:'edt',tx:'☕ Visitor Centre 熱可可，返回住所'},
+      {t:'19:30',tz:'edt',tx:'🍽️ Arowhon Pines 晚餐（需預訂），或住所自炊'},
+      {t:'21:00',tz:'edt',tx:'戶外夜觀星空（光害極低，晴天可見銀河）'},
+    ],
+    tip:'10 月初阿岡昆楓葉約 60–80% 轉色，是全程最重要的賞楓時刻。Arowhon Pines 是公園內唯一高級餐廳，使用在地食材，這頓特別餐廳值得犒賞！'
+  },
+  {
+    date:'10/6',dow:'二',ic:'🛫',bg:'#FDEAEA',tc:'#8B0000',tz:'edt',
+    title:'阿岡昆 → 多倫多還車 → 飛魁北克',
+    sub:'Hwy 400 南下 4h 還車，Air Canada YYZ→YQB，XL 計程車入古城',
+    tags:[{t:'EDT UTC-4',b:'#BFDBFE',c:'#1E3A5F'},{t:'還車',b:'#FEF3E2',c:'#8B4513'},{t:'國內航班',b:'#EEEDFE',c:'#3C3489'}],
+    cityId:'quebec',
+    food:[
+      {type:'food',icon:'🥐',name:'Paillard',note:'魁北克古城最佳麵包店咖啡館，Rue Saint-Jean，可頌・法式濃湯是招牌'},
+      {type:'food',icon:'🍽️',name:'Aux Anciens Canadiens',note:'魁北克最古老餐廳（1677 年建築），楓糖燉肉・肉餡派（tourtière）必點，需預訂'},
+      {type:'wine',icon:'🍷',name:'Bar 1608',note:'Château Frontenac 內的酒吧，不住宿也可入場，魁北克在地啤酒'},
+    ],
+    sched:[
+      {t:'07:00',tz:'edt',tx:'退房，Hwy 60→Hwy 400 南下，約 4 小時'},
+      {t:'11:30',tz:'edt',tx:'抵達多倫多 YYZ 機場租車公司還車'},
+      {t:'13:00',tz:'edt',tx:'Air Canada 報到（行李費：$35/件第 1 件）'},
+      {t:'15:00',tz:'edt',tx:'AC 班機 YYZ→YQB，飛行約 1.5 小時'},
+      {t:'16:30',tz:'edt',tx:'抵達魁北克 YQB — 與多倫多同屬 EDT，無時差'},
+      {t:'17:30',tz:'edt',tx:'XL 廂型計程車直送住所（$50–70 CAD，全程唯一叫車時刻，提前告知 6 人+6件行李）'},
+      {t:'19:30',tz:'edt',tx:'🥐 Paillard 輕食，或 🍽️ Aux Anciens Canadiens 正式晚餐'},
+    ],
+    tip:'Aux Anciens Canadiens 在 1677 年建成的古宅內用餐，楓糖燉豬腳是靈魂菜色，一生必試一次。Bar 1608 深夜仍開，疲憊旅程後喝一杯本地精釀。'
+  },
+  {
+    date:'10/7',dow:'三',ic:'🏰',bg:'#E6F1FB',tc:'#0C447C',tz:'edt',
+    title:'魁北克古城深度巡禮',
+    sub:'達費林平台・Funicular 纜車・小香普蘭街・城牆步道',
+    tags:[{t:'EDT UTC-4',b:'#BFDBFE',c:'#1E3A5F'},{t:'全程步行',b:'#EAF3DE',c:'#27500A'},{t:'UNESCO 世遺',b:'#E6F1FB',c:'#0C447C'}],
+    cityId:null,
+    food:[
+      {type:'cafe',icon:'☕',name:'Café Krieghoff',note:'上城區藝術家老咖啡館，Avenue Cartier，法式可麗餅配咖啡，在地人最愛早餐點'},
+      {type:'food',icon:'🧇',name:'Le Casse-Crêpe Breton',note:'小香普蘭街法式薄餅專門店，甜鹹都好，現做現吃，排隊必試'},
+      {type:'wine',icon:'🍷',name:'L\'Oncle Antoine',note:'北美最古老地窖酒吧（1754 年），下城區，石灰岩地窖・燭光・本地精釀'},
+    ],
+    sched:[
+      {t:'08:00',tz:'edt',tx:'住所自備早餐'},
+      {t:'09:00',tz:'edt',tx:'☕ Café Krieghoff 早餐咖啡（Avenue Cartier）'},
+      {t:'10:00',tz:'edt',tx:'達費林平台（Dufferin Terrace）清晨散步，俯瞰河景楓紅'},
+      {t:'11:00',tz:'edt',tx:'城牆步道（Promenade des Remparts）走一段'},
+      {t:'12:30',tz:'edt',tx:'搭 Funicular 纜車（$3.75）下城，🧇 Le Casse-Crêpe Breton 午餐'},
+      {t:'14:00',tz:'edt',tx:'小香普蘭街採購楓糖漿・冰蘋果酒・魁北克特產伴手禮'},
+      {t:'15:30',tz:'edt',tx:'大壁畫（La Fresque des Québécois）・皇家廣場（Place Royale）'},
+      {t:'17:00',tz:'edt',tx:'步行上城，Château Frontenac 廣場夕陽'},
+      {t:'20:00',tz:'edt',tx:'🍷 L\'Oncle Antoine 地窖酒吧，1754 年古窖在地精釀'},
+    ],
+    tip:'魁北克伴手禮推薦：楓糖奶油（Maple Butter）、Fleur de Sel 海鹽・冰蘋果酒（Cidre de glace）。L\'Oncle Antoine 是北美現存最古老連續營業酒吧之一，深夜去最有氣氛。'
+  },
+  {
+    date:'10/8',dow:'四',ic:'🚄',bg:'#EEEDFE',tc:'#3C3489',tz:'edt',
+    title:'魁北克 → 蒙特婁（VIA Rail 商務艙）',
+    sub:'Gare du Palais 搭 VIA Rail，約 3 小時 20 分，車上含餐',
+    tags:[{t:'EDT UTC-4',b:'#BFDBFE',c:'#1E3A5F'},{t:'🚄 商務艙',b:'#EEEDFE',c:'#3C3489'}],
+    cityId:'montreal',
+    food:[
+      {type:'food',icon:'🥩',name:'Joe Beef',note:'蒙特婁最難訂位的餐廳，法式牛排・龍蝦通心粉，需提前 2 個月訂位'},
+      {type:'food',icon:'🥯',name:'St-Viateur Bagel',note:'1957 年開業，蒙特婁貝果始祖，蜂蜜水煮・柴窯烤，24 小時不打烊'},
+      {type:'cafe',icon:'☕',name:'Café Névé',note:'Old Port 最受歡迎精品咖啡，澳白（Flat White）是招牌'},
+      {type:'wine',icon:'🍷',name:'Le Lab Cocktail Bar',note:'蒙特婁最佳調酒吧，老港夜景，創意調酒'},
+    ],
+    sched:[
+      {t:'08:00',tz:'edt',tx:'住所自備早餐，整理行李'},
+      {t:'09:00',tz:'edt',tx:'計程車到 Gare du Palais（$15–20 CAD，5 分），VIA Rail 商務艙報到'},
+      {t:'10:00',tz:'edt',tx:'VIA Rail 出發，商務艙含熱食・Wi-Fi・每人 2 件行李額度'},
+      {t:'13:20',tz:'edt',tx:'抵達 Montréal Gare Centrale — 同屬 EDT，無時差'},
+      {t:'13:45',tz:'edt',tx:'地鐵 2 站至老港區 Check-in，放下行李'},
+      {t:'14:30',tz:'edt',tx:'☕ Café Névé 下午咖啡'},
+      {t:'15:00',tz:'edt',tx:'Notre-Dame 大教堂（成人 $15，需預約），哥德式燈光展覽'},
+      {t:'17:30',tz:'edt',tx:'老港（Vieux-Port）沿河散步，鐵欄橋・倉庫藝廊'},
+      {t:'20:00',tz:'edt',tx:'🥩 Joe Beef 晚餐（需提前 2 個月訂），或 🥯 St-Viateur Bagel'},
+    ],
+    tip:'蒙特婁貝果（Montreal Bagel）是全加拿大最特別的麵包體驗，St-Viateur 24h 不打烊，前一晚帶回去隔天當早餐最好吃！Joe Beef 若訂不到位，試試旁邊的 Liverpool House，同老闆水準接近。'
+  },
+  {
+    date:'10/9',dow:'五',ic:'🏔️',bg:'#EAF3DE',tc:'#27500A',tz:'edt',
+    title:'蒙特婁 → 川特布朗山頂賞楓',
+    sub:'包廂型車往返 1.5h，景觀纜車俯瞰 360° 楓海',
+    tags:[{t:'EDT UTC-4',b:'#BFDBFE',c:'#1E3A5F'},{t:'🍁 山頂楓海',b:'#FDEAEA',c:'#8B0000'},{t:'景觀纜車',b:'#EAF3DE',c:'#27500A'}],
+    cityId:null,
+    food:[
+      {type:'food',icon:'🥗',name:'Le Shack（山頂村莊）',note:'Mont-Tremblant 山頂餐廳，Poutine（肉汁薯條乳酪）是魁北克靈魂食物，楓海下吃最正點'},
+      {type:'cafe',icon:'☕',name:'La Sauvagine Café',note:'山腳村莊，自家烘焙咖啡配楓糖馬卡龍，下山後小憩首選'},
+      {type:'wine',icon:'🍺',name:'Microbrasserie La Diable',note:'Mont-Tremblant 最著名精釀啤酒館，Devil\'s Pale Ale 在地招牌，蘋果酒（Cidre）也很棒'},
+    ],
+    sched:[
+      {t:'07:30',tz:'edt',tx:'🥯 St-Viateur Bagel 早餐（前晚帶回），提早出發避開人潮'},
+      {t:'08:00',tz:'edt',tx:'包廂型計程車出發（6 人約 $150–250 CAD 全車），行李留住所'},
+      {t:'09:30',tz:'edt',tx:'抵達 Mont-Tremblant，購景觀纜車票（成人 $38・兒童 $25）'},
+      {t:'10:00',tz:'edt',tx:'🚡 景觀纜車上山，360° 楓海鳥瞰，9 歲超興奮'},
+      {t:'12:00',tz:'edt',tx:'🥗 山頂 Le Shack 午餐 — Poutine 在楓海中吃最正點'},
+      {t:'14:00',tz:'edt',tx:'下山，☕ La Sauvagine Café 咖啡配楓糖馬卡龍'},
+      {t:'15:00',tz:'edt',tx:'🍺 Microbrasserie La Diable 精釀，Devil\'s Pale Ale'},
+      {t:'16:30',tz:'edt',tx:'包廂型車返回蒙特婁'},
+      {t:'19:30',tz:'edt',tx:'🍷 Le Lab Cocktail Bar 調酒，老港夜景，最後一個美酒之夜'},
+    ],
+    tip:'Poutine 是魁北克靈魂食物，在山頂邊看楓海邊吃是這趟旅行最加拿大的一刻。La Diable 的 Devil\'s Pale Ale 在全魁北克只此一家，不喝啤酒的試試蘋果酒（Cidre）。'
+  },
+  {
+    date:'10/10',dow:'六',ic:'🚄',bg:'#EEEDFE',tc:'#3C3489',tz:'edt',
+    title:'蒙特婁 → 多倫多（VIA Rail）→ 深夜機場候機',
+    sub:'火車 5 小時，PATH 採買，深夜 10/11 02:10 EDT 起飛',
+    tags:[{t:'EDT UTC-4',b:'#BFDBFE',c:'#1E3A5F'},{t:'🚄 商務艙',b:'#EEEDFE',c:'#3C3489'},{t:'回程',b:'#EEEDFE',c:'#3C3489'}],
+    cityId:null,
+    food:[
+      {type:'food',icon:'🥯',name:'St-Viateur Bagel（再帶一袋）',note:'出發前帶一袋貝果上火車當早餐，最地道的加拿大旅行回憶'},
+      {type:'food',icon:'🍜',name:'PATH 美食廣場',note:'Union Station 地下街，多倫多本地快餐・壽司・漢堡，最後採購'},
+      {type:'cafe',icon:'☕',name:'Dark Horse Espresso（YYZ）',note:'YYZ T1 候機室內，多倫多精品咖啡品牌，起飛前最後一杯加拿大咖啡'},
+    ],
+    sched:[
+      {t:'08:00',tz:'edt',tx:'住所早餐（最後一頓自炊）・整理行李・退房'},
+      {t:'09:30',tz:'edt',tx:'地鐵 2 站至 Gare Centrale，VIA Rail 商務艙報到'},
+      {t:'10:00',tz:'edt',tx:'🚄 VIA Rail 出發，約 5 小時，車上含午餐'},
+      {t:'15:00',tz:'edt',tx:'抵達 Toronto Union Station'},
+      {t:'15:30',tz:'edt',tx:'PATH 地下街最後採買（楓糖漿・楓糖奶油・酒類必須托運！）'},
+      {t:'17:00',tz:'edt',tx:'步行至 Union Station 搭 UP Express（$7/人×6=$42），25 分'},
+      {t:'17:30',tz:'edt',tx:'抵達 YYZ，辦理 BR035 Check-in（建議提早 3–4 小時到）'},
+      {t:'20:00',tz:'edt',tx:'☕ Dark Horse Espresso，最後一杯加拿大咖啡'},
+      {t:'22:00',tz:'edt',tx:'進入 T1 候機區，機場晚餐'},
+    ],
+    tip:'PATH 地下街楓糖製品在 Hudson\'s Bay 或 Maple Delights 最齊全。液體超過 100ml（楓糖漿・冰酒）必須放托運，不能帶上機。'
+  },
+  {
+    date:'10/11',dow:'六',ic:'✈️',bg:'#EEEDFE',tc:'#3C3489',tz:'edt',
+    title:'凌晨 02:10 EDT 起飛（接 10/10 深夜）',
+    sub:'BR035 YYZ 02:10 EDT → TPE 10/12 05:40 TST（飛行約 15h55m）',
+    tags:[{t:'EDT UTC-4',b:'#BFDBFE',c:'#1E3A5F'},{t:'回程直飛',b:'#EEEDFE',c:'#3C3489'}],
+    cityId:null,food:[],
+    sched:[
+      {t:'02:10',tz:'edt',tx:'BR035 起飛，直飛台北（= 台灣 10/11 14:10 TST）'},
+      {t:'飛行中',tz:'neu',tx:'機上用餐・睡眠，向西橫越太平洋，時差讓日期往前跳'},
+    ],
+    tip:'回程向西飛，時差方向相反。起飛是 10/11 EDT 凌晨，降落是台灣 10/12 清晨——「飛過」了一天。'
+  },
+  {
+    date:'10/12',dow:'日',ic:'🏠',bg:'#EAF3DE',tc:'#27500A',tz:'tst',
+    title:'抵達台灣・圓滿歸來',
+    sub:'BR035 TPE 05:40 TST 降落（= 多倫多 10/11 17:40 EDT）',
+    tags:[{t:'TST UTC+8',b:'#FDE68A',c:'#78350F'},{t:'安全抵台',b:'#EAF3DE',c:'#27500A'}],
+    cityId:null,food:[],
+    sched:[
+      {t:'05:40',tz:'tst',tx:'抵達桃園機場 T2（飛行 15h55m）'},
+      {t:'06:30',tz:'tst',tx:'入境・領行李（6件），出關'},
+      {t:'07:00',tz:'tst',tx:'搭機場捷運或計程車回家，滿載楓葉回憶！'},
+    ],
+    tip:'三大賞楓制霸：阿岡昆（森林湖泊型）・魁北克（古城石板路型）・川特布朗（山頂 360° 型）。楓糖伴手禮、冰酒用氣泡袋包好！'
+  },
+];
+
+// ===================== BUDGET =====================
+const budget={
+  flight:[{n:'長榮 BR036/BR035 經濟艙（6人來回）',lo:390000,hi:428400,twd:true,note:'約 NT$65,000–71,400/人×6，10月旺季估算（官網最低 NT$54,099 起）'}],
+  hotel_apt:[
+    {n:'多倫多 CityPlace 3臥公寓（2晚）',lo:440,hi:560,note:'$220–$280/晚（整套）'},
+    {n:'尼加拉瓦 Clifton Hill 3臥獨棟（1晚）',lo:250,hi:350,note:'$250–$350/晚（整套，含停車）'},
+    {n:'Huntsville Muskoka 木屋 Cottage（2晚）',lo:440,hi:640,note:'$220–$320/晚（整套）'},
+    {n:'魁北克舊城石牆公寓（2晚）',lo:400,hi:560,note:'$200–$280/晚（整套）'},
+    {n:'蒙特婁老港區公寓（2晚）',lo:460,hi:640,note:'$230–$320/晚（整套）'},
+  ],
+  hotel_htl:[
+    {n:'多倫多 DoubleTree Hilton Downtown（2晚×3房）',lo:900,hi:1200,note:'$150–$200/房/晚'},
+    {n:'尼加拉瓦 Marriott Fallsview（1晚×3房）',lo:429,hi:600,note:'$143–$200/房/晚，評分 8.5/10'},
+    {n:'Huntsville Holiday Inn Express（2晚×3房）',lo:600,hi:900,note:'$100–$150/房/晚，含早餐+泳池'},
+    {n:'魁北克 Hôtel Manoir d\'Auteuil（2晚×3房）',lo:900,hi:1320,note:'$150–$220/房/晚，Art Deco 精品'},
+    {n:'蒙特婁 Auberge du Vieux-Port（2晚×3房）',lo:1386,hi:1878,note:'$231–$313/房/晚，老港精品評分 8.9/10'},
+  ],
+  car:[
+    {n:'Chrysler Pacifica 租金（4天 10/3–10/6）',lo:600,hi:720,note:'$150–$180/天×4天，無限里程'},
+    {n:'油費（約 800 km）',lo:120,hi:170,note:'油耗約 11L/100km'},
+    {n:'停車費（多倫多市區・尼加拉景點）',lo:50,hi:80,note:'公寓版含私人停車可省費用'},
+    {n:'Ontario Parks 入園許可（2天）',lo:32,hi:44,note:'$16–22/天，線上預購'},
+  ],
+  domestic:[
+    {n:'Air Canada YYZ→YQB 機票（6人）',lo:900,hi:1500,note:'每人 $150–$250 CAD'},
+    {n:'行李托運費（6件，每件 $35）',lo:210,hi:210,note:'建議合併行李減少件數'},
+  ],
+  train:[
+    {n:'VIA Rail 魁北克→蒙特婁 商務艙（6人）',lo:654,hi:1104,note:'每人 $109–$184 CAD，含熱食'},
+    {n:'VIA Rail 蒙特婁→多倫多 商務艙（6人）',lo:786,hi:1200,note:'每人 $131–$200 CAD，約 5h 含午餐'},
+  ],
+  taxi:[
+    {n:'UP Express（YYZ↔Union Station，6人×2次）',lo:84,hi:120,note:'單程每人 $7–$10 CAD'},
+    {n:'YQB 機場 XL 計程車→古城住所',lo:50,hi:70,note:'全程唯一叫車關鍵時刻'},
+    {n:'魁北克市內（住所→Gare du Palais）',lo:15,hi:25,note:'5 分鐘車程'},
+    {n:'蒙特婁→川特布朗包廂型車（往返）',lo:150,hi:250,note:'6 人包車，比接駁巴士彈性'},
+    {n:'蒙特婁地鐵（老港→Gare Centrale，6人×2次）',lo:30,hi:40,note:'$3.75/人/趟'},
+  ],
+  food:[
+    {n:'餐飲（10天，含自炊省費）',lo:2500,hi:4500,note:'每人每天約 $40–$75 CAD；公寓自炊早餐+部分晚餐可省 $500–800'},
+    {n:'精選特色餐廳（Arowhon・Joe Beef・Aux Anciens Canadiens 等）',lo:500,hi:900,note:'建議 3–4 頓精選餐廳體驗'},
+    {n:'酒莊品酒・精釀啤酒・調酒（Niagara・魁北克・蒙特婁）',lo:200,hi:400,note:'Peller Estates 品酒套餐 + 各城精釀'},
+  ],
+  attr:[
+    {n:'CN Tower（5大+1兒童）',lo:227,hi:227,note:'成人 $40×5 + 兒童 $27×1'},
+    {n:'Ripley\'s 水族館（6人）',lo:176,hi:176,note:'成人 $31×5 + 兒童 $21×1'},
+    {n:'Maid of the Mist（6人）',lo:110,hi:124,note:'成人 $22×5 + 兒童 $14×1'},
+    {n:'Funicular 纜車魁北克（6人×多次）',lo:45,hi:67,note:'$3.75/人/趟'},
+    {n:'Mont-Tremblant 景觀纜車（6人）',lo:215,hi:215,note:'成人 $38×5 + 兒童 $25×1'},
+    {n:'Notre-Dame 大教堂（6人）',lo:90,hi:90,note:'$15×6'},
+  ],
+  misc:[
+    {n:'購物・楓糖漿・冰酒・紀念品',lo:400,hi:900,note:'PATH 地下街・魁北克古城・Niagara 酒莊'},
+    {n:'旅遊保險（6人，含海外醫療+行李）',lo:8000,hi:15000,twd:true,note:'NT$1,300–$2,500/人，強烈建議'},
+    {n:'雜支（藥品・洗衣・飲料・小費）',lo:200,hi:400,note:''},
+  ],
+};
+
+function fT(v){return'NT$'+Math.round(v).toLocaleString();}
+function fC(v){return'$'+Math.round(v).toLocaleString()+' CAD';}
+function dv(){return pMode==='pp'?5:1;}
+function calc(cat){return cat.reduce((a,i)=>({lo:a.lo+(i.twd?i.lo:i.lo*CAD),hi:a.hi+(i.twd?i.hi:i.hi*CAD)}),{lo:0,hi:0});}
+
+function rows(cat,id,cls=''){
+  const d=dv();
+  document.getElementById(id).innerHTML=cat.map(i=>{
+    const lv=(i.twd?i.lo:i.lo*CAD)/d,hv=(i.twd?i.hi:i.hi*CAD)/d;
+    return`<div class="br${cls?' '+cls:''}"><div class="bl"><div class="bn">${i.n}</div>${i.note?`<div class="bnt">${i.note}</div>`:''}</div><div class="bv">${lv===hv?fT(lv):`${fT(lv)}<br>–&nbsp;${fT(hv)}`}${!i.twd?`<span class="bs">${fC(i.lo/d)}–${fC(i.hi/d)}</span>`:''}</div></div>`;
+  }).join('');
+}
+
+function renderBudget(){
+  rows(budget.flight,'s-flight','fl');
+  const hotelData=budget.hotel_apt; // always show apt in budget (reference)
+  document.getElementById('hotel-title').textContent='🏠 住宿參考（公寓版，10晚）';
+  rows(hotelData,'s-hotel','ap');
+  rows(budget.car,'s-car');
+  rows(budget.domestic,'s-domestic');
+  rows(budget.train,'s-train','tr');
+  rows(budget.taxi,'s-taxi');
+  rows(budget.food,'s-food');
+  rows(budget.attr,'s-attr');
+  rows(budget.misc,'s-misc');
+
+  const d=dv();
+  const cats=[
+    {l:'✈️ 長榮機票',c:'#534AB7',t:calc(budget.flight)},
+    {l:'🏠 住宿（公寓版）',c:'#1D9E75',t:calc(budget.hotel_apt)},
+    {l:'🚗 租車',c:'#BA7517',t:calc(budget.car)},
+    {l:'✈️ 國內航班',c:'#C0392B',t:calc(budget.domestic)},
+    {l:'🚄 VIA Rail',c:'#534AB7',t:calc(budget.train)},
+    {l:'🚕 計程車',c:'#888',t:calc(budget.taxi)},
+    {l:'🍽️ 餐飲美食',c:'#1E7FD8',t:calc(budget.food)},
+    {l:'🎟️ 景點',c:'#D4537E',t:calc(budget.attr)},
+    {l:'🛍️ 其他',c:'#5D4037',t:calc(budget.misc)},
+  ];
+  const maxV=Math.max(...cats.map(c=>(c.t.lo+c.t.hi)/2/d));
+  document.getElementById('s-bar').innerHTML=cats.map(c=>{
+    const mv=(c.t.lo+c.t.hi)/2/d;
+    return`<div class="barr"><div class="barl">${c.l}</div><div class="barbg"><div class="barfill" style="width:${Math.round(mv/maxV*100)}%;background:${c.c};"></div></div><div class="barv">${fT(mv)}</div></div>`;
+  }).join('');
+
+  const all=[...budget.flight,...budget.hotel_apt,...budget.car,...budget.domestic,...budget.train,...budget.taxi,...budget.food,...budget.attr,...budget.misc];
+  const g=calc(all);const lo=g.lo/d,hi=g.hi/d,mid=(lo+hi)/2;
+  const hotelHtlTotal=calc(budget.hotel_htl);
+  document.getElementById('grand-box').innerHTML=`
+    <h3>💰 費用總覽（${pMode==='pp'?'每人平均 ÷5':'6人全家合計'}）</h3>
+    ${cats.map(c=>`<div class="gt-row"><span>${c.l}</span><span>${fT((c.t.lo+c.t.hi)/2/d)}</span></div>`).join('')}
+    <div class="gt-final"><span class="lbl">建議預備金額（公寓版住宿）</span><span class="val">${fT(mid)}</span></div>
+    <div class="pp-note">公寓版範圍：${fT(lo)} – ${fT(hi)}</div>
+    <div class="pp-note" style="margin-top:4px;color:#1E40AF;">🏨 若改為飯店版住宿，住宿差額：+${fT((hotelHtlTotal.lo+hotelHtlTotal.hi)/2/d - (calc(budget.hotel_apt).lo+calc(budget.hotel_apt).hi)/2/d)}（中間值）</div>`;
+}
+
+function renderDays(){
+  const c=document.getElementById('days');c.innerHTML='';
+  days.forEach((d,i)=>{
+    const div=document.createElement('div');div.className='dc';
+    const tags=d.tags.map(t=>`<span class="tag" style="background:${t.b};color:${t.c};">${t.t}</span>`).join('');
+    let tzPill;
+    if(d.tz==='cross')tzPill=`<div class="tz-pill cross">TST→EDT</div>`;
+    else if(d.tz==='tst')tzPill=`<div class="tz-pill tst">TST +8</div>`;
+    else tzPill=`<div class="tz-pill edt">EDT -4</div>`;
+
+    // accom box: find city data
+    let accomHtml='';
+    if(d.cityId){
+      const city=cities.find(x=>x.id===d.cityId);
+      if(city){
+        accomHtml=`<div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--sub);margin-bottom:7px;">住宿選擇（6人・2種方案）</div>
+        <div class="accom-compare">
+          <div class="accom-box apt-style">
+            <div class="accom-label">🏠 公寓版（整套 Airbnb）</div>
+            <div class="accom-name">${city.apt.name}</div>
+            <div class="accom-price">${city.apt.price}</div>
+            <div class="accom-dist">${city.apt.dist}</div>
+            <div class="accom-rating">${city.apt.rating}</div>
+            <div class="accom-note">${city.apt.note}</div>
+            <div class="accom-search"><strong>搜尋：</strong>${city.apt.search}</div>
+          </div>
+          <div class="accom-box htl-style">
+            <div class="accom-label">🏨 商務旅館版（×3間客房）</div>
+            <div class="accom-name">${city.htl.name}</div>
+            <div class="accom-price">${city.htl.price}</div>
+            <div class="accom-dist">${city.htl.dist}</div>
+            <div class="accom-rating">${city.htl.rating}</div>
+            <div class="accom-note">${city.htl.note}</div>
+            <div class="accom-search" style="border-color:#93C5FD;"><strong>搜尋：</strong>${city.htl.search}</div>
+          </div>
+        </div>`;
+      }
+    }
+
+    let foodHtml='';
+    if(d.food&&d.food.length>0){
+      const ftm={food:'food',wine:'wine',cafe:'cafe'};
+      const fln={food:'🍽️ 美食',wine:'🍷 美酒',cafe:'☕ 咖啡'};
+      foodHtml=`<div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);margin:10px 0 6px;">美食・美酒・咖啡推薦</div>
+      <div class="food-grid">${d.food.map(f=>`<div class="fc ${ftm[f.type]}"><div class="fc-lbl">${fln[f.type]}</div><div class="fc-name">${f.icon} ${f.name}</div><div class="fc-note">${f.note}</div></div>`).join('')}</div>`;
+    }
+
+    const sched=d.sched?`<table class="sched">${d.sched.map(r=>`<tr><td class="${r.tz||'neu'}">${r.t}</td><td>${r.tx}</td></tr>`).join('')}</table>`:'';
+
+    div.innerHTML=`
+      <div class="dh" onclick="td(${i})">
+        <div class="dbadge" style="background:${d.bg};color:${d.tc};">
+          <div class="bdow">${d.dow}</div>
+          <div class="bic">${d.ic}</div>
+          <div class="bdate">${d.date}</div>
+          ${tzPill}
+        </div>
+        <div class="di">
+          <div class="dt">${d.title}</div>
+          <div class="ds">${d.sub}</div>
+          <div class="tags">${tags}</div>
+        </div>
+        <div class="chv" id="chv${i}">›</div>
+      </div>
+      <div class="db" id="db${i}">${accomHtml}${foodHtml}${sched}${d.tip?`<div class="tip">💡 ${d.tip}</div>`:''}</div>`;
+    c.appendChild(div);
+  });
+}
+
+function renderAccomTab(){
+  const c=document.getElementById('accom-tab');c.innerHTML='';
+  cities.forEach(city=>{
+    // Pros/cons for each
+    const apt=city.apt,htl=city.htl;
+    c.innerHTML+=`
+    <div class="city-accom">
+      <div class="city-header" style="background:${city.bg};">
+        <span style="font-size:20px;">${city.icon}</span>
+        <span style="font-size:14px;font-weight:700;color:${city.tc};">${city.city}</span>
+      </div>
+      <div class="city-body">
+        <div class="accom-compare">
+          <div class="accom-box apt-style">
+            <div class="accom-label">🏠 公寓版</div>
+            <div class="accom-name">${apt.name}</div>
+            <div class="accom-price" style="font-weight:600;color:#1B5E20;">${apt.price}</div>
+            <div style="font-size:11px;font-weight:600;color:#1B5E20;margin-bottom:3px;">${apt.total}</div>
+            <div class="accom-dist">${apt.dist}</div>
+            <div class="accom-rating">${apt.rating}</div>
+            <div class="accom-note">${apt.note}</div>
+            <div class="accom-search"><strong>搜尋方式：</strong>${apt.search}</div>
+            <div style="font-size:11px;margin-top:6px;"><span style="color:#1B5E20;font-weight:600;">✅ 優點：</span>${apt.pros}</div>
+            <div style="font-size:11px;margin-top:2px;"><span style="color:var(--r);font-weight:600;">⚠️ 缺點：</span>${apt.cons}</div>
+          </div>
+          <div class="accom-box htl-style">
+            <div class="accom-label">🏨 商務旅館版</div>
+            <div class="accom-name">${htl.name}</div>
+            <div class="accom-price" style="font-weight:600;color:#1E40AF;">${htl.price}</div>
+            <div style="font-size:11px;font-weight:600;color:#1E40AF;margin-bottom:3px;">${htl.total}</div>
+            <div class="accom-dist">${htl.dist}</div>
+            <div class="accom-rating">${htl.rating}</div>
+            <div class="accom-note">${htl.note}</div>
+            <div class="accom-search" style="border-color:#93C5FD;"><strong>搜尋方式：</strong>${htl.search}</div>
+            <div style="font-size:11px;margin-top:6px;"><span style="color:#1E40AF;font-weight:600;">✅ 優點：</span>${htl.pros}</div>
+            <div style="font-size:11px;margin-top:2px;"><span style="color:var(--r);font-weight:600;">⚠️ 缺點：</span>${htl.cons}</div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  });
+}
+
+function td(i){
+  const b=document.getElementById('db'+i),cv=document.getElementById('chv'+i);
+  const op=b.classList.contains('on');
+  document.querySelectorAll('.db').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.chv').forEach(x=>x.style.transform='');
+  if(!op){b.classList.add('on');cv.style.transform='rotate(90deg)';}
+}
+function sw(id){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('on',['itinerary','accom','budget'][i]===id));
+  document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id==='pane-'+id));
+}
+function sp(m){
+  pMode=m;
+  document.getElementById('p-tot').classList.toggle('on',m==='tot');
+  document.getElementById('p-pp').classList.toggle('on',m==='pp');
+  renderBudget();
+}
+
+renderDays();
+renderAccomTab();
+renderBudget();
+</script>
+</body>
+</html>
