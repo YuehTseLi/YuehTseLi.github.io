@@ -179,7 +179,19 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
   .mg{grid-template-columns:repeat(2,minmax(0,1fr));}.metric:last-child{grid-column:1/-1;}h1{font-size:17px;}
   .hotel-specs{grid-template-columns:1fr;}
 }
+/* Map */
+#map-canvas{height:520px;border-radius:var(--r);border:1px solid var(--border);}
+.map-day-bar{display:flex;gap:5px;flex-wrap:wrap;padding-bottom:10px;}
+.mdb{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:500;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;white-space:nowrap;font-family:'Noto Sans TC',sans-serif;transition:.15s;}
+.mdb.on{background:var(--text);border-color:var(--text);color:#fff;}
+.mdb:hover:not(.on){border-color:var(--text);color:var(--text);}
+.map-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.ml-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);}
+.ml-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+@media(max-width:480px){#map-canvas{height:320px;}}
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
 
@@ -202,6 +214,7 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
   <button class="tab-btn active" onclick="showTab('itin',this)">✈ 行程</button>
   <button class="tab-btn" onclick="showTab('hotels',this)">🏨 住宿推薦</button>
   <button class="tab-btn" onclick="showTab('budget',this)">¥ 費用</button>
+  <button class="tab-btn" onclick="showTab('map',this)">🗺 地圖</button>
 </div>
 
 <div class="main">
@@ -812,6 +825,13 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 <div class="bnote-box">⚠ 機票以 NT$49,080（2大1小基準）按比例換算三大一小；匯率 1 JPY ≈ NT$0.215。延對寺莊依人數與房型差異請直接洽詢。11/28 晚 N'EX 東京→成田單程自費（大人 ¥3,070）。</div>
 
 </div><!-- /budget -->
+
+<div id="map" class="tab-pane">
+  <div class="map-day-bar" id="map-day-bar"></div>
+  <div id="map-canvas"></div>
+  <div class="map-legend" id="map-legend"></div>
+</div>
+
 </div><!-- /main -->
 
 <script>
@@ -819,6 +839,7 @@ function showTab(id,btn){
   document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById(id).classList.add('active');btn.classList.add('active');
+  if(id==='map')setTimeout(()=>{initMap();if(mapObj)mapObj.invalidateSize();},50);
 }
 function tog(hd){
   const b=hd.nextElementSibling,c=hd.querySelector('.chev'),o=b.classList.contains('open');
@@ -903,6 +924,109 @@ function calc(){
   }).join('');
 }
 calc();
+
+// ===== MAP =====
+let mapObj=null,mapInited=false,mapLayers=[];
+const mapDays=[
+  {day:'11/21',label:'成田 → 富山',color:'#6366F1',points:[
+    {name:'成田機場 NRT',lat:35.7720,lng:140.3929,note:'CI 13:30 抵達'},
+    {name:'東京站',lat:35.6814,lng:139.7667,note:"N'EX → 不出站轉月台"},
+    {name:'富山站',lat:36.7019,lng:137.2125,note:'Kagayaki 新幹線 約 2h 8m'}
+  ]},
+  {day:'11/22',label:'高岡 · 富山城',color:'#3B82F6',points:[
+    {name:'富山站',lat:36.7019,lng:137.2125,note:'新幹線 Tsurugi 出發'},
+    {name:'哆啦A夢散步道',lat:36.7537,lng:137.0185,note:'銅像合照'},
+    {name:'高岡大佛',lat:36.7520,lng:137.0241,note:'步行 10 分'},
+    {name:'高岡古城公園',lat:36.7589,lng:137.0263,note:'紅葉 + 免費動物園'},
+    {name:'AEON MALL 高岡',lat:36.7418,lng:137.0090,note:'新高岡南口步行 3 分'},
+    {name:'富山城址公園',lat:36.6993,lng:137.2119,note:'日落前城堡楓景'}
+  ]},
+  {day:'11/23',label:'新湊運河 · 市場',color:'#0EA5E9',points:[
+    {name:'富山站',lat:36.7019,lng:137.2125,note:'公車或萬葉線出發'},
+    {name:'新湊內川・海王丸公園',lat:36.7726,lng:137.0896,note:'日本威尼斯運河'},
+    {name:'きっときと市場',lat:36.7701,lng:137.0782,note:'紅楚蟹現蒸・海鮮丼'},
+    {name:'富山市家族公園',lat:36.6665,lng:137.1610,note:'國寶雷鳥・小貓熊'}
+  ]},
+  {day:'11/24',label:'雨晴海岸 · 冰見',color:'#10B981',points:[
+    {name:'富山站',lat:36.7019,lng:137.2125,note:'→ 高岡 → 冰見線'},
+    {name:'雨晴海岸',lat:36.8232,lng:137.1052,note:'立山連峰 3000m 奇景'},
+    {name:'冰見番屋街',lat:36.8411,lng:137.0177,note:'松葉蟹・寒鰤魚・免費足湯'}
+  ]},
+  {day:'11/25',label:'黑部峽谷 · 宇奈月',color:'#F59E0B',points:[
+    {name:'富山站',lat:36.7019,lng:137.2125,note:'新幹線 Tsurugi 出發'},
+    {name:'宇奈月溫泉站',lat:36.8664,lng:137.5497,note:'黑部峽谷小火車起點'},
+    {name:'貓又折返點',lat:36.8835,lng:137.5877,note:'峽谷最深處・峭壁紅葉'},
+    {name:'延對寺莊',lat:36.8680,lng:137.5510,note:'懸崖露天溫泉・海鮮會席'}
+  ]},
+  {day:'11/26',label:'魚津水族館 · 岩瀨',color:'#EF4444',points:[
+    {name:'宇奈月溫泉',lat:36.8664,lng:137.5497,note:'富山地方鐵路出發'},
+    {name:'魚津水族館',lat:36.8208,lng:137.3894,note:'富山灣深海魚大水槽'},
+    {name:'富山站・MAROOT',lat:36.7019,lng:137.2125,note:'購物・全球最美星巴克'},
+    {name:'岩瀨老街',lat:36.7282,lng:137.2680,note:'桝田酒造（満寿泉）・夕陽'},
+    {name:'磯料理 松月',lat:36.7283,lng:137.2630,note:'完全預約制・三大一小 ¥15,000'}
+  ]},
+  {day:'11/27',label:'富山 → 東京',color:'#8B5CF6',points:[
+    {name:'富山站',lat:36.7019,lng:137.2125,note:'Kagayaki 新幹線出發'},
+    {name:'Karaksa Hotel Yaesu',lat:35.6814,lng:139.7735,note:'東京站步行 6 分 Check-in'}
+  ]},
+  {day:'11/28',label:'東京 → 成田',color:'#EC4899',points:[
+    {name:'東京站地下一番街',lat:35.6814,lng:139.7667,note:'寶可夢・哆啦A夢掃貨'},
+    {name:'日本警察博物館',lat:35.6720,lng:139.7613,note:'免費・穿警服模擬開警車'},
+    {name:'皇居外苑',lat:35.6852,lng:139.7528,note:'金黃銀杏步道'},
+    {name:'成田機場附近飯店',lat:35.7718,lng:140.3870,note:'輕裝前往・免費接駁車'}
+  ]}
+];
+function initMap(){
+  if(mapInited)return;mapInited=true;
+  mapObj=L.map('map-canvas');
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
+    attribution:'© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains:'abcd',maxZoom:19
+  }).addTo(mapObj);
+  const bar=document.getElementById('map-day-bar');
+  const ab=document.createElement('button');ab.className='mdb on';ab.textContent='全部日程';
+  ab.onclick=()=>renderMapDay(-1);bar.appendChild(ab);
+  mapDays.forEach((d,i)=>{
+    const b=document.createElement('button');b.className='mdb';
+    b.innerHTML=`<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${d.color};margin-right:4px;vertical-align:middle;"></span>${d.day}`;
+    b.title=d.label;b.onclick=()=>renderMapDay(i);bar.appendChild(b);
+  });
+  renderMapDay(-1);
+}
+function renderMapDay(idx){
+  if(!mapObj)return;
+  mapLayers.forEach(l=>mapObj.removeLayer(l));mapLayers=[];
+  document.querySelectorAll('.mdb').forEach((b,i)=>b.classList.toggle('on',i===idx+1||(idx===-1&&i===0)));
+  const days=idx===-1?mapDays:[mapDays[idx]];
+  const all=[];
+  days.forEach(d=>{
+    if(!d.points.length)return;
+    const lls=d.points.map(p=>[p.lat,p.lng]);all.push(...lls);
+    if(lls.length>1){
+      const ln=L.polyline(lls,{color:d.color,weight:idx===-1?2.5:3.5,opacity:0.85}).addTo(mapObj);
+      mapLayers.push(ln);
+    }
+    d.points.forEach((p,pi)=>{
+      const sz=idx===-1?16:22;
+      const mk=L.marker([p.lat,p.lng],{icon:L.divIcon({
+        className:'',
+        html:`<div style="background:${d.color};color:#fff;width:${sz}px;height:${sz}px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:${idx===-1?8:10}px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);">${idx===-1?'':pi+1}</div>`,
+        iconSize:[sz,sz],iconAnchor:[sz/2,sz/2]
+      })}).addTo(mapObj);
+      mk.bindPopup(`<b style="font-size:13px;">${p.name}</b><br><span style="font-size:11px;color:#777;">${d.day}${p.note?` · ${p.note}`:''}</span>`);
+      mapLayers.push(mk);
+    });
+  });
+  if(all.length===1)mapObj.setView(all[0],13);
+  else if(all.length>1)mapObj.fitBounds(L.latLngBounds(all),{padding:[30,30]});
+  const leg=document.getElementById('map-legend');
+  if(idx===-1){
+    leg.innerHTML=mapDays.map(d=>`<div class="ml-item"><div class="ml-dot" style="background:${d.color};"></div><span>${d.day} ${d.label}</span></div>`).join('');
+  }else{
+    const d=mapDays[idx];
+    leg.innerHTML=`<div class="ml-item"><div class="ml-dot" style="background:${d.color};"></div><b>${d.day} ${d.label}</b> — ${d.points.length} 個景點，點擊標記查看詳情</div>`;
+  }
+}
 </script>
 </body>
 </html>

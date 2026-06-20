@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>粕谷哲 2026 NEO BREW 十次沖煮法</title>
+<style>
+:root{
+  --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;
+  --p:#534AB7;--pl:#EEEDFE;
+  --o:#BA7517;--ol:#FEF3E2;
+  --b:#1E7FD8;--bl:#E6F1FB;
+  --r:#C0392B;--rl:#FDEAEA;
+  --bg:#F6F6F4;--card:#fff;--bdr:#E4E3DF;
+  --tx:#1A1916;--sub:#686764;
+  --rd:12px;--rs:8px;
+  --coffee:#6B3A2A;--coffee-l:#FDF0E8;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--tx);font-size:14px;line-height:1.6;}
+.w{max-width:800px;margin:0 auto;padding:24px 16px 60px;}
+
+/* Header */
+.hero{background:linear-gradient(135deg,var(--coffee) 0%,#3E1F0D 100%);color:#fff;border-radius:var(--rd);padding:28px 24px 24px;margin-bottom:24px;}
+.hero-badge{background:rgba(255,255,255,.15);border-radius:20px;display:inline-block;padding:3px 10px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;}
+.hero h1{font-size:22px;font-weight:700;line-height:1.3;margin-bottom:6px;}
+.hero-sub{font-size:13px;opacity:.85;margin-bottom:16px;}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;}
+.hero-tag{background:rgba(255,255,255,.18);border-radius:6px;padding:4px 10px;}
+.hero-tag a{color:#fff;text-decoration:none;opacity:.9;}
+.hero-tag a:hover{opacity:1;text-decoration:underline;}
+
+/* Sections */
+.section{background:var(--card);border:1px solid var(--bdr);border-radius:var(--rd);padding:20px;margin-bottom:16px;}
+.section-title{font-size:15px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.section-title::before{content:'';display:inline-block;width:3px;height:16px;background:var(--coffee);border-radius:2px;}
+
+/* Params grid */
+.params{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;}
+.param{background:var(--coffee-l);border-radius:var(--rs);padding:12px;}
+.param-label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--coffee);margin-bottom:4px;}
+.param-val{font-size:14px;font-weight:600;color:var(--tx);}
+.param-note{font-size:11px;color:var(--sub);margin-top:2px;}
+
+/* Steps */
+.steps{display:flex;flex-direction:column;gap:8px;}
+.step{display:flex;gap:12px;align-items:flex-start;}
+.step-num{background:var(--coffee);color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;}
+.step-body{flex:1;}
+.step-time{font-size:11px;font-weight:700;color:var(--coffee);margin-bottom:2px;}
+.step-desc{font-size:13px;color:var(--tx);}
+.step-acc{font-size:11px;color:var(--sub);margin-top:2px;}
+
+/* Progress bar */
+.pour-progress{display:flex;gap:2px;margin-top:10px;}
+.pour-bar{flex:1;height:6px;background:var(--bdr);border-radius:3px;}
+.pour-bar.done{background:var(--coffee);}
+
+/* Flavor */
+.flavor-list{display:flex;flex-direction:column;gap:8px;}
+.flavor-item{display:flex;gap:10px;align-items:flex-start;}
+.flavor-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+.flavor-body{flex:1;}
+.flavor-title{font-size:13px;font-weight:600;margin-bottom:2px;}
+.flavor-desc{font-size:13px;color:var(--sub);line-height:1.5;}
+
+/* Callout */
+.callout{background:var(--ol);border-left:3px solid var(--o);border-radius:var(--rs);padding:14px 16px;font-size:13px;color:#5A3E00;line-height:1.6;}
+.callout strong{color:var(--o);}
+
+/* PTT source */
+.source-box{background:var(--bl);border-radius:var(--rs);padding:12px 14px;font-size:12px;color:var(--sub);display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.source-box a{color:var(--b);font-weight:500;}
+
+/* Video embed */
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--rs);}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+
+@media(max-width:600px){
+  .hero{padding:20px 16px;}
+  .hero h1{font-size:18px;}
+  .params{grid-template-columns:1fr 1fr;}
+  .section{padding:16px;}
+}
+</style>
+</head>
+<body>
+<div class="w">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">☕ Coffee Recipe</div>
+    <h1>粕谷哲 2026 NEO BREW<br>十次沖煮法</h1>
+    <p class="hero-sub">2016 世界手沖咖啡大賽冠軍 Tetsu Kasuya 奪冠 10 週年年度最佳配方</p>
+    <div class="hero-meta">
+      <span class="hero-tag">超粗研磨 × 長時間萃取</span>
+      <span class="hero-tag">1:15 粉水比</span>
+      <span class="hero-tag">10 次注水 × 3.5 分鐘</span>
+      <span class="hero-tag"><a href="https://youtu.be/k0nsShguOsU" target="_blank" rel="noopener">▶ 影片來源</a></span>
+    </div>
+  </div>
+
+  <!-- Context -->
+  <div class="section">
+    <div class="section-title">背景</div>
+    <p style="font-size:13px;color:var(--sub);line-height:1.7;margin-bottom:10px;">
+      這個配方由 2016 年世界手沖咖啡大賽冠軍<strong style="color:var(--tx)">粕谷哲（Tetsu Kasuya）</strong>在奪冠 10 週年時公開，
+      命名為「十次沖煮法」，配合 HARIO MUGEN/Pegasus（NEO）濾杯進階版叫「<strong style="color:var(--tx)">NEO BREW</strong>」。
+    </p>
+    <p style="font-size:13px;color:var(--sub);line-height:1.7;">
+      核心理念：<strong style="color:var(--tx)">超粗研磨 × 長時間萃取</strong>——顛覆近年賽事流行的「細研磨、短時間、少注水次數」風潮。
+      粕谷認為短時間沖煮雖能扣除負面風味（減點法），但也犧牲了珍貴的正面風味；
+      要引進豐富的複雜度與甜感（加點法），時間是不可或缺的要素。
+    </p>
+  </div>
+
+  <!-- Core params -->
+  <div class="section">
+    <div class="section-title">核心沖煮參數</div>
+    <div class="params">
+      <div class="param">
+        <div class="param-label">咖啡豆</div>
+        <div class="param-val">極淺焙</div>
+        <div class="param-note">建議厄瓜多爾 Sidra 藝伎豆</div>
+      </div>
+      <div class="param">
+        <div class="param-label">粉水比</div>
+        <div class="param-val">1 : 15</div>
+        <div class="param-note">咖啡粉 20g，總注水 300ml</div>
+      </div>
+      <div class="param">
+        <div class="param-label">研磨度</div>
+        <div class="param-val">極粗研磨</div>
+        <div class="param-note">Comandante C40 ▶ 40–45 Clicks</div>
+      </div>
+      <div class="param">
+        <div class="param-label">水溫</div>
+        <div class="param-val">95–96 °C</div>
+        <div class="param-note">高水溫助萃</div>
+      </div>
+      <div class="param">
+        <div class="param-label">每次注水</div>
+        <div class="param-val">30 ml × 10</div>
+        <div class="param-note">每 15 秒注水一次</div>
+      </div>
+      <div class="param">
+        <div class="param-label">總時間</div>
+        <div class="param-val">約 3 分 30 秒</div>
+        <div class="param-note">待咖啡液完全流乾</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Steps -->
+  <div class="section">
+    <div class="section-title">沖煮步驟</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-time">0:00 — 0:30（悶蒸）</div>
+          <div class="step-desc">注入 <strong>30 ml</strong> 熱水，進行悶蒸，靜置 30 秒。</div>
+          <div class="step-acc">累計：30 ml</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-time">0:30 — 0:45</div>
+          <div class="step-desc">注入 <strong>30 ml</strong></div>
+          <div class="step-acc">累計：60 ml</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-time">0:45 — 1:00</div>
+          <div class="step-desc">注入 <strong>30 ml</strong></div>
+          <div class="step-acc">累計：90 ml</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-time">1:00 — 1:15</div>
+          <div class="step-desc">注入 <strong>30 ml</strong></div>
+          <div class="step-acc">累計：120 ml</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-time">1:15 — 1:30</div>
+          <div class="step-desc">注入 <strong>30 ml</strong></div>
+          <div class="step-acc">累計：150 ml</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <div class="step-time">1:30 — 1:45</div>
+          <div class="step-desc">注入 <strong>30 ml</strong></div>
+          <div class="step-acc">累計：180 ml</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-body">
+          <div class="step-time">1:45 — 2:00</div>
+          <div class="step-desc">注入 <strong>30 ml</strong></div>
+          <div class="step-acc">累計：210 ml</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">8</div>
+        <div class="step-body">
+          <div class="step-time">2:00 — 2:15</div>
+          <div class="step-desc">注入 <strong>30 ml</strong>（流速開始稍微變慢）</div>
+          <div class="step-acc">累計：240 ml</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">9</div>
+        <div class="step-body">
+          <div class="step-time">2:15 — 2:30</div>
+          <div class="step-desc">注入 <strong>30 ml</strong></div>
+          <div class="step-acc">累計：270 ml</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">10</div>
+        <div class="step-body">
+          <div class="step-time">2:30 → 靜置至 ~3:30</div>
+          <div class="step-desc">注入最後 <strong>30 ml</strong>，靜置等待咖啡液完全流乾。</div>
+          <div class="step-acc">累計：300 ml｜完成</div>
+        </div>
+      </div>
+    </div>
+    <!-- visual progress -->
+    <div class="pour-progress" style="margin-top:16px;" aria-hidden="true">
+      <div class="pour-bar done"></div><div class="pour-bar done"></div><div class="pour-bar done"></div>
+      <div class="pour-bar done"></div><div class="pour-bar done"></div><div class="pour-bar done"></div>
+      <div class="pour-bar done"></div><div class="pour-bar done"></div><div class="pour-bar done"></div>
+      <div class="pour-bar done"></div>
+    </div>
+    <p style="font-size:11px;color:var(--sub);margin-top:6px;text-align:center;">10 注 × 30 ml = 300 ml 完成</p>
+  </div>
+
+  <!-- Flavor -->
+  <div class="section">
+    <div class="section-title">風味表現</div>
+    <div class="flavor-list">
+      <div class="flavor-item">
+        <div class="flavor-icon">🍮</div>
+        <div class="flavor-body">
+          <div class="flavor-title">不可思議的質地與甜感</div>
+          <div class="flavor-desc">色澤雖偏淡，入口後的厚實度與黏稠感（Mouthfeel）非常驚人。粕谷哲與同事形容「像在吃果凍一樣有滑順、黏稠的質地」，且甜感爆發。</div>
+        </div>
+      </div>
+      <div class="flavor-item">
+        <div class="flavor-icon">🌿</div>
+        <div class="flavor-body">
+          <div class="flavor-title">特別適合淺焙豆</div>
+          <div class="flavor-desc">淺焙豆通常香氣迷人但質地偏輕薄，這個配方能完美補足淺焙豆的厚實度與甜感。</div>
+        </div>
+      </div>
+      <div class="flavor-item">
+        <div class="flavor-icon">🪣</div>
+        <div class="flavor-body">
+          <div class="flavor-title">濾杯選擇</div>
+          <div class="flavor-desc">強烈推薦搭配 HARIO <strong>V60</strong> 或最新款 <strong>Pegasus（NEO）濾杯</strong>。NEO 的肋骨設計能幫助每次 30 ml 的微量液體達到均勻萃取。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tips callout -->
+  <div class="callout" style="margin-bottom:16px;">
+    <strong>粕谷哲的溫馨提醒：</strong> 這個配方因為極大化了甘甜度與厚實度，明亮的酸質強度會稍微被掩蓋。
+    如果沖煮出來覺得濃度太淡，可以嘗試將研磨刻度縮回 40 點，或在沖煮過程中輕輕搖晃（攪拌）下壺來提升萃取度。
+  </div>
+
+  <!-- Video -->
+  <div class="section">
+    <div class="section-title">原版影片</div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/k0nsShguOsU" title="Tetsu Kasuya NEO BREW 2026" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- Sources -->
+  <div class="source-box">
+    <span>📰 來源：</span>
+    <a href="https://www.ptt.cc/bbs/Coffee/M.1780331941.A.E92.html" target="_blank" rel="noopener">PTT Coffee 板討論帖（M.1780331941.A.E92）</a>
+    <span>·</span>
+    <a href="https://youtu.be/k0nsShguOsU" target="_blank" rel="noopener">YouTube 原始影片</a>
+  </div>
+
+</div>
+</body>
+</html>

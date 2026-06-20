@@ -150,7 +150,19 @@ h1{font-size:21px;font-weight:700;margin-bottom:4px;}
   .food-grid{grid-template-columns:1fr 1fr;}
   .barl{width:70px;font-size:11px;}
 }
+/* Map */
+#map-canvas{height:520px;border-radius:var(--rs);border:1px solid var(--bdr);}
+.map-day-bar{display:flex;gap:5px;flex-wrap:wrap;padding-bottom:10px;}
+.mdb{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:500;border:1.5px solid var(--bdr);background:var(--card);color:var(--sub);cursor:pointer;white-space:nowrap;font-family:inherit;transition:.15s;}
+.mdb.on{background:var(--p);border-color:var(--p);color:#fff;}
+.mdb:hover:not(.on){border-color:var(--p);color:var(--p);}
+.map-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.ml-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--sub);}
+.ml-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+@media(max-width:640px){#map-canvas{height:340px;}}
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
 <div class="w">
@@ -167,6 +179,7 @@ h1{font-size:21px;font-weight:700;margin-bottom:4px;}
   <button class="tab on" onclick="sw('itinerary')">🗺 每日行程</button>
   <button class="tab" onclick="sw('accom')">🏠 住宿對比</button>
   <button class="tab" onclick="sw('budget')">💰 費用明細</button>
+  <button class="tab" onclick="sw('map')">🗺 地圖路線</button>
 </div>
 
 <div id="pane-itinerary" class="pane on">
@@ -203,6 +216,12 @@ h1{font-size:21px;font-weight:700;margin-bottom:4px;}
   <div class="bsec"><div class="bst">📊 費用結構</div><div id="s-bar"></div></div>
   <div id="grand-box" class="grand-box"></div>
   <div class="notice">匯率：1 CAD ≈ 22.67 TWD（2026/06）｜長榮經濟艙 10 月旺季預估 NT$65,000/人計算（官網最低 NT$54,099 起）。公寓版為 Airbnb 整套 3 臥，含清潔費及服務費；旅館版為 3 間客房。VIA Rail 以商務艙計算。Pacifica 以 CAD $170/天×4天無限里程估算。所有金額概估，請提前 3–4 個月訂票訂房。</div>
+</div>
+
+<div id="pane-map" class="pane">
+  <div class="map-day-bar" id="map-day-bar"></div>
+  <div id="map-canvas"></div>
+  <div class="map-legend" id="map-legend"></div>
 </div>
 </div>
 
@@ -837,8 +856,9 @@ function td(i){
   if(!op){b.classList.add('on');cv.style.transform='rotate(90deg)';}
 }
 function sw(id){
-  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('on',['itinerary','accom','budget'][i]===id));
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('on',['itinerary','accom','budget','map'][i]===id));
   document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id==='pane-'+id));
+  if(id==='map')setTimeout(()=>{initMap();if(mapObj)mapObj.invalidateSize();},50);
 }
 function sp(m){
   pMode=m;
@@ -850,6 +870,119 @@ function sp(m){
 renderDays();
 renderAccomTab();
 renderBudget();
+
+// ===== MAP =====
+let mapObj=null,mapInited=false,mapLayers=[];
+const mapDays=[
+  {day:'10/1',label:'出發・抵達多倫多',color:'#6366F1',points:[
+    {name:'多倫多 YYZ 機場',lat:43.6772,lng:-79.6306,note:'BR036 EDT 21:20 抵達'},
+    {name:'多倫多・Union Station',lat:43.6453,lng:-79.3806,note:'UP Express 25 分'}
+  ]},
+  {day:'10/2',label:'多倫多市區探索',color:'#3B82F6',points:[
+    {name:'CN Tower',lat:43.6426,lng:-79.3871,note:'成人 $40・玻璃地板'},
+    {name:"Ripley's Aquarium",lat:43.6424,lng:-79.3861,note:'成人 $31'},
+    {name:'St. Lawrence Market',lat:43.6487,lng:-79.3715,note:'週五早市・生蠔'},
+    {name:'Distillery District',lat:43.6505,lng:-79.3597,note:'古釀酒廠區'},
+    {name:'Harbourfront',lat:43.6385,lng:-79.3816,note:'多倫多島夕陽'}
+  ]},
+  {day:'10/3',label:'多倫多 → 尼加拉瓦',color:'#0EA5E9',points:[
+    {name:'多倫多・取車',lat:43.6502,lng:-79.3832,note:'Chrysler Pacifica，QEW 西行 130km'},
+    {name:'Niagara-on-the-Lake',lat:43.2550,lng:-79.0716,note:'Jackson-Triggs 品酒'},
+    {name:'尼加拉瓦瀑布',lat:43.0775,lng:-79.0756,note:'Maid of the Mist・彩燈煙火'}
+  ]},
+  {day:'10/4',label:'尼加拉瓦 → 阿岡昆',color:'#10B981',points:[
+    {name:'尼加拉瓦瀑布・出發',lat:43.0775,lng:-79.0756,note:'Hwy 400 北上約 380km'},
+    {name:'Barrie・Tim Hortons',lat:44.3894,lng:-79.6903,note:'Double Double・Timbits 必試'},
+    {name:'Algonquin Visitor Centre',lat:45.5786,lng:-78.3487,note:'入園許可 $20/天'},
+    {name:'Lookout Trail',lat:45.5763,lng:-78.3497,note:'俯瞰湖海楓景'}
+  ]},
+  {day:'10/5',label:'阿岡昆深度賞楓',color:'#22C55E',points:[
+    {name:'Algonquin Visitor Centre',lat:45.5786,lng:-78.3487,note:'沿 Hwy 60 觀景站'},
+    {name:'Track & Tower Trail',lat:45.5832,lng:-78.3451,note:'7.7 km 健行'},
+    {name:'Logging Museum',lat:45.5892,lng:-78.3418,note:'免費・小孩喜歡'},
+    {name:'Lake of Two Rivers',lat:45.5614,lng:-78.3936,note:'皮划艇 $30/hr'}
+  ]},
+  {day:'10/6',label:'阿岡昆 → 多倫多 → 魁北克',color:'#F59E0B',points:[
+    {name:'Huntsville・出發',lat:45.3233,lng:-79.2174,note:'Hwy 400 南下 4 小時'},
+    {name:'多倫多 YYZ・還車',lat:43.6772,lng:-79.6306,note:'Air Canada YYZ→YQB'},
+    {name:'魁北克 YQB 機場',lat:46.7912,lng:-71.3933,note:'XL 計程車入古城'},
+    {name:'魁北克舊城・住所',lat:46.8112,lng:-71.2090,note:'Rue Saint-Louis 一帶'}
+  ]},
+  {day:'10/7',label:'魁北克古城巡禮',color:'#EF4444',points:[
+    {name:'Château Frontenac',lat:46.8120,lng:-71.2045,note:'達費林平台・河景楓紅'},
+    {name:'城牆步道 Remparts',lat:46.8093,lng:-71.2100,note:'UNESCO 世界遺產'},
+    {name:'小香普蘭街',lat:46.8090,lng:-71.2031,note:'楓糖漿・冰蘋果酒'},
+    {name:'Place Royale',lat:46.8115,lng:-71.2025,note:'大壁畫・皇家廣場'}
+  ]},
+  {day:'10/8',label:'魁北克 → 蒙特婁',color:'#EC4899',points:[
+    {name:'Gare du Palais',lat:46.8158,lng:-71.2148,note:'VIA Rail 商務艙出發'},
+    {name:'Montréal Gare Centrale',lat:45.4990,lng:-73.5685,note:'約 3h 20m 抵達'},
+    {name:'Notre-Dame Basilica',lat:45.5044,lng:-73.5566,note:'哥德式燈光展覽・$15'},
+    {name:'Vieux-Port',lat:45.5058,lng:-73.5518,note:'老港河畔散步'}
+  ]},
+  {day:'10/9',label:'蒙特婁 → 川特布朗山',color:'#A855F7',points:[
+    {name:'蒙特婁・出發',lat:45.5017,lng:-73.5673,note:'包廂型計程車 $150–250'},
+    {name:'Mont-Tremblant 山頂',lat:46.1185,lng:-74.5963,note:'景觀纜車 $38・360° 楓海'},
+    {name:'La Diable 精釀',lat:46.1175,lng:-74.5943,note:"Devil's Pale Ale"},
+    {name:'蒙特婁・返回',lat:45.5017,lng:-73.5673,note:'傍晚返回・Le Lab 調酒'}
+  ]},
+  {day:'10/10',label:'蒙特婁 → 多倫多 → YYZ',color:'#F97316',points:[
+    {name:'Montréal Gare Centrale',lat:45.4990,lng:-73.5685,note:'VIA Rail 商務艙出發'},
+    {name:'Toronto Union Station',lat:43.6453,lng:-79.3806,note:'PATH 地下街最後採買'},
+    {name:'多倫多 YYZ T1',lat:43.6772,lng:-79.6306,note:'BR035 凌晨 02:10 EDT 起飛'}
+  ]}
+];
+function initMap(){
+  if(mapInited)return;mapInited=true;
+  mapObj=L.map('map-canvas');
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
+    attribution:'© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains:'abcd',maxZoom:19
+  }).addTo(mapObj);
+  const bar=document.getElementById('map-day-bar');
+  const ab=document.createElement('button');ab.className='mdb on';ab.textContent='全部日程';
+  ab.onclick=()=>renderMapDay(-1);bar.appendChild(ab);
+  mapDays.forEach((d,i)=>{
+    const b=document.createElement('button');b.className='mdb';
+    b.innerHTML=`<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${d.color};margin-right:4px;vertical-align:middle;"></span>${d.day}`;
+    b.title=d.label;b.onclick=()=>renderMapDay(i);bar.appendChild(b);
+  });
+  renderMapDay(-1);
+}
+function renderMapDay(idx){
+  if(!mapObj)return;
+  mapLayers.forEach(l=>mapObj.removeLayer(l));mapLayers=[];
+  document.querySelectorAll('.mdb').forEach((b,i)=>b.classList.toggle('on',i===idx+1||(idx===-1&&i===0)));
+  const days=idx===-1?mapDays:[mapDays[idx]];
+  const all=[];
+  days.forEach(d=>{
+    if(!d.points.length)return;
+    const lls=d.points.map(p=>[p.lat,p.lng]);all.push(...lls);
+    if(lls.length>1){
+      const ln=L.polyline(lls,{color:d.color,weight:idx===-1?2.5:3.5,opacity:0.85}).addTo(mapObj);
+      mapLayers.push(ln);
+    }
+    d.points.forEach((p,pi)=>{
+      const sz=idx===-1?16:22;
+      const mk=L.marker([p.lat,p.lng],{icon:L.divIcon({
+        className:'',
+        html:`<div style="background:${d.color};color:#fff;width:${sz}px;height:${sz}px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:${idx===-1?8:10}px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35);">${idx===-1?'':pi+1}</div>`,
+        iconSize:[sz,sz],iconAnchor:[sz/2,sz/2]
+      })}).addTo(mapObj);
+      mk.bindPopup(`<b style="font-size:13px;">${p.name}</b><br><span style="font-size:11px;color:#777;">${d.day}${p.note?` · ${p.note}`:''}</span>`);
+      mapLayers.push(mk);
+    });
+  });
+  if(all.length===1)mapObj.setView(all[0],13);
+  else if(all.length>1)mapObj.fitBounds(L.latLngBounds(all),{padding:[30,30]});
+  const leg=document.getElementById('map-legend');
+  if(idx===-1){
+    leg.innerHTML=mapDays.map(d=>`<div class="ml-item"><div class="ml-dot" style="background:${d.color};"></div><span>${d.day} ${d.label}</span></div>`).join('');
+  }else{
+    const d=mapDays[idx];
+    leg.innerHTML=`<div class="ml-item"><div class="ml-dot" style="background:${d.color};"></div><b>${d.day} ${d.label}</b> — ${d.points.length} 個景點，點擊標記查看詳情</div>`;
+  }
+}
 </script>
 </body>
 </html>
