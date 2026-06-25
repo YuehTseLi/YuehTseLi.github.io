@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金瓜石兩天一夜 · 6/29–6/30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#F7F5F0;--surface:#fff;--border:#E2DDD5;--text:#1A1814;--muted:#6B6760;--hint:#9E9B96;
+  --amber:#854F0B;--amber-bg:#FAEEDA;--amber-bd:#F5C675;
+  --teal:#1E6B7A;--teal-bg:#EBF6F8;--teal-bd:#9FD8E0;
+  --green:#0F6E56;--green-bg:#E1F5EE;--green-bd:#9FE1CB;
+  --cafe:#7A4A1E;--cafe-bg:#FBF3EC;--cafe-bd:#E8C99A;
+  --warn:#854F0B;--warn-bg:#FEF3E2;--warn-bd:#F5C675;
+  --info-bg:#E8F4FD;--info-bd:#B5D4F4;--info:#0C447C;
+  --ok-bg:#E6F4EE;--ok-bd:#9FE1CB;--ok:#085041;
+  --purple:#534AB7;
+  --r:10px;--rl:14px;
+}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;}
+
+.page-header{background:var(--surface);border-bottom:1px solid var(--border);padding:24px 24px 18px;position:sticky;top:0;z-index:100;}
+.header-inner{max-width:760px;margin:0 auto;}
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--hint);margin-bottom:5px;}
+h1{font-size:20px;font-weight:700;margin-bottom:9px;}
+.pill-row{display:flex;gap:5px;flex-wrap:wrap;}
+.pill{font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;}
+
+.tab-bar{max-width:760px;margin:0 auto;display:flex;padding:16px 24px 0;}
+.tab-btn{padding:7px 20px;border:1px solid var(--border);background:transparent;cursor:pointer;font-family:inherit;font-size:13px;color:var(--muted);transition:background .15s;}
+.tab-btn:first-child{border-radius:var(--r) 0 0 var(--r);}
+.tab-btn:last-child{border-radius:0 var(--r) var(--r) 0;border-left:none;}
+.tab-btn.active{background:var(--text);color:#fff;border-color:var(--text);}
+.tab-btn:not(.active):hover{background:var(--bg);}
+
+.main{max-width:760px;margin:0 auto;padding:16px 24px 60px;}
+.tab-pane{display:none;}.tab-pane.active{display:block;}
+
+/* Day cards */
+.day-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);margin-bottom:7px;overflow:hidden;}
+.day-hd{display:flex;align-items:center;gap:11px;padding:12px 15px;cursor:pointer;user-select:none;transition:background .1s;}
+.day-hd:hover{background:var(--bg);}
+.dbadge{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;font-family:'DM Mono',monospace;}
+.dinfo{flex:1;min-width:0;}
+.dtitle{font-size:14px;font-weight:700;}
+.dsub{font-size:12px;color:var(--muted);margin-top:1px;}
+.chev{font-size:17px;color:var(--hint);transition:transform .2s;flex-shrink:0;}
+.chev.open{transform:rotate(180deg);}
+.day-body{padding:0 15px 13px;display:none;}
+.day-body.open{display:block;}
+
+/* Timeline */
+.tl{border-left:2px solid var(--border);margin-left:5px;padding-left:14px;padding-top:3px;}
+.ev{margin-bottom:11px;}
+.ev-t{font-size:11px;font-weight:500;color:var(--hint);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px;font-family:'DM Mono',monospace;}
+.ev-d{font-size:13px;color:var(--text);line-height:1.55;}
+.ev-d small{font-size:11px;color:var(--muted);display:block;margin-top:2px;}
+.tr-row{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);background:var(--bg);border-radius:var(--r);padding:6px 10px;margin:8px 0;}
+
+/* Alerts */
+.aw{background:var(--warn-bg);border:1px solid var(--warn-bd);border-radius:var(--r);padding:9px 12px;font-size:12px;color:var(--amber);margin-top:8px;display:flex;gap:7px;align-items:flex-start;}
+.ai{background:var(--info-bg);border:1px solid var(--info-bd);border-radius:var(--r);padding:9px 12px;font-size:12px;color:var(--info);margin-top:8px;display:flex;gap:7px;align-items:flex-start;}
+.aok{background:var(--ok-bg);border:1px solid var(--ok-bd);border-radius:var(--r);padding:9px 12px;font-size:12px;color:var(--ok);margin-top:8px;display:flex;gap:7px;align-items:flex-start;}
+
+/* Restaurant section */
+.meal-sec{margin-top:20px;}
+.meal-lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--hint);margin-bottom:9px;padding-left:2px;border-bottom:1px solid var(--border);padding-bottom:6px;}
+.rest-grid{display:grid;grid-template-columns:1fr;gap:7px;margin-top:9px;}
+
+.rcard{border-radius:var(--r);padding:12px 14px;border-width:1px;border-style:solid;}
+.rcard.lunch{background:var(--amber-bg);border-color:var(--amber-bd);}
+.rcard.cafe-c{background:var(--cafe-bg);border-color:var(--cafe-bd);}
+.rcard.dinner-c{background:var(--teal-bg);border-color:var(--teal-bd);}
+.rcard.lunch2{background:var(--green-bg);border-color:var(--green-bd);}
+
+.rcard-hd{display:flex;align-items:flex-start;gap:8px;margin-bottom:5px;}
+.rcard-name{font-size:13px;font-weight:700;flex:1;line-height:1.4;}
+.rcard-name.lunch{color:var(--amber);}
+.rcard-name.cafe-c{color:var(--cafe);}
+.rcard-name.dinner-c{color:var(--teal);}
+.rcard-name.lunch2{color:var(--green);}
+
+.rtag{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;white-space:nowrap;flex-shrink:0;margin-top:1px;}
+.rtag.rec{background:var(--warn-bg);color:var(--amber);border:1px solid var(--amber-bd);}
+.rtag.pre{background:var(--info-bg);color:var(--info);border:1px solid var(--info-bd);}
+.rtag.que{background:#F3F3F3;color:var(--muted);border:1px solid var(--border);}
+
+.rcard-desc{font-size:12px;color:var(--muted);line-height:1.6;}
+.rcard-note{font-size:11px;display:block;margin-top:7px;padding:4px 9px;border-radius:6px;}
+.rcard-note.warn{color:var(--amber);background:rgba(133,79,11,.07);}
+.rcard-note.info{color:var(--info);background:rgba(12,68,124,.06);}
+
+/* Map */
+#map-canvas{height:500px;border-radius:var(--r);border:1px solid var(--border);}
+.map-day-bar{display:flex;gap:5px;flex-wrap:wrap;padding-bottom:10px;}
+.mdb{padding:4px 14px;border-radius:20px;font-size:12px;font-weight:500;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;font-family:'Noto Sans TC',sans-serif;transition:.15s;}
+.mdb.on{background:var(--text);border-color:var(--text);color:#fff;}
+.mdb:hover:not(.on){border-color:var(--text);color:var(--text);}
+.map-legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;}
+.ml-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);}
+.ml-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+@media(max-width:480px){
+  .page-header{padding:16px 15px 14px;}
+  .tab-bar,.main{padding-left:15px;padding-right:15px;}
+  h1{font-size:17px;}
+  #map-canvas{height:340px;}
+}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="header-inner">
+    <div class="eyebrow">自駕 · 兩天一夜</div>
+    <h1>⛏️ 金瓜石山城小旅行</h1>
+    <div class="pill-row">
+      <span class="pill" style="background:var(--amber-bg);color:var(--amber);">6月29–30日</span>
+      <span class="pill" style="background:var(--teal-bg);color:var(--teal);">北投行義路出發</span>
+      <span class="pill" style="background:#F0EDF8;color:var(--purple);">金瓜石101民宿</span>
+      <span class="pill" style="background:var(--ok-bg);color:var(--ok);">附早餐</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('itinerary',this)">行程</button>
+  <button class="tab-btn" onclick="showTab('dining',this)">餐廳</button>
+  <button class="tab-btn" onclick="showTab('map',this)">地圖</button>
+</nav>
+
+<div class="main">
+
+<!-- ══════════════════ 行程 ══════════════════ -->
+<div id="tab-itinerary" class="tab-pane active">
+
+  <!-- Day 1 -->
+  <div class="day-card">
+    <div class="day-hd" onclick="toggleDay(this)">
+      <div class="dbadge" style="background:var(--amber-bg);color:var(--amber);">D1</div>
+      <div class="dinfo">
+        <div class="dtitle">第一天 — 北海岸 → 金瓜石</div>
+        <div class="dsub">6月29日（週日）· 野柳 · 黃金瀑布 · 十三層遺址</div>
+      </div>
+      <div class="chev open">▼</div>
+    </div>
+    <div class="day-body open">
+      <div class="tl">
+
+        <div class="ev">
+          <div class="ev-t">08:30</div>
+          <div class="ev-d">
+            <strong>出發：北投行義路</strong>
+            <small>走仰德大道 → 陽金公路，穿越陽明山國家公園，沿途山巒霧氣，約 45 分鐘抵達野柳。</small>
+          </div>
+        </div>
+
+        <div class="tr-row">🚗 行義路 → 野柳地質公園　45 分鐘｜36 km｜陽金公路景觀路線</div>
+
+        <div class="ev">
+          <div class="ev-t">09:15</div>
+          <div class="ev-d">
+            <strong>野柳地質公園</strong>
+            <small>女王頭、燭台石、冰淇淋石、薑石群等奇岩怪石，留 1.5 小時最舒適。</small>
+            <small>⛅ 週日人多，09:00 前入場最好；備足水與防曬，地面反射熱。</small>
+          </div>
+        </div>
+
+        <div class="ev">
+          <div class="ev-t">11:00</div>
+          <div class="ev-d">
+            <strong>Day 1 午餐</strong>
+            <small>野柳 / 萬里龜吼漁港一帶新鮮海鮮，五種選項見「餐廳」頁籤。</small>
+          </div>
+        </div>
+
+        <div class="tr-row">🚗 野柳 → 金瓜石（經萬里、基隆、瑞芳）　55 分鐘｜45 km</div>
+
+        <div class="ev">
+          <div class="ev-t">13:00</div>
+          <div class="ev-d">
+            <strong>黃金瀑布</strong>
+            <small>路旁即可停車取景，鐵礦氧化後的金黃色瀑布壯觀奪目，停留 5–10 分鐘即可。</small>
+          </div>
+        </div>
+
+        <div class="ev">
+          <div class="ev-t">13:15</div>
+          <div class="ev-d">
+            <strong>陰陽海 + 十三層遺址觀景台</strong>
+            <small>水湳洞觀景區，廢棄礦業工廠倒映金色海灣，日落前光線最佳。停留 30–40 分鐘。</small>
+          </div>
+        </div>
+
+        <div class="tr-row">🚗 水湳洞 → 金瓜石101民宿　10 分鐘</div>
+
+        <div class="ev">
+          <div class="ev-t">14:15</div>
+          <div class="ev-d">
+            <strong>Check-in 金瓜石101民宿</strong>
+            <small>放行李、換鞋，開始下午的慢步調。</small>
+          </div>
+        </div>
+
+        <div class="ev">
+          <div class="ev-t">15:00</div>
+          <div class="ev-d">
+            <strong>下午咖啡時光</strong>
+            <small>金瓜石散散步咖酒館（步行可達）或搭計程車至九份景觀咖啡廳，四種選項見「餐廳」頁籤。</small>
+          </div>
+        </div>
+
+        <div class="ev">
+          <div class="ev-t">17:00</div>
+          <div class="ev-d">
+            <strong>黃金神社遺址 / 祈堂老街散步</strong>
+            <small>黃金神社石階爬約 10 分鐘，殘存鳥居俯瞰陰陽海。日落前的金色光線最有感。</small>
+          </div>
+        </div>
+
+        <div class="ev">
+          <div class="ev-t">18:30</div>
+          <div class="ev-d">
+            <strong>晚餐</strong>
+            <small>九份景觀餐廳或在地合菜，五種選項見「餐廳」頁籤。</small>
+          </div>
+        </div>
+
+        <div class="ev">
+          <div class="ev-t">20:30</div>
+          <div class="ev-d">
+            <strong>夜晚九份老街燈籠（選配）</strong>
+            <small>豎崎路燈籠亮起，是九份最有名的夜景。步行至九份約 20 分鐘下坡，回程搭計程車。</small>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 2 -->
+  <div class="day-card">
+    <div class="day-hd" onclick="toggleDay(this)">
+      <div class="dbadge" style="background:var(--teal-bg);color:var(--teal);">D2</div>
+      <div class="dinfo">
+        <div class="dtitle">第二天 — 山城健行 → 返北投</div>
+        <div class="dsub">6月30日（週一）· 無耳茶壺山 · 黃金博物館 · 九份老街</div>
+      </div>
+      <div class="chev">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="tl">
+
+        <div class="ev">
+          <div class="ev-t">07:30</div>
+          <div class="ev-d">
+            <strong>民宿早餐</strong>
+            <small>享用附贈早餐，不趕行程。</small>
+          </div>
+        </div>
+
+        <div class="ev">
+          <div class="ev-t">09:00</div>
+          <div class="ev-d">
+            <strong>無耳茶壺山健行</strong>
+            <small>登山口在黃金博物館旁，來回約 1.5 小時（3 km），坡度中等偏陡。頂部 360° 海景，可俯瞰基隆嶼與陰陽海。</small>
+            <small>⚠️ 六月多霧路滑，需穿防滑運動鞋，攜帶充足飲水。若有大雨可跳過此行程。</small>
+          </div>
+        </div>
+
+        <div class="ev">
+          <div class="ev-t">10:30</div>
+          <div class="ev-d">
+            <strong>黃金博物館</strong>
+            <small>四連棟展示區 + 本山五坑礦坑體驗（可摸真金磚）。平日週一人潮少，體驗更舒適。留 1–1.5 小時。</small>
+          </div>
+        </div>
+
+        <div class="ev">
+          <div class="ev-t">12:00</div>
+          <div class="ev-d">
+            <strong>Day 2 午餐</strong>
+            <small>金瓜石在地名店或九份老街，五種選項見「餐廳」頁籤。</small>
+          </div>
+        </div>
+
+        <div class="ev">
+          <div class="ev-t">13:30</div>
+          <div class="ev-d">
+            <strong>九份老街漫遊（選配）</strong>
+            <small>週一人潮大幅減少，是逛九份的好時機。輕便路 + 豎崎路慢步，購入芋圓、草仔粿作伴手禮。</small>
+          </div>
+        </div>
+
+        <div class="tr-row">🚗 九份 → 北投行義路（台 62 → 汐止 → 環東大道）　約 1.5 小時</div>
+
+        <div class="ev">
+          <div class="ev-t">15:00</div>
+          <div class="ev-d">
+            <strong>出發返回北投</strong>
+            <small>建議走台 62 → 汐止 → 環東大道 → 北投，避免走基隆市區塞車路段。週一下午路況通常順暢。</small>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Tips -->
+  <div class="ai"><span>🌦️</span><span>六月金瓜石多霧多雨，請攜帶輕薄雨衣（不建議帶傘，步道狹窄）。若連日大雨可取消無耳茶壺山，改以黃金博物館室內行程延長替代。</span></div>
+  <div class="aw"><span>🚗</span><span>金瓜石停車空間有限，民宿通常附有停車位。抵達後將車停妥，行程盡量步行或搭計程車往返九份，避免路窄會車困擾。</span></div>
+  <div class="aok"><span>💡</span><span>週一是遊覽九份老街的好時機，人潮比週末少很多，攤販照常營業，拍照空間更充裕。黃金博物館週一也照常開放。</span></div>
+
+</div><!-- /tab-itinerary -->
+
+<!-- ══════════════════ 餐廳 ══════════════════ -->
+<div id="tab-dining" class="tab-pane">
+
+  <!-- Day 1 Lunch -->
+  <div class="meal-sec">
+    <div class="meal-lbl">🍽️ Day 1 午餐　野柳 / 萬里（離野柳地質公園 5–10 分鐘）</div>
+    <div class="rest-grid">
+
+      <div class="rcard lunch">
+        <div class="rcard-hd">
+          <div class="rcard-name lunch">1. 望海亭</div>
+          <span class="rtag rec">推薦首選</span>
+        </div>
+        <div class="rcard-desc">龜吼漁港旁，距野柳地質公園 5 分鐘車程。透明標價活海鮮，當場挑選烹調，不怕被坑。新鮮度高、CP 值好，在地人與遊客都愛。</div>
+        <span class="rcard-note warn">⏰ 11:00–20:00　假日現場出餐約 20 分鐘，多等候</span>
+      </div>
+
+      <div class="rcard lunch">
+        <div class="rcard-hd">
+          <div class="rcard-name lunch">2. 鮮滿樓海鮮料理</div>
+          <span class="rtag pre">可預約</span>
+        </div>
+        <div class="rcard-desc">野柳地質公園旁，自家漁船捕撈保鮮。餐點水準穩定，可預約包廂，適合不想等太久的選擇。</div>
+        <span class="rcard-note info">📞 建議提前電話訂位，假日座位緊張</span>
+      </div>
+
+      <div class="rcard lunch">
+        <div class="rcard-hd">
+          <div class="rcard-name lunch">3. 花義思廚坊</div>
+        </div>
+        <div class="rcard-desc">萬里區，自家漁船活海鮮。除海鮮外還提供義大利麵、小火鍋、甜點。自助區免費供應飲料、玉米濃湯及小菜，家庭友善。</div>
+      </div>
+
+      <div class="rcard lunch">
+        <div class="rcard-hd">
+          <div class="rcard-name lunch">4. 海荔食堂</div>
+          <span class="rtag que">需候位</span>
+        </div>
+        <div class="rcard-desc">金山老街內百年老屋改建，空間日系質感。招牌午魚一夜干、爆炒小卷，比漁港多一份氛圍感。需多開 10 分鐘至金山。</div>
+        <span class="rcard-note warn">📍 額外 10 分鐘路程至金山老街</span>
+      </div>
+
+      <div class="rcard lunch">
+        <div class="rcard-hd">
+          <div class="rcard-name lunch">5. 金山廟口螃蟹粥</div>
+        </div>
+        <div class="rcard-desc">金山老街廟口，整隻萬里三點蟹入粥，蟹黃濃郁鮮甜，份量大。無預約排隊制，最平價在地選擇。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Afternoon Coffee -->
+  <div class="meal-sec">
+    <div class="meal-lbl">☕ Day 1 下午咖啡　15:00–17:00</div>
+    <div class="rest-grid">
+
+      <div class="rcard cafe-c">
+        <div class="rcard-hd">
+          <div class="rcard-name cafe-c">1. 散散步咖酒館</div>
+          <span class="rtag rec">金瓜石在地</span>
+        </div>
+        <div class="rcard-desc">金瓜石人氣排隊咖啡館，距民宿步行可達。手作特色甜點搭配單品咖啡或日本梅酒，日系空間氛圍佳，假日開門前就有人排隊。</div>
+        <span class="rcard-note warn">⚠️ 假日人多，建議 15:00 前抵達</span>
+      </div>
+
+      <div class="rcard cafe-c">
+        <div class="rcard-hd">
+          <div class="rcard-name cafe-c">2. 暇咖啡 HIMA CAFE</div>
+          <span class="rtag rec">景觀首選</span>
+        </div>
+        <div class="rcard-desc">九份 2024 年新開，近年最火。二樓榻榻米席地加大片落地窗，飽覽山城與大海，傍晚光線絕美。步行至九份約 20 分鐘，或搭計程車 5 分鐘。</div>
+      </div>
+
+      <div class="rcard cafe-c">
+        <div class="rcard-hd">
+          <div class="rcard-name cafe-c">3. 逸茶酒室</div>
+        </div>
+        <div class="rcard-desc">九份老街，戶外座位區可看夕陽海景。白天咖啡廳、夜晚轉型 chill 酒吧。若下午喝咖啡、傍晚接著喝一杯，再去吃晚餐，是最舒服的流程。</div>
+      </div>
+
+      <div class="rcard cafe-c">
+        <div class="rcard-hd">
+          <div class="rcard-name cafe-c">4. 吾穀茶糧</div>
+        </div>
+        <div class="rcard-desc">九份，豆穀類現磨擂茶特色飲品，全透式玻璃景觀台俯瞰九份山城。戶外空間寬敞，不需人擠人就能看景。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Dinner -->
+  <div class="meal-sec">
+    <div class="meal-lbl">🌙 Day 1 晚餐　18:30 起</div>
+    <div class="rest-grid">
+
+      <div class="rcard dinner-c">
+        <div class="rcard-hd">
+          <div class="rcard-name dinner-c">1. 九戶茶語</div>
+          <span class="rtag rec">景觀首選</span>
+        </div>
+        <div class="rcard-desc">九份輕便路，180 度視野直面基隆嶼與大海，入夜燈光更美。台式合菜，適合坐下來從容用餐，是九份景觀餐廳裡評價最穩定的一間。</div>
+        <span class="rcard-note info">📞 建議提前查詢訂位</span>
+      </div>
+
+      <div class="rcard dinner-c">
+        <div class="rcard-hd">
+          <div class="rcard-name dinner-c">2. 阿理廚坊</div>
+        </div>
+        <div class="rcard-desc">九份豎崎路，擁有景觀的平價台菜。適合不想花太多預算又要有景觀的選擇，菜量足，適合兩人以上。</div>
+      </div>
+
+      <div class="rcard dinner-c">
+        <div class="rcard-hd">
+          <div class="rcard-name dinner-c">3. 淂藝洋行</div>
+        </div>
+        <div class="rcard-desc">九份輕便路百年老屋，從早開到晚。主食套餐多元，帶有日治時代老宅氛圍，若 Day 2 午餐也沒安排，可留作備選。</div>
+      </div>
+
+      <div class="rcard dinner-c">
+        <div class="rcard-hd">
+          <div class="rcard-name dinner-c">4. 逸茶酒室（夜間）</div>
+        </div>
+        <div class="rcard-desc">白天咖啡廳夜晚變身酒吧，下酒菜輕食，適合下午咖啡之後接著賞夜景小酌。非正式晚餐定位，適合輕食或飯後補場。</div>
+      </div>
+
+      <div class="rcard dinner-c">
+        <div class="rcard-hd">
+          <div class="rcard-name dinner-c">5. 九份老街小吃漫食</div>
+        </div>
+        <div class="rcard-desc">豎崎路 + 輕便路自由組合：芋圓、魚丸湯、草仔粿、蔥油餅、排骨飯。邊走邊吃最有九份感，價格親民，適合想邊逛夜景邊用餐的方式。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Day 2 Lunch -->
+  <div class="meal-sec">
+    <div class="meal-lbl">🍳 Day 2 午餐　金瓜石 / 九份（12:00 起）</div>
+    <div class="rest-grid">
+
+      <div class="rcard lunch2">
+        <div class="rcard-hd">
+          <div class="rcard-name lunch2">1. 食不厭</div>
+          <span class="rtag rec">金瓜石必訪</span>
+        </div>
+        <div class="rcard-desc">金瓜石排隊人氣名店，懷舊木造老屋。招牌午魚一夜干、貓飯、焗烤番茄麵包，每道看似家常卻功夫深。不接受訂位，現場排隊制。</div>
+        <span class="rcard-note warn">⏰ 11:30 開始領號，建議 11:00 前抵達排隊</span>
+      </div>
+
+      <div class="rcard lunch2">
+        <div class="rcard-hd">
+          <div class="rcard-name lunch2">2. Gamins 稚時</div>
+          <span class="rtag pre">預約制</span>
+        </div>
+        <div class="rcard-desc">金瓜石山林秘境，隱藏私廚。座位不多，菜色精緻但定價平實，體驗感強。完全預約制，需提前預訂。</div>
+        <span class="rcard-note info">📞 提前預約，現場不接受 walk-in</span>
+      </div>
+
+      <div class="rcard lunch2">
+        <div class="rcard-hd">
+          <div class="rcard-name lunch2">3. 迷迷路食堂</div>
+          <span class="rtag pre">預約制</span>
+        </div>
+        <div class="rcard-desc">金瓜石，日系木質調空間。雞湯定食套餐附多樣配菜，週五至週一限定開放，每天四時段，線上預約成功才能入場。</div>
+        <span class="rcard-note warn">⚠️ 須提前線上預約，無法臨時決定</span>
+      </div>
+
+      <div class="rcard lunch2">
+        <div class="rcard-hd">
+          <div class="rcard-name lunch2">4. 淂藝洋行</div>
+        </div>
+        <div class="rcard-desc">九份百年老宅，若 Day 1 晚餐未造訪，Day 2 午餐補上也很合適。多元主食套餐，不需排太久，適合輕鬆收尾。</div>
+      </div>
+
+      <div class="rcard lunch2">
+        <div class="rcard-hd">
+          <div class="rcard-name lunch2">5. 九份老街輕鬆吃</div>
+        </div>
+        <div class="rcard-desc">週一人潮少，輕便路邊走邊品：阿柑姨芋圓、魚丸湯、草仔粿、蔥油餅。不拘束時間，逛到哪吃到哪，順便購買伴手禮再出發。</div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /tab-dining -->
+
+<!-- ══════════════════ 地圖 ══════════════════ -->
+<div id="tab-map" class="tab-pane">
+  <div class="map-day-bar">
+    <button class="mdb on" onclick="filterMarkers('all',this)">全程</button>
+    <button class="mdb" onclick="filterMarkers('d1',this)">Day 1</button>
+    <button class="mdb" onclick="filterMarkers('d2',this)">Day 2</button>
+    <button class="mdb" onclick="filterMarkers('food',this)">餐廳</button>
+  </div>
+  <div id="map-canvas"></div>
+  <div class="map-legend">
+    <div class="ml-item"><div class="ml-dot" style="background:#E85D04;"></div>Day 1 景點</div>
+    <div class="ml-item"><div class="ml-dot" style="background:#1E6B7A;"></div>Day 2 景點</div>
+    <div class="ml-item"><div class="ml-dot" style="background:#7A4A1E;"></div>餐廳 / 咖啡</div>
+    <div class="ml-item"><div class="ml-dot" style="background:#534AB7;"></div>住宿</div>
+  </div>
+</div><!-- /tab-map -->
+
+</div><!-- /main -->
+
+<script>
+function showTab(id, btn){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='map' && !window._mapInit) initMap();
+}
+
+function toggleDay(hd){
+  const body = hd.nextElementSibling;
+  const chev = hd.querySelector('.chev');
+  const open = body.classList.toggle('open');
+  chev.classList.toggle('open', open);
+}
+
+/* ── Leaflet Map ── */
+let map, allMarkers = [];
+
+const SPOTS = [
+  // Day 1
+  {day:'d1', cat:'sight', lat:25.127,  lng:121.523, name:'出發：北投行義路', color:'#E85D04'},
+  {day:'d1', cat:'sight', lat:25.2034, lng:121.6912,name:'野柳地質公園', color:'#E85D04'},
+  {day:'d1', cat:'sight', lat:25.0994, lng:121.8532,name:'黃金瀑布', color:'#E85D04'},
+  {day:'d1', cat:'sight', lat:25.1050, lng:121.8470,name:'陰陽海 · 十三層遺址', color:'#E85D04'},
+  {day:'d1', cat:'sight', lat:25.1069, lng:121.8569,name:'黃金神社遺址', color:'#E85D04'},
+  // Hotel (both days)
+  {day:'both', cat:'hotel', lat:25.109,  lng:121.858, name:'金瓜石101民宿', color:'#534AB7'},
+  // Day 2
+  {day:'d2', cat:'sight', lat:25.1095, lng:121.8607,name:'無耳茶壺山登山口', color:'#1E6B7A'},
+  {day:'d2', cat:'sight', lat:25.1083, lng:121.8583,name:'黃金博物館', color:'#1E6B7A'},
+  {day:'d2', cat:'sight', lat:25.1076, lng:121.8448,name:'九份老街', color:'#1E6B7A'},
+  // Food
+  {day:'d1', cat:'food', lat:25.1924, lng:121.7303,name:'望海亭 / 龜吼漁港（D1午餐）', color:'#7A4A1E'},
+  {day:'d1', cat:'food', lat:25.2220, lng:121.6400,name:'金山老街（D1午餐備選）', color:'#7A4A1E'},
+  {day:'d1', cat:'food', lat:25.1083, lng:121.857, name:'散散步咖酒館（D1下午咖啡）', color:'#7A4A1E'},
+  {day:'d1', cat:'food', lat:25.1076, lng:121.8448,name:'九份老街（D1晚餐 / 咖啡）', color:'#7A4A1E'},
+  {day:'d2', cat:'food', lat:25.1090, lng:121.857, name:'食不厭（D2午餐）', color:'#0F6E56'},
+];
+
+function initMap(){
+  window._mapInit = true;
+  map = L.map('map-canvas').setView([25.14, 121.75], 11);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 18
+  }).addTo(map);
+
+  SPOTS.forEach(s => {
+    const m = L.circleMarker([s.lat, s.lng], {
+      radius: 8, color: '#fff', weight: 2, fillColor: s.color, fillOpacity: 0.9
+    }).addTo(map).bindPopup(`<strong>${s.name}</strong>`);
+    m._day = s.day;
+    m._cat = s.cat;
+    allMarkers.push(m);
+  });
+}
+
+function filterMarkers(filter, btn){
+  document.querySelectorAll('.mdb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  if(!map) return;
+  allMarkers.forEach(m => {
+    let show = false;
+    if(filter === 'all') show = true;
+    else if(filter === 'd1') show = (m._day === 'd1' || m._day === 'both');
+    else if(filter === 'd2') show = (m._day === 'd2' || m._day === 'both');
+    else if(filter === 'food') show = (m._cat === 'food');
+    if(show) m.addTo(map); else m.removeFrom(map);
+  });
+}
+</script>
+</body>
+</html>
