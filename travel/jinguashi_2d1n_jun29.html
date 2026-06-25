@@ -104,7 +104,25 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 .ml-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);}
 .ml-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 
+/* Route compare */
+.route-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:13px 15px;margin-bottom:14px;}
+.route-box-title{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);margin-bottom:10px;}
+.route-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.ropt{border-radius:var(--r);padding:11px 13px;border:1.5px solid var(--border);background:var(--bg);}
+.ropt.current{border-color:var(--teal-bd);background:var(--teal-bg);}
+.ropt-label{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px;}
+.ropt-label.a{color:var(--muted);}
+.ropt-label.b{color:var(--teal);}
+.ropt-name{font-size:13px;font-weight:700;margin-bottom:4px;}
+.ropt-name.a{color:var(--text);}
+.ropt-name.b{color:var(--teal);}
+.ropt-route{font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:6px;}
+.ropt-pros{display:flex;flex-direction:column;gap:3px;}
+.rpro{font-size:11px;color:var(--muted);display:flex;gap:5px;}
+.rpro.good{color:var(--ok);}
+.rpro.warn{color:var(--amber);}
 @media(max-width:480px){
+  .route-opts{grid-template-columns:1fr;}
   .page-header{padding:16px 15px 14px;}
   .tab-bar,.main{padding-left:15px;padding-right:15px;}
   h1{font-size:17px;}
@@ -151,6 +169,38 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
       <div class="chev open">▼</div>
     </div>
     <div class="day-body open">
+
+      <div class="route-box">
+        <div class="route-box-title">🗺️ 午後路線選擇（野柳 → 金瓜石）</div>
+        <div class="route-opts">
+
+          <div class="ropt">
+            <div class="ropt-label a">路線 A　直達版</div>
+            <div class="ropt-name a">快速內陸路線</div>
+            <div class="ropt-route">野柳 → 萬里 → 基隆市區 → 瑞芳 → 金瓜石</div>
+            <div class="ropt-pros">
+              <div class="rpro good">✓ 約 55 分鐘，提早 Check-in</div>
+              <div class="rpro good">✓ 路況穩定，GPS 導航最直覺</div>
+              <div class="rpro warn">— 經過基隆市區，假日可能塞車</div>
+              <div class="rpro warn">— 沿途景色普通</div>
+            </div>
+          </div>
+
+          <div class="ropt current">
+            <div class="ropt-label b">路線 B　沿海景觀版 ★ 現行採用</div>
+            <div class="ropt-name b">台2線東北角海岸</div>
+            <div class="ropt-route">野柳 → 深澳漁港（象鼻岩・海天步道）→ 八斗子車站 → 黃金瀑布 → 金瓜石</div>
+            <div class="ropt-pros">
+              <div class="rpro good">✓ 全程台2線沿海景觀，不進基隆市區</div>
+              <div class="rpro good">✓ 深澳象鼻岩、八斗子車站各加一個亮點</div>
+              <div class="rpro good">✓ 海天步道平坦可輕鬆走</div>
+              <div class="rpro warn">— 含停留約 2.5 小時，需 08:00 出發</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       <div class="tl">
 
         <div class="ev">
