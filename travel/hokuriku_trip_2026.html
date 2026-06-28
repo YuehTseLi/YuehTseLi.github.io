@@ -82,8 +82,8 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 .plan-toggle{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--rl);overflow:hidden;border:1.5px solid var(--border);margin-bottom:12px;}
 .plan-btn{padding:12px 16px;border:none;background:var(--surface);cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:var(--muted);transition:.15s;text-align:left;line-height:1.45;border-right:1.5px solid var(--border);}
 .plan-btn:last-child{border-right:none;}
-.plan-btn.pa.active{background:var(--green-bg);color:var(--green);}
 .plan-btn.pb.active{background:var(--blue-bg);color:var(--blue);}
+.plan-btn.pc.active{background:var(--green-bg);color:var(--green);}
 .plan-btn:not(.active):hover{background:var(--bg);}
 .plan-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:3px;opacity:.75;}
 .plan-sect{display:block;}
@@ -209,11 +209,11 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 <header class="page-header">
   <div class="header-inner">
     <div class="eyebrow">2026 年秋季親子旅遊</div>
-    <h1>北陸 · 9天7夜 ｜ 五大一小 ｜ 東京轉機方案比較</h1>
+    <h1>北陸 · 9天8夜 ｜ 六大一小 ｜ 台北⇄羽田 轉機方案對比</h1>
     <div class="pill-row">
-      <span class="pill" style="background:var(--blue-bg);color:var(--blue);">CI TPE⇄NRT</span>
-      <span class="pill" style="background:var(--green-bg);color:var(--green);">Plan A 新幹線＋周遊券</span>
-      <span class="pill" style="background:var(--blue-bg);color:var(--blue);">Plan B ANA HND⇄TOY</span>
+      <span class="pill" style="background:var(--blue-bg);color:var(--blue);">台北→羽田 直飛</span>
+      <span class="pill" style="background:var(--amber-bg);color:var(--amber);">方案B vs 方案C</span>
+      <span class="pill" style="background:var(--blue-bg);color:var(--blue);">ANA 國內線 富山往返</span>
       <span class="pill" style="background:var(--amber-bg);color:var(--amber);">11月21–29日</span>
       <span class="pill" style="background:var(--sake-bg);color:var(--sake);border:1px solid var(--sake-bd);">🍶 酒莊</span>
       <span class="pill" style="background:var(--cafe-bg);color:var(--cafe);border:1px solid var(--cafe-bd);">☕ 咖啡</span>
@@ -234,47 +234,47 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 
 <!-- Plan selector -->
 <div class="plan-toggle" style="margin-top:3px;">
-  <button class="plan-btn pa active" onclick="setPlan('A',this)">
-    <span class="plan-lbl">Plan A</span>
-    <span style="font-size:14px;font-weight:700;color:var(--green);">新幹線 + 北陸周遊券</span><br>
-    <span style="font-size:11px;color:var(--muted);">TPE→NRT → N'EX → 北陸新幹線 → 富山</span>
+  <button class="plan-btn pb active" onclick="setPlan('B',this)">
+    <span class="plan-lbl">方案B 當日轉機</span>
+    <span style="font-size:14px;font-weight:700;color:var(--blue);">台北 09:30 → 羽田 13:20 → 15:30 富山</span><br>
+    <span style="font-size:11px;color:var(--muted);">當日轉機（2.5小時）❌ 時間緊張 | 無機場飯店成本</span>
   </button>
-  <button class="plan-btn pb" onclick="setPlan('B',this)">
-    <span class="plan-lbl">Plan B</span>
-    <span style="font-size:14px;font-weight:700;color:var(--blue);">ANA 國內線（無周遊券）</span><br>
-    <span style="font-size:11px;color:var(--muted);">TPE→NRT → 利木津→HND → NH315→富山</span>
+  <button class="plan-btn pc" onclick="setPlan('C',this)">
+    <span class="plan-lbl">方案C 過夜轉機 ⭐推薦</span>
+    <span style="font-size:14px;font-weight:700;color:var(--green);">台北 14:20 → 羽田過夜 → 隔日09:50 富山 10:50</span><br>
+    <span style="font-size:11px;color:var(--muted);">18小時舒適轉機 ✅ | 隔天精神飽滿 | 零誤機風險</span>
   </button>
 </div>
 
-<!-- ═══ PLAN A 概覽 ═══ -->
-<div class="plan-sect" id="sect-A">
+<!-- ═══ PLAN B 概覽（當日轉機） ═══ -->
+<div class="plan-sect" id="sect-B">
 
 <div class="flight-banner" style="margin-top:3px;">
   <div>
     <div class="fl-label">去程</div>
-    <div class="fl-route">TPE → NRT</div>
-    <div class="fl-time">11/21 (六)　09:30 → 13:30　CI101 直飛</div>
-    <div class="fl-time" style="margin-top:4px;color:var(--hint);">N'EX 成田→東京 (¥3,070/人，53分) → 北陸新幹線 かがやき → 富山</div>
+    <div class="fl-route">TPE → HND → TOY</div>
+    <div class="fl-time">11/21 (六)　09:30 → 13:20 → 15:30</div>
+    <div class="fl-time" style="margin-top:4px;color:var(--hint);">中華 CI9220 台北松山→羽田（2h 50m）→ 轉機 NH 班機→富山（1h）</div>
   </div>
-  <div class="fl-mid">⇄<div style="font-size:11px;color:var(--hint);margin-top:2px;">CI</div></div>
+  <div class="fl-mid">⇄<div style="font-size:11px;color:var(--hint);margin-top:2px;">CI/ANA</div></div>
   <div class="fl-right">
     <div class="fl-label">回程</div>
-    <div class="fl-route">NRT → TPE</div>
-    <div class="fl-time">11/29 (日)　09:35 → 12:40　CI107 直飛</div>
-    <div class="fl-time" style="margin-top:4px;color:var(--hint);">11/28 富山 → 北陸新幹線 → 東京 → 成田</div>
+    <div class="fl-route">TOY → HND → NRT → TPE</div>
+    <div class="fl-time">11/27 富山 15:00 → 11/29 09:35</div>
+    <div class="fl-time" style="margin-top:4px;color:var(--hint);">11/27 NH316 富山→羽田 + 11/28成田機場飯店 + 11/29 CI107 成田→台北</div>
   </div>
 </div>
 
-<div class="pass-banner">
-  <div style="font-size:20px;padding-top:2px;">🎫</div>
+<div class="pass-banner" style="background:var(--blue-bg);border-color:var(--info-bd);">
+  <div style="font-size:20px;padding-top:2px;">✈</div>
   <div class="pass-body">
-    <div class="pass-title">北陸アーチパス（7日間）¥35,000/大人・¥17,500/小孩</div>
-    <div class="pass-sub">成田→東京 N'EX + 北陸新幹線全線 + 富山地鐵・路面電車・バス 全部包含</div>
+    <div class="pass-title" style="color:var(--blue);">方案 B — 當日轉機（緊張版）</div>
+    <div class="pass-sub" style="color:var(--info);">台北 09:30→羽田 13:20 → 轉機 2.5小時 → 15:30 富山 | ❌ 時間緊張，風險偏高</div>
     <div class="pass-tags">
-      <span class="pt">11/21 ✓ N'EX + かがやき 當日抵富山</span>
-      <span class="pt">11/22–26 ✓ 氷見・城端・黑部 周遊券全涵蓋</span>
-      <span class="pt">11/27 ✓ 北陸新幹線→東京一日遊</span>
-      <span class="pt">11/28 ✓ N'EX→成田</span>
+      <span class="pt">11/21 ○ CI9220 台北 09:30→羽田 13:20 | 轉機 2.5h</span>
+      <span class="pt exp">11/21 ⚠️ NH 班機（時刻待確認）→ 15:30 富山</span>
+      <span class="pt">11/21 ❌ 當晚到富山無機場飯店</span>
+      <span class="pt">11/27 ✓ NH316 富山 15:00→羽田 16:00</span>
     </div>
   </div>
 </div>
@@ -282,64 +282,68 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 <div class="luggage-banner">
   <div style="font-size:20px;padding-top:2px;">🧳</div>
   <div class="lug-body">
-    <div class="lug-title">Plan A 行李對策：宅急便一次</div>
-    <div class="lug-sub">11/25 大行李留在富山飯店，輕裝去宇奈月，11/26 回富山直接領回</div>
+    <div class="lug-title">方案 B 行李對策：當日轉機風險高</div>
+    <div class="lug-sub">當日轉機（2.5小時）：行李轉運時間緊張，羽田→富山直掛建議</div>
     <div class="lug-steps">
-      <div class="lug-step"><span class="lug-num">①</span><span><strong>11/25 出發前</strong>— 大行李留放富山飯店（辦行李寄存），只帶一晚換洗衣物輕裝前往宇奈月</span></div>
-      <div class="lug-step"><span class="lug-num">②</span><span><strong>11/26 回富山</strong>— 延對寺莊退房後直接回富山飯店 Check-in，領回大行李</span></div>
-      <div class="lug-step"><span class="lug-num">③</span><span><strong>11/27 富山飯店退房日</strong>— 宅急便寄往「東京飯店」（11/27當日到），搭新幹線輕裝進東京；費用每箱 ¥1,000–2,000</span></div>
+      <div class="lug-step"><span class="lug-num">①</span><span><strong>11/21 羽田轉機時</strong>— 行李直掛至富山（需確認 CI↔ANA 聯運協議），領後背著走向國內線</span></div>
+      <div class="lug-step"><span class="lug-num">②</span><span><strong>11/25 前往宇奈月</strong>— 大行李留富山飯店寄存，輕裝去溫泉</span></div>
+      <div class="lug-step"><span class="lug-num">③</span><span><strong>11/27 富山→成田</strong>— 宅急便或利木津轉乘帶行李，11/28 成田飯店取件</span></div>
     </div>
   </div>
 </div>
 
 <div class="atop">⚠️ 回程 11/29 09:35 起飛（CI107），<strong>07:30 前</strong>需到成田第一航廈。11/28 晚住成田機場附近，早上步行或免費接駁即可抵達。</div>
 
-<!-- 11/21 Plan A -->
+<!-- 11/21 Plan B -->
 <div class="day-card">
   <div class="day-hd" onclick="tog(this)">
     <div class="dbadge" style="background:var(--blue-bg);color:var(--blue);">11/21</div>
     <div class="dinfo">
-      <div class="dtitle">抵達成田 → N'EX東京 → 北陸新幹線 → 富山當日到</div>
-      <div class="dsub">CI 09:30→13:30 · N'EX 53分 · かがやき 新幹線 2h08m · 飯店放行李</div>
+      <div class="dtitle">台北→羽田 當日轉機 → 富山（時間緊張版）</div>
+      <div class="dsub">CI9220 09:30→13:20 · 轉機 2.5h · NH 班機→富山 15:30 · ⚠️ 行李轉運風險</div>
     </div>
     <span class="chev">▾</span>
   </div>
   <div class="day-body">
     <div class="tl">
-      <div class="ev"><div class="ev-t">13:30</div><div class="ev-d">成田落地，通關取行李（6人共 6 件大行李）</div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--green-bg);color:var(--green);">N'EX</span>成田 → 東京站（¥3,070/人，53分）<small>周遊券涵蓋</small></div>
-      <div class="ev"><div class="ev-t">15:30 出發</div><div class="ev-d">東京站月台換乘</div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--green-bg);color:var(--green);">新幹線</span>かがやき　東京 → 富山（¥14,230，2h08m）<small>周遊券涵蓋 · 6件大行李放置物架或購買指定席行李空間</small></div>
-      <div class="ev"><div class="ev-t">17:30–18:00</div><div class="ev-d">富山站到達，<strong>立即前往飯店 Check-in 放行李</strong><small>🧳 6件行李放進房間，卸下重擔後晚餐</small></div></div>
-      <div class="ev"><div class="ev-t">晚間</div><div class="ev-d">富山站周邊黑拉麵或海鮮迴轉壽司，21:00 前就寢</div></div>
+      <div class="ev"><div class="ev-t">06:30</div><div class="ev-d">台北松山機場報到（03:30起床）</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">中華航空</span>CI9220 台北松山 09:30 → 羽田 13:20（直飛 2h 50m）</div>
+      <div class="ev"><div class="ev-t">13:20–13:50</div><div class="ev-d">羽田 Terminal 3 出關、領行李（可能需 20–30 分，尖峰時更久）</div></div>
+      <div class="ev"><div class="ev-t">13:50–14:30</div><div class="ev-d">🧳 行李直掛富山檢查（需確認 CI↔ANA 聯運協議）→ 前往 T2 國內線</div></div>
+      <div class="ev"><div class="ev-t">14:30–15:20</div><div class="ev-d"><strong>⚠️ 緊急報到時間</strong>— 15:20 前完成 T2 國內線登機手續（通常提前 30 分）</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">ANA</span>NH 班機 羽田 15:30 → 富山 16:30（時刻待確認）</div>
+      <div class="ev"><div class="ev-t">16:30</div><div class="ev-d">抵達富山機場（行李已托運至此）</div></div>
+      <div class="ev"><div class="ev-t">17:00</div><div class="ev-d">富山機場搭巴士→富山站（¥650/人）→ 飯店 Check-in 放行李</div></div>
+      <div class="ev"><div class="ev-t">晚間</div><div class="ev-d">富山站周邊晚餐，21:00 前就寢（已很疲勞）</div></div>
     </div>
-    <div class="aok">✓ Plan A 最大優勢：11/21 當天從成田直達富山，省去 11/22 整個早上的飛機轉機時間，整整多出一個上午可以觀光。</div>
-    <div class="ai">ℹ 北陸 Arch Pass 購買：抵台前可在台灣旅行社或 JR 官網購買，到成田換票；也可在成田或東京 JR 服務台換領。</div>
+    <div class="aw">⚠️ 方案 B 的問題：13:20 羽田到達→15:30 富山出發，共 2 小時 10 分。若國際班機延誤 30 分鐘，只剩 100 分鐘完成出關→領行李→轉機→國內線報到。<strong>極度緊張，不建議</strong>。</div>
+    <div class="ai">ℹ️ 若堅持方案 B，務必告知航空公司（預訂時註記「轉機」）並申請優先通道，增加成功率。</div>
   </div>
 </div>
 
-<!-- 11/22 Plan A -->
+<!-- 11/22 Plan B -->
 <div class="day-card">
   <div class="day-hd" onclick="tog(this)">
     <div class="dbadge" style="background:var(--amber-bg);color:var(--amber);">11/22</div>
     <div class="dinfo">
-      <div class="dtitle">高岡哆啦A夢 · 古城公園 · AEON MALL · 富山城</div>
-      <div class="dsub">周遊券搭 Tsurugi 新幹線 → 高岡 → 城端線（散票）→ 富山</div>
+      <div class="dtitle">懶散早餐 · 高岡哆啦A夢 · AEON MALL · 富山城（時間調整）</div>
+      <div class="dsub">前一晚較晚到達，11:00 出發 → 高岡 → AEON → 富山城 → 晚餐</div>
     </div>
     <span class="chev">▾</span>
   </div>
   <div class="day-body">
     <div class="tl">
-      <div class="tr-row"><span class="tr-badge" style="background:var(--green-bg);color:var(--green);">新幹線</span>09:30 富山 → Tsurugi → 新高岡（周遊券，6分）</div>
-      <div class="ev"><div class="ev-t">09:50 – 10:30</div><div class="ev-d"><strong>哆啦A夢散步道</strong>銅像合照 → 步行10分 → <strong>高岡大佛</strong></div></div>
-      <div class="ev"><div class="ev-t">10:30 – 12:00</div><div class="ev-d"><strong>高岡古城公園</strong>紅葉 + 完全免費動物園（企鵝 · 餵羊）</div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>12:15 高岡 → 城端線 → 新高岡（¥240）</div>
-      <div class="ev"><div class="ev-t">12:30 – 14:30</div><div class="ev-d"><strong>AEON MALL 高岡</strong>— 新高岡南口步行3分鐘<small>ABC-MART · UNIQLO · 玩具區</small></div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--green-bg);color:var(--green);">新幹線</span>14:40 新高岡 → Tsurugi → 富山（周遊券，6分）</div>
-      <div class="ev"><div class="ev-t">15:00 – 16:30</div><div class="ev-d"><strong>富山城址公園</strong>— 日落城堡 × 護城河 × 紅葉同框</div></div>
+      <div class="ev"><div class="ev-t">08:00–09:30</div><div class="ev-d">飯店早餐（稍微放鬆，補眠）</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--green-bg);color:var(--green);">新幹線</span>11:00 富山 → Tsurugi → 新高岡（周遊券，6分）</div>
+      <div class="ev"><div class="ev-t">11:15 – 12:00</div><div class="ev-d"><strong>哆啦A夢散步道</strong>銅像合照 → 步行10分 → <strong>高岡大佛</strong></div></div>
+      <div class="ev"><div class="ev-t">12:00 – 13:15</div><div class="ev-d"><strong>高岡古城公園</strong>紅葉 + 免費動物園（企鵝 · 餵羊）+ 午餐</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>13:30 高岡 → 城端線 → 新高岡（¥240）</div>
+      <div class="ev"><div class="ev-t">13:45 – 15:30</div><div class="ev-d"><strong>AEON MALL 高岡</strong>— 新高岡南口步行3分<small>ABC-MART · UNIQLO · 玩具區 · 咖啡休息</small></div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--green-bg);color:var(--green);">新幹線</span>15:45 新高岡 → Tsurugi → 富山（周遊券，6分）</div>
+      <div class="ev"><div class="ev-t">16:00 – 17:15</div><div class="ev-d"><strong>富山城址公園</strong>— 日落城堡 × 護城河 × 紅葉同框</div></div>
       <div class="ev"><div class="ev-t">晚間</div><div class="ev-d">富山飯店周邊晚餐</div></div>
     </div>
-    <div class="ai">ℹ 周遊券涵蓋 Tsurugi 新幹線富山↔新高岡，城端線需購散票 ¥240。比 Plan B 多出整個上午，景點更從容。</div>
+    <div class="ai">ℹ 方案 B 第二天：因前夜較晚到達，11:00 出發較為悠閒。內容與方案 A 雷同，但時間往後推移 1–1.5 小時。</div>
     <div class="ins-sec">
       <div class="ins-label">🍶 ☕ 高岡推薦</div>
       <div class="ins-grid">
@@ -696,6 +700,110 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
     </div>
   </div>
 </div>
+
+</div><!-- /sect-B -->
+
+<!-- ═══ PLAN C 概覽（過夜轉機 ⭐推薦） ═══ -->
+<div class="plan-sect hidden" id="sect-C">
+
+<div class="flight-banner" style="margin-top:3px;">
+  <div>
+    <div class="fl-label">去程</div>
+    <div class="fl-route">TPE → HND (過夜) → TOY</div>
+    <div class="fl-time">11/21 (六)　14:20 → 18:20 | 11/22 (日)　09:50 → 10:50</div>
+    <div class="fl-time" style="margin-top:4px;color:var(--hint);">中華 CI9222 台北松山→羽田 + 羽田機場飯店一晚 + NH315 羽田→富山</div>
+  </div>
+  <div class="fl-mid">⇄<div style="font-size:11px;color:var(--hint);margin-top:2px;">CI/ANA</div></div>
+  <div class="fl-right">
+    <div class="fl-label">回程</div>
+    <div class="fl-route">TOY → HND → NRT → TPE</div>
+    <div class="fl-time">11/27 富山 15:00 → 11/29 09:35</div>
+    <div class="fl-time" style="margin-top:4px;color:var(--hint);">11/27 NH316 富山→羽田 + 11/28成田機場飯店 + 11/29 CI107 成田→台北</div>
+  </div>
+</div>
+
+<div class="pass-banner" style="background:var(--green-bg);border-color:var(--ok-bd);">
+  <div style="font-size:20px;padding-top:2px;">✈</div>
+  <div class="pass-body">
+    <div class="pass-title" style="color:var(--green);">方案 C — 過夜轉機（⭐⭐⭐ 推薦）</div>
+    <div class="pass-sub" style="color:var(--ok);">台北 14:20→羽田 18:20 → 機場飯店一晚 → 隔日 09:50→富山 10:50 | ✅ 充足舒適，零誤機風險</div>
+    <div class="pass-tags">
+      <span class="pt">11/21 ✓ CI9222 台北 14:20→羽田 18:20 | 不用太早起</span>
+      <span class="pt">11/21 ✓ 羽田機場飯店入住 | 充足睡眠</span>
+      <span class="pt">11/22 ✓ NH315 羽田 09:50→富山 10:50 | 隔天上午到達</span>
+      <span class="pt">11/27 ✓ NH316 富山 15:00→羽田 16:00 | 國內線寬鬆</span>
+    </div>
+  </div>
+</div>
+
+<div class="luggage-banner">
+  <div style="font-size:20px;padding-top:2px;">🧳</div>
+  <div class="lug-body">
+    <div class="lug-title">方案 C 行李對策：全程直掛，最輕鬆</div>
+    <div class="lug-sub">國內線托運：羽田→富山直掛 | 11/25大行李留富山飯店 | 11/27托運至成田飯店</div>
+    <div class="lug-steps">
+      <div class="lug-step"><span class="lug-num">①</span><span><strong>11/21 羽田到達</strong>— 領行李→飯店 Check-in 放行李→輕裝活動</span></div>
+      <div class="lug-step"><span class="lug-num">②</span><span><strong>11/22 早晨</strong>— 飯店內 Check-out 行李托運至富山（ANA 國內線直掛）</span></div>
+      <div class="lug-step"><span class="lug-num">③</span><span><strong>11/25 前往宇奈月</strong>— 大行李留富山飯店寄存 | 11/26 回富山領回 | 11/27 托運至成田飯店</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="atop">✅ 方案 C 優勢：14:20 出發無須太早起 | 機場飯店充足睡眠 | 隔天 09:50 轉機寬鬆（88+% 成功率）| 行李全程直掛 | 家族舒適度最高 | 只多付 1 晚飯店 NT$2,000–3,500/人</div>
+
+<!-- 11/21 Plan C -->
+<div class="day-card">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dbadge" style="background:var(--green-bg);color:var(--green);">11/21</div>
+    <div class="dinfo">
+      <div class="dtitle">台北→羽田 過夜飯店 → 準備隔天轉機</div>
+      <div class="dsub">CI9222 14:20→18:20 · 羽田機場飯店入住 · 充足睡眠 · 零轉機風險</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="day-body">
+    <div class="tl">
+      <div class="ev"><div class="ev-t">12:30</div><div class="ev-d">台北松山機場報到（12:30-14:20，無須太早起）</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--green-bg);color:var(--green);">中華航空</span>CI9222 台北松山 14:20 → 羽田 18:20（直飛 3h）</div>
+      <div class="ev"><div class="ev-t">18:20–19:00</div><div class="ev-d">羽田 Terminal 3 出關、領行李（時間充裕，無壓力）</div></div>
+      <div class="ev"><div class="ev-t">19:00–19:30</div><div class="ev-d">前往羽田機場飯店 Check-in<small>推薦：東京羽田日航都市西館（T1直結）或維拉芳泉（T3內）</small></div></div>
+      <div class="ev"><div class="ev-t">19:30–21:00</div><div class="ev-d">輕裝探索羽田機場（T3 美食廣場、免稅店）或飯店早餐確認隔日時程</div></div>
+      <div class="ev"><div class="ev-t">21:00 前</div><div class="ev-d">回飯店早睡（隔日需 08:00 起床）</div></div>
+    </div>
+    <div class="aok">✓ 無縫體驗：下午出發→夜間到達→飯店休息→隔天早起轉機。家族不會太疲勞。</div>
+    <div class="ai">ℹ️ 羽田機場飯店預約：提前 1 個月確認，允許凌晨（19:30）Check-in 且隔日有早班機接駁服務（08:30 前出發）</div>
+  </div>
+</div>
+
+<!-- 11/22 Plan C -->
+<div class="day-card">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dbadge" style="background:var(--amber-bg);color:var(--amber);">11/22</div>
+    <div class="dinfo">
+      <div class="dtitle">羽田→富山上午班機 → 開始北陸行程</div>
+      <div class="dsub">08:30 飯店早餐 · NH315 09:50→富山 10:50 · 行李直掛 · 輕鬆無壓力</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="day-body">
+    <div class="tl">
+      <div class="ev"><div class="ev-t">08:00</div><div class="ev-d">飯店鬧鐘，準備出發（充足睡眠，精神好）</div></div>
+      <div class="ev"><div class="ev-t">08:15–08:45</div><div class="ev-d">飯店早餐（簡單即可）</div></div>
+      <div class="ev"><div class="ev-t">08:45</div><div class="ev-d">Check-out，行李托運標籤貼好（富山機場）</div></div>
+      <div class="ev"><div class="ev-t">09:00</div><div class="ev-d">前往 Terminal 2 國內線（步行 5 分 或 免費接駁）</div></div>
+      <div class="ev"><div class="ev-t">09:15–09:45</div><div class="ev-d">ANA 國內線 Check-in 掛行李，領登機證</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">ANA</span>NH315 羽田 09:50 → 富山 10:50（ANA A320neo，53分）</div>
+      <div class="ev"><div class="ev-t">10:50</div><div class="ev-d">抵達富山機場 ✅ 上午 10:50！有整個下午可活動</div></div>
+      <div class="ev"><div class="ev-t">11:00–11:45</div><div class="ev-d">富山機場領行李，搭巴士→富山站（¥650/人，30分）</div></div>
+      <div class="ev"><div class="ev-t">12:00–12:45</div><div class="ev-d">飯店 Check-in，行李放房間（終於可以輕裝開始行程！）</div></div>
+      <div class="ev"><div class="ev-t">下午</div><div class="ev-d">按原定行程出發 → 高岡、AEON MALL 等景點（根據體力調整）</div></div>
+    </div>
+    <div class="aok">✓ 方案 C 最大優勢：11/22 上午 10:50 抵富山，整個下午可充分遊玩。無誤機風險（隔天早上轉機 88%+ 準時率）。</div>
+    <div class="ai">ℹ️ 若下午偏累，可選擇只逛富山站周邊或飯店休息，不強行出遊。隔天精神飽滿才是最重要的。</div>
+  </div>
+</div>
+
+</div><!-- /sect-C -->
 
 <!-- 11/23 Plan B (shared) -->
 <div class="day-card">
@@ -1143,8 +1251,8 @@ function tog(hd){
 function setPlan(plan,btn){
   document.querySelectorAll('.plan-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('sect-A').classList.toggle('hidden', plan!=='A');
   document.getElementById('sect-B').classList.toggle('hidden', plan!=='B');
+  document.getElementById('sect-C').classList.toggle('hidden', plan!=='C');
 }
 
 const RATE=0.215,BASE_A=19632,BASE_K=9816;
