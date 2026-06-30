@@ -802,10 +802,12 @@ function calc(){
   const flA_t=BASE_A*a,flK_t=BASE_K*k;
   const locV=2500*pax, taxiV=5500, miscTr=1500*pax;
   const himiV=(240*2+550*2)*pax;
-  const h_toy3 = 13000*rooms*3;   // 富山3晚
-  const h_unaz = 28000*rooms;     // 延對寺莊
-  const h_toy1 = 13000*rooms;     // 富山1晚
-  const h_nrt  = 22000*rooms;     // 成田
+  const h_toy2a = 13000*rooms*2;  // 富山2晚 11/21-22
+  const h_toy2b = 13000*rooms*2;  // 富山2晚 11/23-24
+  const h_unaz = 28000*rooms;     // 延對寺莊 11/25
+  const h_toy1 = 13000*rooms;     // 富山1晚 11/26
+  const h_toy1b = 13000*rooms;    // 富山1晚 11/27
+  const h_hnd  = 22000*rooms;     // 羽田 11/28
   const mnV=1200*pax*13, m1V=3500*pax, m2V=3500*pax, m3V=3500*pax;
   const kbV=2880*a+1440*k, aqV=1600*a+800*k, distV=5000*pax;
   const shV=20000*a+5000*k, insV=2000*pax;
@@ -818,20 +820,19 @@ function calc(){
   const lugA=pax*2*1500;
   const fl_A=flA_t+flK_t;
   const tr_A_jpy=passA+passK+locV+taxiV+busV+nexV+miscTr;
-  const ho_A_jpy=h_toy3+h_unaz+h_toy1+h4_A+h_nrt;
+  const ho_A_jpy=h_toy2a+h_toy2b+h_unaz+h_toy1+h4_A+h_hnd;
   const fd_A_jpy=mnV+m1V+m2V+m3V;
   const tk_jpy=kbV+aqV+distV;
   const mi_A_jpy=shV+lugA+insV;
   const total_A=Math.round(fl_A*RATE+tr_A_jpy*RATE+ho_A_jpy*RATE+fd_A_jpy*RATE+tk_jpy*RATE+mi_A_jpy*RATE);
 
-  // ── PLAN C (ANA 國內線 / 無周遊券) ──────────────────
+  // ── 確定計畫 (ANA 國內線) ──────────────────
   const anaJpy=(10000*a+7500*k)*2;
-  const nrt2hnd=3200*pax, toyBusV=650*pax*2, hnd2nrtV=1400*pax;
-  const h0_C=15000*rooms;
-  const lugC=0;  // Plan B 直接托運行李，不需宅急便
+  const toyBusV=650*pax*2;
+  const lugC=2500*pax;  // 宅急便 1次 富山→羽田
   const fl_C_twd=Math.round((flA_t+flK_t)*RATE)+Math.round(anaJpy*RATE);
-  const tr_C_jpy=nrt2hnd+locV+taxiV+himiV+toyBusV+hnd2nrtV+miscTr;
-  const ho_C_jpy=h0_C+h_toy3+h_unaz+h_toy1+h_nrt;
+  const tr_C_jpy=locV+taxiV+himiV+toyBusV+miscTr;
+  const ho_C_jpy=h_toy2a+h_toy2b+h_unaz+h_toy1+h_toy1b+h_hnd;
   const mi_C_jpy=shV+lugC+insV;
   const total_C=Math.round(fl_C_twd+tr_C_jpy*RATE+ho_C_jpy*RATE+fd_A_jpy*RATE+tk_jpy*RATE+mi_C_jpy*RATE);
 
@@ -841,8 +842,6 @@ function calc(){
   document.getElementById('fk-t').textContent=nt(flK_t*RATE);
   document.getElementById('ana').textContent='¥'+anaJpy.toLocaleString();
   document.getElementById('ana-t').textContent=nt(anaJpy*RATE);
-  document.getElementById('nrt2hnd').textContent='¥'+nrt2hnd.toLocaleString();
-  document.getElementById('nrt2hnd-t').textContent=nt(nrt2hnd*RATE);
   document.getElementById('loc').textContent='¥'+locV.toLocaleString();
   document.getElementById('loc-t').textContent=nt(locV*RATE);
   document.getElementById('taxi').textContent='¥'+taxiV.toLocaleString();
@@ -851,20 +850,20 @@ function calc(){
   document.getElementById('himi-t').textContent=nt(himiV*RATE);
   document.getElementById('toybus').textContent='¥'+toyBusV.toLocaleString();
   document.getElementById('toybus-t').textContent=nt(toyBusV*RATE);
-  document.getElementById('hnd2nrt').textContent='¥'+hnd2nrtV.toLocaleString();
-  document.getElementById('hnd2nrt-t').textContent=nt(hnd2nrtV*RATE);
   document.getElementById('misc-tr').textContent='¥'+miscTr.toLocaleString();
   document.getElementById('misc-tr-t').textContent=nt(miscTr*RATE);
-  document.getElementById('h0').textContent='¥'+h0_C.toLocaleString();
-  document.getElementById('h0-t').textContent=nt(h0_C*RATE);
-  document.getElementById('h1').textContent='¥'+h_toy3.toLocaleString();
-  document.getElementById('h1-t').textContent=nt(h_toy3*RATE);
+  document.getElementById('h1a').textContent='¥'+h_toy2a.toLocaleString();
+  document.getElementById('h1a-t').textContent=nt(h_toy2a*RATE);
+  document.getElementById('h1b').textContent='¥'+h_toy2b.toLocaleString();
+  document.getElementById('h1b-t').textContent=nt(h_toy2b*RATE);
   document.getElementById('h2').textContent='¥'+h_unaz.toLocaleString();
   document.getElementById('h2-t').textContent=nt(h_unaz*RATE);
   document.getElementById('h3').textContent='¥'+h_toy1.toLocaleString();
   document.getElementById('h3-t').textContent=nt(h_toy1*RATE);
-  document.getElementById('h5').textContent='¥'+h_nrt.toLocaleString();
-  document.getElementById('h5-t').textContent=nt(h_nrt*RATE);
+  document.getElementById('h4').textContent='¥'+h_toy1b.toLocaleString();
+  document.getElementById('h4-t').textContent=nt(h_toy1b*RATE);
+  document.getElementById('h5').textContent='¥'+h_hnd.toLocaleString();
+  document.getElementById('h5-t').textContent=nt(h_hnd*RATE);
   document.getElementById('mn').textContent='¥'+mnV.toLocaleString();
   document.getElementById('mn-t').textContent=nt(mnV*RATE);
   document.getElementById('m1').textContent='¥'+m1V.toLocaleString();
