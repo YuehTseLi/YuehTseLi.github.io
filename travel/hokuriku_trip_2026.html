@@ -824,22 +824,22 @@ function calc(){
   const fd_A_jpy=mnV+m1V+m2V+m3V;
   const tk_jpy=kbV+aqV+distV;
   const mi_A_jpy=shV+lugA+insV;
-  const total_A=Math.round(fl_A*RATE+tr_A_jpy*RATE+ho_A_jpy*RATE+fd_A_jpy*RATE+tk_jpy*RATE+mi_A_jpy*RATE);
+  const total_A=Math.round(fl_A+tr_A_jpy*RATE+ho_A_jpy*RATE+fd_A_jpy*RATE+tk_jpy*RATE+mi_A_jpy*RATE);
 
   // ── 確定計畫 (ANA 國內線) ──────────────────
   const anaJpy=(10000*a+7500*k)*2;
   const toyBusV=650*pax*2;
   const lugC=2500*pax;  // 宅急便 1次 富山→羽田
-  const fl_C_twd=Math.round((flA_t+flK_t)*RATE)+Math.round(anaJpy*RATE);
+  const fl_C_twd=(flA_t+flK_t)+Math.round(anaJpy*RATE);
   const tr_C_jpy=locV+taxiV+himiV+toyBusV+miscTr;
   const ho_C_jpy=h_toy2a+h_toy2b+h_unaz+h_toy1+h_toy1b+h_hnd;
   const mi_C_jpy=shV+lugC+insV;
   const total_C=Math.round(fl_C_twd+tr_C_jpy*RATE+ho_C_jpy*RATE+fd_A_jpy*RATE+tk_jpy*RATE+mi_C_jpy*RATE);
 
-  // ── DOM (Plan B 明細) ─────────────────────────────────
+  // ── DOM (費用明細) ─────────────────────────────────
   const nt=n=>'NT$'+Math.round(n).toLocaleString();
-  document.getElementById('fa-t').textContent=nt(flA_t*RATE);
-  document.getElementById('fk-t').textContent=nt(flK_t*RATE);
+  document.getElementById('fa-t').textContent=nt(flA_t);
+  document.getElementById('fk-t').textContent=nt(flK_t);
   document.getElementById('ana').textContent='¥'+anaJpy.toLocaleString();
   document.getElementById('ana-t').textContent=nt(anaJpy*RATE);
   document.getElementById('loc').textContent='¥'+locV.toLocaleString();
