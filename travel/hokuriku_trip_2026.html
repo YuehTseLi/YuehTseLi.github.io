@@ -46,7 +46,6 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 .main{max-width:760px;margin:0 auto;padding:16px 24px 60px;}
 .tab-pane{display:none;}.tab-pane.active{display:block;}
 
-/* Flight banner */
 .flight-banner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:14px 18px;margin-bottom:12px;}
 .fl-label{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);margin-bottom:2px;}
 .fl-route{font-size:16px;font-weight:700;font-family:'DM Mono',monospace;}
@@ -54,42 +53,11 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 .fl-mid{text-align:center;font-size:18px;color:var(--hint);}
 .fl-right{text-align:right;}
 
-/* Pass banner */
 .pass-banner{background:var(--green-bg);border:1px solid var(--ok-bd);border-radius:var(--rl);padding:11px 16px;margin-bottom:12px;display:flex;align-items:flex-start;gap:12px;}
 .pass-body{flex:1;}
 .pass-title{font-size:13px;font-weight:700;color:var(--green);}
 .pass-sub{font-size:12px;color:var(--ok);margin-top:2px;}
-.pass-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;}
-.pt{font-size:11px;background:#fff;border:1px solid var(--ok-bd);border-radius:6px;padding:2px 8px;color:var(--green);font-weight:500;font-family:'DM Mono',monospace;}
-.pt.exp{background:var(--warn-bg);border-color:var(--warn-bd);color:var(--warn);}
 
-/* Luggage banner */
-.luggage-banner{background:#FBF3EC;border:1px solid #E8C99A;border-radius:var(--rl);padding:11px 16px;margin-bottom:12px;display:flex;align-items:flex-start;gap:12px;}
-.lug-body{flex:1;}
-.lug-title{font-size:13px;font-weight:700;color:#7A4A1E;}
-.lug-sub{font-size:12px;color:#5a3510;margin-top:2px;}
-.lug-steps{margin-top:7px;display:flex;flex-direction:column;gap:4px;}
-.lug-step{display:flex;gap:8px;font-size:12px;color:var(--muted);}
-.lug-num{font-family:'DM Mono',monospace;font-size:10px;color:#c49a60;font-weight:700;flex-shrink:0;padding-top:2px;}
-
-/* Alerts */
-.aw{background:var(--warn-bg);border:1px solid var(--warn-bd);border-radius:var(--r);padding:8px 12px;font-size:12px;color:var(--warn);margin-top:8px;display:flex;gap:7px;align-items:flex-start;}
-.ai{background:var(--info-bg);border:1px solid var(--info-bd);border-radius:var(--r);padding:8px 12px;font-size:12px;color:var(--info);margin-top:8px;display:flex;gap:7px;align-items:flex-start;}
-.aok{background:var(--ok-bg);border:1px solid var(--ok-bd);border-radius:var(--r);padding:8px 12px;font-size:12px;color:var(--ok);margin-top:8px;display:flex;gap:7px;align-items:flex-start;}
-.atop{background:var(--warn-bg);border:1px solid var(--warn-bd);border-radius:var(--r);padding:9px 13px;font-size:13px;color:var(--warn);display:flex;gap:8px;align-items:flex-start;margin-bottom:11px;}
-
-/* Plan selector */
-.plan-toggle{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--rl);overflow:hidden;border:1.5px solid var(--border);margin-bottom:12px;}
-.plan-btn{padding:12px 16px;border:none;background:var(--surface);cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;color:var(--muted);transition:.15s;text-align:left;line-height:1.45;border-right:1.5px solid var(--border);}
-.plan-btn:last-child{border-right:none;}
-.plan-btn.pb.active{background:var(--blue-bg);color:var(--blue);}
-.plan-btn.pc.active{background:var(--green-bg);color:var(--green);}
-.plan-btn:not(.active):hover{background:var(--bg);}
-.plan-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:3px;opacity:.75;}
-.plan-sect{display:block;}
-.plan-sect.hidden{display:none;}
-
-/* Day card */
 .day-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);margin-bottom:7px;overflow:hidden;}
 .day-hd{display:flex;align-items:center;gap:11px;padding:12px 15px;cursor:pointer;user-select:none;transition:background .1s;}
 .day-hd:hover{background:var(--bg);}
@@ -103,7 +71,6 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 .day-body{padding:0 15px 13px;display:none;}
 .day-body.open{display:block;}
 
-/* Timeline */
 .tl{border-left:2px solid var(--border);margin-left:5px;padding-left:14px;padding-top:3px;}
 .ev{margin-bottom:9px;}
 .ev-t{font-size:11px;font-weight:500;color:var(--hint);text-transform:uppercase;letter-spacing:.05em;margin-bottom:1px;}
@@ -112,24 +79,6 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 .tr-row{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);background:var(--bg);border-radius:var(--r);padding:6px 10px;margin:6px 0;}
 .tr-badge{font-size:10px;font-weight:700;padding:1px 6px;border-radius:6px;white-space:nowrap;}
 
-/* Hotel recommendation card */
-.hotel-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px;}
-.hotel-card{border-radius:var(--r);padding:12px 14px;border:1px solid var(--hotel-bd);background:var(--hotel-bg);}
-.hotel-hd{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;}
-.hotel-icon{font-size:18px;flex-shrink:0;}
-.hotel-name{font-size:13px;font-weight:700;color:var(--hotel);flex:1;}
-.hotel-rank{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:700;white-space:nowrap;flex-shrink:0;}
-.rank-top{background:#FEF3E2;color:#854F0B;border:1px solid #F5C675;}
-.rank-bal{background:var(--ok-bg);color:var(--ok);border:1px solid var(--ok-bd);}
-.rank-bud{background:var(--blue-bg);color:var(--blue);border:1px solid #B5D4F4;}
-.hotel-desc{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:7px;}
-.hotel-specs{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
-.spec{font-size:11px;color:var(--muted);display:flex;gap:5px;align-items:flex-start;}
-.spec-icon{flex-shrink:0;color:var(--hotel);}
-.hotel-note{font-size:11px;color:var(--info);background:var(--info-bg);border-radius:6px;padding:5px 9px;margin-top:6px;}
-.hotel-sec-title{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--hotel);margin-bottom:8px;}
-
-/* Insider cards */
 .ins-sec{margin-top:13px;}
 .ins-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--hint);margin-bottom:7px;}
 .ins-grid{display:grid;grid-template-columns:1fr;gap:7px;}
@@ -154,13 +103,29 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 .pprice.sake{color:var(--sake);}.pprice.cafe{color:var(--cafe);}.pprice.onsen{color:var(--onsen);}
 .pnote{font-size:11px;color:var(--hint);}
 
-/* Summary boxes */
 .sum-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:13px 15px;margin-top:9px;}
 .sum-title{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);margin-bottom:9px;}
 .sum-item{display:flex;gap:9px;font-size:13px;color:var(--muted);margin-bottom:6px;}
 .sum-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--hint);padding-top:2px;flex-shrink:0;}
 
-/* Budget */
+.aw{background:var(--warn-bg);border:1px solid var(--warn-bd);border-radius:var(--r);padding:8px 12px;font-size:12px;color:var(--warn);margin-top:8px;display:flex;gap:7px;align-items:flex-start;}
+.ai{background:var(--info-bg);border:1px solid var(--info-bd);border-radius:var(--r);padding:8px 12px;font-size:12px;color:var(--info);margin-top:8px;display:flex;gap:7px;align-items:flex-start;}
+.aok{background:var(--ok-bg);border:1px solid var(--ok-bd);border-radius:var(--r);padding:8px 12px;font-size:12px;color:var(--ok);margin-top:8px;display:flex;gap:7px;align-items:flex-start;}
+
+.hotel-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px;}
+.hotel-card{border-radius:var(--r);padding:12px 14px;border:1px solid var(--hotel-bd);background:var(--hotel-bg);}
+.hotel-hd{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;}
+.hotel-icon{font-size:18px;flex-shrink:0;}
+.hotel-name{font-size:13px;font-weight:700;color:var(--hotel);flex:1;}
+.hotel-rank{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:700;white-space:nowrap;flex-shrink:0;}
+.rank-top{background:#FEF3E2;color:#854F0B;border:1px solid #F5C675;}
+.rank-bal{background:var(--ok-bg);color:var(--ok);border:1px solid var(--ok-bd);}
+.hotel-desc{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:7px;}
+.hotel-specs{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.spec{font-size:11px;color:var(--muted);display:flex;gap:5px;align-items:flex-start;}
+.spec-icon{flex-shrink:0;color:var(--hotel);}
+.hotel-note{font-size:11px;color:var(--info);background:var(--info-bg);border-radius:6px;padding:5px 9px;margin-top:6px;}
+
 .ctrl-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
 .ctrl-lbl{font-size:13px;color:var(--muted);white-space:nowrap;}
 .ctrl-row input[type=range]{flex:1;min-width:80px;accent-color:var(--text);}
@@ -184,14 +149,7 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 .bf{height:100%;border-radius:3px;transition:width .35s;}
 .bnote-box{background:var(--warn-bg);border:1px solid var(--warn-bd);border-radius:var(--r);padding:10px 13px;font-size:12px;color:var(--warn);margin-top:9px;}
 
-@media(max-width:480px){
-  .page-header{padding:16px 15px 14px;}.tab-bar,.main{padding-left:15px;padding-right:15px;}
-  .flight-banner{grid-template-columns:1fr;gap:7px;}.fl-mid{display:none;}.fl-right{text-align:left;}
-  .mg{grid-template-columns:repeat(2,minmax(0,1fr));}.metric:last-child{grid-column:1/-1;}h1{font-size:17px;}
-  .hotel-specs{grid-template-columns:1fr;}
-}
-/* Map */
-#map-canvas{height:520px;border-radius:var(--r);border:1px solid var(--border);}
+#map-canvas{height:520px;border-radius:var(--r);border:1px solid var(--border);margin-top:12px;}
 .map-day-bar{display:flex;gap:5px;flex-wrap:wrap;padding-bottom:10px;}
 .mdb{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:500;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;white-space:nowrap;font-family:'Noto Sans TC',sans-serif;transition:.15s;}
 .mdb.on{background:var(--text);border-color:var(--text);color:#fff;}
@@ -199,7 +157,13 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 .map-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
 .ml-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);}
 .ml-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
-@media(max-width:480px){#map-canvas{height:320px;}}
+
+@media(max-width:480px){
+  .page-header{padding:16px 15px 14px;}.tab-bar,.main{padding-left:15px;padding-right:15px;}
+  .flight-banner{grid-template-columns:1fr;gap:7px;}.fl-mid{display:none;}.fl-right{text-align:left;}
+  .mg{grid-template-columns:repeat(2,minmax(0,1fr));}.metric:last-child{grid-column:1/-1;}h1{font-size:17px;}
+  .hotel-specs{grid-template-columns:1fr;}#map-canvas{height:320px;}
+}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -211,7 +175,7 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
     <div class="eyebrow">2026 年秋季親子旅遊</div>
     <h1>北陸 · 9天8夜 ｜ 六大一小 ｜ 台北 09:00→羽田 12:50 轉機 ANA 當日抵富山</h1>
     <div class="pill-row">
-      <span class="pill" style="background:var(--blue-bg);color:var(--blue);">長榮 BR BR036/BR035 直飛</span>
+      <span class="pill" style="background:var(--blue-bg);color:var(--blue);">長榮 BR036/BR035 直飛</span>
       <span class="pill" style="background:var(--amber-bg);color:var(--amber);">ANA 國內線 11/21+11/28</span>
       <span class="pill" style="background:var(--blue-bg);color:var(--blue);">回程 11/29 HND 07:55</span>
       <span class="pill" style="background:var(--amber-bg);color:var(--amber);">11月21–29日</span>
@@ -232,7 +196,6 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 <div class="main">
 <div id="itin" class="tab-pane active">
 
-<!-- Flight overview -->
 <div class="pass-banner" style="background:var(--blue-bg);border-color:var(--info-bd);margin-top:3px;">
   <div style="font-size:20px;padding-top:2px;">✈</div>
   <div class="pass-body">
@@ -240,9 +203,6 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
     <div class="pass-sub" style="color:var(--info);">去程：11/21 台北松山 09:00 → 羽田 12:50 → ANA 國內線 → 富山當日抵達 | 回程：11/28 傍晚富山→東京 | 11/29 07:55 HND → 台北</div>
   </div>
 </div>
-
-<!-- ═══ 確定版班機 ═══ -->
-<div class="plan-sect" id="sect-A">
 
 <div class="flight-banner" style="margin-top:3px;">
   <div>
@@ -260,74 +220,58 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
   </div>
 </div>
 
-
-<!-- 11/21 往東京 + ANA 國內線轉機 →富山 -->
+<!-- Day 1 -->
 <div class="day-card">
   <div class="day-hd" onclick="tog(this)">
     <div class="dbadge" style="background:var(--blue-bg);color:var(--blue);">11/21</div>
     <div class="dinfo">
-      <div class="dtitle">台北→羽田 當日轉機 → 富山（舒適 3-4 小時轉機）</div>
-      <div class="dsub">BR036 09:00→12:50 · 轉機 3-4h · ANA 國內線→富山當日抵 ✅ 時間充裕</div>
+      <div class="dtitle">台北→羽田 當日轉機 → 富山</div>
+      <div class="dsub">BR036 09:00→12:50 · 轉機 3-4h · ANA 國內線→富山當日抵</div>
     </div>
     <span class="chev">▾</span>
   </div>
   <div class="day-body">
     <div class="tl">
-      <div class="ev"><div class="ev-t">05:30</div><div class="ev-d">台北松山機場報到（05:30 起床最佳）</div></div>
+      <div class="ev"><div class="ev-t">05:30</div><div class="ev-d">台北松山機場報到</div></div>
       <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">長榮</span>BR036 台北松山 09:00 → 羽田 12:50（直飛約 3 小時）</div>
-      <div class="ev"><div class="ev-t">12:50–13:20</div><div class="ev-d">羽田 Terminal 3 出關、領行李（國際班機已廢除，可直領）</div></div>
-      <div class="ev"><div class="ev-t">13:20–14:00</div><div class="ev-d">🧳 行李直掛至富山機場（確認 BR↔ANA 聯運協議）→ 前往 T2 國內線</div></div>
-      <div class="ev"><div class="ev-t">14:00–15:50</div><div class="ev-d"><strong>轉機時間寬裕</strong>— 充足時間報到、過安檢、用餐休息</div></div>
-      <div class="ev"><div class="ev-t">14:00–16:00</div><div class="ev-d"><strong>【國內班機選項】</strong>（多班可選）<br>• <strong>ANA NH1622</strong> 羽田 15:45 → 富山 16:55<br>• <strong>ANA NH1624</strong> 羽田 16:00 → 富山 17:10 ⭐推薦（轉機時間最佳）<br>• <strong>ANA NH1626</strong> 羽田 16:30 → 富山 17:40<br>• <strong>JAL JL1074</strong> 羽田 15:35 → 富山 16:45</div></div>
-      <div class="ev"><div class="ev-t">16:55-17:40</div><div class="ev-d">抵達富山機場（行李已托運至此）</div></div>
-      <div class="ev"><div class="ev-t">17:00-18:00</div><div class="ev-d">富山機場搭巴士→富山站（¥650/人）→ 飯店 Check-in</div></div>
-      <div class="ev"><div class="ev-t">晚間</div><div class="ev-d">富山站周邊晚餐，21:00 前就寢（時差影響，補眠優先）</div></div>
+      <div class="ev"><div class="ev-t">12:50–15:50</div><div class="ev-d">羽田機場出關、轉機、行李直掛至富山</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">國內線</span>ANA NH1624 16:00 → 富山 17:10（推薦班次）</div>
+      <div class="ev"><div class="ev-t">17:30–18:30</div><div class="ev-d">富山機場搭巴士→富山站→飯店 Check-in</div></div>
+      <div class="ev"><div class="ev-t">晚間</div><div class="ev-d">飯店晚餐、時差調整、21:00 前就寢</div></div>
     </div>
-    <div class="aok">✅ 新方案優勢：09:00 出發正常時間 · 3-4 小時轉機充裕舒適 · 行李直掛無需擔心 · 當日傍晚 5-6 點到飯店，完全不緊張</div>
-    <div class="ai">ℹ️ 推薦選 <strong>ANA NH1624 16:00 出發版本</strong>，到富山 17:10，接駁巴士 17:20 有班車，18:00 左右到飯店最順。</div>
   </div>
 </div>
 
-<!-- 11/22 高岡行程 -->
+<!-- Day 2 -->
 <div class="day-card">
   <div class="day-hd" onclick="tog(this)">
     <div class="dbadge" style="background:var(--amber-bg);color:var(--amber);">11/22</div>
     <div class="dinfo">
-      <div class="dtitle">懶散早餐 · 高岡哆啦A夢 · AEON MALL · 富山城</div>
-      <div class="dsub">前一晚傍晚抵達富山，11:00 出發 → 高岡 → AEON → 富山城 → 晚餐</div>
+      <div class="dtitle">富山市家族動物園 · 富山城紅葉</div>
+      <div class="dsub">國寶雷鳥 · 楓景城堡 · 百貨購物</div>
     </div>
     <span class="chev">▾</span>
   </div>
   <div class="day-body">
     <div class="tl">
-      <div class="ev"><div class="ev-t">08:00–09:30</div><div class="ev-d">飯店早餐（稍微放鬆，補眠）</div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--green-bg);color:var(--green);">新幹線</span>11:00 富山 → Tsurugi → 新高岡（周遊券，6分）</div>
-      <div class="ev"><div class="ev-t">11:15 – 12:00</div><div class="ev-d"><strong>哆啦A夢散步道</strong>銅像合照 → 步行10分 → <strong>高岡大佛</strong></div></div>
-      <div class="ev"><div class="ev-t">12:00 – 13:15</div><div class="ev-d"><strong>高岡古城公園</strong>紅葉 + 免費動物園（企鵝 · 餵羊）+ 午餐</div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>13:30 高岡 → 城端線 → 新高岡（¥240）</div>
-      <div class="ev"><div class="ev-t">13:45 – 15:30</div><div class="ev-d"><strong>AEON MALL 高岡</strong>— 新高岡南口步行3分<small>ABC-MART · UNIQLO · 玩具區 · 咖啡休息</small></div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--green-bg);color:var(--green);">新幹線</span>15:45 新高岡 → Tsurugi → 富山（周遊券，6分）</div>
-      <div class="ev"><div class="ev-t">16:00 – 17:15</div><div class="ev-d"><strong>富山城址公園</strong>— 日落城堡 × 護城河 × 紅葉同框</div></div>
-      <div class="ev"><div class="ev-t">晚間</div><div class="ev-d">富山飯店周邊晚餐</div></div>
+      <div class="ev"><div class="ev-t">08:00–09:30</div><div class="ev-d">飯店早餐、補眠休整</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">公車</span>09:45 富山站 → 16系統 → 10:00 家族公園前</div>
+      <div class="ev"><div class="ev-t">10:15–12:30</div><div class="ev-d"><strong>富山市家族動物園</strong>— 國寶雷鳥、小貓熊、小企鵝（小學生以下免費）</div></div>
+      <div class="ev"><div class="ev-t">12:30–13:30</div><div class="ev-d"><strong>園區食堂</strong> 簡便午餐</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">公車</span>13:45 家族公園前 → 16系統 → 14:20 富山站</div>
+      <div class="ev"><div class="ev-t">14:30–15:45</div><div class="ev-d"><strong>富山百貨/購物街</strong> — 大丸百貨、藥妝採買</div></div>
+      <div class="ev"><div class="ev-t">16:00–17:30</div><div class="ev-d"><strong>富山城址公園</strong>— 楓景城堡、護城河紅葉同框</div></div>
+      <div class="ev"><div class="ev-t">晚間</div><div class="ev-d">🍜 富山黑拉麵（推薦：一楽拉麵、呑食亭）或飯店附近晚餐</div></div>
     </div>
-    <div class="ai">ℹ️ 因 11/21 傍晚才抵達，11:00 出發較為悠閒，讓大家充分休息。</div>
     <div class="ins-sec">
-      <div class="ins-label">🍶 ☕ 高岡推薦</div>
+      <div class="ins-label">☕ 富山推薦咖啡</div>
       <div class="ins-grid">
-        <div class="icard sake">
-          <div class="icard-hd"><span style="font-size:15px;">🍶</span><span class="icard-name sake">三郎丸蒸留所（若鶴酒造）</span><span class="itag sake">需預約 ¥5,000/人</span></div>
-          <div class="idesc">北陸最古威士忌蒸留所（1952年），世界首個鑄造蒸餾器「ZEMON」。完全預約制，建議出發前1個月預約。</div>
-          <div class="plist">
-            <div class="prow"><span class="pname">蒸留所見學（約60分）</span><span class="pprice sake">¥5,000/人</span></div>
-            <div class="prow"><span class="pname">試飲お猪口ガチャ</span><span class="pprice sake">¥500</span></div>
-          </div>
-        </div>
         <div class="icard cafe">
-          <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name cafe">MEI-SUN COFFEE</span><span class="itag cafe">高岡市郊</span></div>
-          <div class="idesc">田園中的夫妻精品咖啡店，每日3~4種精品豆可試飲後選購。</div>
+          <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name cafe">STARBUCKS 富山環水公園</span><span class="itag cafe">全球最美星巴克</span></div>
+          <div class="idesc">富山港灣綠地前的玻璃屋星巴克，運河與公園美景盡收眼底。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">手沖精品咖啡</span><span class="pprice cafe">¥600~</span></div>
-            <div class="pnote">📍 高岡市二上町722-1　09:00–17:00　水木休</div>
+            <div class="prow"><span class="pname">咖啡 + 甜點</span><span class="pprice cafe">¥600~</span></div>
+            <div class="pnote">📍 富山市湾町3-20　08:00–20:00</div>
           </div>
         </div>
       </div>
@@ -335,134 +279,128 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
   </div>
 </div>
 
-<!-- 11/23 shared in Plan A -->
+<!-- Day 3 -->
 <div class="day-card">
   <div class="day-hd" onclick="tog(this)">
     <div class="dbadge" style="background:var(--teal-bg);color:var(--teal);">11/23</div>
     <div class="dinfo">
-      <div class="dtitle">新湊運河 · 市場吃螃蟹 · 家族動物園</div>
-      <div class="dsub">日本威尼斯 · 海王丸 · 富山市家族公園</div>
+      <div class="dtitle">高岡大佛 · 雨晴海岸 · 冰見番屋街</div>
+      <div class="dsub">立山連峰三千米奇景 · 松葉蟹 · 海景足湯</div>
     </div>
     <span class="chev">▾</span>
   </div>
   <div class="day-body">
     <div class="tl">
-      <div class="ev"><div class="ev-t">09:30 – 11:30</div><div class="ev-d"><strong>新湊內川 · 海王丸公園</strong>— 富山站搭公車或萬葉線（¥430/人）<small>「日本威尼斯」運河 · 帆船海王丸 · 立山連峰冠雪絕景</small></div></div>
-      <div class="ev"><div class="ev-t">11:45 – 13:45</div><div class="ev-d"><strong>新湊魚市場（きっときと市場）</strong>— 水槽挑紅楚蟹現蒸現吃 + 白蝦天婦羅 + 海鮮丼<small>💡 6 人共桌，約 ¥20,000–25,000 可大吃特吃</small></div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">計程車</span>魚市場 → 家族公園（約15分，¥3,500）</div>
-      <div class="ev"><div class="ev-t">14:15 – 16:30</div><div class="ev-d"><strong>富山市家族公園（自然動物園）</strong><small>日本國寶雷鳥 · 小貓熊 · 小學生完全免費</small></div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">公車</span>16:37 家族公園前 → 16系統（¥460）→ 17:05 富山站</div>
+      <div class="ev"><div class="ev-t">08:00–09:00</div><div class="ev-d">飯店早餐</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>09:30 富山 → JR 高岡（¥790）</div>
+      <div class="ev"><div class="ev-t">10:00–11:15</div><div class="ev-d"><strong>高岡大佛</strong> — 日本三大佛之一，仁王門與大佛合照</div></div>
+      <div class="ev"><div class="ev-t">11:30–12:30</div><div class="ev-d"><strong>高岡古城公園</strong> — 楓景 + 免費動物園（企鵝、綿羊）</div></div>
+      <div class="ev"><div class="ev-t">12:30–13:00</div><div class="ev-d">公園附近簡便午餐</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>13:15 高岡 → 冰見線 → 13:55 雨晴站（靠右坐看海景）</div>
+      <div class="ev"><div class="ev-t">14:00–15:15</div><div class="ev-d"><strong>雨晴海岸</strong>— 大海 × 女岩 × 3,000m 白色冠雪立山連峰（日本絕景 50 選）</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>15:30 雨晴 → 冰見線 → 15:45 冰見站</div>
+      <div class="ev"><div class="ev-t">16:00–18:00</div><div class="ev-d"><strong>冰見番屋街</strong>— 肥美松葉蟹（11月21日解禁） + 寒鰤魚天婦羅 + 免費海景足湯</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>18:15 冰見 → 高岡（¥240）→ 富山（¥790）</div>
+      <div class="ev"><div class="ev-t">19:30+</div><div class="ev-d">回到富山，飯店晚餐</div></div>
     </div>
-    <div class="aw">⚠ 新湊至家族公園需計程車，建議在市場出口排班區直接上車。</div>
+    <div class="ins-sec">
+      <div class="ins-label">🍶 ☕ 高岡精選</div>
+      <div class="ins-grid">
+        <div class="icard sake">
+          <div class="icard-hd"><span style="font-size:15px;">🍶</span><span class="icard-name sake">三郎丸蒸留所（若鶴酒造）</span><span class="itag sake">需預約</span></div>
+          <div class="idesc">北陸最古威士忌蒸留所（1952年），世界首個鑄造蒸餾器。預約制，建議提前1個月聯絡。</div>
+          <div class="plist">
+            <div class="prow"><span class="pname">蒸留所見學（約60分）</span><span class="pprice sake">¥5,000/人</span></div>
+          </div>
+        </div>
+        <div class="icard cafe">
+          <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name cafe">MEI-SUN COFFEE</span><span class="itag cafe">高岡市郊</span></div>
+          <div class="idesc">田園精品咖啡店，每日3~4種精品豆可試飲後選購。</div>
+          <div class="plist">
+            <div class="prow"><span class="pname">手沖精品咖啡</span><span class="pprice cafe">¥600~</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- 11/24 shared in Plan A -->
+<!-- Day 4 -->
 <div class="day-card">
   <div class="day-hd" onclick="tog(this)">
     <div class="dbadge" style="background:var(--green-bg);color:var(--green);">11/24</div>
     <div class="dinfo">
-      <div class="dtitle">雨晴海岸絕景 · 冰見番屋街松葉蟹</div>
-      <div class="dsub">立山連峰三千米 · 剛解禁松葉蟹 · 海景足湯</div>
+      <div class="dtitle">黑部峽谷小火車 · 入住延對寺莊溫泉</div>
+      <div class="dsub">峽谷紅葉 · 懸崖露天風呂 · 海鮮會席料理</div>
     </div>
     <span class="chev">▾</span>
   </div>
   <div class="day-body">
     <div class="tl">
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>09:30 富山 → JR 高岡（¥790）→ 冰見線（¥240）→ 10:54 雨晴站<small>高岡→雨晴 靠右坐可看海景</small></div>
-      <div class="ev"><div class="ev-t">10:55 – 12:10</div><div class="ev-d"><strong>雨晴海岸</strong>— 大海 × 女岩 × 3,000m 白色冠雪立山連峰</div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>12:15 雨晴 → 冰見線 → 12:26 冰見站（¥240）</div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">計程車</span>冰見站 → 番屋街（約5分，¥1,000）</div>
-      <div class="ev"><div class="ev-t">12:30 – 15:00</div><div class="ev-d"><strong>冰見番屋街</strong>— 肥美松葉蟹 + 寒鰤魚 + <strong>免費海景足湯</strong></div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>15:15 冰見 → 高岡（¥240）→ 富山（¥790），約 16:20 抵富山</div>
+      <div class="ev"><div class="ev-t">08:00–09:00</div><div class="ev-d">飯店早餐</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>08:42 富山 → 富山地方鐵道 → 10:20 宇奈月溫泉站（約1小時40分）</div>
+      <div class="ev"><div class="ev-t">10:30–12:00</div><div class="ev-d">延對寺莊 Check-in 辦理入住、寄存大行李</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--purple-bg);color:var(--purple);">小火車</span>12:30 宇奈月 → 有窓逍遙客車 → 13:20 貓又折返（選右邊座位看峽谷）</div>
+      <div class="ev"><div class="ev-t">13:30–16:30</div><div class="ev-d">溫泉街散步、山彥展望台拍鐵橋紅葉、泡站台免費足湯</div></div>
+      <div class="ev"><div class="ev-t">16:30+</div><div class="ev-d">入住延對寺莊，換浴衣泡峽谷懸崖露天溫泉，享精緻海鮮會席料理</div></div>
     </div>
-    <div class="aw">⏰ JR 冰見線約一小時一班，務必事先查好時刻表！</div>
-  </div>
-</div>
-
-<!-- 11/25 shared in Plan A -->
-<div class="day-card">
-  <div class="day-hd" onclick="tog(this)">
-    <div class="dbadge" style="background:var(--purple-bg);color:var(--purple);">11/25</div>
-    <div class="dinfo">
-      <div class="dtitle">黑部峽谷小火車 · 入住延對寺莊</div>
-      <div class="dsub">峽谷紅葉 · 溫泉街 · 懸崖露天風呂 · 大行李留富山飯店</div>
-      <span class="pchip" style="background:var(--coral-bg);color:var(--coral);">🎫 散票</span>
-    </div>
-    <span class="chev">▾</span>
-  </div>
-  <div class="day-body">
-    <div class="tl">
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>10:11 富山 → 北越急行特急（¥1,520/人）→ 10:23 黑部宇奈月溫泉站</div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">自費</span>10:56 新黑部 → 富山地方鐵路（¥640/人）→ 11:28 宇奈月溫泉站</div>
-      <div class="ev"><div class="ev-t">11:30</div><div class="ev-d"><strong>延對寺莊</strong>寄存一晚換洗行李辦理入住<small>🧳 大行李已留在富山飯店寄存，今晚只帶輕便小包</small></div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--purple-bg);color:var(--purple);">小火車</span>12:30 宇奈月 → 有窓逍遙客車 → 13:20 貓又折返 → 14:40 宇奈月（自費）</div>
-      <div class="ev"><div class="ev-t">14:40 – 16:30</div><div class="ev-d">溫泉街散步 · 山彥展望台拍鐵橋紅葉 · 泡站台免費足湯</div></div>
-      <div class="ev"><div class="ev-t">16:30 後</div><div class="ev-d">入住<strong>延對寺莊</strong>，換浴衣泡峽谷懸崖露天溫泉，享精緻海鮮會席料理</div></div>
-    </div>
-    <div class="aw">⚠ 小火車<strong>無廁所</strong>，11月極冷，備妥防寒衣物。🧳 大行李留在富山飯店寄存，輕裝上車更舒適。</div>
     <div class="ins-sec">
       <div class="ins-label">♨ 宇奈月溫泉精選</div>
       <div class="ins-grid">
         <div class="icard onsen">
           <div class="icard-hd"><span style="font-size:15px;">♨</span><span class="icard-name onsen">延對寺莊 峽谷懸崖露天風呂</span><span class="itag onsen">住客免費</span></div>
-          <div class="idesc">宇奈月溫泉弱鹼性單純泉，「美肌之湯」。延對寺莊峽谷露天風呂為全行程最高級泡湯體驗。</div>
-          <div class="plist">
-            <div class="prow"><span class="pname">大浴場（住客）</span><span class="pprice onsen">免費</span></div>
-            <div class="prow"><span class="pname">包場露天風呂（預約）</span><span class="pprice onsen">¥2,000~</span></div>
-          </div>
+          <div class="idesc">宇奈月溫泉弱鹼性單純泉，「美肌之湯」。全行程最高級泡湯體驗。</div>
         </div>
         <div class="icard cafe">
           <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name cafe">カフェ・モーツァルト</span><span class="itag cafe">宇奈月駅徒步1分</span></div>
-          <div class="idesc">溫泉街地標咖啡館，黑部名水手沖咖啡為招牌。傳說中坐了會升官的「出世椅」！</div>
+          <div class="idesc">黑部名水手沖咖啡、傳說升官椅。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">黑部名水手沖咖啡</span><span class="pprice cafe">¥600~</span></div>
-            <div class="pnote">📍 黑部市宇奈月温泉294-1　08:30–18:00</div>
+            <div class="prow"><span class="pname">手沖咖啡</span><span class="pprice cafe">¥600~</span></div>
           </div>
         </div>
       </div>
     </div>
+    <div class="aw">⚠ 小火車無廁所，11月極冷，備妥防寒衣物。</div>
   </div>
 </div>
 
-<!-- 11/26 shared in Plan A -->
+<!-- Day 5 -->
 <div class="day-card">
   <div class="day-hd" onclick="tog(this)">
-    <div class="dbadge" style="background:var(--coral-bg);color:var(--coral);">11/26</div>
+    <div class="dbadge" style="background:var(--coral-bg);color:var(--coral);">11/25</div>
     <div class="dinfo">
-      <div class="dtitle">魚津水族館 · 富山購物 · 岩瀨夕陽海鮮</div>
-      <div class="dsub">深海大水槽 · MAROOT · 磯料理松月</div>
-      <span class="pchip" style="background:var(--coral-bg);color:var(--coral);">🎫 散票</span>
+      <div class="dtitle">魚津水族館 · 岩瀨老街 · 磯料理松月</div>
+      <div class="dsub">深海大水槽 · 古鎮漫步 · 紅楚蟹割烹</div>
     </div>
     <span class="chev">▾</span>
   </div>
   <div class="day-body">
     <div class="tl">
-      <div class="ev"><div class="ev-t">10:00</div><div class="ev-d">延對寺莊退房，搭富山地方鐵路 → 西魚津站 10:40</div></div>
-      <div class="ev"><div class="ev-t">11:00 – 12:30</div><div class="ev-d"><strong>魚津水族館</strong>— 富山灣深海魚大水槽 · 企鵝</div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>12:45 魚津 → JR 在來線（¥430/人）→ 13:15 富山站</div>
-      <div class="ev"><div class="ev-t">13:15 – 13:45</div><div class="ev-d"><strong>富山飯店 Check-in，領回寄存大行李</strong><small>🧳 大行李放進房間後輕裝出發購物</small></div></div>
-      <div class="ev"><div class="ev-t">13:45 – 15:15</div><div class="ev-d">步行至 <strong>MAROOT · Marier 百貨</strong>午餐 + 購物<small>💡 或步行至<strong>環水公園</strong>看全球最美星巴克！</small></div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">路面電車</span>15:30 富山站 → 輕軌（¥210）→ 15:55 岩瀬濱站</div>
-      <div class="ev"><div class="ev-t">16:00 – 17:30</div><div class="ev-d"><strong>岩瀨老街</strong>漫步，16:30 登展望台看富山灣夕陽與雪山</div></div>
-      <div class="ev"><div class="ev-t">17:30</div><div class="ev-d">🦀 <strong>磯料理 松月</strong>（完全預約制）— 紅楚蟹 · 白蝦天婦羅 · 海鮮割烹<small>6人合桌約 ¥20,000–28,000 · 預約：byFood / AutoReserve</small></div></div>
+      <div class="ev"><div class="ev-t">09:00</div><div class="ev-d">延對寺莊早餐、退房</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>10:00 宇奈月 → 富山地方鐵道 → 新魚津站 10:40</div>
+      <div class="ev"><div class="ev-t">11:00–12:30</div><div class="ev-d"><strong>魚津水族館</strong>— 富山灣深海魚大水槽（深海生物世界）</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>12:45 新魚津 → JR 在來線（¥430）→ 13:15 富山站</div>
+      <div class="ev"><div class="ev-t">13:30–14:00</div><div class="ev-d">飯店 Check-in，領回大行李、午休</div></div>
+      <div class="ev"><div class="ev-t">14:15–16:00</div><div class="ev-d"><strong>MAROOT 購物/午茶</strong> 或 <strong>環水公園全球最美星巴克</strong></div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">路面電車</span>16:00 富山站 → 輕軌（¥210）→ 16:25 岩瀨濱站</div>
+      <div class="ev"><div class="ev-t">16:30–17:45</div><div class="ev-d"><strong>岩瀨老街</strong>漫步、17:00 登展望台看富山灣夕陽與雪山</div></div>
+      <div class="ev"><div class="ev-t">17:45</div><div class="ev-d">🦀 <strong>磯料理 松月</strong>（完全預約制）— 紅楚蟹、白蝦天婦羅、海鮮割烹<small>6人約 ¥20,000–28,000 · 預約：byFood / AutoReserve</small></div></div>
     </div>
     <div class="ins-sec">
-      <div class="ins-label">🍶 岩瀬老街精選</div>
+      <div class="ins-label">🍶 ☕ 岩瀨老街精選</div>
       <div class="ins-grid">
         <div class="icard sake">
-          <div class="icard-hd"><span style="font-size:15px;">🍶</span><span class="icard-name sake">桝田酒造（満寿泉）</span><span class="itag sake">岩瀬老街</span></div>
+          <div class="icard-hd"><span style="font-size:15px;">🍶</span><span class="icard-name sake">桝田酒造（満寿泉）</span><span class="itag sake">岩瀨老街</span></div>
           <div class="idesc">富山代表地酒，IWC 金牌，首創法國橡木桶熟成日本酒。</div>
           <div class="plist">
             <div class="prow"><span class="pname">純米大吟釀（720ml）</span><span class="pprice sake">¥4,400~</span></div>
           </div>
         </div>
         <div class="icard cafe">
-          <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name cafe">MUROYA</span><span class="itag cafe">岩瀬老街</span></div>
-          <div class="idesc">酒粕マカロン + 満寿泉 4種飲み比べ + 白蝦軟冰淇淋。</div>
+          <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name cafe">MUROYA</span><span class="itag cafe">岩瀨老街</span></div>
+          <div class="idesc">酒粕マカロン + 満寿泉試飲 + 白蝦軟冰淇淋。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">酒粕マカロン + ドリンク セット</span><span class="pprice cafe">¥800</span></div>
-            <div class="pnote">📍 富山市東岩瀬村1番地　11:00–15:00　火水休</div>
+            <div class="prow"><span class="pname">マカロン + ドリンク セット</span><span class="pprice cafe">¥800</span></div>
           </div>
         </div>
       </div>
@@ -470,31 +408,71 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
   </div>
 </div>
 
-<!-- 11/27 休整日 - 留在富山 -->
+<!-- Day 6 -->
 <div class="day-card">
   <div class="day-hd" onclick="tog(this)">
-    <div class="dbadge" style="background:var(--pink-bg);color:var(--pink);">11/27</div>
+    <div class="dbadge" style="background:var(--purple-bg);color:var(--purple);">11/26</div>
     <div class="dinfo">
-      <div class="dtitle">富山休整日 · 最後採買 · 傍晚班機</div>
-      <div class="dsub">整天在富山 · 站周邊採購 · 傍晚班機→羽田</div>
+      <div class="dtitle">AEON 購物 · 海王丸公園 · 新湊觀光船</div>
+      <div class="dsub">運河威尼斯 · 帆船遊覽 · 蒸紅雪蟹</div>
     </div>
     <span class="chev">▾</span>
   </div>
   <div class="day-body">
     <div class="tl">
-      <div class="ev"><div class="ev-t">08:00–11:00</div><div class="ev-d">飯店早餐、休整</div></div>
-      <div class="ev"><div class="ev-t">11:00–13:00</div><div class="ev-d">最後採買：地酒、藥妝、伴手禮（富山站前 GRANDE CLASSE 百貨）</div></div>
-      <div class="ev"><div class="ev-t">13:00–16:00</div><div class="ev-d">悠閒時光：回飯店寄存行李、午餐、咖啡館休息</div></div>
-      <div class="ev"><div class="ev-t">16:00–17:00</div><div class="ev-d">Check-out，前往富山機場（計程車或 Liner 巴士，約 30 分）</div></div>
-      <div class="ev"><div class="ev-t">17:00–18:00</div><div class="ev-d"><strong>【傍晚班機選項】</strong>（富山→羽田）<br>• <strong>ANA NH1626</strong> 富山 17:30 → 羽田 18:45 ⭐推薦<br>• <strong>ANA NH1628</strong> 富山 18:00 → 羽田 19:15<br>• <strong>JAL JL334</strong> 富山 18:00 → 羽田 19:15</div></div>
-      <div class="ev"><div class="ev-t">18:45–19:15</div><div class="ev-d">抵達東京羽田，搭機場接駁至飯店</div></div>
+      <div class="ev"><div class="ev-t">08:00–09:00</div><div class="ev-d">飯店早餐</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>09:20 富山 → JR 城端線 → 新高岡站（¥550）</div>
+      <div class="ev"><div class="ev-t">09:30–12:30</div><div class="ev-d"><strong>AEON MALL 高岡</strong> — ABC-MART、UNIQLO、玩具區、咖啡休息</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>12:50 新高岡 → 城端線 → 高岡站（¥240）</div>
+      <div class="ev"><div class="ev-t">13:00–13:30</div><div class="ev-d">高岡站附近簡便午餐</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--green-bg);color:var(--green);">路面電車</span>14:00 高岡駅 → 萬葉線 → 海王丸站（約40分）</div>
+      <div class="ev"><div class="ev-t">14:30–16:00</div><div class="ev-d"><strong>海王丸公園</strong> — 帆船海王丸、立山連峰冠雪絕景、日本威尼斯內川</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--teal-bg);color:var(--teal);">觀光船</span>14:30 新湊港出發 → 50分內川觀光（坐右邊靠窗）</div>
+      <div class="ev"><div class="ev-t">15:30–17:00</div><div class="ev-d">🦀 <strong>新湊きっときと市場</strong>— 水槽挑紅楚蟹現蒸現吃 + 白蝦天婦羅 + 海鮮丼 + 自製珍珠堡<small>6人約 ¥20,000–25,000</small></div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--green-bg);color:var(--green);">路面電車</span>17:20 海王丸站 → 萬葉線 → 高岡站（約40分）</div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>18:00 高岡 → 富山（¥790）</div>
+      <div class="ev"><div class="ev-t">19:00+</div><div class="ev-d">回到富山，飯店晚餐或附近晚餐</div></div>
     </div>
-    <div class="aok">✅ 11/27 傍晚出發的優勢：完整一天在富山逛街、休息 · 回程寬裕不緊張 · 晚上到羽田，翌日早班機充足時間</div>
-    <div class="ai">ℹ️ 推薦選 <strong>ANA NH1626 17:30 版本</strong>（抵達 18:45），飯店接駁約 19:00–19:30 抵達。留充足時間明早準備早班機。</div>
   </div>
 </div>
 
-<!-- 11/28 羽田過夜 -->
+<!-- Day 7 -->
+<div class="day-card">
+  <div class="day-hd" onclick="tog(this)">
+    <div class="dbadge" style="background:var(--pink-bg);color:var(--pink);">11/27</div>
+    <div class="dinfo">
+      <div class="dtitle">八尾老街 · 富山購物 · 傍晚班機</div>
+      <div class="dsub">傳統合掌寺廟 · 地酒採買 · 班機→羽田</div>
+    </div>
+    <span class="chev">▾</span>
+  </div>
+  <div class="day-body">
+    <div class="tl">
+      <div class="ev"><div class="ev-t">08:00–09:00</div><div class="ev-d">飯店早餐</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>09:20 富山 → JR 高山本線 → 越中八尾站（約25分）</div>
+      <div class="ev"><div class="ev-t">09:50–13:00</div><div class="ev-d"><strong>越中八尾老街</strong> — 傳統合掌寺廟、地方食堂、咖啡館漫步</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>13:30 越中八尾 → 富山（¥950）</div>
+      <div class="ev"><div class="ev-t">14:30–16:30</div><div class="ev-d"><strong>富山站前最後採買</strong> — 地酒、藥妝、伴手禮（GRANDE CLASSE 百貨）</div></div>
+      <div class="ev"><div class="ev-t">16:30–17:00</div><div class="ev-d">Check-out，前往富山機場（計程車或 Liner 巴士，約 30 分）</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">國內線</span>ANA NH1626 富山 17:30 → 羽田 18:45（推薦班次）</div>
+      <div class="ev"><div class="ev-t">19:00–19:30</div><div class="ev-d">抵達羽田、機場接駁至飯店 Check-in</div></div>
+    </div>
+    <div class="ins-sec">
+      <div class="ins-label">☕ 八尾推薦咖啡</div>
+      <div class="ins-grid">
+        <div class="icard cafe">
+          <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name cafe">八尾町咖啡館</span><span class="itag cafe">老街必訪</span></div>
+          <div class="idesc">古民家咖啡館，享受合掌寺廟山水與咖啡。</div>
+          <div class="plist">
+            <div class="prow"><span class="pname">自焙咖啡 + 地方和菓子</span><span class="pprice cafe">¥800~</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Day 8 -->
 <div class="day-card">
   <div class="day-hd" onclick="tog(this)">
     <div class="dbadge" style="background:var(--green-bg);color:var(--green);">11/28</div>
@@ -508,16 +486,14 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
     <div class="tl">
       <div class="ev"><div class="ev-t">18:45 抵羽田</div><div class="ev-d">（由 11/27 傍晚班機 ANA NH1626 飛來）</div></div>
       <div class="ev"><div class="ev-t">19:00–19:30</div><div class="ev-d">搭機場接駁或計程車至羽田機場附近飯店</div></div>
-      <div class="ev"><div class="ev-t">19:30–20:00</div><div class="ev-d">飯店 Check-in <small>建議選機場旁飯店（ANA Hotel, Radisson Narita 等），方便隔日 07:55 班機</small></div></div>
+      <div class="ev"><div class="ev-t">19:30–20:00</div><div class="ev-d">飯店 Check-in（建議 ANA Holiday Inn Tokyo Haneda）</div></div>
       <div class="ev"><div class="ev-t">20:00–21:00</div><div class="ev-d">飯店晚餐，確認行李、護照、機票</div></div>
-      <div class="ev"><div class="ev-t">21:00–22:00</div><div class="ev-d"><strong>早睡準備</strong>— 時差調整優先，明早需 05:30 起床搭 07:55 班機</div></div>
+      <div class="ev"><div class="ev-t">21:00+</div><div class="ev-d">早睡準備 — 時差調整優先，明早需 05:30 起床搭 07:55 班機</div></div>
     </div>
-    <div class="aok">✅ 11/28 過夜優勢：抵達羽田無需趕往成田、完全不緊張 · 充足睡眠 · 明早輕鬆搭國際班機</div>
-    <div class="ai">ℹ️ 推薦飯店：<strong>ANA Holiday Inn Tokyo Haneda</strong> 或 <strong>Radisson Blu Narita Tokyo</strong>（若選成田方向）。機場接駁 15-30 分內抵達。</div>
   </div>
 </div>
 
-<!-- 11/29 回台灣 -->
+<!-- Day 9 -->
 <div class="day-card">
   <div class="day-hd" onclick="tog(this)">
     <div class="dbadge" style="background:var(--blue-bg);color:var(--blue);">11/29</div>
@@ -531,139 +507,26 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
     <div class="tl">
       <div class="ev"><div class="ev-t">05:30</div><div class="ev-d">飯店起床，快速早餐、確認行李</div></div>
       <div class="ev"><div class="ev-t">06:00–06:30</div><div class="ev-d">搭乘飯店接駁車至羽田機場第二航廈</div></div>
-      <div class="ev"><div class="ev-t">06:30–07:00</div><div class="ev-d">長榮 <strong>BR035</strong> Check-in、行李掛號、出關（距起飛 1h 55m，充足）</div></div>
-      <div class="ev"><div class="ev-t">07:55</div><div class="ev-d">長榮航空 <strong>BR035</strong> 起飛返台（HND→TPE，經濟艙，約 3 小時）</div></div>
-      <div class="ev"><div class="ev-t">10:55</div><div class="ev-d">抵達桃園國際機場第二航廈<br><small>時間說明：日本時間 07:55 起飛 = 台灣時間 06:55，飛 3 小時後台灣時間 09:55 ≈ 10:55（時差調整）</small></div></div>
+      <div class="ev"><div class="ev-t">06:30–07:00</div><div class="ev-d">長榮 BR035 Check-in、行李掛號、出關（距起飛 1h 55m，充足）</div></div>
+      <div class="ev"><div class="ev-t">07:55</div><div class="ev-d">長榮航空 BR035 起飛返台（HND→TPE，約 3 小時）</div></div>
+      <div class="ev"><div class="ev-t">10:55</div><div class="ev-d">抵達桃園國際機場第二航廈</div></div>
       <div class="ev"><div class="ev-t">11:30</div><div class="ev-d">完成入境、領取行李、出機場 → 圓滿結束北陸之旅 ✓</div></div>
     </div>
-    <div class="aok">✅ 回程時間充裕：05:30 起床→07:55 出發，完全不趕 · 台灣時間 10:55 抵達，下午可直接回家</div>
   </div>
 </div>
 
-<!-- 行程預約清單 · 必做事項 -->
-<div class="sum-box" style="margin-top:9px;">
-  <div class="sum-title">✅ 必要預約與預定清單</div>
-  <div class="sum-item"><span class="sum-num">01</span><span><strong>國內線班機</strong>：確認 11/21 羽田→富山（推薦 ANA NH1624 16:00） & 11/27 富山→羽田（推薦 ANA NH1626 17:30）。於線上確認座位、行李額度</span></div>
-  <div class="sum-item"><span class="sum-num">02</span><span><strong>黑部峽谷小火車票</strong>：11/25 日需搭乘。每年 8 月中開放預約，建議立即搶票（日本 e-ticket 或當地購票）</span></div>
-  <div class="sum-item"><span class="sum-num">03</span><span><strong>三郎丸蒸留所</strong>（高岡威士忌）：完全預約制，¥5,000/人，建議出發前 1 個月聯絡預約</span></div>
-  <div class="sum-item"><span class="sum-num">04</span><span><strong>磯料理 松月</strong>（11/26 晚）：完全預約制，6人約 ¥20,000-28,000。需提前 2-3 個月透過 byFood / AutoReserve 訂位</span></div>
-  <div class="sum-item"><span class="sum-num">05</span><span><strong>延對寺莊溫泉旅館</strong>（11/25-26）：需預訂。若想包場露天風呂，需提前告知飯店</span></div>
-  <div class="sum-item"><span class="sum-num">06</span><span><strong>羽田機場附近飯店</strong>（11/28）：建議選機場旁有免費接駁車的飯店（ANA Holiday Inn / Radisson Blu Haneda）</span></div>
-</div>
-
-</div><!-- /sect-A -->
-
 </div><!-- /itin -->
-
-
 
 <div id="hotels" class="tab-pane">
 
 <div style="margin-top:3px;margin-bottom:16px;">
   <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:12px;">
-    行程共 <strong>8 晚</strong>：富山 6 晚（11/21–24, 11/26–27）· 宇奈月溫泉 1 晚（11/25） · 羽田 1 晚（11/28）。<br>
-    以下著重說明羽田住宿推薦。
+    行程共 <strong>8 晚</strong>：富山 6 晚（11/21–23, 11/26–27） · 宇奈月溫泉 1 晚（11/24） · 羽田 1 晚（11/28）。
   </div>
 </div>
 
-<!-- Haneda 11/28 -->
-<div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;">✈ 11/28 羽田機場附近住宿（1晚）</div>
-<div style="font-size:12px;color:var(--muted);margin-bottom:10px;">需求：機場接駁方便 · 6人/3房 · 隔天 06:30 前抵達航廈（07:55 國際班機）</div>
-<div class="hotel-grid">
-  <div class="hotel-card">
-    <div class="hotel-hd">
-      <div class="hotel-icon">✈</div>
-      <div class="hotel-name">ANA Holiday Inn Tokyo Haneda<br><span style="font-size:11px;font-weight:400;color:var(--muted);">直結 T1 / 機場步行圈</span></div>
-      <span class="hotel-rank rank-top">★ 首選</span>
-    </div>
-    <div class="hotel-desc">與羽田機場第一航廈直結，接駁便捷。傍晚 18:45 抵達即可直接入住。隔天 06:30 前走回航廈登機（07:55 BR035），時間寬裕。客房舒適，家庭房選擇豐富。</div>
-    <div class="hotel-specs">
-      <div class="spec"><span class="spec-icon">📍</span><span>直結羽田 T1，步行至 T2 國際線 10–15 分</span></div>
-      <div class="spec"><span class="spec-icon">🛏</span><span>三人房 / 家庭房，6人訂 3 房</span></div>
-      <div class="spec"><span class="spec-icon">🚗</span><span>機場接駁 15–20 分（晚上 24 點前持續）</span></div>
-      <div class="spec"><span class="spec-icon">🍳</span><span>自助早餐 07:00 開放（可加購）</span></div>
-      <div class="spec"><span class="spec-icon">¥</span><span>三人房 ¥15,000–20,000/晚</span></div>
-    </div>
-    <div class="hotel-note">💡 傍晚抵達無需轉乘，隔天早班機也不緊張。是轉運便利的首選。</div>
-  </div>
-
-  <div class="hotel-card">
-    <div class="hotel-hd">
-      <div class="hotel-icon">✈</div>
-      <div class="hotel-name">Radisson Blu Narita Tokyo<br><span style="font-size:11px;font-weight:400;color:var(--muted);">成田方向，CP值高</span></div>
-      <span class="hotel-rank rank-bal">高CP值</span>
-    </div>
-    <div class="hotel-desc">若偏好成田飯店，此為 CP 值高選擇。距羽田較遠，但飯店品質與接駁服務優。建議自駕或計程車直達（約 30 分）。</div>
-    <div class="hotel-specs">
-      <div class="spec"><span class="spec-icon">📍</span><span>成田機場附近（自駕或計程車約 30 分至羽田）</span></div>
-      <div class="spec"><span class="spec-icon">🚗</span><span>免費接駁至成田機場；至羽田需付費交通</span></div>
-      <div class="spec"><span class="spec-icon">¥</span><span>三人房 ¥12,000–17,000/晚（較經濟）</span></div>
-    </div>
-    <div class="hotel-note">💡 預算優先則可選，但建議首選 ANA Holiday Inn（更方便）。</div>
-  </div>
-</div>
-</div>
-<div class="hotel-grid">
-
-  <div class="hotel-card">
-    <div class="hotel-hd">
-      <div class="hotel-icon">✈</div>
-      <div class="hotel-name">成田日航酒店（Hotel Nikko Narita）</div>
-      <span class="hotel-rank rank-top">★ 首選</span>
-    </div>
-    <div class="hotel-desc">成田機場接駁最密集的飯店，<strong>24小時免費接駁車</strong>，10分鐘直達機場。樓下就是 Lawson 便利商店，周邊餐廳居酒屋多，房間寬敞會把行李直接送到房間。<strong>四人家庭房空間可打開兩個行李箱</strong>，是攜帶大量行李旅客的最佳選擇。</div>
-    <div class="hotel-specs">
-      <div class="spec"><span class="spec-icon">🚌</span><span>24H 免費接駁車，10分鐘到機場</span></div>
-      <div class="spec"><span class="spec-icon">🛏</span><span>四人家庭房，空間寬敞</span></div>
-      <div class="spec"><span class="spec-icon">🧳</span><span>可同時開兩只大行李箱</span></div>
-      <div class="spec"><span class="spec-icon">🏪</span><span>樓下 Lawson 24H 便利商店</span></div>
-      <div class="spec"><span class="spec-icon">🍳</span><span>自助早餐豐富（可加購）</span></div>
-      <div class="spec"><span class="spec-icon">¥</span><span>四人房 ¥20,000–30,000/晚</span></div>
-    </div>
-    <div class="hotel-note">💡 宅急便收件無問題，可提前確認是否能寄達。晚上 21:30–22:00 到達，早上 07:00 前接駁車出發，時間完全充裕。</div>
-  </div>
-
-  <div class="hotel-card">
-    <div class="hotel-hd">
-      <div class="hotel-icon">✈</div>
-      <div class="hotel-name">成田東武機場酒店（Tobu Hotel Narita）</div>
-      <span class="hotel-rank rank-bal">高CP值</span>
-    </div>
-    <div class="hotel-desc">CP值極高的成田機場周邊飯店，<strong>免費接駁車10分鐘到機場</strong>，周邊有大超市及多家餐廳。房間乾淨整潔，有<strong>大浴場</strong>（免費刷房卡），行李多的家庭可在此最後泡澡放鬆。</div>
-    <div class="hotel-specs">
-      <div class="spec"><span class="spec-icon">🚌</span><span>免費接駁車，10分鐘到機場</span></div>
-      <div class="spec"><span class="spec-icon">♨</span><span>大浴場（住客免費）</span></div>
-      <div class="spec"><span class="spec-icon">🏪</span><span>松本清藥妝（一樓，可免稅）</span></div>
-      <div class="spec"><span class="spec-icon">🛒</span><span>附近大超市，生活機能佳</span></div>
-      <div class="spec"><span class="spec-icon">¥</span><span>四人房 ¥15,000–22,000/晚（CP值最高）</span></div>
-    </div>
-    <div class="hotel-note">💡 一樓松本清可以免稅掃最後一波藥妝！大浴場是結束旅程前的完美句點。</div>
-  </div>
-
-  <div class="hotel-card">
-    <div class="hotel-hd">
-      <div class="hotel-icon">✈</div>
-      <div class="hotel-name">成田里士滿酒店（Richmond Hotel Narita）</div>
-      <span class="hotel-rank rank-bud">親子推薦</span>
-    </div>
-    <div class="hotel-desc">成田市知名親子友善飯店，<strong>小學以下免費同住</strong>，<strong>免費接駁車往返機場</strong>。房間相比日本一般飯店更寬敞，步行5分鐘到京成成田站，周邊商店齊全。</div>
-    <div class="hotel-specs">
-      <div class="spec"><span class="spec-icon">🚌</span><span>免費接駁車往返成田機場</span></div>
-      <div class="spec"><span class="spec-icon">🛏</span><span>房間比一般商務飯店寬敞</span></div>
-      <div class="spec"><span class="spec-icon">👶</span><span>小學以下免費同住</span></div>
-      <div class="spec"><span class="spec-icon">📍</span><span>京成成田站東口步行5分</span></div>
-      <div class="spec"><span class="spec-icon">¥</span><span>四人房 ¥18,000–26,000/晚</span></div>
-    </div>
-    <div class="hotel-note">💡 若小孩免費政策成立（請確認 2026 年條款），這是三款中最省錢的選項之一。</div>
-  </div>
-
-</div>
-
-<!-- 富山住宿補充 -->
-<div style="margin-top:24px;margin-bottom:10px;">
-  <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">🏔 富山住宿（11/21–23 · 11/26 共4晚）</div>
-  <div style="font-size:12px;color:var(--muted);">重點需求：富山站步行圈 · 含大浴場（11/21 長途飛行疲勞回復）· 可寄存宅急便</div>
-</div>
+<div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;">🏔 富山住宿（11/21–23, 11/26–27 共5晚）</div>
+<div style="font-size:12px;color:var(--muted);margin-bottom:10px;">重點需求：富山站步行圈 · 含大浴場 · 可寄存宅急便</div>
 <div class="hotel-grid">
   <div class="hotel-card">
     <div class="hotel-hd">
@@ -671,19 +534,61 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
       <div class="hotel-name">HOTEL WING INTERNATIONAL 富山</div>
       <span class="hotel-rank rank-bal">推薦</span>
     </div>
-    <div class="hotel-desc">富山站步行5分鐘，<strong>附大浴場</strong>，11/21 長途飛行後抵達當晚泡澡最適合。多人房型選擇豐富，接受宅急便收件。</div>
+    <div class="hotel-desc">富山站步行5分鐘，附大浴場，11/21 長途飛行後抵達當晚泡澡最適合。多人房型選擇豐富，接受宅急便收件。</div>
     <div class="hotel-specs">
       <div class="spec"><span class="spec-icon">📍</span><span>富山站步行5分鐘</span></div>
       <div class="spec"><span class="spec-icon">♨</span><span>天然溫泉大浴場（住客免費）</span></div>
       <div class="spec"><span class="spec-icon">¥</span><span>三人房 ¥12,000–16,000/晚</span></div>
     </div>
-    <div class="hotel-note">💡 到站當晚行李全帶著，大浴場是最好的恢復方式，省去另尋溫泉的功夫。</div>
+    <div class="hotel-note">💡 到站當晚行李全帶著，大浴場是最好的恢復方式。</div>
+  </div>
+</div>
+
+<div style="margin-top:24px;margin-bottom:10px;">
+  <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">♨ 宇奈月溫泉住宿（11/24 1晚）</div>
+  <div style="font-size:12px;color:var(--muted);">需求：懸崖露天風呂 · 海鮮會席料理 · 完全預約制</div>
+</div>
+<div class="hotel-grid">
+  <div class="hotel-card">
+    <div class="hotel-hd">
+      <div class="hotel-icon">♨</div>
+      <div class="hotel-name">延對寺莊 峽谷溫泉旅館</div>
+      <span class="hotel-rank rank-top">★ 首選</span>
+    </div>
+    <div class="hotel-desc">黑部峽谷邊的頂級溫泉旅館，懸崖露天風呂為全行程最高級體驗。宇奈月溫泉弱鹼性單純泉，「美肌之湯」。海鮮會席料理包含當季魚貝。需提前3–4個月預約。</div>
+    <div class="hotel-specs">
+      <div class="spec"><span class="spec-icon">♨</span><span>懸崖露天風呂（獨家景觀）</span></div>
+      <div class="spec"><span class="spec-icon">🍜</span><span>海鮮會席料理（晚餐 + 早餐）</span></div>
+      <div class="spec"><span class="spec-icon">¥</span><span>一室二食 約 ¥30,000–45,000/人</span></div>
+    </div>
+    <div class="hotel-note">💡 黑部峽谷小火車行程的完美配合。露天風呂的夜間星空與峭壁景觀令人難忘。</div>
+  </div>
+</div>
+
+<div style="margin-top:24px;margin-bottom:10px;">
+  <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">✈ 11/28 羽田機場附近住宿（1晚）</div>
+  <div style="font-size:12px;color:var(--muted);">需求：機場接駁方便 · 6人/3房 · 隔天 06:30 前抵達航廈</div>
+</div>
+<div class="hotel-grid">
+  <div class="hotel-card">
+    <div class="hotel-hd">
+      <div class="hotel-icon">✈</div>
+      <div class="hotel-name">ANA Holiday Inn Tokyo Haneda</div>
+      <span class="hotel-rank rank-top">★ 首選</span>
+    </div>
+    <div class="hotel-desc">直結羽田機場第一航廈，接駁便捷。傍晚 18:45 抵達即可直接入住。隔天 06:30 前走回航廈登機（07:55 BR035），時間寬裕。客房舒適，家庭房選擇豐富。</div>
+    <div class="hotel-specs">
+      <div class="spec"><span class="spec-icon">📍</span><span>直結羽田 T1，步行至 T2 國際線 10–15 分</span></div>
+      <div class="spec"><span class="spec-icon">🛏</span><span>三人房 / 家庭房，6人訂 3 房</span></div>
+      <div class="spec"><span class="spec-icon">🚗</span><span>機場接駁 15–20 分</span></div>
+      <div class="spec"><span class="spec-icon">¥</span><span>三人房 ¥15,000–20,000/晚</span></div>
+    </div>
+    <div class="hotel-note">💡 傍晚抵達無需轉乘，隔天早班機也不緊張。是轉運便利的首選。</div>
   </div>
 </div>
 
 </div><!-- /hotels -->
 
-<!-- ══ BUDGET TAB ══ -->
 <div id="budget" class="tab-pane">
 <div style="margin-top:3px;margin-bottom:13px;">
   <div class="ctrl-row">
@@ -707,53 +612,47 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
   <div class="bsec">✈ 機票</div>
   <div class="brow"><span class="blbl">CI 大人機票（去回）<span class="bnote">NT$19,632/人</span></span><span class="bjpy" id="fa">—</span><span class="btwd" id="fa-t">—</span></div>
   <div class="brow"><span class="blbl">CI 小孩機票（去回）<span class="bnote">NT$9,816/人</span></span><span class="bjpy" id="fk">—</span><span class="btwd" id="fk-t">—</span></div>
-  <div class="brow"><span class="blbl">ANA 國內線 HND⇄TOY 去回<span class="bnote">早鳥 ¥10,000 大人 / ¥7,500 小孩 × 2趟</span></span><span class="bjpy" id="ana">—</span><span class="btwd" id="ana-t">—</span></div>
+  <div class="brow"><span class="blbl">ANA 國內線 HND⇄TOY 去回<span class="bnote">¥10,000 大人 / ¥7,500 小孩 × 2趟</span></span><span class="bjpy" id="ana">—</span><span class="btwd" id="ana-t">—</span></div>
 </div>
 
 <div class="bcard">
   <div class="bsec">🚌 交通（無周遊券）</div>
-  <div class="brow"><span class="blbl">氷見線 + 城端線散票<span class="bnote">各1來回 ¥240+¥550</span></span><span class="bjpy" id="himi">—</span><span class="btwd" id="himi-t">—</span></div>
-  <div class="brow"><span class="blbl">富山地方鐵路自費<span class="bnote">宇奈月往返 + 魚津段</span></span><span class="bjpy" id="loc">—</span><span class="btwd" id="loc-t">—</span></div>
-  <div class="brow"><span class="blbl">計程車（新湊 ¥3,500 + 冰見 ¥2,000）</span><span class="bjpy" id="taxi">—</span><span class="btwd" id="taxi-t">—</span></div>
+  <div class="brow"><span class="blbl">富山地方鐵道自費<span class="bnote">宇奈月往返 + 魚津段</span></span><span class="bjpy" id="loc">—</span><span class="btwd" id="loc-t">—</span></div>
+  <div class="brow"><span class="blbl">JR 散票（高岡線等）<span class="bnote">各1來回 ¥550+¥790+¥240×2</span></span><span class="bjpy" id="jr">—</span><span class="btwd" id="jr-t">—</span></div>
+  <div class="brow"><span class="blbl">計程車 + 路面電車<span class="bnote">海王丸往返 + 岩瀨 + 雜費</span></span><span class="bjpy" id="taxi">—</span><span class="btwd" id="taxi-t">—</span></div>
   <div class="brow"><span class="blbl">富山機場巴士 來回<span class="bnote">¥650/人×2</span></span><span class="bjpy" id="toybus">—</span><span class="btwd" id="toybus-t">—</span></div>
-  <div class="brow"><span class="blbl">市內路面電車 · 公車雜費</span><span class="bjpy" id="misc-tr">—</span><span class="btwd" id="misc-tr-t">—</span></div>
 </div>
 
 <div class="bcard">
-  <div class="bsec">🏨 住宿（8晚）— 傍晚抵達富山，羽田過夜</div>
-  <div class="brow"><span class="blbl">富山 2晚 11/21–22<span class="bnote">傍晚抵達，大浴場推薦</span></span><span class="bjpy" id="h1a">—</span><span class="btwd" id="h1a-t">—</span></div>
-  <div class="brow"><span class="blbl">富山 2晚 11/23–24<span class="bnote">新湊·冰見·雨晴海岸景點</span></span><span class="bjpy" id="h1b">—</span><span class="btwd" id="h1b-t">—</span></div>
-  <div class="brow"><span class="blbl">延對寺莊 1晚 11/25<span class="bnote">宇奈月溫泉，含晚餐·早餐</span></span><span class="bjpy" id="h2">—</span><span class="btwd" id="h2-t">—</span></div>
-  <div class="brow"><span class="blbl">富山 1晚 11/26<span class="bnote">岩瀨老街·磯料理松月</span></span><span class="bjpy" id="h3">—</span><span class="btwd" id="h3-t">—</span></div>
-  <div class="brow"><span class="blbl">富山 1晚 11/27<span class="bnote">休整日，傍晚班機</span></span><span class="bjpy" id="h4">—</span><span class="btwd" id="h4-t">—</span></div>
-  <div class="brow"><span class="blbl">羽田機場旁 1晚 11/28<span class="bnote">機場接駁，隔日早班機</span></span><span class="bjpy" id="h5">—</span><span class="btwd" id="h5-t">—</span></div>
+  <div class="bsec">🏨 住宿（8晚）</div>
+  <div class="brow"><span class="blbl">富山 5晚 (11/21–23, 26–27)<span class="bnote">HOTEL WING INTERNATIONAL</span></span><span class="bjpy" id="h1">—</span><span class="btwd" id="h1-t">—</span></div>
+  <div class="brow"><span class="blbl">宇奈月 1晚 (11/24)<span class="bnote">延對寺莊 一室二食</span></span><span class="bjpy" id="h2">—</span><span class="btwd" id="h2-t">—</span></div>
+  <div class="brow"><span class="blbl">羽田 1晚 (11/28)<span class="bnote">ANA Holiday Inn</span></span><span class="bjpy" id="h3">—</span><span class="btwd" id="h3-t">—</span></div>
 </div>
 
 <div class="bcard">
   <div class="bsec">🍜 餐飲</div>
-  <div class="brow"><span class="blbl">一般早午餐<span class="bnote">¥1,200/人 × 13餐</span></span><span class="bjpy" id="mn">—</span><span class="btwd" id="mn-t">—</span></div>
-  <div class="brow"><span class="blbl">新湊魚市場 11/23<span class="bnote">¥3,500/人 估算</span></span><span class="bjpy" id="m1">—</span><span class="btwd" id="m1-t">—</span></div>
-  <div class="brow"><span class="blbl">冰見番屋街 11/24<span class="bnote">¥3,500/人 估算</span></span><span class="bjpy" id="m2">—</span><span class="btwd" id="m2-t">—</span></div>
-  <div class="brow"><span class="blbl">磯料理 松月 11/26<span class="bnote">¥3,500/人 估算</span></span><span class="bjpy" id="m3">—</span><span class="btwd" id="m3-t">—</span></div>
+  <div class="brow"><span class="blbl">一般早午晚餐<span class="bnote">¥1,500/人/餐 × 計次數</span></span><span class="bjpy" id="mn">—</span><span class="btwd" id="mn-t">—</span></div>
+  <div class="brow"><span class="blbl">新湊市場海鮮丼 (11/26)<span class="bnote">¥3,500/人</span></span><span class="bjpy" id="m1">—</span><span class="btwd" id="m1-t">—</span></div>
+  <div class="brow"><span class="blbl">冰見番屋街松葉蟹 (11/23)<span class="bnote">¥3,500/人</span></span><span class="bjpy" id="m2">—</span><span class="btwd" id="m2-t">—</span></div>
+  <div class="brow"><span class="blbl">磯料理 松月 (11/25)<span class="bnote">¥3,500/人 or 已含延對寺莊</span></span><span class="bjpy" id="m3">—</span><span class="btwd" id="m3-t">—</span></div>
 </div>
 
 <div class="bcard">
   <div class="bsec">🎫 門票 · 活動</div>
-  <div class="brow"><span class="blbl">黑部峽谷鐵道<span class="bnote">¥2,880 大人 / ¥1,440 小孩</span></span><span class="bjpy" id="kb">—</span><span class="btwd" id="kb-t">—</span></div>
-  <div class="brow"><span class="blbl">魚津水族館<span class="bnote">¥1,600 大人 / ¥800 小孩</span></span><span class="bjpy" id="aq">—</span><span class="btwd" id="aq-t">—</span></div>
-  <div class="brow"><span class="blbl">三郎丸蒸留所見學<span class="bnote">¥5,000/人（選填）</span></span><span class="bjpy" id="dist">—</span><span class="btwd" id="dist-t">—</span></div>
-  <div class="brow"><span class="blbl">免費景點（大佛·動物園·家族公園·警察博物館等）</span><span class="bjpy">¥0</span><span class="btwd">NT$0</span></div>
+  <div class="brow"><span class="blbl">黑部峽谷小火車 (11/24)<span class="bnote">¥2,880 大人 / ¥1,440 小孩</span></span><span class="bjpy" id="kb">—</span><span class="btwd" id="kb-t">—</span></div>
+  <div class="brow"><span class="blbl">魚津水族館 (11/25)<span class="bnote">¥1,600 大人 / ¥800 小孩</span></span><span class="bjpy" id="aq">—</span><span class="btwd" id="aq-t">—</span></div>
+  <div class="brow"><span class="blbl">家族動物園 (11/22)<span class="bnote">小學生免費，大人 ¥1,000</span></span><span class="bjpy" id="fampark">—</span><span class="btwd" id="fampark-t">—</span></div>
+  <div class="brow"><span class="blbl">三郎丸蒸留所 (可選)<span class="bnote">¥5,000/人（需預約）</span></span><span class="bjpy" id="dist">—</span><span class="btwd" id="dist-t">—</span></div>
 </div>
 
 <div class="bcard">
   <div class="bsec">🛍 購物 · 雜費</div>
-  <div class="brow"><span class="blbl">購物預算<span class="bnote">一番街·藥妝·地酒·AEON</span></span><span class="bjpy" id="sh">—</span><span class="btwd" id="sh-t">—</span></div>
-  <div class="brow"><span class="blbl">宅急便行李寄送<span class="bnote">1次（富山→羽田）</span></span><span class="bjpy" id="lug">—</span><span class="btwd" id="lug-t">—</span></div>
+  <div class="brow"><span class="blbl">購物預算<span class="bnote">地酒·藥妝·AEON·伴手禮</span></span><span class="bjpy" id="sh">—</span><span class="btwd" id="sh-t">—</span></div>
   <div class="brow"><span class="blbl">旅遊保險<span class="bnote">¥2,000/人</span></span><span class="bjpy" id="ins">—</span><span class="btwd" id="ins-t">—</span></div>
 </div>
 
 <div class="bnote-box">⚠ CI 機票以 NT$19,632（成人）/ NT$9,816（兒童）估算；ANA 國內線以早鳥 ¥10,000/大人、¥7,500/小孩 估算，正規票 ¥15,000+；住宿以 ceil(人數/2) 房計算。匯率 1 JPY ≈ NT$0.215。延對寺莊依房型與人數請直接洽詢。</div>
-
 
 </div><!-- /budget -->
 
@@ -776,14 +675,8 @@ function tog(hd){
   const b=hd.nextElementSibling,c=hd.querySelector('.chev'),o=b.classList.contains('open');
   b.classList.toggle('open',!o);c.classList.toggle('open',!o);
 }
-function setPlan(plan,btn){
-  document.querySelectorAll('.plan-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('sect-B').classList.toggle('hidden', plan!=='B');
-  document.getElementById('sect-C').classList.toggle('hidden', plan!=='C');
-}
 
-const RATE=0.215,BASE_A=19632,BASE_K=9816;
+const RATE=0.215;
 const CATS=[{l:'機票',c:'#185FA5'},{l:'交通',c:'#0F6E56'},{l:'住宿',c:'#534AB7'},{l:'餐飲',c:'#993C1D'},{l:'門票活動',c:'#854F0B'},{l:'購物雜費',c:'#5F5E5A'}];
 const jpy=n=>'¥'+Math.round(n).toLocaleString();
 const ntd=n=>'NT$'+Math.round(n).toLocaleString();
@@ -798,45 +691,41 @@ function calc(){
   document.getElementById('adults-out').textContent=a;
   document.getElementById('kids-out').textContent=k;
 
-  // ── 共用 ──────────────────────────────────────────────
-  const flA_t=BASE_A*a,flK_t=BASE_K*k;
-  const locV=2500*pax, taxiV=5500, miscTr=1500*pax;
-  const himiV=(240*2+550*2)*pax;
-  const h_toy2a = 13000*rooms*2;  // 富山2晚 11/21-22
-  const h_toy2b = 13000*rooms*2;  // 富山2晚 11/23-24
-  const h_unaz = 28000*rooms;     // 延對寺莊 11/25
-  const h_toy1 = 13000*rooms;     // 富山1晚 11/26
-  const h_toy1b = 13000*rooms;    // 富山1晚 11/27
-  const h_hnd  = 22000*rooms;     // 羽田 11/28
-  const mnV=1200*pax*13, m1V=3500*pax, m2V=3500*pax, m3V=3500*pax;
-  const kbV=2880*a+1440*k, aqV=1600*a+800*k, distV=5000*pax;
-  const shV=20000*a+5000*k, insV=2000*pax;
-
-  // ── PLAN A (新幹線 + 周遊券) ─────────────────────────
-  const passA=35000*a, passK=17500*k;
-  const nexV=3070*a+1540*k;
-  const busV=1500*a+750*k;
-  const h4_A=22000*rooms;
-  const lugA=pax*2*1500;
-  const fl_A=flA_t+flK_t;
-  const tr_A_jpy=passA+passK+locV+taxiV+busV+nexV+miscTr;
-  const ho_A_jpy=h_toy2a+h_toy2b+h_unaz+h_toy1+h4_A+h_hnd;
-  const fd_A_jpy=mnV+m1V+m2V+m3V;
-  const tk_jpy=kbV+aqV+distV;
-  const mi_A_jpy=shV+lugA+insV;
-  const total_A=Math.round(fl_A+tr_A_jpy*RATE+ho_A_jpy*RATE+fd_A_jpy*RATE+tk_jpy*RATE+mi_A_jpy*RATE);
-
-  // ── 確定計畫 (ANA 國內線) ──────────────────
+  // Base 機票
+  const flA_t=19632*a,flK_t=9816*k;
   const anaJpy=(10000*a+7500*k)*2;
-  const toyBusV=650*pax*2;
-  const lugC=2500*pax;  // 宅急便 1次 富山→羽田
-  const fl_C_twd=(flA_t+flK_t)+Math.round(anaJpy*RATE);
-  const tr_C_jpy=locV+taxiV+himiV+toyBusV+miscTr;
-  const ho_C_jpy=h_toy2a+h_toy2b+h_unaz+h_toy1+h_toy1b+h_hnd;
-  const mi_C_jpy=shV+lugC+insV;
-  const total_C=Math.round(fl_C_twd+tr_C_jpy*RATE+ho_C_jpy*RATE+fd_A_jpy*RATE+tk_jpy*RATE+mi_C_jpy*RATE);
 
-  // ── DOM (費用明細) ─────────────────────────────────
+  // 交通
+  const locV=2500*pax, jrV=(550+790+240*2)*pax, taxiV=5000, toyBusV=650*pax*2;
+  const miscTr=500*pax;
+
+  // 住宿
+  const h_toy5 = 14000*rooms*5;  // 富山5晚
+  const h_unaz = 35000*rooms;     // 延對寺莊 1晚
+  const h_hnd  = 18000*rooms;     // 羽田 1晚
+
+  // 餐飲
+  const mnV=1500*pax*8, m1V=3500*pax, m2V=3500*pax, m3V=0;  // m3 已含延對寺莊
+  const famBreakV=1500*a*5;  // 早餐約5次自理
+
+  // 活動
+  const kbV=2880*a+1440*k, aqV=1600*a+800*k, fampark=1000*a;
+  const distV=5000*a;  // 三郎丸蒸留所（選填）
+
+  // 雜費
+  const shV=25000*a+8000*k, insV=2000*pax;
+
+  // 合計 JPY
+  const fl_C_twd=(flA_t+flK_t)+Math.round(anaJpy*RATE);
+  const tr_C_jpy=locV+jrV+taxiV+toyBusV+miscTr;
+  const ho_C_jpy=h_toy5+h_unaz+h_hnd;
+  const fd_C_jpy=mnV+m1V+m2V+m3V+famBreakV;
+  const tk_jpy=kbV+aqV+fampark+distV;
+  const mi_C_jpy=shV+insV;
+
+  const total_C=Math.round(fl_C_twd+tr_C_jpy*RATE+ho_C_jpy*RATE+fd_C_jpy*RATE+tk_jpy*RATE+mi_C_jpy*RATE);
+
+  // DOM 更新
   const nt=n=>'NT$'+Math.round(n).toLocaleString();
   document.getElementById('fa-t').textContent=nt(flA_t);
   document.getElementById('fk-t').textContent=nt(flK_t);
@@ -844,48 +733,40 @@ function calc(){
   document.getElementById('ana-t').textContent=nt(anaJpy*RATE);
   document.getElementById('loc').textContent='¥'+locV.toLocaleString();
   document.getElementById('loc-t').textContent=nt(locV*RATE);
+  document.getElementById('jr').textContent='¥'+jrV.toLocaleString();
+  document.getElementById('jr-t').textContent=nt(jrV*RATE);
   document.getElementById('taxi').textContent='¥'+taxiV.toLocaleString();
   document.getElementById('taxi-t').textContent=nt(taxiV*RATE);
-  document.getElementById('himi').textContent='¥'+himiV.toLocaleString();
-  document.getElementById('himi-t').textContent=nt(himiV*RATE);
   document.getElementById('toybus').textContent='¥'+toyBusV.toLocaleString();
   document.getElementById('toybus-t').textContent=nt(toyBusV*RATE);
-  document.getElementById('misc-tr').textContent='¥'+miscTr.toLocaleString();
-  document.getElementById('misc-tr-t').textContent=nt(miscTr*RATE);
-  document.getElementById('h1a').textContent='¥'+h_toy2a.toLocaleString();
-  document.getElementById('h1a-t').textContent=nt(h_toy2a*RATE);
-  document.getElementById('h1b').textContent='¥'+h_toy2b.toLocaleString();
-  document.getElementById('h1b-t').textContent=nt(h_toy2b*RATE);
+  document.getElementById('h1').textContent='¥'+h_toy5.toLocaleString();
+  document.getElementById('h1-t').textContent=nt(h_toy5*RATE);
   document.getElementById('h2').textContent='¥'+h_unaz.toLocaleString();
   document.getElementById('h2-t').textContent=nt(h_unaz*RATE);
-  document.getElementById('h3').textContent='¥'+h_toy1.toLocaleString();
-  document.getElementById('h3-t').textContent=nt(h_toy1*RATE);
-  document.getElementById('h4').textContent='¥'+h_toy1b.toLocaleString();
-  document.getElementById('h4-t').textContent=nt(h_toy1b*RATE);
-  document.getElementById('h5').textContent='¥'+h_hnd.toLocaleString();
-  document.getElementById('h5-t').textContent=nt(h_hnd*RATE);
+  document.getElementById('h3').textContent='¥'+h_hnd.toLocaleString();
+  document.getElementById('h3-t').textContent=nt(h_hnd*RATE);
   document.getElementById('mn').textContent='¥'+mnV.toLocaleString();
   document.getElementById('mn-t').textContent=nt(mnV*RATE);
   document.getElementById('m1').textContent='¥'+m1V.toLocaleString();
   document.getElementById('m1-t').textContent=nt(m1V*RATE);
   document.getElementById('m2').textContent='¥'+m2V.toLocaleString();
   document.getElementById('m2-t').textContent=nt(m2V*RATE);
-  document.getElementById('m3').textContent='¥'+m3V.toLocaleString();
-  document.getElementById('m3-t').textContent=nt(m3V*RATE);
+  document.getElementById('m3').textContent='¥0（含延對寺莊）';
+  document.getElementById('m3-t').textContent='NT$0';
   document.getElementById('kb').textContent='¥'+kbV.toLocaleString();
   document.getElementById('kb-t').textContent=nt(kbV*RATE);
   document.getElementById('aq').textContent='¥'+aqV.toLocaleString();
   document.getElementById('aq-t').textContent=nt(aqV*RATE);
+  document.getElementById('fampark').textContent='¥'+fampark.toLocaleString();
+  document.getElementById('fampark-t').textContent=nt(fampark*RATE);
   document.getElementById('dist').textContent='¥'+distV.toLocaleString();
   document.getElementById('dist-t').textContent=nt(distV*RATE);
   document.getElementById('sh').textContent='¥'+shV.toLocaleString();
   document.getElementById('sh-t').textContent=nt(shV*RATE);
-  document.getElementById('lug').textContent='¥'+(lugC).toLocaleString();
-  document.getElementById('lug-t').textContent=nt(lugC*RATE);
   document.getElementById('ins').textContent='¥'+insV.toLocaleString();
   document.getElementById('ins-t').textContent=nt(insV*RATE);
 
-  // ── 合計指標 ─────────────────────────────────────────
+  // 合計指標
   document.getElementById('t-jpy').textContent='NT$'+total_C.toLocaleString();
   document.getElementById('t-twd').textContent=pax+'人/'+rooms+'房';
   document.getElementById('pp-jpy').textContent='NT$'+Math.round(total_C/pax).toLocaleString();
@@ -893,12 +774,12 @@ function calc(){
   document.getElementById('pd-jpy').textContent='NT$'+Math.round(total_C/9).toLocaleString();
   document.getElementById('pd-twd').textContent='每日均(9天)';
 
-  // ── 費用分佈（各類 TWD） ──────────────────────
+  // 費用分佈
   const cats_c=[
     fl_C_twd,
     Math.round(tr_C_jpy*RATE),
     Math.round(ho_C_jpy*RATE),
-    Math.round(fd_A_jpy*RATE),
+    Math.round(fd_C_jpy*RATE),
     Math.round(tk_jpy*RATE),
     Math.round(mi_C_jpy*RATE)
   ];
@@ -918,52 +799,50 @@ const mapDays=[
     {name:'富山機場（TOY）',lat:36.6483,lng:137.1878,note:'NH1624 16:00 起飛，17:30 抵達'},
     {name:'富山站飯店',lat:36.7019,lng:137.2125,note:'傍晚 Check-in，大浴場'}
   ]},
-  {day:'11/22',label:'富山→高岡 · 富山城',color:'#3B82F6',points:[
-    {name:'富山站',lat:36.7019,lng:137.2125,note:'11:00 出發'},
-    {name:'哆啦A夢散步道',lat:36.7537,lng:137.0185,note:'銅像合照'},
-    {name:'高岡大佛',lat:36.7520,lng:137.0241,note:'步行 10 分'},
-    {name:'高岡古城公園',lat:36.7589,lng:137.0263,note:'紅葉 + 免費動物園'},
-    {name:'AEON MALL 高岡',lat:36.7418,lng:137.0090,note:'新高岡南口步行 3 分'},
-    {name:'富山城址公園',lat:36.6993,lng:137.2119,note:'日落前城堡楓景'}
+  {day:'11/22',label:'富山市家族動物園',color:'#3B82F6',points:[
+    {name:'富山站',lat:36.7019,lng:137.2125,note:'09:45 出發'},
+    {name:'富山市家族動物園',lat:36.6665,lng:137.1610,note:'國寶雷鳥・小貓熊'},
+    {name:'富山城址公園',lat:36.6993,lng:137.2119,note:'日落城堡楓景'}
   ]},
-  {day:'11/23',label:'新湊運河 · 市場',color:'#0EA5E9',points:[
-    {name:'富山站',lat:36.7019,lng:137.2125,note:'公車或萬葉線出發'},
-    {name:'新湊內川・海王丸公園',lat:36.7726,lng:137.0896,note:'日本威尼斯運河'},
-    {name:'きっときと市場',lat:36.7701,lng:137.0782,note:'紅楚蟹現蒸・海鮮丼'},
-    {name:'富山市家族公園',lat:36.6665,lng:137.1610,note:'國寶雷鳥・小貓熊'}
+  {day:'11/23',label:'高岡大佛・雨晴・冰見',color:'#0EA5E9',points:[
+    {name:'富山站',lat:36.7019,lng:137.2125,note:'09:30 出發'},
+    {name:'高岡大佛',lat:36.7520,lng:137.0241,note:'日本三大佛'},
+    {name:'高岡古城公園',lat:36.7589,lng:137.0263,note:'紅葉＋免費動物園'},
+    {name:'雨晴海岸',lat:36.8232,lng:137.1052,note:'立山連峰3000m奇景'},
+    {name:'冰見番屋街',lat:36.8411,lng:137.0177,note:'松葉蟹・足湯'}
   ]},
-  {day:'11/24',label:'雨晴海岸 · 冰見',color:'#10B981',points:[
-    {name:'富山站',lat:36.7019,lng:137.2125,note:'→ 高岡 → 冰見線'},
-    {name:'雨晴海岸',lat:36.8232,lng:137.1052,note:'立山連峰 3000m 奇景'},
-    {name:'冰見番屋街',lat:36.8411,lng:137.0177,note:'松葉蟹・寒鰤魚・免費足湯'}
+  {day:'11/24',label:'黑部峽谷・宇奈月溫泉',color:'#F59E0B',points:[
+    {name:'富山站',lat:36.7019,lng:137.2125,note:'08:42 出發'},
+    {name:'宇奈月溫泉站',lat:36.8664,lng:137.5497,note:'小火車起點'},
+    {name:'貓又折返點',lat:36.8835,lng:137.5877,note:'峽谷最深處'},
+    {name:'延對寺莊',lat:36.8680,lng:137.5510,note:'懸崖露天風呂'}
   ]},
-  {day:'11/25',label:'黑部峽谷 · 宇奈月',color:'#F59E0B',points:[
-    {name:'富山站',lat:36.7019,lng:137.2125,note:'北越急行→富山地方鐵路出發'},
-    {name:'宇奈月溫泉站',lat:36.8664,lng:137.5497,note:'黑部峽谷小火車起點'},
-    {name:'貓又折返點',lat:36.8835,lng:137.5877,note:'峽谷最深處・峭壁紅葉'},
-    {name:'延對寺莊',lat:36.8680,lng:137.5510,note:'懸崖露天溫泉・海鮮會席'}
+  {day:'11/25',label:'魚津水族館・岩瀨',color:'#EF4444',points:[
+    {name:'宇奈月溫泉',lat:36.8664,lng:137.5497,note:'出發'},
+    {name:'魚津水族館',lat:36.8208,lng:137.3894,note:'深海魚大水槽'},
+    {name:'富山站',lat:36.7019,lng:137.2125,note:'購物'},
+    {name:'岩瀨老街',lat:36.7282,lng:137.2680,note:'夕陽景'},
+    {name:'磯料理 松月',lat:36.7283,lng:137.2630,note:'紅楚蟹割烹'}
   ]},
-  {day:'11/26',label:'魚津水族館 · 岩瀨',color:'#EF4444',points:[
-    {name:'宇奈月溫泉',lat:36.8664,lng:137.5497,note:'富山地方鐵路出發'},
-    {name:'魚津水族館',lat:36.8208,lng:137.3894,note:'富山灣深海魚大水槽'},
-    {name:'富山站・MAROOT',lat:36.7019,lng:137.2125,note:'購物・全球最美星巴克'},
-    {name:'岩瀨老街',lat:36.7282,lng:137.2680,note:'桝田酒造（満寿泉）・夕陽'},
-    {name:'磯料理 松月',lat:36.7283,lng:137.2630,note:'完全預約制・6人合桌 ¥20,000~'}
+  {day:'11/26',label:'AEON・海王丸・新湊',color:'#8B5CF6',points:[
+    {name:'新高岡站',lat:36.7418,lng:137.0090,note:'AEON購物'},
+    {name:'高岡駅',lat:36.7537,lng:137.0185,note:'轉機點'},
+    {name:'海王丸公園',lat:36.7726,lng:137.0896,note:'威尼斯運河'},
+    {name:'新湊きっときと市場',lat:36.7701,lng:137.0782,note:'紅楚蟹・海鮮丼'}
   ]},
-  {day:'11/27',label:'富山休整日 · 班機',color:'#8B5CF6',points:[
-    {name:'富山站',lat:36.7019,lng:137.2125,note:'11:00–13:00 最後採購'},
-    {name:'GRANDE CLASSE 百貨',lat:36.7065,lng:137.2130,note:'地酒・藥妝・伴手禮'},
+  {day:'11/27',label:'八尾老街・班機',color:'#EC4899',points:[
+    {name:'富山站',lat:36.7019,lng:137.2125,note:'09:20 出發'},
+    {name:'越中八尾',lat:36.5942,lng:137.0789,note:'合掌寺廟・老街'},
     {name:'富山機場（TOY）',lat:36.6483,lng:137.1878,note:'NH1626 17:30 起飛'},
-    {name:'羽田機場 T2（HND）',lat:35.5494,lng:139.7798,note:'18:45 抵達，Check-in 飯店'}
+    {name:'羽田機場（HND）',lat:35.5494,lng:139.7798,note:'18:45 抵達'}
   ]},
-  {day:'11/28',label:'羽田過夜',color:'#EC4899',points:[
+  {day:'11/28',label:'羽田機場過夜',color:'#7C3AED',points:[
     {name:'羽田機場 T2（HND）',lat:35.5494,lng:139.7798,note:'18:45 抵達'},
-    {name:'羽田機場附近飯店',lat:35.5520,lng:139.7800,note:'19:00–19:30 Check-in，早睡準備'}
+    {name:'羽田機場附近飯店',lat:35.5520,lng:139.7800,note:'Check-in 過夜'}
   ]},
-  {day:'11/29',label:'羽田→台北',color:'#7C3AED',points:[
-    {name:'羽田機場 T2（HND）',lat:35.5494,lng:139.7798,note:'05:30 起床，06:30–07:00 Check-in'},
-    {name:'長榮 BR035',lat:35.5494,lng:139.7798,note:'07:55 起飛'},
-    {name:'桃園國際機場 T2（TPE）',lat:25.0780,lng:121.2340,note:'10:55 抵達，圓滿歸來'}
+  {day:'11/29',label:'羽田→台北',color:'#06B6D4',points:[
+    {name:'羽田機場 T2（HND）',lat:35.5494,lng:139.7798,note:'05:30 起床，BR035 07:55 起飛'},
+    {name:'桃園國際機場（TPE）',lat:25.0780,lng:121.2340,note:'10:55 抵達'}
   ]}
 ];
 function initMap(){
