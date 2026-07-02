@@ -158,6 +158,12 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 .ml-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);}
 .ml-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 
+.plan-b-toggle{background:var(--amber-bg);border:1px solid var(--warn-bd);border-radius:var(--r);padding:8px 14px;font-size:12px;color:var(--amber);cursor:pointer;margin-top:8px;font-weight:600;transition:background .15s;}
+.plan-b-toggle:hover{background:#FDF1DB;}
+.plan-b-body{background:#FFFDF5;border:1px solid var(--warn-bd);border-radius:0 0 var(--r) var(--r);padding:12px 15px;border-top:none;}
+.plan-b-body .tl{border-left:2px solid var(--warn-bd);margin-left:5px;padding-left:14px;}
+.plan-b-body .ev-t{font-size:11px;font-weight:500;color:var(--amber);text-transform:uppercase;letter-spacing:.05em;}
+
 @media(max-width:480px){
   .page-header{padding:16px 15px 14px;}.tab-bar,.main{padding-left:15px;padding-right:15px;}
   .flight-banner{grid-template-columns:1fr;gap:7px;}.fl-mid{display:none;}.fl-right{text-align:left;}
@@ -439,6 +445,19 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
         </div>
       </div>
     </div>
+    <div class="plan-b-toggle" onclick="togPlanB(this)" data-title="上越妙高・Umigatari 路線">
+      📍 Plan B ▸ 上越妙高・Umigatari 路線（點擊展開）
+    </div>
+    <div class="plan-b-body" style="display:none;">
+      <div class="tl">
+        <div class="ev"><div class="ev-t">上午</div><div class="ev-d"><strong>離開宇奈月溫泉延對寺莊</strong></div></div>
+        <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">富山地方鐵道</span>新黑部站（約 25 分鐘）</div>
+        <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">北陸新幹線 Hakutaka</span>上越妙高站（約 25 分鐘，¥2,860）</div>
+        <div class="ev"><div class="ev-t">下午</div><div class="ev-d"><strong>上越市立水族博物館 Umigatari</strong> — 頂樓大水槽與日本海連成一線、麥哲倫企鵝互動區（國小學童最愛）</div></div>
+        <div class="ev"><div class="ev-t">晚餐</div><div class="ev-d">上越妙高站周邊新潟越光米料理 + 在地清酒</div></div>
+        <div class="ev"><div class="ev-t">住宿</div><div class="ev-d">上越妙高站前飯店（APA 或 Toyoko Inn）</div></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -488,6 +507,23 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
             <div class="pnote">📍 冰見市 · 完全預約制 · 推薦提前1週預約</div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="plan-b-toggle" onclick="togPlanB(this)" data-title="親不知海岸・岩瀨百年料亭">
+      📍 Plan B ▸ 親不知海岸・岩瀨百年料亭（點擊展開）
+    </div>
+    <div class="plan-b-body" style="display:none;">
+      <div class="tl">
+        <div class="ev"><div class="ev-t">上午</div><div class="ev-d">上越妙高 → 北陸新幹線 → 糸魚川站（約 14 分鐘）</div></div>
+        <div class="ev"><div class="ev-t">交通建議</div><div class="ev-d">計程車前往親不知步道或 Pier Park（約 15-20 分鐘），避免強風受寒</div></div>
+        <div class="ev"><div class="ev-t">活動</div><div class="ev-d"><strong>親不知社區步道</strong> — 漫步於斷崖古道，欣賞日本海激浪拍打懸崖的震撼奇景</div></div>
+        <div class="ev"><div class="ev-t">午餐</div><div class="ev-d"><strong>親不知 Pier Park（道之駅）</strong> — 海鮮定食 / 現蒸紅楚蟹料理</div></div>
+        <div class="ev"><div class="ev-t">14:00</div><div class="ev-d">糸魚川站 → 北陸新幹線 → 富山站（約 26 分鐘）</div></div>
+        <div class="ev"><div class="ev-t">15:15</div><div class="ev-d">Check-in 富山大和飯店、寄存行李</div></div>
+        <div class="ev"><div class="ev-t">15:30</div><div class="ev-d">LRT 路面電車 → 岩瀨老街</div></div>
+        <div class="ev"><div class="ev-t">16:30</div><div class="ev-d">登岩瀨展望塔看落日</div></div>
+        <div class="ev"><div class="ev-t">17:30 晚餐</div><div class="ev-d">🦀 <strong>磯料理 松月</strong>（創業 1911 年） — 招牌名物「福團子」260 匹白蝦套餐（200 匹白蝦泥烤製）<small>完全預約制</small></div></div>
+        <div class="ev"><div class="ev-t">晚間</div><div class="ev-d">LRT 路面電車 → 富山站飯店休息</div></div>
       </div>
     </div>
   </div>
@@ -733,6 +769,13 @@ function showTab(id,btn){
 function tog(hd){
   const b=hd.nextElementSibling,c=hd.querySelector('.chev'),o=b.classList.contains('open');
   b.classList.toggle('open',!o);c.classList.toggle('open',!o);
+}
+function togPlanB(el){
+  const b=el.nextElementSibling;
+  const isOpen=b.style.display==='block';
+  b.style.display=isOpen?'none':'block';
+  const title=el.dataset.title||'Plan B';
+  el.textContent=(isOpen?'📍 Plan B ▸ ':'📍 Plan B ▴ ')+title;
 }
 
 const RATE=0.215;
