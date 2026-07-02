@@ -158,11 +158,10 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 .ml-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);}
 .ml-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 
-.plan-b-toggle{background:var(--amber-bg);border:1px solid var(--warn-bd);border-radius:var(--r);padding:8px 14px;font-size:12px;color:var(--amber);cursor:pointer;margin-top:8px;font-weight:600;transition:background .15s;}
-.plan-b-toggle:hover{background:#FDF1DB;}
-.plan-b-body{background:#FFFDF5;border:1px solid var(--warn-bd);border-radius:0 0 var(--r) var(--r);padding:12px 15px;border-top:none;}
-.plan-b-body .tl{border-left:2px solid var(--warn-bd);margin-left:5px;padding-left:14px;}
-.plan-b-body .ev-t{font-size:11px;font-weight:500;color:var(--amber);text-transform:uppercase;letter-spacing:.05em;}
+.plan-switch{display:flex;gap:6px;margin-bottom:12px;}
+.ps-btn{flex:1;padding:7px 10px;border-radius:var(--r);border:1.5px solid var(--border);background:var(--surface);color:var(--muted);font-size:11px;font-weight:600;cursor:pointer;text-align:center;transition:.15s;font-family:'Noto Sans TC',sans-serif;}
+.ps-btn.on{background:var(--amber-bg);border-color:var(--warn-bd);color:var(--amber);}
+.plan-panel{display:block;}
 
 @media(max-width:480px){
   .page-header{padding:16px 15px 14px;}.tab-bar,.main{padding-left:15px;padding-right:15px;}
@@ -457,6 +456,11 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
     <span class="chev">▾</span>
   </div>
   <div class="day-body">
+    <div class="plan-switch">
+      <button class="ps-btn on" onclick="switchPlan(this,'plan-a5')">Plan A · 魚津水族館・岩瀨老街</button>
+      <button class="ps-btn" onclick="switchPlan(this,'plan-b5')">Plan B · 上越妙高・Umigatari</button>
+    </div>
+    <div id="plan-a5" class="plan-panel">
     <div class="tl">
       <div class="ev"><div class="ev-t">09:00</div><div class="ev-d">延對寺莊早餐、退房</div></div>
       <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>10:00 宇奈月 → 富山地方鐵道 → 新魚津站 10:40</div>
@@ -500,10 +504,8 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
         </div>
       </div>
     </div>
-    <div class="plan-b-toggle" onclick="togPlanB(this)" data-title="上越妙高・Umigatari 路線">
-      📍 Plan B ▸ 上越妙高・Umigatari 路線（點擊展開）
     </div>
-    <div class="plan-b-body" style="display:none;">
+    <div id="plan-b5" class="plan-panel" style="display:none;">
       <div class="tl">
         <div class="ev"><div class="ev-t">上午</div><div class="ev-d"><strong>離開宇奈月溫泉延對寺莊</strong></div></div>
         <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">富山地方鐵道</span>新黑部站（約 25 分鐘）</div>
@@ -527,6 +529,11 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
     <span class="chev">▾</span>
   </div>
   <div class="day-body">
+    <div class="plan-switch">
+      <button class="ps-btn on" onclick="switchPlan(this,'plan-a6')">Plan A · 新湊・海王丸公園</button>
+      <button class="ps-btn" onclick="switchPlan(this,'plan-b6')">Plan B · 親不知・岩瀨百年料亭</button>
+    </div>
+    <div id="plan-a6" class="plan-panel">
     <div class="tl">
       <div class="ev"><div class="ev-t">08:00–09:00</div><div class="ev-d">飯店早餐</div></div>
       <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>09:20 富山 → JR 城端線 → 新高岡站（¥550）</div>
@@ -572,10 +579,8 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
         </div>
       </div>
     </div>
-    <div class="plan-b-toggle" onclick="togPlanB(this)" data-title="親不知海岸・岩瀨百年料亭">
-      📍 Plan B ▸ 親不知海岸・岩瀨百年料亭（點擊展開）
     </div>
-    <div class="plan-b-body" style="display:none;">
+    <div id="plan-b6" class="plan-panel" style="display:none;">
       <div class="tl">
         <div class="ev"><div class="ev-t">上午</div><div class="ev-d">上越妙高 → 北陸新幹線 → 糸魚川站（約 14 分鐘）</div></div>
         <div class="ev"><div class="ev-t">交通建議</div><div class="ev-d">計程車前往親不知步道或 Pier Park（約 15-20 分鐘），避免強風受寒</div></div>
@@ -737,7 +742,7 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 </div>
 
 <div style="margin-top:24px;margin-bottom:10px;">
-  <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">✈ 11/28 羽田機場附近住宿（1晚）</div>
+  <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">✈ 羽田機場附近住宿（1晚）</div>
   <div style="font-size:12px;color:var(--muted);">需求：機場接駁方便 · 6人/3房 · 隔天 06:30 前抵達航廈</div>
 </div>
 <div class="hotel-grid">
@@ -747,7 +752,7 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
       <div class="hotel-name">ANA Holiday Inn Tokyo Haneda</div>
       <span class="hotel-rank rank-top">★ 首選</span>
     </div>
-    <div class="hotel-desc">直結羽田機場第一航廈，接駁便捷。傍晚 18:45 抵達即可直接入住。隔天 06:30 前走回航廈登機（07:55 BR035），時間寬裕。客房舒適，家庭房選擇豐富。</div>
+    <div class="hotel-desc">直結羽田機場第一航廈，接駁便捷。家庭房選擇豐富，6人3房安排寬鬆。</div>
     <div class="hotel-specs">
       <div class="spec"><span class="spec-icon">📍</span><span>直結羽田 T1，步行至 T2 國際線 10–15 分</span></div>
       <div class="spec"><span class="spec-icon">🛏</span><span>三人房 / 家庭房，6人訂 3 房</span></div>
@@ -796,9 +801,9 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 
 <div class="bcard">
   <div class="bsec">🏨 住宿（8晚）</div>
-  <div class="brow"><span class="blbl">富山 5晚 (11/21–23, 26–27)<span class="bnote">HOTEL WING INTERNATIONAL</span></span><span class="bjpy" id="h1">—</span><span class="btwd" id="h1-t">—</span></div>
-  <div class="brow"><span class="blbl">宇奈月 1晚 (11/24)<span class="bnote">延對寺莊 一室二食</span></span><span class="bjpy" id="h2">—</span><span class="btwd" id="h2-t">—</span></div>
-  <div class="brow"><span class="blbl">羽田 1晚 (11/28)<span class="bnote">ANA Holiday Inn</span></span><span class="bjpy" id="h3">—</span><span class="btwd" id="h3-t">—</span></div>
+  <div class="brow"><span class="blbl">富山 5晚<span class="bnote">HOTEL WING INTERNATIONAL</span></span><span class="bjpy" id="h1">—</span><span class="btwd" id="h1-t">—</span></div>
+  <div class="brow"><span class="blbl">宇奈月 1晚<span class="bnote">延對寺莊 一室二食</span></span><span class="bjpy" id="h2">—</span><span class="btwd" id="h2-t">—</span></div>
+  <div class="brow"><span class="blbl">羽田 1晚<span class="bnote">ANA Holiday Inn</span></span><span class="bjpy" id="h3">—</span><span class="btwd" id="h3-t">—</span></div>
 </div>
 
 <div class="bcard">
@@ -811,9 +816,9 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 
 <div class="bcard">
   <div class="bsec">🎫 門票 · 活動</div>
-  <div class="brow"><span class="blbl">黑部峽谷小火車 (11/24)<span class="bnote">¥2,880 大人 / ¥1,440 小孩</span></span><span class="bjpy" id="kb">—</span><span class="btwd" id="kb-t">—</span></div>
-  <div class="brow"><span class="blbl">魚津水族館 (11/25)<span class="bnote">¥1,600 大人 / ¥800 小孩</span></span><span class="bjpy" id="aq">—</span><span class="btwd" id="aq-t">—</span></div>
-  <div class="brow"><span class="blbl">家族動物園 (11/22)<span class="bnote">小學生免費，大人 ¥1,000</span></span><span class="bjpy" id="fampark">—</span><span class="btwd" id="fampark-t">—</span></div>
+  <div class="brow"><span class="blbl">黑部峽谷小火車<span class="bnote">¥2,880 大人 / ¥1,440 小孩</span></span><span class="bjpy" id="kb">—</span><span class="btwd" id="kb-t">—</span></div>
+  <div class="brow"><span class="blbl">魚津水族館<span class="bnote">¥1,600 大人 / ¥800 小孩</span></span><span class="bjpy" id="aq">—</span><span class="btwd" id="aq-t">—</span></div>
+  <div class="brow"><span class="blbl">家族動物園<span class="bnote">小學生免費，大人 ¥1,000</span></span><span class="bjpy" id="fampark">—</span><span class="btwd" id="fampark-t">—</span></div>
   <div class="brow"><span class="blbl">三郎丸蒸留所 (可選)<span class="bnote">¥5,000/人（需預約）</span></span><span class="bjpy" id="dist">—</span><span class="btwd" id="dist-t">—</span></div>
 </div>
 
@@ -846,12 +851,13 @@ function tog(hd){
   const b=hd.nextElementSibling,c=hd.querySelector('.chev'),o=b.classList.contains('open');
   b.classList.toggle('open',!o);c.classList.toggle('open',!o);
 }
-function togPlanB(el){
-  const b=el.nextElementSibling;
-  const isOpen=b.style.display==='block';
-  b.style.display=isOpen?'none':'block';
-  const title=el.dataset.title||'Plan B';
-  el.textContent=(isOpen?'📍 Plan B ▸ ':'📍 Plan B ▴ ')+title;
+function switchPlan(btn, panelId) {
+  const sw = btn.parentElement;
+  sw.querySelectorAll('.ps-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  const body = sw.parentElement;
+  body.querySelectorAll('.plan-panel').forEach(p => p.style.display = 'none');
+  document.getElementById(panelId).style.display = 'block';
 }
 
 const RATE=0.215;
@@ -1007,20 +1013,6 @@ const mapDays=[
     {name:'高岡駅',lat:36.7537,lng:137.0185,note:'轉機點'},
     {name:'海王丸公園',lat:36.7726,lng:137.0896,note:'新湊海王丸'},
     {name:'新湊きっときと市場',lat:36.7701,lng:137.0782,note:'紅楚蟹・海鮮丼'}
-  ]},
-  {day:'11/27',label:'八尾老街・班機',color:'#EC4899',points:[
-    {name:'富山站',lat:36.7019,lng:137.2125,note:'09:20 出發'},
-    {name:'越中八尾',lat:36.5942,lng:137.0789,note:'八尾老街'},
-    {name:'富山機場（TOY）',lat:36.6483,lng:137.1878,note:'NH1626 17:30 起飛'},
-    {name:'羽田機場（HND）',lat:35.5494,lng:139.7798,note:'18:45 抵達'}
-  ]},
-  {day:'11/28',label:'羽田機場過夜',color:'#7C3AED',points:[
-    {name:'羽田機場 T2（HND）',lat:35.5494,lng:139.7798,note:'18:45 抵達'},
-    {name:'羽田機場附近飯店',lat:35.5520,lng:139.7800,note:'Check-in 過夜'}
-  ]},
-  {day:'11/29',label:'羽田→台北',color:'#06B6D4',points:[
-    {name:'羽田機場 T2（HND）',lat:35.5494,lng:139.7798,note:'羽田T2'},
-    {name:'桃園國際機場（TPE）',lat:25.0780,lng:121.2340,note:'10:55 抵達'}
   ]}
 ];
 function initMap(){
