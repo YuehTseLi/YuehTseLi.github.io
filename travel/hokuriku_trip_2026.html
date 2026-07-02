@@ -29,19 +29,19 @@
 }
 body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;}
 
-.page-header{background:var(--surface);border-bottom:1px solid var(--border);padding:24px 24px 18px;position:sticky;top:0;z-index:100;}
+.page-header{background:linear-gradient(135deg,#FBF8F3 0%,#F0EAE0 100%);border-bottom:1px solid var(--border);padding:36px 24px 24px;position:sticky;top:0;z-index:100;}
 .header-inner{max-width:760px;margin:0 auto;}
-.eyebrow{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--hint);margin-bottom:5px;}
-h1{font-size:20px;font-weight:700;margin-bottom:9px;}
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--hint);margin-bottom:8px;}
+h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spacing:-.3px;}
+.trip-meta{display:flex;gap:16px;font-size:12px;color:var(--muted);margin-bottom:14px;flex-wrap:wrap;}
+.trip-meta-item{display:flex;align-items:center;gap:4px;}
 .pill-row{display:flex;gap:5px;flex-wrap:wrap;}
 .pill{font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;}
 
-.tab-bar{max-width:760px;margin:0 auto;display:flex;padding:16px 24px 0;}
-.tab-btn{padding:7px 20px;border:1px solid var(--border);background:transparent;cursor:pointer;font-family:inherit;font-size:13px;color:var(--muted);transition:background .15s;}
-.tab-btn:first-child{border-radius:var(--r) 0 0 var(--r);}
-.tab-btn:last-child{border-radius:0 var(--r) var(--r) 0;border-left:none;}
-.tab-btn.active{background:var(--text);color:#fff;border-color:var(--text);}
-.tab-btn:not(.active):hover{background:var(--bg);}
+.tab-bar{max-width:760px;margin:0 auto;padding:0 24px;border-bottom:1px solid var(--border);}
+.tab-btn{padding:14px 20px;border:none;border-bottom:2px solid transparent;background:transparent;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600;color:var(--muted);transition:color .15s,border-color .15s;border-radius:0;}
+.tab-btn.active{color:var(--text);border-bottom-color:var(--text);}
+.tab-btn:not(.active):hover{color:var(--text);}
 
 .main{max-width:760px;margin:0 auto;padding:16px 24px 60px;}
 .tab-pane{display:none;}.tab-pane.active{display:block;}
@@ -163,6 +163,12 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 .ps-btn.on{background:var(--amber-bg);border-color:var(--warn-bd);color:var(--amber);}
 .plan-panel{display:block;}
 
+.sec-hd{display:flex;align-items:center;gap:10px;margin:28px 0 14px;}
+.sec-hd:first-child{margin-top:4px;}
+.sec-title{font-size:15px;font-weight:800;color:var(--text);}
+.sec-sub{font-size:12px;color:var(--muted);margin-top:2px;}
+.nights-chip{font-size:11px;font-weight:700;background:var(--blue-bg);color:var(--blue);padding:3px 10px;border-radius:12px;margin-left:auto;white-space:nowrap;flex-shrink:0;}
+
 @media(max-width:480px){
   .page-header{padding:16px 15px 14px;}.tab-bar,.main{padding-left:15px;padding-right:15px;}
   .flight-banner{grid-template-columns:1fr;gap:7px;}.fl-mid{display:none;}.fl-right{text-align:left;}
@@ -178,7 +184,12 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 <header class="page-header">
   <div class="header-inner">
     <div class="eyebrow">2026 年秋季親子旅遊</div>
-    <h1>北陸 · 9天8夜 ｜ 六大一小 ｜ 台北 09:00→羽田 12:50 轉機 ANA 當日抵富山</h1>
+    <h1>北陸 9 天 8 夜</h1>
+    <div class="trip-meta">
+      <span class="trip-meta-item">✈ 六大一小</span>
+      <span class="trip-meta-item">📅 11月21–29日</span>
+      <span class="trip-meta-item">🏔 富山 · 高岡 · 黑部 · 宇奈月</span>
+    </div>
     <div class="pill-row">
       <span class="pill" style="background:var(--blue-bg);color:var(--blue);">華航 CI826/CI223 直飛</span>
       <span class="pill" style="background:var(--amber-bg);color:var(--amber);">ANA 國內線 去回</span>
@@ -450,70 +461,19 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
   <div class="day-hd" onclick="tog(this)">
     <div class="dbadge" style="background:var(--coral-bg);color:var(--coral);">11/25</div>
     <div class="dinfo">
-      <div class="dtitle">魚津水族館 · 岩瀨老街 · 磯料理松月</div>
-      <div class="dsub">深海大水槽 · 古鎮漫步 · 富山港線往返 · 紅楚蟹割烹</div>
+      <div class="dtitle">上越妙高 · Umigatari 水族博物館</div>
+      <div class="dsub">峽谷道別 · 北陸新幹線 · 企鵝互動區 · 新潟越光米料理</div>
     </div>
     <span class="chev">▾</span>
   </div>
   <div class="day-body">
-    <div class="plan-switch">
-      <button class="ps-btn on" onclick="switchPlan(this,'plan-a5')">Plan A · 魚津水族館・岩瀨老街</button>
-      <button class="ps-btn" onclick="switchPlan(this,'plan-b5')">Plan B · 上越妙高・Umigatari</button>
-    </div>
-    <div id="plan-a5" class="plan-panel">
     <div class="tl">
-      <div class="ev"><div class="ev-t">09:00</div><div class="ev-d">延對寺莊早餐、退房</div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>10:00 宇奈月 → 富山地方鐵道 → 新魚津站 10:40</div>
-      <div class="ev"><div class="ev-t">11:00–12:30</div><div class="ev-d"><strong>魚津水族館</strong>— 富山灣深海魚大水槽（深海生物世界）</div></div>
-      <div class="ev"><div class="ev-t">12:30–13:30</div><div class="ev-d">魚津當地食堂午餐</div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">富山地方鐵道</span>約 13:40 新魚津 → 富山 → 轉 富山港線 → 東岩瀨站（全程約 50 分鐘）</div>
-      <div class="ev"><div class="ev-t">14:30–17:00</div><div class="ev-d"><strong>岩瀨老街</strong>漫步、喝咖啡逛小店、登展望台看富山灣夕陽與雪山</div></div>
-      <div class="ev"><div class="ev-t">17:45</div><div class="ev-d">🦀 <strong>磯料理 松月</strong>（完全預約制）— 紅楚蟹、白蝦天婦羅、海鮮割烹<small>6人約 ¥20,000–28,000 · 預約：byFood / AutoReserve</small></div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">富山港線</span>19:20 東岩瀨站 → 富山站（約 20 分）</div>
-      <div class="ev"><div class="ev-t">19:30+</div><div class="ev-d">重新 Check-in 飯店</div></div>
-    </div>
-    <div class="ins-sec">
-      <div class="ins-label">🐟 魚津水族館周邊午餐</div>
-      <div class="ins-grid">
-        <div class="icard">
-          <div class="icard-hd"><span style="font-size:15px;">🍙</span><span class="icard-name" style="color:#2C5F5D;">魚津 食堂 さかや</span><span class="itag" style="background:#E0F2F1;color:#2C5F5D;border:1px solid #B2DFDB;">tabelog 3.31分</span></div>
-          <div class="idesc">魚津水族館旁的在地食堂，白蝦、富山灣新鮮魚貝，中午限定海鮮丼。在地上班族常客，樸實好味。</div>
-          <div class="plist">
-            <div class="prow"><span class="pname">海鮮丼 / 天丼套餐</span><span class="pprice" style="color:#2C5F5D;">¥1,500~2,000</span></div>
-            <div class="pnote">📍 魚津市 · 11:00–14:00（週二休）· 水族館步行3分</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="ins-sec">
-      <div class="ins-label">🍶 ☕ 岩瀨老街精選</div>
-      <div class="ins-grid">
-        <div class="icard sake">
-          <div class="icard-hd"><span style="font-size:15px;">🍶</span><span class="icard-name sake">桝田酒造（満寿泉）</span><span class="itag sake">岩瀨老街</span></div>
-          <div class="idesc">富山代表地酒，IWC 金牌，首創法國橡木桶熟成日本酒。</div>
-          <div class="plist">
-            <div class="prow"><span class="pname">純米大吟釀（720ml）</span><span class="pprice sake">¥4,400~</span></div>
-          </div>
-        </div>
-        <div class="icard cafe">
-          <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name cafe">MUROYA</span><span class="itag cafe">岩瀨老街</span></div>
-          <div class="idesc">酒粕マカロン + 満寿泉試飲 + 白蝦軟冰淇淋。</div>
-          <div class="plist">
-            <div class="prow"><span class="pname">マカロン + ドリンク セット</span><span class="pprice cafe">¥800</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-    <div id="plan-b5" class="plan-panel" style="display:none;">
-      <div class="tl">
-        <div class="ev"><div class="ev-t">上午</div><div class="ev-d"><strong>離開宇奈月溫泉延對寺莊</strong></div></div>
-        <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">富山地方鐵道</span>新黑部站（約 25 分鐘）</div>
-        <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">北陸新幹線 Hakutaka</span>上越妙高站（約 25 分鐘，¥2,860）</div>
-        <div class="ev"><div class="ev-t">下午</div><div class="ev-d"><strong>上越市立水族博物館 Umigatari</strong> — 頂樓大水槽與日本海連成一線、麥哲倫企鵝互動區（國小學童最愛）</div></div>
-        <div class="ev"><div class="ev-t">晚餐</div><div class="ev-d">上越妙高站周邊新潟越光米料理 + 在地清酒</div></div>
-        <div class="ev"><div class="ev-t">住宿</div><div class="ev-d">上越妙高站前飯店（APA 或 Toyoko Inn）</div></div>
-      </div>
+      <div class="ev"><div class="ev-t">上午</div><div class="ev-d"><strong>離開宇奈月溫泉延對寺莊</strong></div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">富山地方鐵道</span>新黑部站（約 25 分鐘）</div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">北陸新幹線 Hakutaka</span>上越妙高站（約 25 分鐘，¥2,860）</div>
+      <div class="ev"><div class="ev-t">下午</div><div class="ev-d"><strong>上越市立水族博物館 Umigatari</strong> — 頂樓大水槽與日本海連成一線、麥哲倫企鵝互動區（國小學童最愛）</div></div>
+      <div class="ev"><div class="ev-t">晚餐</div><div class="ev-d">上越妙高站周邊新潟越光米料理 + 在地清酒</div></div>
+      <div class="ev"><div class="ev-t">住宿</div><div class="ev-d">上越妙高站前飯店（APA 或 Toyoko Inn）</div></div>
     </div>
   </div>
 </div>
@@ -523,76 +483,23 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
   <div class="day-hd" onclick="tog(this)">
     <div class="dbadge" style="background:var(--purple-bg);color:var(--purple);">11/26</div>
     <div class="dinfo">
-      <div class="dtitle">AEON 購物 · 海王丸公園 · 新湊觀光船</div>
-      <div class="dsub">運河威尼斯 · 帆船遊覽 · 蒸紅雪蟹</div>
+      <div class="dtitle">親不知海岸 · 磯料理松月</div>
+      <div class="dsub">斷崖古道 · 日本海激浪 · 富山 LRT · 岩瀨展望台 · 260匹白蝦割烹</div>
     </div>
     <span class="chev">▾</span>
   </div>
   <div class="day-body">
-    <div class="plan-switch">
-      <button class="ps-btn on" onclick="switchPlan(this,'plan-a6')">Plan A · 新湊・海王丸公園</button>
-      <button class="ps-btn" onclick="switchPlan(this,'plan-b6')">Plan B · 親不知・岩瀨百年料亭</button>
-    </div>
-    <div id="plan-a6" class="plan-panel">
     <div class="tl">
-      <div class="ev"><div class="ev-t">08:00–09:00</div><div class="ev-d">飯店早餐</div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>09:20 富山 → JR 城端線 → 新高岡站（¥550）</div>
-      <div class="ev"><div class="ev-t">09:30–12:30</div><div class="ev-d"><strong>AEON MALL 高岡</strong> — ABC-MART、UNIQLO、玩具區、咖啡休息</div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>12:50 新高岡 → 城端線 → 高岡站（¥240）</div>
-      <div class="ev"><div class="ev-t">13:00–13:30</div><div class="ev-d">高岡站附近簡便午餐</div></div>
-      <div class="ev"><div class="ev-t">12:50–13:30</div><div class="ev-d">高岡站出站後步行約 2 分鐘至萬葉線月台</div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--green-bg);color:var(--green);">萬葉線</span>14:00 高岡駅 → 海王丸站（約 40 分）</div></div>
-      <div class="ev"><div class="ev-t">14:30–16:00</div><div class="ev-d"><strong>海王丸公園</strong> — 帆船海王丸、立山連峰冠雪絕景、日本威尼斯內川</div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--teal-bg);color:var(--teal);">觀光船</span>14:30 新湊港出發 → 50分內川觀光（坐右邊靠窗）</div>
-      <div class="ev"><div class="ev-t">15:30–17:00</div><div class="ev-d">🦀 <strong>新湊きっときと市場</strong>— 下船步行約 2 分鐘，水槽挑紅楚蟹現蒸現吃 + 白蝦天婦羅 + 海鮮丼 + 自製珍珠堡（推薦：氷見牛專門店 たなか tabelog 3.55分 日式烤肉可預約）<small>6人約 ¥20,000–25,000</small></div></div>
-      <div class="ev"><div class="ev-t">☔ 備案</div><div class="ev-d">下雨天可與 11/27 八尾那天互換行程</div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--green-bg);color:var(--green);">萬葉線</span>17:20 海王丸站 → 高岡站（約 40 分）</div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>18:00 高岡 → 富山（¥790）</div>
-      <div class="ev"><div class="ev-t">19:00+</div><div class="ev-d">回到富山，飯店晚餐或附近晚餐</div></div>
-    </div>
-    <div class="ins-sec">
-      <div class="ins-label">🦀 ☕ 新湊・海王丸精選</div>
-      <div class="ins-grid">
-        <div class="icard" style="background:#FBF3EC;border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">🍤</span><span class="icard-name" style="color:#7A4A1E;">新湊 きっときと市場</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">漁港直營</span></div>
-          <div class="idesc">新湊漁港內的海產直売市場，水槽挑選紅楚蟹現蒸現吃，白蝦天婦羅、海鮮丼新鮮度無敵。行程已含此據點。</div>
-          <div class="plist">
-            <div class="prow"><span class="pname">紅楚蟹蒸套餐 / 海鮮丼</span><span class="pprice" style="color:#7A4A1E;font-weight:700;">¥2,500~4,500</span></div>
-            <div class="pnote">📍 射水市新湊漁港 · 下船步行2分 · 預約：可電洽</div>
-          </div>
-        </div>
-        <div class="icard" style="background:#FBF3EC;border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">🥩</span><span class="icard-name" style="color:#7A4A1E;">氷見牛專門店 たなか</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.55分</span></div>
-          <div class="idesc">冰見黑毛牛専門烤肉，上質A5等級肉質。新湊から車で約15分。若時間充裕可預約晚餐升級體驗。</div>
-          <div class="plist">
-            <div class="prow"><span class="pname">黑毛牛燒肉套餐</span><span class="pprice" style="color:#7A4A1E;font-weight:700;">¥5,500~8,800</span></div>
-            <div class="pnote">📍 冰見市 · 完全預約制 · 推薦提前1週預約</div>
-          </div>
-        </div>
-        <div class="icard" style="background:#FBF3EC;border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">🍙</span><span class="icard-name" style="color:#7A4A1E;">新湊 回轉壽司 港十</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.27分</span></div>
-          <div class="idesc">新湊漁港直送食材的回轉壽司，白蝦、松葉蟹、冰見鰤魚新鮮到不行。親民價格，中午排隊人氣店。</div>
-          <div class="plist">
-            <div class="prow"><span class="pname">握壽司盤（12貫）/ 特上</span><span class="pprice" style="color:#7A4A1E;font-weight:700;">¥1,500~2,500</span></div>
-            <div class="pnote">📍 射水市新湊 · 11:00–21:00（週一休）· 海王丸公園步行5分</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-    <div id="plan-b6" class="plan-panel" style="display:none;">
-      <div class="tl">
-        <div class="ev"><div class="ev-t">上午</div><div class="ev-d">上越妙高 → 北陸新幹線 → 糸魚川站（約 14 分鐘）</div></div>
-        <div class="ev"><div class="ev-t">交通建議</div><div class="ev-d">計程車前往親不知步道或 Pier Park（約 15-20 分鐘），避免強風受寒</div></div>
-        <div class="ev"><div class="ev-t">活動</div><div class="ev-d"><strong>親不知社區步道</strong> — 漫步於斷崖古道，欣賞日本海激浪拍打懸崖的震撼奇景</div></div>
-        <div class="ev"><div class="ev-t">午餐</div><div class="ev-d"><strong>親不知 Pier Park（道之駅）</strong> — 海鮮定食 / 現蒸紅楚蟹料理</div></div>
-        <div class="ev"><div class="ev-t">14:00</div><div class="ev-d">糸魚川站 → 北陸新幹線 → 富山站（約 26 分鐘）</div></div>
-        <div class="ev"><div class="ev-t">15:15</div><div class="ev-d">Check-in 富山大和飯店、寄存行李</div></div>
-        <div class="ev"><div class="ev-t">15:30</div><div class="ev-d">LRT 路面電車 → 岩瀨老街</div></div>
-        <div class="ev"><div class="ev-t">16:30</div><div class="ev-d">登岩瀨展望塔看落日</div></div>
-        <div class="ev"><div class="ev-t">17:30 晚餐</div><div class="ev-d">🦀 <strong>磯料理 松月</strong>（創業 1911 年） — 招牌名物「福團子」260 匹白蝦套餐（200 匹白蝦泥烤製）<small>完全預約制</small></div></div>
-        <div class="ev"><div class="ev-t">晚間</div><div class="ev-d">LRT 路面電車 → 富山站飯店休息</div></div>
-      </div>
+      <div class="ev"><div class="ev-t">上午</div><div class="ev-d">上越妙高 → 北陸新幹線 → 糸魚川站（約 14 分鐘）</div></div>
+      <div class="ev"><div class="ev-t">交通建議</div><div class="ev-d">計程車前往親不知步道或 Pier Park（約 15-20 分鐘），避免強風受寒</div></div>
+      <div class="ev"><div class="ev-t">活動</div><div class="ev-d"><strong>親不知社區步道</strong> — 漫步於斷崖古道，欣賞日本海激浪拍打懸崖的震撼奇景</div></div>
+      <div class="ev"><div class="ev-t">午餐</div><div class="ev-d"><strong>親不知 Pier Park（道之駅）</strong> — 海鮮定食 / 現蒸紅楚蟹料理</div></div>
+      <div class="ev"><div class="ev-t">14:00</div><div class="ev-d">糸魚川站 → 北陸新幹線 → 富山站（約 26 分鐘）</div></div>
+      <div class="ev"><div class="ev-t">15:15</div><div class="ev-d">Check-in 富山大和飯店、寄存行李</div></div>
+      <div class="ev"><div class="ev-t">15:30</div><div class="ev-d">LRT 路面電車 → 岩瀨老街</div></div>
+      <div class="ev"><div class="ev-t">16:30</div><div class="ev-d">登岩瀨展望塔看落日</div></div>
+      <div class="ev"><div class="ev-t">17:30 晚餐</div><div class="ev-d">🦀 <strong>磯料理 松月</strong>（創業 1911 年） — 招牌名物「福團子」260 匹白蝦套餐（200 匹白蝦泥烤製）<small>完全預約制</small></div></div>
+      <div class="ev"><div class="ev-t">晚間</div><div class="ev-d">LRT 路面電車 → 富山站飯店休息</div></div>
     </div>
   </div>
 </div>
@@ -701,8 +608,13 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 
 <div id="hotels" class="tab-pane">
 
-<div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;">🏔 富山住宿（11/21–23, 11/26–27 共5晚）</div>
-<div style="font-size:12px;color:var(--muted);margin-bottom:10px;">重點需求：富山站步行圈 · 含大浴場 · 可寄存宅急便</div>
+<div class="sec-hd">
+  <div>
+    <div class="sec-title">🏔 富山市區住宿</div>
+    <div class="sec-sub">富山站步行圈 · 含大浴場 · 可寄存宅急便</div>
+  </div>
+  <span class="nights-chip">5 晚</span>
+</div>
 <div class="hotel-grid">
   <div class="hotel-card">
     <div class="hotel-hd">
@@ -720,9 +632,12 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
   </div>
 </div>
 
-<div style="margin-top:24px;margin-bottom:10px;">
-  <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">♨ 宇奈月溫泉住宿（11/24 1晚）</div>
-  <div style="font-size:12px;color:var(--muted);">需求：懸崖露天風呂 · 海鮮會席料理 · 完全預約制</div>
+<div class="sec-hd">
+  <div>
+    <div class="sec-title">♨ 宇奈月溫泉住宿</div>
+    <div class="sec-sub">懸崖露天風呂 · 海鮮會席料理 · 完全預約制</div>
+  </div>
+  <span class="nights-chip">1 晚</span>
 </div>
 <div class="hotel-grid">
   <div class="hotel-card">
@@ -741,9 +656,36 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
   </div>
 </div>
 
-<div style="margin-top:24px;margin-bottom:10px;">
-  <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">✈ 羽田機場附近住宿（1晚）</div>
-  <div style="font-size:12px;color:var(--muted);">需求：機場接駁方便 · 6人/3房 · 隔天 06:30 前抵達航廈</div>
+<div class="sec-hd">
+  <div>
+    <div class="sec-title">🏔 上越妙高住宿</div>
+    <div class="sec-sub">新幹線站前 · 商務飯店 · Umigatari 後轉宿</div>
+  </div>
+  <span class="nights-chip">1 晚</span>
+</div>
+<div class="hotel-grid">
+  <div class="hotel-card">
+    <div class="hotel-hd">
+      <div class="hotel-icon">🏔</div>
+      <div class="hotel-name">APA Hotel 上越妙高駅前 / Toyoko Inn 上越妙高</div>
+      <span class="hotel-rank rank-bal">推薦</span>
+    </div>
+    <div class="hotel-desc">北陸新幹線上越妙高站步行3–5分鐘，交通極便捷。隔天早班新幹線前往糸魚川出發親不知海岸。設施簡潔現代，家庭房型充足。</div>
+    <div class="hotel-specs">
+      <div class="spec"><span class="spec-icon">📍</span><span>上越妙高駅步行3–5分鐘</span></div>
+      <div class="spec"><span class="spec-icon">🚅</span><span>北陸新幹線ホーム直結エリア</span></div>
+      <div class="spec"><span class="spec-icon">¥</span><span>三人房 ¥10,000–14,000/晚</span></div>
+    </div>
+    <div class="hotel-note">💡 Umigatari 水族博物館下午參觀後步行或計程車即達，節省轉乘時間。</div>
+  </div>
+</div>
+
+<div class="sec-hd">
+  <div>
+    <div class="sec-title">✈ 羽田機場轉機住宿</div>
+    <div class="sec-sub">機場接駁方便 · 6人/3房</div>
+  </div>
+  <span class="nights-chip">1 晚</span>
 </div>
 <div class="hotel-grid">
   <div class="hotel-card">
@@ -793,9 +735,10 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 
 <div class="bcard">
   <div class="bsec">🚌 交通（無周遊券）</div>
-  <div class="brow"><span class="blbl">富山地方鐵道自費<span class="bnote">宇奈月往返 + 魚津段</span></span><span class="bjpy" id="loc">—</span><span class="btwd" id="loc-t">—</span></div>
-  <div class="brow"><span class="blbl">JR 散票（高岡線等）<span class="bnote">各1來回 ¥550+¥790+¥240×2</span></span><span class="bjpy" id="jr">—</span><span class="btwd" id="jr-t">—</span></div>
-  <div class="brow"><span class="blbl">計程車 + 路面電車<span class="bnote">海王丸往返 + 岩瀨 + 雜費</span></span><span class="bjpy" id="taxi">—</span><span class="btwd" id="taxi-t">—</span></div>
+  <div class="brow"><span class="blbl">富山地方鐵道自費<span class="bnote">宇奈月往返</span></span><span class="bjpy" id="loc">—</span><span class="btwd" id="loc-t">—</span></div>
+  <div class="brow"><span class="blbl">JR 散票<span class="bnote">高岡 ¥550 + 八尾 ¥950</span></span><span class="bjpy" id="jr">—</span><span class="btwd" id="jr-t">—</span></div>
+  <div class="brow"><span class="blbl">北陸新幹線（Day5/6）<span class="bnote">¥2,860+¥720+¥3,400/人</span></span><span class="bjpy" id="shink">—</span><span class="btwd" id="shink-t">—</span></div>
+  <div class="brow"><span class="blbl">計程車 + 路面電車<span class="bnote">親不知計程車 + 岩瀨 LRT + 雜費</span></span><span class="bjpy" id="taxi">—</span><span class="btwd" id="taxi-t">—</span></div>
   <div class="brow"><span class="blbl">富山機場巴士 來回<span class="bnote">¥650/人×2</span></span><span class="bjpy" id="toybus">—</span><span class="btwd" id="toybus-t">—</span></div>
 </div>
 
@@ -803,6 +746,7 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
   <div class="bsec">🏨 住宿（8晚）</div>
   <div class="brow"><span class="blbl">富山 5晚<span class="bnote">HOTEL WING INTERNATIONAL</span></span><span class="bjpy" id="h1">—</span><span class="btwd" id="h1-t">—</span></div>
   <div class="brow"><span class="blbl">宇奈月 1晚<span class="bnote">延對寺莊 一室二食</span></span><span class="bjpy" id="h2">—</span><span class="btwd" id="h2-t">—</span></div>
+  <div class="brow"><span class="blbl">上越妙高 1晚<span class="bnote">APA Hotel / Toyoko Inn</span></span><span class="bjpy" id="h4">—</span><span class="btwd" id="h4-t">—</span></div>
   <div class="brow"><span class="blbl">羽田 1晚<span class="bnote">ANA Holiday Inn</span></span><span class="bjpy" id="h3">—</span><span class="btwd" id="h3-t">—</span></div>
 </div>
 
@@ -817,7 +761,7 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 <div class="bcard">
   <div class="bsec">🎫 門票 · 活動</div>
   <div class="brow"><span class="blbl">黑部峽谷小火車<span class="bnote">¥2,880 大人 / ¥1,440 小孩</span></span><span class="bjpy" id="kb">—</span><span class="btwd" id="kb-t">—</span></div>
-  <div class="brow"><span class="blbl">魚津水族館<span class="bnote">¥1,600 大人 / ¥800 小孩</span></span><span class="bjpy" id="aq">—</span><span class="btwd" id="aq-t">—</span></div>
+  <div class="brow"><span class="blbl">Umigatari 水族博物館<span class="bnote">¥1,100 大人 / ¥400 小孩</span></span><span class="bjpy" id="aq">—</span><span class="btwd" id="aq-t">—</span></div>
   <div class="brow"><span class="blbl">家族動物園<span class="bnote">小學生免費，大人 ¥1,000</span></span><span class="bjpy" id="fampark">—</span><span class="btwd" id="fampark-t">—</span></div>
   <div class="brow"><span class="blbl">三郎丸蒸留所 (可選)<span class="bnote">¥5,000/人（需預約）</span></span><span class="bjpy" id="dist">—</span><span class="btwd" id="dist-t">—</span></div>
 </div>
@@ -880,20 +824,25 @@ function calc(){
   const anaJpy=(10000*a+7500*k)*2;
 
   // 交通
-  const locV=2500*pax, jrV=(550+790+240*2)*pax, taxiV=5000, toyBusV=650*pax*2;
+  const locV=2200*pax;                     // 富山↔宇奈月（移除魚津段）
+  const jrV=(550+950)*pax;                 // 高岡線 ¥550 + 八尾 ¥950
+  const shinkV=(2860+720+3400)*pax;        // 北陸新幹線 Day5/6 新增
+  const taxiV=6000;                        // 親不知計程車 + 雜費（稍高）
+  const toyBusV=650*pax*2;                 // 富山機場巴士（不變）
   const miscTr=500*pax;
 
   // 住宿
-  const h_toy5 = 14000*rooms*5;  // 富山5晚
-  const h_unaz = 35000*rooms;     // 延對寺莊 1晚
-  const h_hnd  = 18000*rooms;     // 羽田 1晚
+  const h_toy5 = 14000*rooms*5;   // 富山5晚（不變）
+  const h_unaz = 35000*rooms;     // 延對寺莊（不變）
+  const h_joetsu = 12000*rooms;   // 上越妙高 1晚（新增）
+  const h_hnd  = 18000*rooms;     // 羽田（不變）
 
   // 餐飲
   const mnV=1500*pax*8, m1V=3500*pax, m2V=3500*pax, m3V=0;  // m3 已含延對寺莊
   const famBreakV=1500*a*5;  // 早餐約5次自理
 
   // 活動
-  const kbV=2880*a+1440*k, aqV=1600*a+800*k, fampark=1000*a;
+  const kbV=2880*a+1440*k, umiV=1100*a+400*k, fampark=1000*a;  // Umigatari 替換魚津
   const distV=5000*a;  // 三郎丸蒸留所（選填）
 
   // 雜費
@@ -901,10 +850,10 @@ function calc(){
 
   // 合計 JPY
   const fl_C_twd=(flA_t+flK_t)+Math.round(anaJpy*RATE);
-  const tr_C_jpy=locV+jrV+taxiV+toyBusV+miscTr;
-  const ho_C_jpy=h_toy5+h_unaz+h_hnd;
+  const tr_C_jpy=locV+jrV+shinkV+taxiV+toyBusV+miscTr;
+  const ho_C_jpy=h_toy5+h_unaz+h_joetsu+h_hnd;
   const fd_C_jpy=mnV+m1V+m2V+m3V+famBreakV;
-  const tk_jpy=kbV+aqV+fampark+distV;
+  const tk_jpy=kbV+umiV+fampark+distV;
   const mi_C_jpy=shV+insV;
 
   const total_C=Math.round(fl_C_twd+tr_C_jpy*RATE+ho_C_jpy*RATE+fd_C_jpy*RATE+tk_jpy*RATE+mi_C_jpy*RATE);
@@ -919,6 +868,8 @@ function calc(){
   document.getElementById('loc-t').textContent=nt(locV*RATE);
   document.getElementById('jr').textContent='¥'+jrV.toLocaleString();
   document.getElementById('jr-t').textContent=nt(jrV*RATE);
+  document.getElementById('shink').textContent='¥'+shinkV.toLocaleString();
+  document.getElementById('shink-t').textContent=nt(shinkV*RATE);
   document.getElementById('taxi').textContent='¥'+taxiV.toLocaleString();
   document.getElementById('taxi-t').textContent=nt(taxiV*RATE);
   document.getElementById('toybus').textContent='¥'+toyBusV.toLocaleString();
@@ -929,6 +880,8 @@ function calc(){
   document.getElementById('h2-t').textContent=nt(h_unaz*RATE);
   document.getElementById('h3').textContent='¥'+h_hnd.toLocaleString();
   document.getElementById('h3-t').textContent=nt(h_hnd*RATE);
+  document.getElementById('h4').textContent='¥'+h_joetsu.toLocaleString();
+  document.getElementById('h4-t').textContent=nt(h_joetsu*RATE);
   document.getElementById('mn').textContent='¥'+mnV.toLocaleString();
   document.getElementById('mn-t').textContent=nt(mnV*RATE);
   document.getElementById('m1').textContent='¥'+m1V.toLocaleString();
@@ -939,8 +892,8 @@ function calc(){
   document.getElementById('m3-t').textContent='NT$0';
   document.getElementById('kb').textContent='¥'+kbV.toLocaleString();
   document.getElementById('kb-t').textContent=nt(kbV*RATE);
-  document.getElementById('aq').textContent='¥'+aqV.toLocaleString();
-  document.getElementById('aq-t').textContent=nt(aqV*RATE);
+  document.getElementById('aq').textContent='¥'+umiV.toLocaleString();
+  document.getElementById('aq-t').textContent=nt(umiV*RATE);
   document.getElementById('fampark').textContent='¥'+fampark.toLocaleString();
   document.getElementById('fampark-t').textContent=nt(fampark*RATE);
   document.getElementById('dist').textContent='¥'+distV.toLocaleString();
@@ -1001,18 +954,36 @@ const mapDays=[
     {name:'貓又折返點',lat:36.8835,lng:137.5877,note:'黑部峽谷'},
     {name:'延對寺莊',lat:36.8680,lng:137.5510,note:'懸崖露天風呂'}
   ]},
-  {day:'11/25',label:'魚津水族館・岩瀨',color:'#EF4444',points:[
-    {name:'宇奈月溫泉',lat:36.8664,lng:137.5497,note:'出發'},
-    {name:'魚津水族館',lat:36.8208,lng:137.3894,note:'魚津市'},
-    {name:'富山站',lat:36.7019,lng:137.2125,note:'購物'},
-    {name:'岩瀨老街',lat:36.7282,lng:137.2680,note:'夕陽景'},
-    {name:'磯料理 松月',lat:36.7283,lng:137.2630,note:'紅楚蟹割烹'}
+  {day:'11/25',label:'上越妙高・Umigatari 水族博物館',color:'#EF4444',points:[
+    {name:'宇奈月溫泉',lat:36.8664,lng:137.5497,note:'退房出發'},
+    {name:'新黑部駅',lat:36.8730,lng:137.5760,note:'轉北陸新幹線'},
+    {name:'上越妙高駅',lat:37.1294,lng:138.2383,note:'Hakutaka 約25分'},
+    {name:'Umigatari 水族博物館',lat:37.1124,lng:138.2573,note:'頂樓大水槽・企鵝互動區'},
+    {name:'上越妙高駅前飯店',lat:37.1300,lng:138.2390,note:'夜宿'}
   ]},
-  {day:'11/26',label:'AEON・海王丸・新湊',color:'#8B5CF6',points:[
-    {name:'新高岡站',lat:36.7418,lng:137.0090,note:'AEON購物'},
-    {name:'高岡駅',lat:36.7537,lng:137.0185,note:'轉機點'},
-    {name:'海王丸公園',lat:36.7726,lng:137.0896,note:'新湊海王丸'},
-    {name:'新湊きっときと市場',lat:36.7701,lng:137.0782,note:'紅楚蟹・海鮮丼'}
+  {day:'11/26',label:'親不知海岸・糸魚川・磯料理松月',color:'#8B5CF6',points:[
+    {name:'上越妙高駅',lat:37.1294,lng:138.2383,note:'早班新幹線出發'},
+    {name:'糸魚川駅',lat:37.0337,lng:137.8628,note:'新幹線 約14分'},
+    {name:'親不知 Pier Park（道の駅）',lat:37.0330,lng:137.6130,note:'斷崖古道・海鮮定食'},
+    {name:'富山駅',lat:36.7019,lng:137.2125,note:'14:00 返回富山'},
+    {name:'岩瀨老街',lat:36.7282,lng:137.2680,note:'LRT・展望台落日'},
+    {name:'磯料理 松月',lat:36.7283,lng:137.2630,note:'260匹白蝦・完全預約制'}
+  ]},
+  {day:'11/27',label:'越中八尾老街 · 富山最後漫步',color:'#EC4899',points:[
+    {name:'富山駅',lat:36.7019,lng:137.2125,note:'09:20 JR 高山本線 出發'},
+    {name:'越中八尾駅',lat:36.6153,lng:137.2020,note:'約25分，散票 ¥950'},
+    {name:'八尾老街（上新町）',lat:36.6150,lng:137.2014,note:'合掌寺廟・蕎麥麵・咖啡'},
+    {name:'富山城址公園',lat:36.6993,lng:137.2119,note:'返回富山後可選遊'}
+  ]},
+  {day:'11/28',label:'富山→羽田 · 環水公園散步',color:'#10B981',points:[
+    {name:'富山環水公園（星巴克）',lat:36.6905,lng:137.2092,note:'全球最美星巴克'},
+    {name:'富山機場（TOY）',lat:36.6483,lng:137.1878,note:'ANA 17:30 或 20:00 出發'},
+    {name:'羽田機場 T1（HND）',lat:35.5494,lng:139.7798,note:'NH1626/NH1628 抵達'},
+    {name:'ANA Holiday Inn 羽田',lat:35.5490,lng:139.7780,note:'直結 T1 入住'}
+  ]},
+  {day:'11/29',label:'羽田→台北松山 · 圓滿歸來',color:'#6366F1',points:[
+    {name:'羽田機場 T2（HND）',lat:35.5494,lng:139.7798,note:'CI223 07:55 起飛'},
+    {name:'台北松山機場（TSA）',lat:25.0797,lng:121.5624,note:'10:55 抵達'}
   ]}
 ];
 function initMap(){
