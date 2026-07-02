@@ -584,12 +584,6 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 
 <div id="hotels" class="tab-pane">
 
-<div style="margin-top:3px;margin-bottom:16px;">
-  <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:12px;">
-    行程共 <strong>8 晚</strong>：富山 6 晚（11/21–23, 11/26–27） · 宇奈月溫泉 1 晚（11/24） · 羽田 1 晚（11/28）。
-  </div>
-</div>
-
 <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;">🏔 富山住宿（11/21–23, 11/26–27 共5晚）</div>
 <div style="font-size:12px;color:var(--muted);margin-bottom:10px;">重點需求：富山站步行圈 · 含大浴場 · 可寄存宅急便</div>
 <div class="hotel-grid">
@@ -697,10 +691,10 @@ h1{font-size:20px;font-weight:700;margin-bottom:9px;}
 
 <div class="bcard">
   <div class="bsec">🍜 餐飲</div>
-  <div class="brow"><span class="blbl">一般早午晚餐<span class="bnote">¥1,500/人/餐 × 計次數</span></span><span class="bjpy" id="mn">—</span><span class="btwd" id="mn-t">—</span></div>
-  <div class="brow"><span class="blbl">新湊市場海鮮丼 (11/26)<span class="bnote">¥3,500/人</span></span><span class="bjpy" id="m1">—</span><span class="btwd" id="m1-t">—</span></div>
-  <div class="brow"><span class="blbl">冰見番屋街松葉蟹 (11/23)<span class="bnote">¥3,500/人</span></span><span class="bjpy" id="m2">—</span><span class="btwd" id="m2-t">—</span></div>
-  <div class="brow"><span class="blbl">磯料理 松月 (11/25)<span class="bnote">¥3,500/人 or 已含延對寺莊</span></span><span class="bjpy" id="m3">—</span><span class="btwd" id="m3-t">—</span></div>
+  <div class="brow"><span class="blbl">一般早午晚餐<span class="bnote">¥1,500/人/餐</span></span><span class="bjpy" id="mn">—</span><span class="btwd" id="mn-t">—</span></div>
+  <div class="brow"><span class="blbl">海鮮丼套餐<span class="bnote">¥3,500/人 × 1 次</span></span><span class="bjpy" id="m1">—</span><span class="btwd" id="m1-t">—</span></div>
+  <div class="brow"><span class="blbl">蟹類料理<span class="bnote">¥3,500/人 × 1 次</span></span><span class="bjpy" id="m2">—</span><span class="btwd" id="m2-t">—</span></div>
+  <div class="brow"><span class="blbl">高級割烹<span class="bnote">¥3,500/人 × 1 次</span></span><span class="bjpy" id="m3">—</span><span class="btwd" id="m3-t">—</span></div>
 </div>
 
 <div class="bcard">
@@ -861,30 +855,30 @@ const mapDays=[
   {day:'11/21',label:'台北→羽田→富山',color:'#6366F1',points:[
     {name:'台北松山機場（TPE）',lat:25.0797,lng:121.5624,note:'CI 09:00 起飛'},
     {name:'羽田機場 T2（HND）',lat:35.5494,lng:139.7798,note:'12:50 抵達，轉 ANA 國內線'},
-    {name:'富山機場（TOY）',lat:36.6483,lng:137.1878,note:'NH1624 16:00 起飛，17:30 抵達'},
+    {name:'富山機場（TOY）',lat:36.6483,lng:137.1878,note:'富山機場'},
     {name:'富山站飯店',lat:36.7019,lng:137.2125,note:'傍晚 Check-in，大浴場'}
   ]},
   {day:'11/22',label:'富山市家族動物園',color:'#3B82F6',points:[
-    {name:'富山站',lat:36.7019,lng:137.2125,note:'09:45 出發'},
-    {name:'富山市家族動物園',lat:36.6665,lng:137.1610,note:'國寶雷鳥・小貓熊'},
-    {name:'富山城址公園',lat:36.6993,lng:137.2119,note:'日落城堡楓景'}
+    {name:'富山站',lat:36.7019,lng:137.2125,note:'JR 富山駅'},
+    {name:'富山市家族動物園',lat:36.6665,lng:137.1610,note:'富山市中心'},
+    {name:'富山城址公園',lat:36.6993,lng:137.2119,note:'城址地標'}
   ]},
   {day:'11/23',label:'高岡大佛・雨晴・冰見',color:'#0EA5E9',points:[
-    {name:'富山站',lat:36.7019,lng:137.2125,note:'09:30 出發'},
-    {name:'高岡大佛',lat:36.7520,lng:137.0241,note:'日本三大佛'},
-    {name:'高岡古城公園',lat:36.7589,lng:137.0263,note:'紅葉＋免費動物園'},
-    {name:'雨晴海岸',lat:36.8232,lng:137.1052,note:'立山連峰3000m奇景'},
-    {name:'冰見番屋街',lat:36.8411,lng:137.0177,note:'松葉蟹・足湯'}
+    {name:'富山站',lat:36.7019,lng:137.2125,note:'JR 富山駅'},
+    {name:'高岡大佛',lat:36.7520,lng:137.0241,note:'高岡市・大佛'},
+    {name:'高岡古城公園',lat:36.7589,lng:137.0263,note:'高岡城址'},
+    {name:'雨晴海岸',lat:36.8232,lng:137.1052,note:'雨晴駅・海岸'},
+    {name:'冰見番屋街',lat:36.8411,lng:137.0177,note:'冰見漁港'}
   ]},
   {day:'11/24',label:'黑部峽谷・宇奈月溫泉',color:'#F59E0B',points:[
     {name:'富山站',lat:36.7019,lng:137.2125,note:'08:42 出發'},
-    {name:'宇奈月溫泉站',lat:36.8664,lng:137.5497,note:'小火車起點'},
-    {name:'貓又折返點',lat:36.8835,lng:137.5877,note:'峽谷最深處'},
+    {name:'宇奈月溫泉站',lat:36.8664,lng:137.5497,note:'宇奈月溫泉駅'},
+    {name:'貓又折返點',lat:36.8835,lng:137.5877,note:'黑部峽谷'},
     {name:'延對寺莊',lat:36.8680,lng:137.5510,note:'懸崖露天風呂'}
   ]},
   {day:'11/25',label:'魚津水族館・岩瀨',color:'#EF4444',points:[
     {name:'宇奈月溫泉',lat:36.8664,lng:137.5497,note:'出發'},
-    {name:'魚津水族館',lat:36.8208,lng:137.3894,note:'深海魚大水槽'},
+    {name:'魚津水族館',lat:36.8208,lng:137.3894,note:'魚津市'},
     {name:'富山站',lat:36.7019,lng:137.2125,note:'購物'},
     {name:'岩瀨老街',lat:36.7282,lng:137.2680,note:'夕陽景'},
     {name:'磯料理 松月',lat:36.7283,lng:137.2630,note:'紅楚蟹割烹'}
@@ -892,12 +886,12 @@ const mapDays=[
   {day:'11/26',label:'AEON・海王丸・新湊',color:'#8B5CF6',points:[
     {name:'新高岡站',lat:36.7418,lng:137.0090,note:'AEON購物'},
     {name:'高岡駅',lat:36.7537,lng:137.0185,note:'轉機點'},
-    {name:'海王丸公園',lat:36.7726,lng:137.0896,note:'威尼斯運河'},
+    {name:'海王丸公園',lat:36.7726,lng:137.0896,note:'新湊海王丸'},
     {name:'新湊きっときと市場',lat:36.7701,lng:137.0782,note:'紅楚蟹・海鮮丼'}
   ]},
   {day:'11/27',label:'八尾老街・班機',color:'#EC4899',points:[
     {name:'富山站',lat:36.7019,lng:137.2125,note:'09:20 出發'},
-    {name:'越中八尾',lat:36.5942,lng:137.0789,note:'合掌寺廟・老街'},
+    {name:'越中八尾',lat:36.5942,lng:137.0789,note:'八尾老街'},
     {name:'富山機場（TOY）',lat:36.6483,lng:137.1878,note:'NH1626 17:30 起飛'},
     {name:'羽田機場（HND）',lat:35.5494,lng:139.7798,note:'18:45 抵達'}
   ]},
@@ -906,7 +900,7 @@ const mapDays=[
     {name:'羽田機場附近飯店',lat:35.5520,lng:139.7800,note:'Check-in 過夜'}
   ]},
   {day:'11/29',label:'羽田→台北',color:'#06B6D4',points:[
-    {name:'羽田機場 T2（HND）',lat:35.5494,lng:139.7798,note:'05:30 起床，BR035 07:55 起飛'},
+    {name:'羽田機場 T2（HND）',lat:35.5494,lng:139.7798,note:'羽田T2'},
     {name:'桃園國際機場（TPE）',lat:25.0780,lng:121.2340,note:'10:55 抵達'}
   ]}
 ];
