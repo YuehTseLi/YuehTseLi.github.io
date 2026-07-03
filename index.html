@@ -160,7 +160,8 @@
         }
 
         .travel-card.expanded .card-content {
-            max-height: 1400px;
+            max-height: none;
+            max-height: 90vh;
             padding: 20px;
             overflow-y: auto;
         }
@@ -168,7 +169,8 @@
         iframe {
             width: 100%;
             border: none;
-            height: 1000px;
+            min-height: 1200px;
+            height: auto;
             border-radius: var(--rs);
             background: white;
         }
@@ -196,8 +198,8 @@
             h1 { font-size: 19px; }
             .card-header { padding: 14px 16px; }
             .card-title { font-size: 15px; }
-            .travel-card.expanded .card-content { max-height: 1100px; padding: 14px; }
-            iframe { height: 800px; }
+            .travel-card.expanded .card-content { max-height: 90vh; padding: 14px; }
+            iframe { min-height: 800px; }
         }
     </style>
 </head>
