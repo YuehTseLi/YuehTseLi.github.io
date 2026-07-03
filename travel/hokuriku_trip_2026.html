@@ -71,6 +71,8 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
 .day-body{padding:0 15px 13px;display:none;}
 .day-body.open{display:block;}
 
+.plan-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;}
+@media(max-width:640px){.plan-cols{grid-template-columns:1fr;}}
 .tl{border-left:2px solid var(--border);margin-left:5px;padding-left:14px;padding-top:3px;}
 .ev{margin-bottom:9px;}
 .ev-t{font-size:11px;font-weight:500;color:var(--hint);text-transform:uppercase;letter-spacing:.05em;margin-bottom:1px;}
@@ -461,19 +463,64 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
   <div class="day-hd" onclick="tog(this)">
     <div class="dbadge" style="background:var(--coral-bg);color:var(--coral);">11/25</div>
     <div class="dinfo">
-      <div class="dtitle">上越妙高 · Umigatari 水族博物館</div>
-      <div class="dsub">峽谷道別 · 北陸新幹線 · 企鵝互動區 · 新潟越光米料理</div>
+      <div class="dtitle">糸魚川地質與翡翠海岸</div>
+      <div class="dsub">宇奈月道別 · 大地溝公園 · 翡翠尋寶 · 上越妙高地酒</div>
     </div>
     <span class="chev">▾</span>
   </div>
   <div class="day-body">
     <div class="tl">
-      <div class="ev"><div class="ev-t">上午</div><div class="ev-d"><strong>離開宇奈月溫泉延對寺莊</strong></div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">富山地方鐵道</span>新黑部站（約 25 分鐘）</div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">北陸新幹線 Hakutaka</span>上越妙高站（約 25 分鐘，¥2,860）</div>
-      <div class="ev"><div class="ev-t">下午</div><div class="ev-d"><strong>上越市立水族博物館 Umigatari</strong> — 頂樓大水槽與日本海連成一線、麥哲倫企鵝互動區（國小學童最愛）</div></div>
-      <div class="ev"><div class="ev-t">晚餐</div><div class="ev-d">上越妙高站周邊新潟越光米料理 + 在地清酒</div></div>
-      <div class="ev"><div class="ev-t">住宿</div><div class="ev-d">上越妙高站前飯店（APA 或 Toyoko Inn）</div></div>
+      <div class="ev"><div class="ev-t">09:15</div><div class="ev-d">宇奈月退房，步行至宇奈月溫泉站</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">富山地方鐵道</span>09:32 宇奈月溫泉→新黑部，轉乘 Hakutaka 556 號→糸魚川 10:26</div>
+      <div class="ev"><div class="ev-t">10:30</div><div class="ev-d">糸魚川站寄物（置物櫃 ¥1,400，可用 ICOCA）</div></div>
+      <div class="ev"><div class="ev-t">10:45–12:00</div><div class="ev-d">計程車→大地溝公園（斷層地形），再前往翡翠海岸尋寶 30 分鐘</div></div>
+      <div class="ev"><div class="ev-t">12:00–14:35</div><div class="ev-d">🦀 午餐：<strong>一印かまぼこ店</strong>（海灘步行 4 分，紅楚蟹蓋飯）</div></div>
+      <div class="ev"><div class="ev-t">15:00</div><div class="ev-d">公車返回糸魚川站取行李</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">北陸新幹線</span>15:38 糸魚川→上越妙高 16:35</div>
+      <div class="ev"><div class="ev-t">16:40</div><div class="ev-d">飯店 Check-in（上越妙高）</div></div>
+      <div class="ev"><div class="ev-t">17:30+</div><div class="ev-d">🍶 車站フルサット美食街享用定食 + 清酒投幣機體驗</div></div>
+    </div>
+    <div class="ins-sec">
+      <div class="ins-label">🌊 糸魚川美食推薦</div>
+      <div class="ins-grid">
+        <div class="icard" style="background:#FBF3EC;border-color:#E8C99A;">
+          <div class="icard-hd"><span style="font-size:15px;">🦀</span><span class="icard-name" style="color:#7A4A1E;">一印かまぼこ店</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.14分</span></div>
+          <div class="idesc">翡翠海岸步行 4 分，紅楚蟹蓋飯名物。當地社區小食堂風味。</div>
+          <div class="plist">
+            <div class="prow"><span class="pname">紅楚蟹蓋飯 / かまぼこ盛合</span><span class="pprice" style="color:#7A4A1E;">¥1,000~1,500</span></div>
+            <div class="pnote">📍 糸魚川市翡翠海岸近郊 · 週日休</div>
+          </div>
+        </div>
+        <div class="icard cafe" style="background:#FBF3EC;border-color:#E8C99A;">
+          <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name" style="color:#7A4A1E;">かわせみCafeplus</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.02分</span></div>
+          <div class="idesc">翡翠主題咖啡廳，糸魚川駅近，兼賣翡翠飾品。</div>
+          <div class="plist">
+            <div class="prow"><span class="pname">手沖咖啡 + 翡翠飾品</span><span class="pprice" style="color:#7A4A1E;">¥600~</span></div>
+            <div class="pnote">📍 糸魚川駅近郊</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ins-sec">
+      <div class="ins-label">🍶 上越妙高夕食推薦</div>
+      <div class="ins-grid">
+        <div class="icard" style="background:#FBF3EC;border-color:#E8C99A;">
+          <div class="icard-hd"><span style="font-size:15px;">🍶</span><span class="icard-name" style="color:#7A4A1E;">居酒屋 尊美</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.33分</span></div>
+          <div class="idesc">駅前フルサット内，鮮魚・天婦羅・越後地酒。上級選擇。</div>
+          <div class="plist">
+            <div class="prow"><span class="pname">鮮魚盛 / 天婦羅套餐</span><span class="pprice" style="color:#7A4A1E;">¥3,000~5,000</span></div>
+            <div class="pnote">📍 上越妙高駅前フルサット · 月休</div>
+          </div>
+        </div>
+        <div class="icard" style="background:#FBF3EC;border-color:#E8C99A;">
+          <div class="icard-hd"><span style="font-size:15px;">🍶</span><span class="icard-name" style="color:#7A4A1E;">居酒屋 傍（SOBA）</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.26分</span></div>
+          <div class="idesc">駅 1 分，馬刺し・手打蕎麦・揚げ物，平價家庭味。</div>
+          <div class="plist">
+            <div class="prow"><span class="pname">馬刺し / 手打蕎麦 / 天婦羅</span><span class="pprice" style="color:#7A4A1E;">¥1,000~3,000</span></div>
+            <div class="pnote">📍 上越妙高駅 1 分（エンジョイプラザ 1F） · 火休</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -483,38 +530,40 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
   <div class="day-hd" onclick="tog(this)">
     <div class="dbadge" style="background:var(--purple-bg);color:var(--purple);">11/26</div>
     <div class="dinfo">
-      <div class="dtitle">親不知海岸 · 磯料理松月</div>
-      <div class="dsub">斷崖古道 · 日本海激浪 · 富山 LRT · 岩瀨展望台 · 260匹白蝦割烹</div>
+      <div class="dtitle">海洋物語深度遊 · 岩瀨落日</div>
+      <div class="dsub">上越妙高出發 · 海豚秀 · 麥哲倫企鵝 · LRT · 260匹白蝦晚宴</div>
     </div>
     <span class="chev">▾</span>
   </div>
   <div class="day-body">
     <div class="tl">
-      <div class="ev"><div class="ev-t">上午</div><div class="ev-d">上越妙高 → 北陸新幹線 → 糸魚川站（約 14 分鐘）</div></div>
-      <div class="ev"><div class="ev-t">交通建議</div><div class="ev-d">計程車前往親不知步道或 Pier Park（約 15-20 分鐘），避免強風受寒</div></div>
-      <div class="ev"><div class="ev-t">活動</div><div class="ev-d"><strong>親不知社區步道</strong> — 漫步於斷崖古道，欣賞日本海激浪拍打懸崖的震撼奇景</div></div>
-      <div class="ev"><div class="ev-t">午餐</div><div class="ev-d"><strong>親不知 Pier Park（道之駅）</strong> — 海鮮定食 / 現蒸紅楚蟹料理</div></div>
-      <div class="ev"><div class="ev-t">14:00</div><div class="ev-d">糸魚川站 → 北陸新幹線 → 富山站（約 26 分鐘）</div></div>
-      <div class="ev"><div class="ev-t">15:15</div><div class="ev-d">Check-in 富山大和飯店、寄存行李</div></div>
-      <div class="ev"><div class="ev-t">15:30</div><div class="ev-d">LRT 路面電車 → 岩瀨老街</div></div>
-      <div class="ev"><div class="ev-t">16:30</div><div class="ev-d">登岩瀨展望塔看落日</div></div>
-      <div class="ev"><div class="ev-t">17:30 晚餐</div><div class="ev-d">🦀 <strong>磯料理 松月</strong>（創業 1911 年） — 招牌名物「福團子」260 匹白蝦套餐（200 匹白蝦泥烤製）<small>完全預約制</small></div></div>
-      <div class="ev"><div class="ev-t">晚間</div><div class="ev-d">LRT 路面電車 → 富山站飯店休息</div></div>
+      <div class="ev"><div class="ev-t">09:15</div><div class="ev-d">飯店退房，行李寄存飯店或上越妙高站</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">公車/電車</span>前往 Umigatari 水族館（直江津方向）</div>
+      <div class="ev"><div class="ev-t">10:00–13:00</div><div class="ev-d">🐬 <strong>Umigatari 水族館深度遊</strong>（11:00 海豚秀 → 麥哲倫企鵝互動）</div></div>
+      <div class="ev"><div class="ev-t">午餐</div><div class="ev-d">水族館附近輕食 或 直江津站火車便當（Ekiben）</div></div>
+      <div class="ev"><div class="ev-t">13:40</div><div class="ev-d">返回上越妙高站取回寄放行李</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">北陸新幹線 Hakutaka 563</span>14:14 上越妙高→富山 14:55（車上享用便當）</div>
+      <div class="ev"><div class="ev-t">14:55–15:10</div><div class="ev-d">富山站置物櫃寄物（大型行李，¥700~1,000）</div></div>
+      <div class="ev"><div class="ev-t">15:10</div><div class="ev-d">步行 10 秒至 2 號月台，🚊 LRT 路面電車→岩瀬浜</div></div>
+      <div class="ev"><div class="ev-t">15:40–17:00</div><div class="ev-d">岩瀨老街漫步</div></div>
+      <div class="ev"><div class="ev-t">16:30</div><div class="ev-d">登岩瀨展望塔，欣賞落日與立山連峰倒影</div></div>
+      <div class="ev"><div class="ev-t">17:30 晚餐</div><div class="ev-d">🦀 <strong>磯料理 松月</strong>（創業 1911年，260匹白蝦套餐，完全預約制）</div></div>
+      <div class="ev"><div class="ev-t">20:00</div><div class="ev-d">🚊 LRT 返回富山站，取回行李，步行辦理飯店 Check-in</div></div>
     </div>
     <div class="ins-sec">
-      <div class="ins-label">🦀 親不知・糸魚川 美食推薦</div>
+      <div class="ins-label">🐬 Umigatari 周邊 + 岩瀨晚餐</div>
       <div class="ins-grid">
-        <div class="icard" style="background:#FBF3EC;border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">🦀</span><span class="icard-name" style="color:#7A4A1E;">マリンドリーム能生</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.46分</span></div>
-          <div class="idesc">日本最大紅楚蟹（ベニズワイガニ）市場「かにや横丁」—現場烤蟹、海鮮丼、蟹腳定食。206 則評論，Route 8 沿海能生駅附近，是 Day 6 午餐的完美選擇。</div>
+        <div class="icard cafe" style="background:#FBF3EC;border-color:#E8C99A;">
+          <div class="icard-hd"><span style="font-size:15px;">🍔</span><span class="icard-name" style="color:#7A4A1E;">うみねこテラス</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.13分</span></div>
+          <div class="idesc">うみがたり水族館斜向前，海景オーシャンビュー。ウミネコバーガー著名。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">紅楚蟹套餐 / 海鮮丼</span><span class="pprice" style="color:#7A4A1E;">¥1,500~3,500</span></div>
-            <div class="pnote">📍 糸魚川市能生 Route 8 沿海 · 09:00–17:00</div>
+            <div class="prow"><span class="pname">ウミネコバーガー / 海鮮丼</span><span class="pprice" style="color:#7A4A1E;">¥800~1,500</span></div>
+            <div class="pnote">📍 直江津港（うみがたり前）· テラス席・ペット可</div>
           </div>
         </div>
         <div class="icard" style="background:#FBF3EC;border-color:#E8C99A;">
           <div class="icard-hd"><span style="font-size:15px;">🍤</span><span class="icard-name" style="color:#7A4A1E;">磯料理 松月</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.50分</span></div>
-          <div class="idesc">創業 1911 年、岩瀬港百年老舖。招牌「福團子」260 匹白蝦套餐（200 匹白蝦泥烤製），評分 3.50 為全行程最高。完全預約制，晚餐 ¥10,000~15,000/人。</div>
+          <div class="idesc">創業 1911 年、岩瀬港百年老舖。招牌「福團子」260 匹白蝦套餐（200 匹白蝦泥烤製），評分 3.50 為全行程最高。完全預約制。</div>
           <div class="plist">
             <div class="prow"><span class="pname">260 匹白蝦套餐</span><span class="pprice" style="color:#7A4A1E;">¥10,000~15,000/人</span></div>
             <div class="pnote">📍 富山市岩瀬競輪場前 · ⚠️ 完全預約制</div>
@@ -530,12 +579,15 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
   <div class="day-hd" onclick="tog(this)">
     <div class="dbadge" style="background:var(--pink-bg);color:var(--pink);">11/27</div>
     <div class="dinfo">
-      <div class="dtitle">八尾老街 · 採買 · 富山城（可選）</div>
+      <div class="dtitle">八尾老街 · 新湊（Plan A/B）</div>
       <div class="dsub">傳統合掌寺廟 · 地酒採買 · 購物漫步</div>
     </div>
     <span class="chev">▾</span>
   </div>
   <div class="day-body">
+    <div class="plan-cols">
+      <div style="background:var(--pink-bg);border:1.5px solid var(--pink);border-radius:8px;padding:14px;">
+        <div style="font-weight:700;color:var(--pink);margin-bottom:10px;font-size:13px;">▸ Plan A · 八尾老街漫步</div>
     <div class="tl">
       <div class="ev"><div class="ev-t">08:00–09:00</div><div class="ev-d">飯店早餐</div></div>
       <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">散票</span>09:20 富山 → JR 高山本線 → 越中八尾站（約 25 分）</div>
@@ -567,6 +619,36 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
           <div class="plist">
             <div class="prow"><span class="pname">自家焙煎咖啡 + 季節甜點</span><span class="pprice cafe">¥800~1,200</span></div>
             <div class="pnote">📍 富山市八尾町上新町2677-1 · 10:00–16:00（週二休）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+
+      <div style="background:#FFF8EC;border:1.5px solid #E67E22;border-radius:8px;padding:14px;">
+        <div style="font-weight:700;color:#B7460A;margin-bottom:10px;font-size:13px;">✦ Plan B · 新湊内川 + AEON</div>
+        <div class="tl">
+          <div class="ev"><div class="ev-t">08:21</div><div class="ev-d">富山→高岡（愛之風富山鐵道普通車，18分）</div></div>
+          <div class="tr-row"><span class="tr-badge" style="background:#E67E22;color:#FFF;">萬葉線</span>08:45 高岡站→海王丸站（48分）</div>
+          <div class="ev"><div class="ev-t">09:35</div><div class="ev-d">步行至新湊觀光船售票處，購票 10:00 首班</div></div>
+          <div class="ev"><div class="ev-t">10:00–10:50</div><div class="ev-d">🚤 内川遊覽＆12橋巡禮（約50分，日本威尼斯漁村冬景）</div></div>
+          <div class="ev"><div class="ev-t">11:00–12:30</div><div class="ev-d">🦀 <strong>新湊きっときと市場</strong>（紅葉蟹・寒鰤最肥美季節，現煮可食）</div></div>
+          <div class="ev"><div class="ev-t">12:45</div><div class="ev-d">萬葉線→高岡站</div></div>
+          <div class="ev"><div class="ev-t">13:45–13:55</div><div class="ev-d">巴士（加越能バス Shuttle6）→ AEON MALL 高岡</div></div>
+          <div class="ev"><div class="ev-t">14:00–21:00</div><div class="ev-d">🛍️ AEON MALL 瘋狂採買</div></div>
+          <div class="ev"><div class="ev-t">回程</div><div class="ev-d">步行5~10分→JR 新高岡站，北陸新幹線 8 分→富山</div></div>
+        </div>
+        <div class="ins-sec">
+          <div class="ins-label" style="color:#B7460A;">🦀 新湊精選</div>
+          <div class="ins-grid">
+            <div class="icard" style="background:#FFF3E0;border-color:#E67E22;">
+              <div class="icard-hd"><span style="font-size:15px;">🦀</span><span class="icard-name" style="color:#B7460A;">新湊きっときと市場</span><span class="itag" style="background:#FFF3E0;color:#B7460A;border:1px solid #E67E22;">tabelog 3.16分</span></div>
+              <div class="idesc">日本最大紅葉蟹（ベニズワイガニ）市場。11月底正是紅葉蟹與寒鰤最肥美季節，市場內現買現煮。</div>
+              <div class="plist">
+                <div class="prow"><span class="pname">紅葉蟹套餐 / 海鮮丼</span><span class="pprice" style="color:#B7460A;">¥2,000~5,000</span></div>
+                <div class="pnote">📍 射水市 新湊 · 通年營業</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
