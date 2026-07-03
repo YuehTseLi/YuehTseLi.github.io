@@ -755,7 +755,7 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
 <div class="sec-hd">
   <div>
     <div class="sec-title">🏔 上越妙高住宿</div>
-    <div class="sec-sub">新幹線站前 · 商務飯店 · Umigatari 後轉宿</div>
+    <div class="sec-sub">新幹線站前 · 商務飯店 · 翌日水族館出發點</div>
   </div>
   <span class="nights-chip">1 晚</span>
 </div>
@@ -766,13 +766,13 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
       <div class="hotel-name">APA Hotel 上越妙高駅前 / Toyoko Inn 上越妙高</div>
       <span class="hotel-rank rank-bal">推薦</span>
     </div>
-    <div class="hotel-desc">北陸新幹線上越妙高站步行3–5分鐘，交通極便捷。隔天早班新幹線前往糸魚川出發親不知海岸。設施簡潔現代，家庭房型充足。</div>
+    <div class="hotel-desc">北陸新幹線上越妙高站步行3–5分鐘，交通極便捷。隔天早班電車前往直江津 Umigatari 水族館（海豚秀・麥哲倫企鵝），下午返富山。設施簡潔現代，家庭房型充足。</div>
     <div class="hotel-specs">
       <div class="spec"><span class="spec-icon">📍</span><span>上越妙高駅步行3–5分鐘</span></div>
       <div class="spec"><span class="spec-icon">🚅</span><span>北陸新幹線ホーム直結エリア</span></div>
       <div class="spec"><span class="spec-icon">¥</span><span>三人房 ¥10,000–14,000/晚</span></div>
     </div>
-    <div class="hotel-note">💡 Umigatari 水族博物館下午參觀後步行或計程車即達，節省轉乘時間。</div>
+    <div class="hotel-note">💡 距直江津 Umigatari 水族館電車約 20 分鐘，翌晨 09:15 退房後前往。</div>
   </div>
 </div>
 
@@ -833,7 +833,7 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
   <div class="bsec">🚌 交通（無周遊券）</div>
   <div class="brow"><span class="blbl">富山地方鐵道自費<span class="bnote">宇奈月往返</span></span><span class="bjpy" id="loc">—</span><span class="btwd" id="loc-t">—</span></div>
   <div class="brow"><span class="blbl">JR 散票<span class="bnote">高岡 ¥550 + 八尾 ¥950</span></span><span class="bjpy" id="jr">—</span><span class="btwd" id="jr-t">—</span></div>
-  <div class="brow"><span class="blbl">北陸新幹線（Day5/6）<span class="bnote">¥2,860+¥720+¥3,400/人</span></span><span class="bjpy" id="shink">—</span><span class="btwd" id="shink-t">—</span></div>
+  <div class="brow"><span class="blbl">北陸新幹線（Day5/6）<span class="bnote">糸魚川→上越妙高 ¥1,320 + 上越妙高→富山 ¥2,860/人</span></span><span class="bjpy" id="shink">—</span><span class="btwd" id="shink-t">—</span></div>
   <div class="brow"><span class="blbl">計程車 + 路面電車<span class="bnote">親不知計程車 + 岩瀨 LRT + 雜費</span></span><span class="bjpy" id="taxi">—</span><span class="btwd" id="taxi-t">—</span></div>
   <div class="brow"><span class="blbl">富山機場巴士 來回<span class="bnote">¥650/人×2</span></span><span class="bjpy" id="toybus">—</span><span class="btwd" id="toybus-t">—</span></div>
 </div>
@@ -1050,26 +1050,31 @@ const mapDays=[
     {name:'貓又折返點',lat:36.8835,lng:137.5877,note:'黑部峽谷'},
     {name:'延對寺莊',lat:36.8680,lng:137.5510,note:'懸崖露天風呂'}
   ]},
-  {day:'11/25',label:'上越妙高・Umigatari 水族博物館',color:'#EF4444',points:[
+  {day:'11/25',label:'糸魚川地質與翡翠海岸',color:'#EF4444',points:[
     {name:'宇奈月溫泉',lat:36.8664,lng:137.5497,note:'退房出發'},
-    {name:'新黑部駅',lat:36.8730,lng:137.5760,note:'轉北陸新幹線'},
-    {name:'上越妙高駅',lat:37.1294,lng:138.2383,note:'Hakutaka 約25分'},
-    {name:'Umigatari 水族博物館',lat:37.1124,lng:138.2573,note:'頂樓大水槽・企鵝互動區'},
-    {name:'上越妙高駅前飯店',lat:37.1300,lng:138.2390,note:'夜宿'}
+    {name:'新黑部駅',lat:36.8730,lng:137.5760,note:'轉北陸新幹線 Hakutaka 556'},
+    {name:'糸魚川駅',lat:37.0337,lng:137.8628,note:'寄物 ¥1,400'},
+    {name:'フォッサマグナパーク',lat:36.9927,lng:137.9059,note:'大地溝公園・斷層地形'},
+    {name:'ヒスイ海岸',lat:37.0442,lng:137.8580,note:'翡翠尋寶 30 分'},
+    {name:'一印かまぼこ店',lat:37.0440,lng:137.8558,note:'午餐・紅楚蟹蓋飯'},
+    {name:'上越妙高駅前飯店',lat:37.1300,lng:138.2390,note:'夜宿・清酒投幣機'}
   ]},
-  {day:'11/26',label:'親不知海岸・糸魚川・磯料理松月',color:'#8B5CF6',points:[
-    {name:'上越妙高駅',lat:37.1294,lng:138.2383,note:'早班新幹線出發'},
-    {name:'糸魚川駅',lat:37.0337,lng:137.8628,note:'新幹線 約14分'},
-    {name:'親不知 Pier Park（道の駅）',lat:37.0330,lng:137.6130,note:'斷崖古道・海鮮定食'},
-    {name:'富山駅',lat:36.7019,lng:137.2125,note:'14:00 返回富山'},
-    {name:'岩瀨老街',lat:36.7282,lng:137.2680,note:'LRT・展望台落日'},
+  {day:'11/26',label:'海洋物語深度遊・岩瀨落日',color:'#8B5CF6',points:[
+    {name:'上越妙高駅',lat:37.1294,lng:138.2383,note:'09:15 退房・行李寄存'},
+    {name:'Umigatari 水族館',lat:37.1124,lng:138.2573,note:'10:00–13:00 海豚秀・麥哲倫企鵝'},
+    {name:'富山駅',lat:36.7019,lng:137.2125,note:'14:55 抵達・寄物 ¥700–1,000'},
+    {name:'岩瀨老街',lat:36.7282,lng:137.2680,note:'LRT・展望塔落日 16:30'},
     {name:'磯料理 松月',lat:36.7283,lng:137.2630,note:'260匹白蝦・完全預約制'}
   ]},
-  {day:'11/27',label:'越中八尾老街 · 富山最後漫步',color:'#EC4899',points:[
-    {name:'富山駅',lat:36.7019,lng:137.2125,note:'09:20 JR 高山本線 出發'},
-    {name:'越中八尾駅',lat:36.6153,lng:137.2020,note:'約25分，散票 ¥950'},
-    {name:'八尾老街（上新町）',lat:36.6150,lng:137.2014,note:'合掌寺廟・蕎麥麵・咖啡'},
-    {name:'富山城址公園',lat:36.6993,lng:137.2119,note:'返回富山後可選遊'}
+  {day:'11/27',label:'八尾老街（Plan A）· 新湊内川（Plan B）',color:'#EC4899',points:[
+    {name:'富山駅（出發）',lat:36.7019,lng:137.2125,note:'Plan A: 09:20→越中八尾 / Plan B: 08:21→高岡'},
+    {name:'越中八尾老街 [A]',lat:36.6150,lng:137.2014,note:'Plan A · 合掌寺廟・蕎麥麵・珈音咖啡'},
+    {name:'富山城址公園 [A]',lat:36.6993,lng:137.2119,note:'Plan A · 返回後可選遊'},
+    {name:'高岡駅 [B]',lat:36.7543,lng:137.0086,note:'Plan B · 萬葉線轉乘'},
+    {name:'海王丸公園（新湊） [B]',lat:36.7685,lng:137.0620,note:'Plan B · 内川遊覽船・日本威尼斯'},
+    {name:'新湊きっときと市場 [B]',lat:36.7700,lng:137.0650,note:'Plan B · 紅葉蟹・寒鰤午餐'},
+    {name:'AEON MALL 高岡 [B]',lat:36.7500,lng:137.0130,note:'Plan B · 14:00–21:00 採買'},
+    {name:'新高岡駅 [B]',lat:36.7403,lng:136.9973,note:'Plan B · 新幹線 8 分→富山'}
   ]},
   {day:'11/28',label:'富山→羽田 · 環水公園散步',color:'#10B981',points:[
     {name:'富山環水公園（星巴克）',lat:36.6905,lng:137.2092,note:'全球最美星巴克'},
