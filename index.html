@@ -11,18 +11,18 @@
         :root {
             --g: #1D9E75;
             --gl: #E1F5EE;
-            --p: #534AB7;
-            --pl: #EEEDFE;
+            --p: #17817A;
+            --pl: #E1F0EF;
             --o: #BA7517;
             --ol: #FEF3E2;
             --b: #1E7FD8;
             --bl: #E6F1FB;
             --r: #C0392B;
-            --bg: #F6F6F4;
+            --bg: #F4F8F8;
             --card: #fff;
-            --bdr: #E4E3DF;
-            --tx: #1A1916;
-            --sub: #686764;
+            --bdr: #DCE7E6;
+            --tx: #182524;
+            --sub: #5C6E6C;
             --rd: 12px;
             --rs: 8px;
             --coffee: #6B3A2A;
@@ -93,11 +93,11 @@
 
         .travel-card:hover {
             border-color: var(--p);
-            box-shadow: 0 4px 18px rgba(83,74,183,.12);
+            box-shadow: 0 4px 18px rgba(23,129,122,.12);
         }
 
         .card-header {
-            background: linear-gradient(135deg, var(--p) 0%, #7B3FA3 100%);
+            background: linear-gradient(135deg, var(--p) 0%, #14506B 100%);
             color: white;
             padding: 18px 20px;
             display: flex;
@@ -112,7 +112,7 @@
             user-select: none;
         }
 
-        .card-header:hover { background: linear-gradient(135deg,#4A3A9B 0%,#6B3894 100%); }
+        .card-header:hover { background: linear-gradient(135deg,#106059 0%,#0D3A4D 100%); }
 
         /* coffee variant */
         .travel-card.coffee-card { }
@@ -175,6 +175,70 @@
             background: white;
         }
 
+        /* ── Archived trips (past date or suspended) ── */
+        .travel-card.archived .card-header {
+            padding: 10px 16px;
+            gap: 8px;
+        }
+        .travel-card.archived .card-title { font-size: 13px; gap: 6px; }
+        .travel-card.archived .card-date { font-size: 11px; }
+        .travel-card.archived .card-description { display: none; }
+        .travel-card.archived .toggle-icon { font-size: 15px; }
+        .travel-card.archived .card-header {
+            opacity: .72;
+            filter: grayscale(45%);
+        }
+
+        .archive-group {
+            border: 1px solid var(--bdr);
+            border-radius: var(--rd);
+            overflow: hidden;
+            background: var(--card);
+            margin-bottom: 32px;
+        }
+
+        .archive-toggle {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            background: var(--bg);
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--sub);
+            text-align: left;
+            user-select: none;
+        }
+        .archive-toggle:hover { color: var(--tx); }
+
+        .archive-count { color: var(--sub); font-weight: 400; }
+
+        .archive-toggle .toggle-icon {
+            margin-left: auto;
+            font-size: 14px;
+            transition: transform .3s;
+        }
+        .archive-group.expanded .archive-toggle .toggle-icon { transform: rotate(90deg); }
+
+        .archive-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .35s ease;
+        }
+        .archive-group.expanded .archive-content {
+            max-height: 4000px;
+        }
+        .archive-content .travel-card {
+            border: none;
+            border-radius: 0;
+            border-top: 1px solid var(--bdr);
+        }
+        .archive-content .travel-card:hover { box-shadow: none; }
+
         /* ── Section dividers ── */
         .section-sep {
             border: none;
@@ -213,9 +277,9 @@
         <!-- ── TRAVEL PLANS ── -->
         <p class="cat-label">✈️ Travel Plans</p>
         <hr class="section-sep">
-        <div class="cards-grid">
+        <div class="cards-grid" id="travel-cards-grid">
 
-            <div class="travel-card" data-trip="jinguashi">
+            <div class="travel-card" data-trip="jinguashi" data-end="2026-06-30">
                 <button class="card-header" type="button" aria-expanded="false">
                     <div class="card-title-section">
                         <div class="card-title">⛏️ 金瓜石山城小旅行</div>
@@ -229,7 +293,7 @@
                 </div>
             </div>
 
-            <div class="travel-card" data-trip="canada" style="opacity: 0.7; filter: grayscale(50%);">
+            <div class="travel-card" data-trip="canada" data-end="2026-10-12" data-status="suspended">
                 <button class="card-header" type="button" aria-expanded="false">
                     <div class="card-title-section">
                         <div class="card-title">🍁 Canada Trip — 6 People <span style="display:inline-block; background:#F3E5E5; color:#8B2F2F; font-size:10px; font-weight:700; padding:2px 8px; border-radius:4px; margin-left:8px; letter-spacing:.05em;">⏸ 暫不執行</span></div>
@@ -243,7 +307,7 @@
                 </div>
             </div>
 
-            <div class="travel-card" data-trip="hokuriku">
+            <div class="travel-card" data-trip="hokuriku" data-end="2026-11-29">
                 <button class="card-header" type="button" aria-expanded="false">
                     <div class="card-title-section">
                         <div class="card-title">🏯 Hokuriku Trip 2026</div>
@@ -257,6 +321,15 @@
                 </div>
             </div>
 
+        </div>
+
+        <div class="archive-group" id="travel-archive-group" hidden>
+            <button class="archive-toggle" type="button" aria-expanded="false">
+                <span>📦 過去 / 暫停的行程</span>
+                <span class="archive-count" id="travel-archive-count"></span>
+                <span class="toggle-icon" aria-hidden="true">▸</span>
+            </button>
+            <div class="archive-content" id="travel-archive-content"></div>
         </div>
 
         <!-- ── COFFEE ── -->
@@ -325,6 +398,41 @@
                 });
             }
         });
+
+        // ── Fold past-dated / suspended trips into the archive group ──
+        (function initArchiving() {
+            const grid = document.getElementById('travel-cards-grid');
+            const archiveGroup = document.getElementById('travel-archive-group');
+            const archiveContent = document.getElementById('travel-archive-content');
+            const archiveCount = document.getElementById('travel-archive-count');
+            if (!grid || !archiveGroup) return;
+
+            const today = new Date();
+            const tripCards = Array.from(grid.querySelectorAll('.travel-card'));
+            let archivedTotal = 0;
+
+            tripCards.forEach(card => {
+                const end = card.dataset.end;
+                const isPast = !!end && new Date(end + 'T23:59:59') < today;
+                const isSuspended = card.dataset.status === 'suspended';
+                if (isPast || isSuspended) {
+                    card.classList.add('archived');
+                    archiveContent.appendChild(card);
+                    archivedTotal++;
+                }
+            });
+
+            if (archivedTotal > 0) {
+                archiveGroup.hidden = false;
+                archiveCount.textContent = `(${archivedTotal})`;
+
+                const toggle = archiveGroup.querySelector('.archive-toggle');
+                toggle.addEventListener('click', () => {
+                    const expanded = archiveGroup.classList.toggle('expanded');
+                    toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+                });
+            }
+        })();
     </script>
 </body>
 </html>
