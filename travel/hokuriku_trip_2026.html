@@ -220,11 +220,25 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
 <div class="main">
 <div id="itin" class="tab-pane active">
 
+<div style="background:var(--warn-bg);border:1px solid var(--warn-bd);border-radius:var(--rl);padding:14px 18px;margin-top:3px;margin-bottom:12px;">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
+    <span style="font-size:18px;">📋</span>
+    <span style="font-size:14px;font-weight:700;color:var(--warn);">出發前尚待完成事項</span>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:var(--warn);line-height:1.6;">
+    <div>🔴 <strong>黑部峽谷小火車車票</strong>（11/24 去程9:21／回程12:28）— 11月為紅葉旺季，六人同行建議 8/24 前完成訂票，以免額滿</div>
+    <div>🔴 <strong>磯料理 松月</strong>晚餐預約（11/22）— 完全預約制，六人桌位熱門時段易額滿，儘早致電或線上訂位</div>
+    <div>🔴 <strong>三郎丸蒸留所</strong>見學預約（11/23）— 官網建議提前約1個月聯絡，最晚約10月下旬前需完成，逾期恐無法安排</div>
+    <div>🟡 <strong>すし処 鳴海</strong>訂位（11/27，若選 Plan B 新湊路線）— 全行程評分最高 tabelog 3.64，官方強烈建議預約，確定走 Plan B 後儘快訂位</div>
+    <div>⚪ <strong>うなぎ四代目菊川 / 矢場とん</strong>（11/28 晚餐備選）— 非必要但建議線上訂位，尤其菊川人氣時段易客滿</div>
+  </div>
+</div>
+
 <div class="pass-banner" style="background:var(--blue-bg);border-color:var(--info-bd);margin-top:3px;">
   <div style="font-size:20px;padding-top:2px;">✈</div>
   <div class="pass-body">
-    <div class="pass-title" style="color:var(--blue);">國際班機 + 國內線轉機（確定版）</div>
-    <div class="pass-sub" style="color:var(--info);">去程：11/21 台北松山 09:00 → 羽田 12:50 → ANA 國內線 → 富山當日抵達 | 回程：11/28 富山飛羽田 + 11/29 07:55 CI223 HND → 台北松山</div>
+    <div class="pass-title" style="color:var(--blue);">國際班機 + 國內線轉機（機票已全部確定）</div>
+    <div class="pass-sub" style="color:var(--info);">去程：11/21 台北松山 09:00 → 羽田 12:50 → NH319 16:15→17:20 富山 | 回程：11/28 NH322 富山18:00→羽田19:05 + 11/29 07:55 CI223 HND → 台北松山</div>
   </div>
 </div>
 
@@ -232,15 +246,15 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
   <div>
     <div class="fl-label">去程</div>
     <div class="fl-route">TPE → HND → TOY</div>
-    <div class="fl-time">11/21 (六)　09:00 → 12:50 → 當日抵富山</div>
-    <div class="fl-time" style="margin-top:4px;color:var(--hint);">華航 CI826 台北松山→羽田（約 3h）→ 轉機 3-4 小時 → ANA 國內線（NH1624 或 NH1627）→富山</div>
+    <div class="fl-time">11/21 (六)　09:00 → 12:50 → 16:15→17:20 抵富山</div>
+    <div class="fl-time" style="margin-top:4px;color:var(--hint);">華航 CI826 台北松山→羽田（約 3h）→ 轉機約 3.5 小時 → ANA NH319（座位22A）羽田T2 16:15→富山 17:20</div>
   </div>
   <div class="fl-mid">⇄<div style="font-size:11px;color:var(--hint);margin-top:2px;">BR/ANA</div></div>
   <div class="fl-right">
     <div class="fl-label">回程</div>
     <div class="fl-route">TOY → HND → TPE</div>
-    <div class="fl-time">傍晚抵達 → 隔早班機</div>
-    <div class="fl-time" style="margin-top:4px;color:var(--hint);">ANA 富山→東京（NH1626 或 NH1628）+ 東京過夜 + CI223 07:55 HND→台北松山</div>
+    <div class="fl-time">18:00→19:05 抵羽田 → 隔早班機</div>
+    <div class="fl-time" style="margin-top:4px;color:var(--hint);">ANA NH322（座位21A）富山18:00→羽田T2 19:05 + 東京過夜 + CI223 07:55 HND→台北松山</div>
   </div>
 </div>
 
@@ -250,7 +264,7 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
     <div class="dbadge" style="background:var(--blue-bg);color:var(--blue);">11/21</div>
     <div class="dinfo">
       <div class="dtitle">台北→羽田 當日轉機 → 富山</div>
-      <div class="dsub">CI826 09:00→12:50 · 轉機 3-4h · ANA 國內線→富山當日抵（入住大和飯店富山站前）</div>
+      <div class="dsub">CI826 09:00→12:50 · 轉機約3.5h · NH319 16:15→17:20 富山抵達（入住大和飯店富山站前）</div>
     </div>
     <span class="chev">▾</span>
   </div>
@@ -258,9 +272,9 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
     <div class="tl">
       <div class="ev"><div class="ev-t">05:30</div><div class="ev-d">台北松山機場報到</div></div>
       <div class="tr-row"><span class="tr-badge" style="background:var(--blue-bg);color:var(--blue);">華航</span>CI826 台北松山 09:00 → 羽田 12:50（直飛約 3 小時）</div>
-      <div class="ev"><div class="ev-t">12:50–15:50</div><div class="ev-d">羽田機場出關、轉機、行李直掛至富山</div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">國內線</span>ANA 可選班次：NH1624 16:00 → 富山 17:10 或 NH1627 16:05 → 富山 17:15</div>
-      <div class="ev"><div class="ev-t">17:30–18:30</div><div class="ev-d">富山機場搭巴士→富山站→大和Roynet酒店富山站前 Check-in</div></div>
+      <div class="ev"><div class="ev-t">12:50–16:15</div><div class="ev-d">羽田機場出關、轉機、行李直掛至富山</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">國內線</span>NH319 羽田(T2) 16:15 → 富山 17:20（座位22A，已確定出票）</div>
+      <div class="ev"><div class="ev-t">17:35–18:35</div><div class="ev-d">富山機場搭巴士→富山站→大和Roynet酒店富山站前 Check-in</div></div>
       <div class="ev"><div class="ev-t">晚間</div><div class="ev-d">🍶 富山初夜晚餐推薦（富山駅徒步 3 分、飯店步行 5 分內）</div></div>
     </div>
     <div class="ins-sec">
@@ -754,7 +768,7 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
     <div class="dbadge" style="background:var(--green-bg);color:var(--green);">11/28</div>
     <div class="dinfo">
       <div class="dtitle">富山最後早晨 · ANA 飛羽田</div>
-      <div class="dsub">環水公園 · 星巴克 · 最後採買 · 傍晚班機</div>
+      <div class="dsub">環水公園 · 星巴克 · 最後採買 · NH322 18:00 起飛</div>
     </div>
     <span class="chev">▾</span>
   </div>
@@ -762,10 +776,10 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
     <div class="tl">
       <div class="ev"><div class="ev-t">08:00–09:00</div><div class="ev-d">自理早餐（飯店不含早餐，可於富山駅周邊超商或咖啡店解決）</div></div>
       <div class="ev"><div class="ev-t">09:00–12:00</div><div class="ev-d"><strong>富山市區最後遊覽</strong> — 環水公園運河散步、全球最美星巴克享咖啡、縣立圖書館、藥妝採買<div class="ev-media"><img class="ev-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Starbucks_Toyama_Canal_Park.jpg/330px-Starbucks_Toyama_Canal_Park.jpg" alt="富山環水公園" loading="lazy"><a class="ev-link" href="https://www.kansui-park.jp/" target="_blank" rel="noopener">🌐 官網</a></div></div></div>
-      <div class="ev"><div class="ev-t">12:00–15:00</div><div class="ev-d">飯店 Check-out、最後午餐推薦（見下）、行李寄存準備</div></div>
-      <div class="ev"><div class="ev-t">15:00–15:30</div><div class="ev-d">搭巴士前往富山機場（約 30 分）</div></div>
-      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">國內線</span>ANA 可選班次：NH1626 富山 17:30 → 羽田 18:45 或 NH1628 富山 20:00 → 羽田 21:10（需確認時刻表）</div>
-      <div class="ev"><div class="ev-t">抵達羽田後</div><div class="ev-d">Hotel Villa Fontaine Grand 羽田機場 Check-in、晚餐推薦（見下）</div></div>
+      <div class="ev"><div class="ev-t">12:00–16:00</div><div class="ev-d">飯店 Check-out、最後午餐推薦（見下）、藥妝/伴手禮最後採買、行李整理</div></div>
+      <div class="ev"><div class="ev-t">16:15–16:45</div><div class="ev-d">搭巴士前往富山機場（約 30 分），抓18:00起飛前約1.5小時登機緩衝</div></div>
+      <div class="tr-row"><span class="tr-badge" style="background:var(--coral-bg);color:var(--coral);">國內線</span>NH322 富山 18:00 → 羽田(T2) 19:05（座位21A，已確定出票）</div>
+      <div class="ev"><div class="ev-t">19:05 抵達後</div><div class="ev-d">Hotel Villa Fontaine Grand 羽田機場 Check-in、晚餐推薦（見下）</div></div>
     </div>
     <div class="ins-sec">
       <div class="ins-label">🍱 11/28 富山最後午餐推薦</div>
@@ -781,23 +795,38 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
       </div>
     </div>
     <div class="ins-sec">
-      <div class="ins-label">🍜 11/28 羽田夜晚推薦（依實際搭乘班機而定）</div>
-      <div class="aw">⚠ 兩個班機選項會直接影響能吃到哪家：cuud 實際營業時間為 11:00–20:00（L.O.19:30），比原先資料寫的21:30早很多。搭 NH1626（18:45到）還來得及；若搭 NH1628（21:10到），cuud 早已打烊，請改吃飯店內的 Grand Ale。</div>
+      <div class="ins-label">🍜 11/28 羽田夜晚推薦（NH322 已確定 19:05 抵達）</div>
+      <div class="aw">⚠ 確定航班 19:05 抵達，離 cuud L.O.19:30 只剩約25分鐘，扣掉下機、走到 T2 4F 賣場的時間，對帶著行李與小孩的六人家族來說不切實際，已降為輕裝快速的備註選項。改推薦「羽田エアポートガーデン」商場內兩家餐廳——與入住的 Hotel Villa Fontaine Grand 同一棟建築，Check-in 後不需跨航廈即可抵達，時間壓力最小。</div>
       <div class="ins-grid">
         <div class="icard" style="background:var(--amber-bg);border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">🍛</span><span class="icard-name" style="color:#7A4A1E;">cuud（クウド）第2ターミナル</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.52分 · 適合NH1626</span></div>
-          <div class="idesc">tabelog 烏冬東日本百名店 3 次獲選，1854年創業「山長」柴魚高湯咖喱烏冬。T2 4F マーケットプレイス，ANA 班機落地後步行約5-10分可達，建議儘快前往以免超過L.O.。</div>
-          <div class="plist">
-            <div class="prow"><span class="pname">スパイシーカレーうどん / 牛肉咖喱</span><span class="pprice" style="color:#7A4A1E;">¥1,200–1,800</span></div>
-            <div class="pnote">📍 羽田空港第 2 ターミナル 4F · 11:00–20:00（L.O.19:30）</div>
-          </div>
-        </div>
-        <div class="icard" style="background:var(--amber-bg);border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">🍽</span><span class="icard-name" style="color:#7A4A1E;">All Day Dining Grand Ale（飯店內）</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.45分 · 適合NH1628</span></div>
-          <div class="idesc">Hotel Villa Fontaine Grand 羽田機場自營餐廳，Check-in 後直接下樓即達，不用再出航廈找餐廳。深夜單點時段涵蓋到凌晨1點，晚班機抵達也吃得到。</div>
+          <div class="icard-hd"><span style="font-size:15px;">🍽</span><span class="icard-name" style="color:#7A4A1E;">All Day Dining Grand Ale（飯店內）</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.45分 · 首選</span></div>
+          <div class="idesc">Hotel Villa Fontaine Grand 羽田機場自營餐廳，Check-in 後直接下樓即達，完全不受下機時間壓力。深夜單點時段涵蓋到凌晨1點。</div>
           <div class="plist">
             <div class="prow"><span class="pname">晚餐自助餐 / 深夜單點</span><span class="pprice" style="color:#7A4A1E;">依菜單</span></div>
             <div class="pnote">📍 飯店 1F · 晚餐自助餐17:00–22:00，深夜單點22:00–凌晨1:00</div>
+          </div>
+        </div>
+        <div class="icard" style="background:var(--amber-bg);border-color:#E8C99A;">
+          <div class="icard-hd"><span style="font-size:15px;">🐟</span><span class="icard-name" style="color:#7A4A1E;">うなぎ四代目菊川 羽田エアポートガーデン店</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.55分 · 全行程最高分</span></div>
+          <div class="idesc">90年鰻魚卸問屋直營，一本鰻現場現烤。與飯店同棟「羽田エアポートガーデン」商場1F，不需跨航廈，適合當最後一晚的壓軸大餐。</div>
+          <div class="plist">
+            <div class="prow"><span class="pname">一本鰻重 / 鰻魚御膳</span><span class="pprice" style="color:#7A4A1E;">¥5,000–7,000</span></div>
+            <div class="pnote">📍 羽田エアポートガーデン 1F ハネダフードセレクション · 11:00–22:00（L.O.21:00）</div>
+          </div>
+        </div>
+        <div class="icard" style="background:var(--amber-bg);border-color:#E8C99A;">
+          <div class="icard-hd"><span style="font-size:15px;">🍱</span><span class="icard-name" style="color:#7A4A1E;">みそかつ 矢場とん 羽田エアポートガーデン店</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.16分 · 親子友善</span></div>
+          <div class="idesc">名古屋老店味噌豬排，官方標示「お子様連れOK」，出餐快、價位親民，對帶小孩又拖著行李的家族最實際。與飯店同棟商場1F。</div>
+          <div class="plist">
+            <div class="prow"><span class="pname">みそかつ定食 / わらじとんかつ</span><span class="pprice" style="color:#7A4A1E;">¥1,000–1,999</span></div>
+            <div class="pnote">📍 羽田エアポートガーデン 1F ハネダフードセレクション · 11:00–23:00（L.O.22:30）</div>
+          </div>
+        </div>
+        <div class="icard" style="opacity:0.6;">
+          <div class="icard-hd"><span style="font-size:15px;">🍛</span><span class="icard-name" style="color:#5F4A3B;">cuud（クウド）第2ターミナル</span><span class="itag" style="background:#F5EBE0;color:#5F4A3B;border:1px solid #D4B5A0;">tabelog 3.52分 · 僅輕裝快速適用</span></div>
+          <div class="idesc">⚠ 不在同棟商場，需跨航廈至 T2 4F マーケットプレイス，19:05下機後只剩約25分鐘到L.O.19:30，不建議帶著行李與小孩嘗試，僅供輕裝單獨行動參考。</div>
+          <div class="plist">
+            <div class="pnote">📍 羽田空港第 2 ターミナル 4F · 11:00–20:00（L.O.19:30）</div>
           </div>
         </div>
       </div>
@@ -1205,9 +1234,9 @@ const mapDays=[
   ]},
   {day:'11/28',label:'富山→羽田 · 環水公園散步',color:'#10B981',points:[
     {name:'富山環水公園（星巴克）',lat:36.6905,lng:137.2092,note:'全球最美星巴克'},
-    {name:'富山機場（TOY）',lat:36.6483,lng:137.1878,note:'ANA 17:30 或 20:00 出發'},
-    {name:'羽田機場 T1（HND）',lat:35.5494,lng:139.7798,note:'NH1626/NH1628 抵達'},
-    {name:'ANA Holiday Inn 羽田',lat:35.5490,lng:139.7780,note:'直結 T1 入住'}
+    {name:'富山機場（TOY）',lat:36.6483,lng:137.1878,note:'NH322 18:00 出發'},
+    {name:'羽田機場 T2（HND）',lat:35.5494,lng:139.7798,note:'NH322 19:05 抵達'},
+    {name:'Hotel Villa Fontaine Grand 羽田',lat:35.5490,lng:139.7780,note:'直結機場入住'}
   ]},
   {day:'11/29',label:'羽田→台北松山 · 圓滿歸來',color:'#6366F1',points:[
     {name:'羽田機場 T2（HND）',lat:35.5494,lng:139.7798,note:'CI223 07:55 起飛'},
