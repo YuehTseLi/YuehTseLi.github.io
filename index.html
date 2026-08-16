@@ -125,6 +125,16 @@
         }
         .coffee-card .card-header:hover { background: linear-gradient(135deg,#552E21 0%,#2E1508 100%); }
 
+        /* history/reading variant */
+        .travel-card.history-card:hover {
+            border-color: #c19a49;
+            box-shadow: 0 4px 18px rgba(193,154,73,.18);
+        }
+        .history-card .card-header {
+            background: linear-gradient(135deg, #c19a49 0%, #1b2430 100%);
+        }
+        .history-card .card-header:hover { background: linear-gradient(135deg,#a3813c 0%,#141a23 100%); }
+
         .card-title-section { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
 
         .card-title {
@@ -348,6 +358,27 @@
                 </button>
                 <div class="card-content">
                     <iframe src="coffee/tetsu_kasuya_neo_brew.html" title="Tetsu Kasuya NEO BREW Recipe" loading="lazy"></iframe>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ── READING ── -->
+        <p class="cat-label">📚 Reading</p>
+        <hr class="section-sep">
+        <div class="cards-grid">
+
+            <div class="travel-card history-card" data-trip="islamic-history-map">
+                <button class="card-header" type="button" aria-expanded="false">
+                    <div class="card-title-section">
+                        <div class="card-title">🗺️ 中斷的天命：疆界變遷地圖</div>
+                        <div class="card-date">Destiny Disrupted 讀書筆記 · 14個時代互動時間軸</div>
+                        <div class="card-description">伊斯蘭世界疆界變遷地圖，搭配《中斷的天命》閱讀，含城市座標、勢力範圍與重大戰役標註。</div>
+                    </div>
+                    <div class="toggle-icon" aria-hidden="true">▼</div>
+                </button>
+                <div class="card-content">
+                    <iframe src="reading/islamic-history-map.html" title="中斷的天命：疆界變遷地圖" loading="lazy" style="min-height:1080px;"></iframe>
                 </div>
             </div>
 
