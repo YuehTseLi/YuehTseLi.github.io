@@ -227,7 +227,6 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
   </div>
   <div style="display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:var(--warn);line-height:1.6;">
     <div>🔴 <strong>磯料理 松月</strong>晚餐預約（11/22）— 完全預約制，六人桌位熱門時段易額滿，儘早致電或線上訂位</div>
-    <div>🔴 <strong>三郎丸蒸留所</strong>見學預約（11/23）— 官網建議提前約1個月聯絡，最晚約10月下旬前需完成，逾期恐無法安排</div>
     <div>🟡 <strong>すし処 鳴海</strong>訂位（11/27）— 全行程評分最高 tabelog 3.64，官方強烈建議預約，儘快訂位</div>
     <div>⚪ <strong>うなぎ四代目菊川 / 矢場とん</strong>（11/28 晚餐備選）— 非必要但建議線上訂位，尤其菊川人氣時段易客滿</div>
   </div>
@@ -425,15 +424,8 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
       <div class="aw">⚠ 原本推薦的冰見魚市場食堂（6:30–15:00）、ひみ浜（午11:00–14:00／晚17:00–21:00）、寿し竹（11:00–15:00、17:00–21:00）都是正餐形式，中午已在高岡吃過飯，14:40–16:30這個時段剛好卡在它們的午晚餐空檔之間，已移除這三家，改為下午茶／散步型推薦。</div>
     </div>
     <div class="ins-sec">
-      <div class="ins-label">🍶 ☕ 高岡精選</div>
+      <div class="ins-label">☕ 高岡精選</div>
       <div class="ins-grid">
-        <div class="icard sake">
-          <div class="icard-hd"><span style="font-size:15px;">🍶</span><span class="icard-name sake">三郎丸蒸留所（若鶴酒造）</span><span class="itag sake">竈flamme 3.39分</span></div>
-          <div class="idesc">北陸最古威士忌蒸留所（1952年），世界首個鑄造蒸餾器。蒸留所內設餐廳「竈flamme 炭三郎」（tabelog 3.39），提供昆布釜飯套餐並搭配在地威士忌與酒。預約制，建議提前1個月聯絡。</div>
-          <div class="plist">
-            <div class="prow"><span class="pname">蒸留所見學（約60分）</span><span class="pprice sake">¥5,000/人</span></div>
-          </div>
-        </div>
         <div class="icard cafe">
           <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name cafe">MEI-SUN COFFEE</span><span class="itag cafe">tabelog 3.21分</span></div>
           <div class="idesc">高岡隱藏精品咖啡廳。田園精品咖啡店，每日3~4種精品豆可試飲後選購。招牌自製提拉米蘇。32則評論，1000+ 推薦。</div>
@@ -981,7 +973,6 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
   <div class="brow"><span class="blbl">黑部峽谷小火車<span class="bnote">✅ 已訂票 Relax車廂（去程10:03/回程12:28）</span></span><span class="bjpy" id="kb">—</span><span class="btwd" id="kb-t">—</span></div>
   <div class="brow"><span class="blbl">Umigatari 水族博物館<span class="bnote">¥1,100 大人 / ¥400 小孩</span></span><span class="bjpy" id="aq">—</span><span class="btwd" id="aq-t">—</span></div>
   <div class="brow"><span class="blbl">家族動物園<span class="bnote">小學生免費，大人 ¥1,000</span></span><span class="bjpy" id="fampark">—</span><span class="btwd" id="fampark-t">—</span></div>
-  <div class="brow"><span class="blbl">三郎丸蒸留所 (可選)<span class="bnote">¥5,000/人（需預約）</span></span><span class="bjpy" id="dist">—</span><span class="btwd" id="dist-t">—</span></div>
 </div>
 
 <div class="bcard">
@@ -1062,7 +1053,6 @@ function calc(){
   // 活動
   const kbV=34480;  // 黑部峽谷小火車 Relax車廂已確認訂票（11/24 去程10:03/回程12:28），固定金額
   const umiV=1100*a+400*k, fampark=1000*a;  // Umigatari 替換魚津
-  const distV=5000*a;  // 三郎丸蒸留所（選填）
 
   // 雜費
   const shV=25000*a+8000*k, insV=2000*pax;
@@ -1072,7 +1062,7 @@ function calc(){
   const tr_C_jpy=locV+jrV+shinkV+taxiV+toyBusV+miscTr;
   const ho_C_jpy=h_toy5+h_unaz+h_joetsu+h_hnd;
   const fd_C_jpy=mnV+m1V+m2V+m3V+famBreakV;
-  const tk_jpy=kbV+umiV+fampark+distV;
+  const tk_jpy=kbV+umiV+fampark;
   const mi_C_jpy=shV+insV;
 
   const total_C=Math.round(fl_C_twd+tr_C_jpy*RATE+ho_C_jpy*RATE+fd_C_jpy*RATE+tk_jpy*RATE+mi_C_jpy*RATE);
@@ -1115,8 +1105,6 @@ function calc(){
   document.getElementById('aq-t').textContent=nt(umiV*RATE);
   document.getElementById('fampark').textContent='¥'+fampark.toLocaleString();
   document.getElementById('fampark-t').textContent=nt(fampark*RATE);
-  document.getElementById('dist').textContent='¥'+distV.toLocaleString();
-  document.getElementById('dist-t').textContent=nt(distV*RATE);
   document.getElementById('sh').textContent='¥'+shV.toLocaleString();
   document.getElementById('sh-t').textContent=nt(shV*RATE);
   document.getElementById('ins').textContent='¥'+insV.toLocaleString();
