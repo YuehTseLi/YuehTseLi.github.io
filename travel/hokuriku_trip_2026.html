@@ -1104,7 +1104,16 @@ function drawSwapBracket(){
 
 applyDay37Swap(day37Swapped);
 drawSwapBracket();
-window.addEventListener('resize', drawSwapBracket);
+// .daynav is position:sticky, so its offset relative to .itin-layout (where the
+// bracket SVG lives) keeps changing while scrolling past the sticky threshold —
+// redraw continuously on scroll too, not just load/resize.
+let bracketRAF=null;
+function scheduleBracketRedraw(){
+  if(bracketRAF) return;
+  bracketRAF=requestAnimationFrame(()=>{bracketRAF=null;drawSwapBracket();});
+}
+window.addEventListener('resize', scheduleBracketRedraw);
+window.addEventListener('scroll', scheduleBracketRedraw, {passive:true});
 
 // ===== MAP =====
 let mapObj=null,mapInited=false,mapLayers=[];
