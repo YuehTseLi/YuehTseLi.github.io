@@ -48,11 +48,11 @@
     <div class="daynav-title">行程天數</div>
     <a class="daynav-item" href="#day1"><span class="daynav-dot" style="background:var(--blue);"></span>11/21 台北→富山</a>
     <a class="daynav-item" href="#day2"><span class="daynav-dot" style="background:var(--amber);"></span>11/22 家族動物園</a>
-    <a class="daynav-item" href="#day3"><span class="daynav-dot" style="background:var(--teal);"></span>11/23 高岡·雨晴·冰見</a>
+    <a class="daynav-item" href="#day3" id="nav-day3"><span class="daynav-dot" style="background:var(--teal);"></span>11/23 <span class="daynav-desc">高岡·雨晴·冰見</span></a>
     <a class="daynav-item" href="#day4"><span class="daynav-dot" style="background:var(--green);"></span>11/24 黑部峽谷</a>
     <a class="daynav-item" href="#day5"><span class="daynav-dot" style="background:var(--coral);"></span>11/25 高田·上越妙高</a>
     <a class="daynav-item" href="#day6"><span class="daynav-dot" style="background:var(--purple);"></span>11/26 Umigatari</a>
-    <a class="daynav-item" href="#day7"><span class="daynav-dot" style="background:var(--pink);"></span>11/27 新湊·高岡</a>
+    <a class="daynav-item" href="#day7" id="nav-day7"><span class="daynav-dot" style="background:var(--pink);"></span>11/27 <span class="daynav-desc">新湊·高岡</span></a>
     <a class="daynav-item" href="#day8"><span class="daynav-dot" style="background:var(--green);"></span>11/28 返程</a>
     <a class="daynav-item" href="#day9"><span class="daynav-dot" style="background:var(--blue);"></span>11/29 歸來</a>
   </nav>
@@ -240,6 +240,11 @@
   </div>
 </div>
 
+<div class="swap-banner" id="swap-banner">
+  <div class="swap-banner-text">🍁 <strong>紅葉彈性方案</strong>：高岡古城公園2026年預測見頂從11/25起，11/23（下方預設行程）恐怕還沒轉色，11/27（新湊內川日）更接近見頂。可一鍵互換這兩天的<em>行程內容</em>（日期不變，只換當天做的事）。互換前請留意：原本針對「11/23週一」「11/27週五」各自查過的店家公休資訊，互換後需要重新核對。</div>
+  <button class="swap-btn" id="swap-btn" onclick="toggleDay37Swap()">🔄 套用互換（11/23 ⇄ 11/27）</button>
+</div>
+
 <!-- Day 3 -->
 <div class="day-card" id="day3">
   <div class="day-hd" onclick="tog(this)">
@@ -326,7 +331,6 @@
         </div>
       </div>
     </div>
-    <div class="ai">💡 彈性方案（視當天天候／紅葉狀況決定）：高岡古城公園2026年預測見頂從<strong>11/25</strong>才開始，本頁預設的11/23去可能還沒轉色。若想賭更接近見頂的紅葉，可考慮整天跟 Day7（11/27・新湊内川・高岡晚食）互換——兩天都是富山出發的單日行程，互換不影響住宿安排。⚠️ 真要互換前，本頁已確認過的烏冬店家公休資訊是針對「11/23・週一」查的，換到11/27（週五）後需重新確認；Day7的 MATSUKI COFFEE／AEON 等店家公休資訊同理要重新對照11/23（週一）。</div>
   </div>
 </div>
 
@@ -614,7 +618,6 @@
             </div>
           </div>
         </div>
-    <div class="ai">💡 彈性方案（視當天天候／紅葉狀況決定）：11/27比11/23更接近高岡古城公園2026年預測見頂日（11/25起），若11/23當天天氣不佳或紅葉還沒轉色，可考慮整天跟 Day3（11/23・高岡大佛・雨晴・冰見）互換——兩天都是富山出發的單日行程，互換不影響住宿安排。⚠️ 真要互換前，Day3已確認過的烏冬店家公休資訊是針對「11/23・週一」查的，換到11/27（週五）後需重新確認；本頁的 MATSUKI COFFEE／AEON 等店家公休資訊同理要重新對照11/23（週一）。</div>
   </div>
 </div>
 
@@ -1036,6 +1039,72 @@ function calc(){
   }).join('');
 }
 calc();
+
+// ===== Day3 ⇄ Day7 紅葉彈性互換 =====
+function lsGet(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+
+let day37Swapped = lsGet('day3day7swapped') === 'true';
+
+function applyDay37Swap(swapped){
+  const d3=document.getElementById('day3'), d7=document.getElementById('day7');
+  if(!d3||!d7) return;
+  if(swapped !== (d3.dataset.swapped==='true')){
+    const d3t=d3.querySelector('.dtitle'), d3s=d3.querySelector('.dsub'), d3b=d3.querySelector('.day-body');
+    const d7t=d7.querySelector('.dtitle'), d7s=d7.querySelector('.dsub'), d7b=d7.querySelector('.day-body');
+    const n3=document.querySelector('#nav-day3 .daynav-desc'), n7=document.querySelector('#nav-day7 .daynav-desc');
+    [d3t.innerHTML,d7t.innerHTML]=[d7t.innerHTML,d3t.innerHTML];
+    [d3s.innerHTML,d7s.innerHTML]=[d7s.innerHTML,d3s.innerHTML];
+    [d3b.innerHTML,d7b.innerHTML]=[d7b.innerHTML,d3b.innerHTML];
+    if(n3&&n7)[n3.textContent,n7.textContent]=[n7.textContent,n3.textContent];
+    d3.dataset.swapped = swapped ? 'true' : 'false';
+  }
+  const btn=document.getElementById('swap-btn');
+  if(btn){
+    btn.textContent = swapped ? '↺ 還原原本行程（11/23 高岡・11/27 新湊）' : '🔄 套用互換（11/23 ⇄ 11/27）';
+    btn.classList.toggle('active', swapped);
+  }
+  drawSwapBracket();
+}
+
+function toggleDay37Swap(){
+  day37Swapped = !day37Swapped;
+  lsSet('day3day7swapped', day37Swapped ? 'true' : 'false');
+  applyDay37Swap(day37Swapped);
+}
+
+function drawSwapBracket(){
+  const layout=document.querySelector('.itin-layout');
+  const navEl=document.querySelector('.daynav');
+  const nav3=document.getElementById('nav-day3'), nav7=document.getElementById('nav-day7');
+  if(!layout||!navEl||!nav3||!nav7) return;
+  if(getComputedStyle(navEl).display==='none'){
+    const old=document.getElementById('swap-bracket-svg');
+    if(old) old.remove();
+    return;
+  }
+  let svg=document.getElementById('swap-bracket-svg');
+  if(!svg){
+    svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.id='swap-bracket-svg';
+    svg.setAttribute('width','26');
+    svg.style.position='absolute';
+    svg.style.top='0';
+    svg.style.left='-20px';
+    svg.style.overflow='visible';
+    layout.prepend(svg);
+  }
+  const lr=layout.getBoundingClientRect(), r3=nav3.getBoundingClientRect(), r7=nav7.getBoundingClientRect();
+  const y1=r3.top-lr.top+r3.height/2, y2=r7.top-lr.top+r7.height/2;
+  svg.setAttribute('height', Math.max(y2+10,0));
+  svg.innerHTML='<path d="M22 '+y1+' C 4 '+y1+', 4 '+y2+', 22 '+y2+'" fill="none" stroke="#993C1D" stroke-width="1.5" stroke-dasharray="3,3"/>'
+    +'<circle cx="22" cy="'+y1+'" r="2.5" fill="#993C1D"/>'
+    +'<circle cx="22" cy="'+y2+'" r="2.5" fill="#993C1D"/>';
+}
+
+applyDay37Swap(day37Swapped);
+drawSwapBracket();
+window.addEventListener('resize', drawSwapBracket);
 
 // ===== MAP =====
 let mapObj=null,mapInited=false,mapLayers=[];
