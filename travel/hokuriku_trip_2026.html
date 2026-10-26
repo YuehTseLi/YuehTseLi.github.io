@@ -1181,9 +1181,9 @@ const mapDays=[
 function initMap(){
   if(mapInited)return;mapInited=true;
   mapObj=L.map('map-canvas');
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
-    attribution:'© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains:'abcd',maxZoom:19
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    subdomains:'abc',maxZoom:19
   }).addTo(mapObj);
   const bar=document.getElementById('map-day-bar');
   const ab=document.createElement('button');ab.className='mdb on';ab.textContent='全部日程';
