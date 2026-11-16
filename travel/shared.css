@@ -102,6 +102,8 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
 .icard.sake{background:var(--sake-bg);border-color:var(--sake-bd);}
 .icard.cafe{background:var(--cafe-bg);border-color:var(--cafe-bd);}
 .icard.onsen{background:var(--onsen-bg);border-color:var(--onsen-bd);}
+/* 已確定訂位的店家：粗邊框+陰影，跟一般推薦卡片拉出視覺差異 */
+.icard.confirmed{border-width:3px;border-color:#D97706;box-shadow:0 2px 6px rgba(217,119,6,.3);}
 .icard-hd{display:flex;align-items:center;gap:7px;margin-bottom:5px;}
 .icard-name{font-size:13px;font-weight:700;}
 .icard-name.sake{color:var(--sake);}
