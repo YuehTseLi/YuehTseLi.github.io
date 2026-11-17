@@ -94,6 +94,28 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
 .tr-row{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);background:var(--bg);border-radius:var(--r);padding:6px 10px;margin:6px 0;}
 .tr-badge{font-size:10px;font-weight:700;padding:1px 6px;border-radius:6px;white-space:nowrap;}
 
+/* ---- 流程圖式行程（取代 .tl/.ev/.tr-row，節點＋連線呈現移動方式/距離/時間/天氣） ---- */
+:root{
+  --walk:#6B7280;--walk-bg:#F3F4F6;
+  --rail:#1D4ED8;--rail-bg:#EFF6FF;
+  --shin:#DC2626;--shin-bg:#FEF2F2;
+  --fbus:#D97706;--fbus-bg:#FEF3E2;
+  --torokko:#7C3AED;--torokko-bg:#F3F0FF;
+  --flight:#0891B2;--flight-bg:#ECFEFF;
+  --wx:#0369A1;--wx-bg:#F0F9FF;--wx-bd:#BAE6FD;
+}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:0;margin:4px 0 2px;}
+.flow .nodewrap{display:inline-flex;flex-direction:column;align-items:center;margin:4px 0;}
+.flow .fnode{font-size:12px;font-weight:700;padding:6px 11px;border-radius:999px;border:1.5px solid;white-space:nowrap;}
+.flow .fwx{font-size:9.5px;font-weight:700;color:var(--wx);background:var(--wx-bg);border:1px solid var(--wx-bd);border-radius:999px;padding:1px 7px;margin-top:3px;white-space:nowrap;}
+.flow .fedge{display:flex;flex-direction:column;align-items:center;margin:0 6px;min-width:70px;}
+.flow .fedge-mode{font-size:10px;font-weight:700;padding:1px 7px;border-radius:6px;white-space:nowrap;}
+.flow .fedge-time{font-size:10.5px;color:var(--text);font-weight:700;margin-top:2px;text-align:center;}
+.flow .fedge-dist{font-size:9.5px;color:var(--hint);}
+.flow .fedge-arrow{font-size:13px;color:var(--hint);line-height:1;}
+.flow .fedge-flag{font-size:9px;color:var(--amber);margin-top:1px;max-width:100px;text-align:center;line-height:1.2;}
+.daywx{font-size:11px;font-weight:700;color:var(--wx);background:var(--wx-bg);border:1px solid var(--wx-bd);border-radius:999px;padding:2px 9px;}
+
 .ins-sec{margin-top:13px;}
 .ins-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--hint);margin-bottom:7px;}
 /* 自動排版：依可用寬度自己決定欄數，不用手動訂斷點 */
