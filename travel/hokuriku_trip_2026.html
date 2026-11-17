@@ -7,11 +7,191 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: { ink: '#1A1814', paper: '#F7F5F0' },
+      fontFamily: {
+        sans: ["'Noto Sans TC'", 'sans-serif'],
+        mono: ["'DM Mono'", 'monospace']
+      }
+    }
+  }
+}
+</script>
+<style type="text/tailwindcss">
+@layer components {
+  .header-inner,.tab-bar,.main{max-width:clamp(760px,78vw,1280px);margin-left:auto;margin-right:auto;}
+  .tab-bar{@apply px-6 border-b border-stone-200;}
+  .main{@apply px-6 pt-4 pb-16;}
+
+  .page-header{@apply border-b border-stone-200 pt-9 px-6 pb-6 sticky top-0 z-[100];background:linear-gradient(135deg,#FBF8F3 0%,#F0EAE0 100%);}
+  .eyebrow{@apply text-[11px] font-medium tracking-wide uppercase text-stone-400 mb-2;}
+  h1{@apply text-3xl font-extrabold leading-tight mb-3 tracking-tight;}
+  .trip-meta{@apply flex gap-4 text-xs text-stone-500 mb-3.5 flex-wrap;}
+  .trip-meta-item{@apply flex items-center gap-1;}
+  .pill-row{@apply flex gap-1.5 flex-wrap;}
+  .pill{@apply text-[11px] font-medium px-2.5 py-1 rounded-full;}
+
+  .tab-btn{@apply px-5 py-3.5 border-0 border-b-2 bg-transparent cursor-pointer font-sans text-[13px] font-semibold transition-colors;}
+
+  .itin-layout{@apply grid gap-7 items-start relative;grid-template-columns:200px 1fr;}
+  .daynav{@apply sticky max-h-[calc(100vh-210px)] overflow-y-auto;top:190px;}
+  .daynav-title{@apply text-[10px] font-bold tracking-wide uppercase text-stone-400 px-2.5 pb-2;}
+  .daynav-item{@apply flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs text-stone-500 no-underline hover:bg-white hover:text-ink;}
+  .daynav-dot{@apply w-2 h-2 rounded-full shrink-0;}
+  @media(max-width:860px){.daynav{@apply hidden;}.itin-layout{grid-template-columns:1fr;}}
+
+  .flight-banner{@apply grid items-center gap-3 bg-white border border-stone-200 rounded-xl py-3.5 px-[18px] mb-3;grid-template-columns:1fr auto 1fr;}
+  .fl-label{@apply text-[10px] font-medium tracking-wide uppercase text-stone-400 mb-0.5;}
+  .fl-route{@apply text-base font-bold font-mono;}
+  .fl-time{@apply text-xs text-stone-500 mt-0.5;}
+  .fl-mid{@apply text-center text-lg text-stone-400;}
+  .fl-right{@apply text-right;}
+
+  .pass-banner{@apply border rounded-xl py-2.5 px-4 mb-3 flex items-start gap-3;}
+  .pass-title{@apply text-sm font-bold;}
+  .pass-sub{@apply text-xs mt-0.5;}
+
+  .day-card{@apply bg-white border border-stone-200 rounded-xl mb-1.5 overflow-hidden;scroll-margin-top:190px;}
+  .day-hd{@apply flex items-center gap-3 py-3 px-4 cursor-pointer select-none hover:bg-paper transition-colors;}
+  .dbadge{@apply w-[42px] h-[42px] rounded-full flex items-center justify-center text-[11px] font-bold font-mono shrink-0;}
+  .dinfo{@apply flex-1 min-w-0;}
+  .dtitle{@apply text-sm font-bold;}
+  .dsub{@apply text-xs text-stone-500 mt-0.5;}
+  .chev{@apply text-lg text-stone-400 transition-transform shrink-0;}
+  .day-body{@apply pt-0 px-4 pb-3.5;}
+
+  .flow{@apply flex flex-wrap items-center gap-y-2.5 mt-1.5 mb-0.5 max-w-full;}
+  .flow .nodewrap{@apply inline-flex flex-col items-center my-1 max-w-full min-w-0;}
+  .flow .fnode{@apply text-[13.5px] font-bold py-1.5 px-3.5 rounded-full border-[1.5px] whitespace-nowrap leading-snug;}
+  .flow .fwx{@apply text-[10.5px] font-bold bg-sky-50 text-sky-700 border border-sky-200 rounded-full py-0.5 px-2 mt-1 whitespace-nowrap;}
+  .flow .fedge{@apply flex flex-col items-center mx-2 min-w-[78px] max-w-full;}
+  .flow .fedge-mode{@apply text-[11px] font-bold py-0.5 px-2 rounded-md whitespace-nowrap;}
+  .flow .fedge-time{@apply text-[11.5px] text-ink font-bold mt-1 text-center;}
+  .flow .fedge-dist{@apply text-[10.5px] text-stone-400;}
+  .flow .fedge-arrow{@apply text-sm text-stone-400 leading-none mx-0.5 shrink-0;}
+  .flow .fedge-flag{@apply text-[10px] text-amber-700 mt-0.5 max-w-[120px] text-center leading-snug;overflow-wrap:break-word;}
+  @media (max-width:640px){
+    .flow{@apply flex-col items-stretch gap-y-0.5;}
+    .flow .nodewrap{@apply w-full min-w-0;}
+    .flow .fnode{@apply block text-center w-full;white-space:normal;overflow-wrap:break-word;}
+    .flow .fedge{@apply flex-col w-full min-w-0 max-w-full my-0.5;}
+    .flow .fedge-mode,.flow .fedge-time,.flow .fedge-dist,.flow .fedge-flag{@apply min-w-0 max-w-full w-auto;white-space:normal;overflow-wrap:break-word;}
+    .flow .fedge-arrow{@apply block my-0.5;transform:rotate(90deg);}
+  }
+  .daywx{@apply text-xs font-bold bg-sky-50 text-sky-700 border border-sky-200 rounded-full py-0.5 px-2.5;}
+
+  .ins-sec{@apply mt-3.5;}
+  .ins-label{@apply text-[10px] font-bold tracking-wide uppercase text-stone-400 mb-2;}
+  .ins-grid{@apply grid gap-2;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}
+  .icard{@apply bg-white border border-stone-200 rounded-lg py-2.5 px-3.5;}
+  .icard.sake{@apply bg-violet-50 border-violet-200;}
+  .icard.cafe{@apply bg-orange-50 border-orange-200;}
+  .icard.onsen{@apply bg-teal-50 border-teal-200;}
+  .icard.confirmed{@apply border-[3px] border-amber-600;box-shadow:0 2px 6px rgba(217,119,6,.3);}
+  .icard-hd{@apply flex flex-wrap items-center gap-x-2 gap-y-1 mb-1.5;}
+  .icard-name{@apply text-[13px] font-bold min-w-0;overflow-wrap:break-word;}
+  .icard-name.sake{@apply text-violet-700;}
+  .icard-name.cafe{@apply text-orange-700;}
+  .icard-name.onsen{@apply text-teal-700;}
+  .itag{@apply text-[10px] py-0.5 px-2 rounded-full font-semibold ml-auto whitespace-nowrap bg-stone-100 text-stone-600 border border-stone-300;}
+  .itag.sake{@apply bg-violet-50 text-violet-700 border-violet-200;}
+  .itag.cafe{@apply bg-orange-50 text-orange-700 border-orange-200;}
+  .itag.onsen{@apply bg-teal-50 text-teal-700 border-teal-200;}
+  .idesc{@apply text-xs text-stone-500 leading-relaxed;}
+  .plist{@apply mt-1.5 flex flex-col gap-1;}
+  .prow{@apply flex justify-between items-start text-xs gap-2;}
+  .pname{@apply text-ink flex-1;}
+  .pprice{@apply font-mono text-[11px] font-bold whitespace-nowrap;}
+  .pprice.sake{@apply text-violet-700;}
+  .pprice.cafe{@apply text-orange-700;}
+  .pprice.onsen{@apply text-teal-700;}
+  .pnote{@apply text-[11px] text-stone-400;}
+
+  .sum-box{@apply bg-white border border-stone-200 rounded-xl py-3.5 px-4 mt-2.5;}
+  .sum-title{@apply text-[11px] font-bold tracking-wide uppercase text-stone-400 mb-2.5;}
+  .sum-item{@apply flex gap-2.5 text-sm text-stone-500 mb-1.5;}
+  .sum-num{@apply font-mono text-[11px] text-stone-400 pt-0.5 shrink-0;}
+
+  .aw{@apply bg-amber-50 border border-amber-200 rounded-lg py-2 px-3 text-xs text-amber-700 mt-2 flex gap-2 items-start;}
+  .ai{@apply bg-blue-50 border border-blue-200 rounded-lg py-2 px-3 text-xs text-blue-700 mt-2 flex gap-2 items-start;}
+  .aok{@apply bg-emerald-50 border border-emerald-200 rounded-lg py-2 px-3 text-xs text-emerald-700 mt-2 flex gap-2 items-start;}
+
+  .hotel-grid{@apply grid gap-2 mt-3;grid-template-columns:1fr;}
+  .hotel-card{@apply rounded-lg py-3 px-3.5 border border-blue-200 bg-blue-50;}
+  .hotel-hd{@apply flex items-start gap-2 mb-1.5;}
+  .hotel-icon{@apply text-lg shrink-0;}
+  .hotel-name{@apply text-[13px] font-bold text-blue-700 flex-1;}
+  .hotel-rank{@apply text-[10px] py-0.5 px-2 rounded-full font-bold whitespace-nowrap shrink-0;}
+  .rank-top{@apply bg-amber-50 text-amber-700 border border-amber-200;}
+  .rank-bal{@apply bg-emerald-50 text-emerald-700 border border-emerald-200;}
+  .hotel-desc{@apply text-xs text-stone-500 leading-relaxed mb-2;}
+  .hotel-specs{@apply grid gap-1;grid-template-columns:1fr 1fr;}
+  .spec{@apply text-[11px] text-stone-500 flex gap-1.5 items-start;}
+  .spec-icon{@apply shrink-0 text-blue-700;}
+  .hotel-note{@apply text-[11px] text-blue-700 bg-blue-50 rounded-md py-1 px-2.5 mt-1.5;}
+
+  .ctrl-row{@apply flex items-center gap-2.5 flex-wrap mb-3;}
+  .ctrl-lbl{@apply text-sm text-stone-500 whitespace-nowrap;}
+  .ctrl-row input[type=range]{@apply flex-1 min-w-[80px] accent-ink;}
+  .rval{@apply text-base font-bold min-w-[18px] text-center font-mono;}
+  .mg{@apply grid gap-2 mb-3;grid-template-columns:repeat(3,minmax(0,1fr));}
+  .metric{@apply bg-white border border-stone-200 rounded-lg py-2.5 px-3.5;}
+  .ml{@apply text-[11px] text-stone-400 mb-1 font-medium;}
+  .mv{@apply text-lg font-bold font-mono;}
+  .ms{@apply text-[11px] text-stone-500 mt-0.5;}
+  .bcard{@apply bg-white border border-stone-200 rounded-xl py-3.5 px-4 mb-2;}
+  .bsec{@apply text-[11px] font-bold tracking-wide uppercase text-stone-400 mb-2.5;}
+  .brow{@apply flex items-center py-1.5 border-b border-stone-200 text-sm gap-2;}
+  .brow:last-child{@apply border-b-0 pb-0;}
+  .blbl{@apply flex-1 text-stone-500;}
+  .bnote{@apply text-[11px] text-stone-400 block mt-0.5;}
+  .bjpy{@apply font-bold font-mono min-w-[88px] text-right;}
+  .btwd{@apply text-[11px] text-stone-400 min-w-[70px] text-right;}
+  .cat-row{@apply flex items-center gap-2 mb-1.5;}
+  .cdot{@apply w-2 h-2 rounded-sm shrink-0;}
+  .bbg{@apply grow-[2] h-1.5 bg-paper rounded-sm overflow-hidden;}
+  .bf{@apply h-full rounded-sm transition-[width] duration-300;}
+  .bnote-box{@apply bg-amber-50 border border-amber-200 rounded-lg py-2.5 px-3.5 text-xs text-amber-700 mt-2.5;}
+
+  #map-canvas{@apply rounded-lg border border-stone-200 mt-3;height:520px;}
+  .map-day-bar{@apply flex gap-1.5 flex-wrap pb-2.5;}
+  .map-legend{@apply flex flex-wrap gap-2 mt-2;}
+  .ml-item{@apply flex items-center gap-1.5 text-xs text-stone-500;}
+  .ml-dot{@apply w-2.5 h-2.5 rounded-full shrink-0;}
+
+  .sec-hd{@apply flex items-center gap-2.5 mt-7 mb-3.5;}
+  .sec-hd:first-child{@apply mt-1;}
+  .sec-title{@apply text-[15px] font-extrabold text-ink;}
+  .sec-sub{@apply text-xs text-stone-500 mt-0.5;}
+  .nights-chip{@apply text-[11px] font-bold bg-blue-50 text-blue-700 py-0.5 px-2.5 rounded-xl ml-auto whitespace-nowrap shrink-0;}
+
+  .ev-media{@apply flex items-center gap-2 mt-1.5;}
+  .ev-thumb{@apply w-[240px] h-[180px] object-cover rounded-md shrink-0 border border-stone-200;}
+  .ev-link{@apply text-[11px] font-semibold text-blue-700 no-underline hover:underline whitespace-nowrap;}
+
+  @media(max-width:480px){
+    .page-header{@apply pt-4 px-4 pb-3.5;}
+    .tab-bar,.main{@apply px-4;}
+    .flight-banner{@apply gap-2;grid-template-columns:1fr;}
+    .fl-mid{@apply hidden;}
+    .fl-right{@apply text-left;}
+    .mg{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .mg .metric:last-child{grid-column:1/-1;}
+    h1{@apply text-[17px];}
+    .hotel-specs{grid-template-columns:1fr;}
+    #map-canvas{height:320px;}
+    .ev-thumb{@apply w-40 h-[120px];}
+  }
+}
+</style>
 </head>
-<body>
+<body class="bg-paper text-ink font-sans text-sm leading-relaxed overflow-x-hidden">
 
 <header class="page-header">
   <div class="header-inner">
@@ -23,22 +203,22 @@
       <span class="trip-meta-item">🏔 富山 · 高岡 · 黑部 · 宇奈月</span>
     </div>
     <div class="pill-row">
-      <span class="pill" style="background:var(--blue-bg);color:var(--blue);">華航 CI220/CI223 直飛</span>
-      <span class="pill" style="background:var(--amber-bg);color:var(--amber);">ANA 國內線 去回</span>
-      <span class="pill" style="background:var(--blue-bg);color:var(--blue);">回程 HND 07:55</span>
-      <span class="pill" style="background:var(--amber-bg);color:var(--amber);">11月21–29日</span>
-      <span class="pill" style="background:var(--sake-bg);color:var(--sake);border:1px solid var(--sake-bd);">🍶 酒莊</span>
-      <span class="pill" style="background:var(--cafe-bg);color:var(--cafe);border:1px solid var(--cafe-bd);">☕ 咖啡</span>
-      <span class="pill" style="background:var(--onsen-bg);color:var(--onsen);border:1px solid var(--onsen-bd);">♨ 溫泉</span>
+      <span class="pill bg-blue-50 text-blue-700">華航 CI220/CI223 直飛</span>
+      <span class="pill bg-amber-50 text-amber-700">ANA 國內線 去回</span>
+      <span class="pill bg-blue-50 text-blue-700">回程 HND 07:55</span>
+      <span class="pill bg-amber-50 text-amber-700">11月21–29日</span>
+      <span class="pill bg-violet-50 text-violet-700 border border-violet-200">🍶 酒莊</span>
+      <span class="pill bg-orange-50 text-orange-700 border border-orange-200">☕ 咖啡</span>
+      <span class="pill bg-teal-50 text-teal-700 border border-teal-200">♨ 溫泉</span>
     </div>
   </div>
 </header>
 
 <div class="tab-bar">
-  <button class="tab-btn active" onclick="showTab('itin',this)">✈ 行程</button>
-  <button class="tab-btn" onclick="showTab('hotels',this)">🏨 住宿推薦</button>
-  <button class="tab-btn" onclick="showTab('budget',this)">¥ 費用</button>
-  <button class="tab-btn" onclick="showTab('map',this)">🗺 地圖</button>
+  <button class="tab-btn text-ink border-ink" onclick="showTab('itin',this)">✈ 行程</button>
+  <button class="tab-btn text-stone-500 border-transparent" onclick="showTab('hotels',this)">🏨 住宿推薦</button>
+  <button class="tab-btn text-stone-500 border-transparent" onclick="showTab('budget',this)">¥ 費用</button>
+  <button class="tab-btn text-stone-500 border-transparent" onclick="showTab('map',this)">🗺 地圖</button>
 </div>
 
 <div class="main">
@@ -46,24 +226,24 @@
 <div class="itin-layout">
   <nav class="daynav">
     <div class="daynav-title">行程天數</div>
-    <a class="daynav-item" href="#day1"><span class="daynav-dot" style="background:var(--blue);"></span>11/21 台北→富山</a>
-    <a class="daynav-item" href="#day2"><span class="daynav-dot" style="background:var(--amber);"></span>11/22 家族動物園</a>
-    <a class="daynav-item" href="#day3" id="nav-day3"><span class="daynav-dot" style="background:var(--teal);"></span>11/23 <span class="daynav-desc">雨晴·冰見</span></a>
-    <a class="daynav-item" href="#day4"><span class="daynav-dot" style="background:var(--green);"></span>11/24 黑部峽谷</a>
-    <a class="daynav-item" href="#day5"><span class="daynav-dot" style="background:var(--coral);"></span>11/25 魚津·高岡</a>
-    <a class="daynav-item" href="#day6"><span class="daynav-dot" style="background:var(--purple);"></span>11/26 高岡·AEON</a>
-    <a class="daynav-item" href="#day7" id="nav-day7"><span class="daynav-dot" style="background:var(--pink);"></span>11/27 <span class="daynav-desc">新湊·富山城</span></a>
-    <a class="daynav-item" href="#day8"><span class="daynav-dot" style="background:var(--green);"></span>11/28 返程</a>
-    <a class="daynav-item" href="#day9"><span class="daynav-dot" style="background:var(--blue);"></span>11/29 歸來</a>
+    <a class="daynav-item" href="#day1"><span class="daynav-dot bg-blue-700"></span>11/21 台北→富山</a>
+    <a class="daynav-item" href="#day2"><span class="daynav-dot bg-amber-700"></span>11/22 家族動物園</a>
+    <a class="daynav-item" href="#day3" id="nav-day3"><span class="daynav-dot bg-teal-700"></span>11/23 <span class="daynav-desc">雨晴·冰見</span></a>
+    <a class="daynav-item" href="#day4"><span class="daynav-dot bg-emerald-700"></span>11/24 黑部峽谷</a>
+    <a class="daynav-item" href="#day5"><span class="daynav-dot bg-orange-700"></span>11/25 魚津·高岡</a>
+    <a class="daynav-item" href="#day6"><span class="daynav-dot bg-violet-700"></span>11/26 高岡·AEON</a>
+    <a class="daynav-item" href="#day7" id="nav-day7"><span class="daynav-dot bg-rose-700"></span>11/27 <span class="daynav-desc">新湊·富山城</span></a>
+    <a class="daynav-item" href="#day8"><span class="daynav-dot bg-emerald-700"></span>11/28 返程</a>
+    <a class="daynav-item" href="#day9"><span class="daynav-dot bg-blue-700"></span>11/29 歸來</a>
   </nav>
   <div class="itin-content">
 
-<div style="background:var(--warn-bg);border:1px solid var(--warn-bd);border-radius:var(--rl);padding:14px 18px;margin-top:3px;margin-bottom:12px;">
+<div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mt-1 mb-3">
   <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
     <span style="font-size:18px;">📋</span>
-    <span style="font-size:14px;font-weight:700;color:var(--warn);">出發前尚待完成事項</span>
+    <span class="text-sm font-bold text-amber-700">出發前尚待完成事項</span>
   </div>
-  <div style="display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:var(--warn);line-height:1.6;">
+  <div class="flex flex-col gap-2 text-sm text-amber-700 leading-relaxed">
     <div>🔴 <strong>取消 Toyoko Inn 上越妙高站西口</strong> — 行程改版後上越妙高整段拿掉，原「已確定」訂房（¥34,965）需盡快取消</div>
     <div>🔴 <strong>訂房 APA Hotel〈高岡駅前〉</strong>（11/25）— 目前只是估價，尚未實際訂房，需確認房型與人數配置</div>
     <div>🔴 <strong>金泉</strong>晚餐預約（11/22）— 居酒屋人氣旺，建議預訂6人包廂，電話或系統儘早訂位（週一公休，11/22為週日正常營業）</div>
@@ -74,11 +254,11 @@
   </div>
 </div>
 
-<div class="pass-banner" style="background:var(--blue-bg);border-color:var(--info-bd);margin-top:3px;">
+<div class="pass-banner bg-blue-50 border-blue-200 mt-1">
   <div style="font-size:20px;padding-top:2px;">✈</div>
   <div class="pass-body">
-    <div class="pass-title" style="color:var(--blue);">國際班機 + 國內線轉機（機票已全部確定）</div>
-    <div class="pass-sub" style="color:var(--info);">去程：11/21 台北松山 09:00 → 羽田 12:50 → NH319 16:15→17:20 富山 | 回程：11/28 NH322 富山18:00→羽田19:05 + 11/29 07:55 CI223 HND → 台北松山</div>
+    <div class="pass-title text-blue-700">國際班機 + 國內線轉機（機票已全部確定）</div>
+    <div class="pass-sub text-blue-700">去程：11/21 台北松山 09:00 → 羽田 12:50 → NH319 16:15→17:20 富山 | 回程：11/28 NH322 富山18:00→羽田19:05 + 11/29 07:55 CI223 HND → 台北松山</div>
   </div>
 </div>
 
@@ -87,56 +267,56 @@
     <div class="fl-label">去程</div>
     <div class="fl-route">TPE → HND → TOY</div>
     <div class="fl-time">11/21 (六)　09:00 → 12:50 → 16:15→17:20 抵富山</div>
-    <div class="fl-time" style="margin-top:4px;color:var(--hint);">華航 CI220 台北松山→羽田（約 3h）→ 轉機約 3.5 小時 → ANA NH319（座位22A）羽田T2 16:15→富山 17:20</div>
+    <div class="fl-time mt-1 text-stone-400">華航 CI220 台北松山→羽田（約 3h）→ 轉機約 3.5 小時 → ANA NH319（座位22A）羽田T2 16:15→富山 17:20</div>
   </div>
-  <div class="fl-mid">⇄<div style="font-size:11px;color:var(--hint);margin-top:2px;">BR/ANA</div></div>
+  <div class="fl-mid">⇄<div class="text-[11px] text-stone-400 mt-0.5">BR/ANA</div></div>
   <div class="fl-right">
     <div class="fl-label">回程</div>
     <div class="fl-route">TOY → HND → TPE</div>
     <div class="fl-time">18:00→19:05 抵羽田 → 隔早班機</div>
-    <div class="fl-time" style="margin-top:4px;color:var(--hint);">ANA NH322（座位21A）富山18:00→羽田T2 19:05 + 東京過夜 + CI223 07:55 HND→台北松山</div>
+    <div class="fl-time mt-1 text-stone-400">ANA NH322（座位21A）富山18:00→羽田T2 19:05 + 東京過夜 + CI223 07:55 HND→台北松山</div>
   </div>
 </div>
 
 <!-- Day 1 -->
 <div class="day-card" id="day1">
   <div class="day-hd" onclick="tog(this)">
-    <div class="dbadge" style="background:var(--blue-bg);color:var(--blue);">11/21</div>
+    <div class="dbadge bg-blue-50 text-blue-700">11/21</div>
     <div class="dinfo">
       <div class="dtitle">台北→羽田 當日轉機 → 富山</div>
       <div class="dsub">CI220 09:00→12:50 · 轉機約3.5h · NH319 16:15→17:20 富山抵達（入住大和飯店富山站前）</div>
     </div>
     <span class="chev">▾</span>
   </div>
-  <div class="day-body">
+  <div class="day-body hidden">
     <div class="flow">
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--blue);color:var(--blue);">台北松山機場<br><small style="font-weight:500;">05:30報到</small></span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--flight-bg);color:var(--flight);">✈️ CI220</span><span class="fedge-time">09:00→12:50（3h）</span></div>
+      <span class="nodewrap"><span class="fnode border-blue-700 text-blue-700">台北松山機場<br><small style="font-weight:500;">05:30報到</small></span></span>
+      <div class="fedge"><span class="fedge-mode bg-cyan-50 text-cyan-700">✈️ CI220</span><span class="fedge-time">09:00→12:50（3h）</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--blue);color:var(--blue);">羽田 T3</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--fbus-bg);color:var(--fbus);">🚌 接駁巴士</span><span class="fedge-time">約30分</span><span class="fedge-flag">🎧 Air BicCamera購物，見下方卡片</span></div>
+      <span class="nodewrap"><span class="fnode border-blue-700 text-blue-700">羽田 T3</span></span>
+      <div class="fedge"><span class="fedge-mode bg-amber-50 text-amber-700">🚌 接駁巴士</span><span class="fedge-time">約30分</span><span class="fedge-flag">🎧 Air BicCamera購物，見下方卡片</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--blue);color:var(--blue);">羽田 T2</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--flight-bg);color:var(--flight);">✈️ NH319</span><span class="fedge-time">16:15→17:20（65分）</span><span class="fedge-flag">座位22A已確定</span></div>
+      <span class="nodewrap"><span class="fnode border-blue-700 text-blue-700">羽田 T2</span></span>
+      <div class="fedge"><span class="fedge-mode bg-cyan-50 text-cyan-700">✈️ NH319</span><span class="fedge-time">16:15→17:20（65分）</span><span class="fedge-flag">座位22A已確定</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--blue);color:var(--blue);">富山機場</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--fbus-bg);color:var(--fbus);">🚌 巴士</span><span class="fedge-time">約25分</span></div>
+      <span class="nodewrap"><span class="fnode border-blue-700 text-blue-700">富山機場</span></span>
+      <div class="fedge"><span class="fedge-mode bg-amber-50 text-amber-700">🚌 巴士</span><span class="fedge-time">約25分</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--blue);color:var(--blue);">富山站/飯店<br><small style="font-weight:500;">Check-in・晚餐</small></span></span>
+      <span class="nodewrap"><span class="fnode border-blue-700 text-blue-700">富山站/飯店<br><small style="font-weight:500;">Check-in・晚餐</small></span></span>
     </div>
     <div class="ins-sec">
-      <div class="ins-label" style="color:#1D4ED8;">🎧 11/21 轉機採買 · Air BicCamera（13:30–14:00）</div>
+      <div class="ins-label text-blue-700">🎧 11/21 轉機採買 · Air BicCamera（13:30–14:00）</div>
       <div class="ins-grid">
-        <div class="icard" style="background:var(--blue-bg);border-color:var(--info-bd);">
-          <div class="icard-hd"><span style="font-size:15px;">🎧</span><span class="icard-name" style="color:#1D4ED8;">Bose Ultra Open Earbuds（第2世代）</span><span class="itag" style="background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;">免稅7%＋退稅10%</span></div>
+        <div class="icard bg-blue-50 border-blue-200">
+          <div class="icard-hd"><span style="font-size:15px;">🎧</span><span class="icard-name text-blue-700">Bose Ultra Open Earbuds（第2世代）</span><span class="itag bg-blue-50 text-blue-700 border border-blue-200">免稅7%＋退稅10%</span></div>
           <div class="idesc">出示護照告知「免税でお願いします」，結帳時優惠券兩組條碼（①カウントJAN、②自動値引JAN）都要給店員掃描。10%消費税採「リファンド方式」，出境時由海關確認後退還，耳機與收據請放手提行李以備查驗。此商品不適用網路取り置き，建議出發前1–2天電話確認庫存與顏色。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">定價（含稅）</span><span class="pprice" style="color:#1D4ED8;">¥39,600</span></div>
-            <div class="prow"><span class="pname">免稅扣10%＋優惠券再折7%後實付</span><span class="pprice" style="color:#1D4ED8;font-weight:700;">¥33,480（約NT$6,700–7,000）</span></div>
+            <div class="prow"><span class="pname">定價（含稅）</span><span class="pprice text-blue-700">¥39,600</span></div>
+            <div class="prow"><span class="pname">免稅扣10%＋優惠券再折7%後實付</span><span class="pprice text-blue-700 font-bold">¥33,480（約NT$6,700–7,000）</span></div>
             <div class="pnote">📍 第3ターミナル4F出境大廳（安檢前）· 7:00–22:00 · 03-5579-7111</div>
           </div>
           <div style="margin-top:8px;text-align:center;">
-            <img src="https://assets.funliday.com/coupon/biccamera/coupon_202611_zh-hant.jpg" alt="Bic Camera 優惠券（家電3C 7% OFF）" style="width:100%;max-width:260px;height:auto;border:1px solid var(--border);border-radius:8px;">
+            <img src="https://assets.funliday.com/coupon/biccamera/coupon_202611_zh-hant.jpg" alt="Bic Camera 優惠券（家電3C 7% OFF）" class="w-full max-w-[260px] h-auto border border-stone-200 rounded-lg">
             <div class="pnote" style="margin-top:4px;">優惠券有效期至2027/4/30 · 結帳前出示本圖，<a href="https://www.funliday.com/tw/coupons/japan/biccamera-17off" target="_blank" rel="noopener">官方頁面備用連結</a></div>
           </div>
         </div>
@@ -146,27 +326,27 @@
     <div class="ins-sec">
       <div class="ins-label">🍶 11/21 抵達日晚餐推薦（富山駅徒步 3 分）</div>
       <div class="ins-grid">
-        <div class="icard" style="background:var(--onsen-bg);border-color:var(--onsen-bd);">
-          <div class="icard-hd"><span style="font-size:15px;">🍗</span><span class="icard-name" style="color:#7A4A1E;">大衆割烹 あら川</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.50分</span></div>
+        <div class="icard bg-teal-50 border-teal-200">
+          <div class="icard-hd"><span style="font-size:15px;">🍗</span><span class="icard-name">大衆割烹 あら川</span><span class="itag">tabelog 3.50分</span></div>
           <div class="idesc">1967年創業老舖，富山灣四季鮮魚・昆布締め刺身・地酒。家族座敷適合，不需事前預約。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">刺身盛合・煮魚定食</span><span class="pprice" style="color:#7A4A1E;">¥2,000–4,000</span></div>
+            <div class="prow"><span class="pname">刺身盛合・煮魚定食</span><span class="pprice">¥2,000–4,000</span></div>
             <div class="pnote">📍 富山市新富町 · 富山駅南口步行 3 分</div>
           </div>
         </div>
-        <div class="icard" style="background:var(--blue-bg);border-color:var(--info-bd);">
-          <div class="icard-hd"><span style="font-size:15px;">🦐</span><span class="icard-name" style="color:#7A4A1E;">富山湾食堂 Maruto 店</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.48分</span></div>
+        <div class="icard bg-blue-50 border-blue-200">
+          <div class="icard-hd"><span style="font-size:15px;">🦐</span><span class="icard-name">富山湾食堂 Maruto 店</span><span class="itag">tabelog 3.48分</span></div>
           <div class="idesc">前付制快速入退，白蝦・螢烏賊・のどぐろ海鮮丼。初夜疲勞的輕鬆選擇。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">富山湾スペシャル海鮮丼</span><span class="pprice" style="color:#7A4A1E;">¥1,500–2,500</span></div>
+            <div class="prow"><span class="pname">富山湾スペシャル海鮮丼</span><span class="pprice">¥1,500–2,500</span></div>
             <div class="pnote">📍 富山駅北口 · 11:00–22:00</div>
           </div>
         </div>
-        <div class="icard" style="background:#FBEAEA;border-color:#E8A9A9;">
-          <div class="icard-hd"><span style="font-size:15px;">🥩</span><span class="icard-name" style="color:#7A4A1E;">氷見 牛屋 富山店</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.44分</span></div>
+        <div class="icard">
+          <div class="icard-hd"><span style="font-size:15px;">🥩</span><span class="icard-name">氷見 牛屋 富山店</span><span class="itag">tabelog 3.44分</span></div>
           <div class="idesc">富山品牌和牛「氷見牛」燒肉專門店，精肉店直營、一頭買取，有個室座位。非牛肉品項也多（桜姫鶏、イベリコ豚、海老・イカ・ホタテ、石焼ビビンバ、氷見うどん等），不吃牛的人也有得點。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">氷見牛燒肉套餐 / ステーキ丼</span><span class="pprice" style="color:#7A4A1E;">¥4,000–5,000（晚）</span></div>
+            <div class="prow"><span class="pname">氷見牛燒肉套餐 / ステーキ丼</span><span class="pprice">¥4,000–5,000（晚）</span></div>
             <div class="pnote">📍 富山駅内 とやマルシェ のれん横丁 · 富山駅徒步1分 · 11:00–15:00／17:00–22:30</div>
           </div>
         </div>
@@ -178,45 +358,45 @@
 <!-- Day 2 -->
 <div class="day-card" id="day2">
   <div class="day-hd" onclick="tog(this)">
-    <div class="dbadge" style="background:var(--amber-bg);color:var(--amber);">11/22</div>
+    <div class="dbadge bg-amber-50 text-amber-700">11/22</div>
     <div class="dinfo">
       <div class="dtitle">富山市家族動物園 · 岩瀨老街</div>
       <div class="dsub">國寶雷鳥 · 岩瀨老街散策 · 沙石試飲 · 金泉晚餐</div>
     </div>
     <span class="chev">▾</span>
   </div>
-  <div class="day-body">
+  <div class="day-body hidden">
     <div class="flow">
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--amber);color:var(--amber);">富山站<br><small style="font-weight:500;">09:45出發</small></span><span class="fwx">🌧️ 8°/4°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--fbus-bg);color:var(--fbus);">🚌 公車16系統</span><span class="fedge-time">15分</span></div>
+      <span class="nodewrap"><span class="fnode border-amber-700 text-amber-700">富山站<br><small style="font-weight:500;">09:45出發</small></span><span class="fwx">🌧️ 8°/4°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-amber-50 text-amber-700">🚌 公車16系統</span><span class="fedge-time">15分</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--amber);color:var(--amber);">家族動物園<br><small style="font-weight:500;">10:15–12:30</small></span><span class="fwx">🌧️ 8°/4°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--fbus-bg);color:var(--fbus);">🚌 公車</span><span class="fedge-time">≈30分</span></div>
+      <span class="nodewrap"><span class="fnode border-amber-700 text-amber-700">家族動物園<br><small style="font-weight:500;">10:15–12:30</small></span><span class="fwx">🌧️ 8°/4°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-amber-50 text-amber-700">🚌 公車</span><span class="fedge-time">≈30分</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--amber);color:var(--amber);">富山站<br><small style="font-weight:500;">午餐・採買</small></span><span class="fwx">🌧️ 8°/4°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--rail-bg);color:var(--rail);">🚊 LRT</span><span class="fedge-time">≈30分</span></div>
+      <span class="nodewrap"><span class="fnode border-amber-700 text-amber-700">富山站<br><small style="font-weight:500;">午餐・採買</small></span><span class="fwx">🌧️ 8°/4°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-blue-50 text-blue-700">🚊 LRT</span><span class="fedge-time">≈30分</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--amber);color:var(--amber);">岩瀨老街<br><small style="font-weight:500;">15:40–17:00</small></span><span class="fwx">🌧️ 8°/4°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--rail-bg);color:var(--rail);">🚊 LRT</span><span class="fedge-time">≈25分</span><span class="fedge-flag">轉乘非每班直達</span></div>
+      <span class="nodewrap"><span class="fnode border-amber-700 text-amber-700">岩瀨老街<br><small style="font-weight:500;">15:40–17:00</small></span><span class="fwx">🌧️ 8°/4°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-blue-50 text-blue-700">🚊 LRT</span><span class="fedge-time">≈25分</span><span class="fedge-flag">轉乘非每班直達</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--amber);color:var(--amber);">金泉<br><small style="font-weight:500;">18:00晚餐</small></span><span class="fwx">🌧️ 8°/4°</span></span>
+      <span class="nodewrap"><span class="fnode border-amber-700 text-amber-700">金泉<br><small style="font-weight:500;">18:00晚餐</small></span><span class="fwx">🌧️ 8°/4°</span></span>
     </div>
-    <div class="note" style="font-size:12px;color:var(--muted);margin-top:6px;">途經桝田酒造店（満寿泉酒藏，不開放見學）；岩瀨老街段含16:10–16:25沙石試飲滿寿泉（詳見下方卡片）、16:30–17:00登岩瀨展望塔賞落日與立山連峰倒影。</div>
+    <div class="note text-xs text-stone-500 mt-1.5">途經桝田酒造店（満寿泉酒藏，不開放見學）；岩瀨老街段含16:10–16:25沙石試飲滿寿泉（詳見下方卡片）、16:30–17:00登岩瀨展望塔賞落日與立山連峰倒影。</div>
     <div class="ins-sec">
       <div class="ins-label">🍽️ 11/22 動物園後午餐推薦（富山駅徒步 2 分）</div>
       <div class="ins-grid">
-        <div class="icard" style="background:var(--blue-bg);border-color:var(--info-bd);">
-          <div class="icard-hd"><span style="font-size:15px;">🦐</span><span class="icard-name" style="color:#7A4A1E;">富山湾食堂 Maruto 店</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.48分</span></div>
+        <div class="icard bg-blue-50 border-blue-200">
+          <div class="icard-hd"><span style="font-size:15px;">🦐</span><span class="icard-name">富山湾食堂 Maruto 店</span><span class="itag">tabelog 3.48分</span></div>
           <div class="idesc">前付制快速入退，白蝦・螢烏賊・のどぐろ海鮮丼。動物園後輕鬆快速用餐，保留晚上體力給金泉居酒屋晚餐。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">海鮮丼 / 白蝦かき揚げ丼</span><span class="pprice" style="color:#7A4A1E;">¥1,200–2,500</span></div>
+            <div class="prow"><span class="pname">海鮮丼 / 白蝦かき揚げ丼</span><span class="pprice">¥1,200–2,500</span></div>
             <div class="pnote">📍 富山駅北口 · 11:00–22:00</div>
           </div>
         </div>
       </div>
     </div>
     <div class="ins-sec">
-      <div class="ins-label" style="color:#7A4A1E;">🍶 岩瀨老街順遊 · 沙石試飲滿寿泉（16:10–16:25）</div>
+      <div class="ins-label">🍶 岩瀨老街順遊 · 沙石試飲滿寿泉（16:10–16:25）</div>
       <div class="ins-grid">
         <div class="icard sake">
           <div class="icard-hd"><span style="font-size:15px;">🍶</span><span class="icard-name sake">沙石（させき）</span><span class="itag sake">桝田酒造直營試飲店</span></div>
@@ -231,10 +411,10 @@
       </div>
     </div>
     <div class="ins-sec">
-      <div class="ins-label" style="color:#7A4A1E;">🍶 Day2 晚餐 · 金泉（18:00）</div>
+      <div class="ins-label">🍶 Day2 晚餐 · 金泉（18:00）</div>
       <div class="ins-grid">
         <div class="icard sake confirmed">
-          <div class="icard-hd"><span style="font-size:15px;">🍶</span><span class="icard-name sake">金泉（きんせん）</span><span class="itag sake">tabelog 3.53分</span><span class="itag" style="background:#D97706;color:#fff;">✓ 已預訂</span></div>
+          <div class="icard-hd"><span style="font-size:15px;">🍶</span><span class="icard-name sake">金泉（きんせん）</span><span class="itag sake">tabelog 3.53分</span><span class="itag bg-amber-600 text-white">✓ 已預訂</span></div>
           <div class="idesc">居酒屋海鮮，生魚片・白蝦唐揚・地酒種類豐富，隱密巷弄內的老字號。與銀泉・銅泉同屬「金泉橫丁」集團、共用廚房與菜單，本店是唯一有包廂（6人）的分店。</div>
           <div class="plist">
             <div class="prow"><span class="pname">預算</span><span class="pprice sake">¥3,000~3,999/人</span></div>
@@ -247,11 +427,11 @@
     <div class="ins-sec">
       <div class="ins-label">🍜 富山推薦黑拉麵</div>
       <div class="ins-grid">
-        <div class="icard" style="background:#FBF3EC;border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">🍜</span><span class="icard-name" style="color:#7A4A1E;">麵家IROHA 富山車站店</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.44分</span></div>
+        <div class="icard">
+          <div class="icard-hd"><span style="font-size:15px;">🍜</span><span class="icard-name">麵家IROHA 富山車站店</span><span class="itag">tabelog 3.44分</span></div>
           <div class="idesc">東京拉麵show五度冠軍（2009、2010–2012、2014），黑醬油魚介系雞白湯、彈性麵條、蔥末香氣十足。富山站 CiC 百貨內便利取餐。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">富山黑拉麵（チャーシュー麺）</span><span class="pprice" style="color:#7A4A1E;font-weight:700;">¥900~1,100</span></div>
+            <div class="prow"><span class="pname">富山黑拉麵（チャーシュー麺）</span><span class="pprice text-stone-800 font-bold">¥900~1,100</span></div>
             <div class="pnote">📍 富山市山室荷電町 · 11:00–23:00 · 近富山站</div>
           </div>
         </div>
@@ -289,48 +469,48 @@
 <!-- Day 3 -->
 <div class="day-card" id="day3">
   <div class="day-hd" onclick="tog(this)">
-    <div class="dbadge" style="background:var(--teal-bg);color:var(--teal);">11/23</div>
+    <div class="dbadge bg-teal-50 text-teal-700">11/23</div>
     <div class="dinfo">
       <div class="dtitle">雨晴海岸 · 冰見番屋街</div>
       <div class="dsub">富山ぶりかにバス直達雨晴 · 立山連峰三千米奇景 · 冰見海港午餐散步</div>
     </div>
     <span class="chev">▾</span>
   </div>
-  <div class="day-body">
+  <div class="day-body hidden">
     <div class="flow">
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--teal);color:var(--teal);">富山站<br><small style="font-weight:500;">10:00出發</small></span><span class="fwx">🌦️ 10°/4°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--fbus-bg);color:var(--fbus);">🚌 ぶりかにバス</span><span class="fedge-time">65分</span><span class="fedge-flag">預約制，空席可當日上車</span></div>
+      <span class="nodewrap"><span class="fnode border-teal-700 text-teal-700">富山站<br><small style="font-weight:500;">10:00出發</small></span><span class="fwx">🌦️ 10°/4°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-amber-50 text-amber-700">🚌 ぶりかにバス</span><span class="fedge-time">65分</span><span class="fedge-flag">預約制，空席可當日上車</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--teal);color:var(--teal);">雨晴海岸（岩崎）<br><small style="font-weight:500;">11:05–約12:15</small></span><span class="fwx">🌦️ 10°/4°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--rail-bg);color:var(--rail);">🚆 JR冰見線</span><span class="fedge-time">≈15分</span><span class="fedge-flag">班次待確認</span></div>
+      <span class="nodewrap"><span class="fnode border-teal-700 text-teal-700">雨晴海岸（岩崎）<br><small style="font-weight:500;">11:05–約12:15</small></span><span class="fwx">🌦️ 10°/4°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-blue-50 text-blue-700">🚆 JR冰見線</span><span class="fedge-time">≈15分</span><span class="fedge-flag">班次待確認</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--teal);color:var(--teal);">冰見番屋街<br><small style="font-weight:500;">午餐・漫步</small></span><span class="fwx">🌦️ 10°/4°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--rail-bg);color:var(--rail);">🚆 JR冰見線</span><span class="fedge-time">≈20分</span><span class="fedge-dist">經雨晴</span><span class="fedge-flag">↩ 原路（純過站）</span></div>
+      <span class="nodewrap"><span class="fnode border-teal-700 text-teal-700">冰見番屋街<br><small style="font-weight:500;">午餐・漫步</small></span><span class="fwx">🌦️ 10°/4°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-blue-50 text-blue-700">🚆 JR冰見線</span><span class="fedge-time">≈20分</span><span class="fedge-dist">經雨晴</span><span class="fedge-flag">↩ 原路（純過站）</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--teal);color:var(--teal);">高岡（轉車）</span><span class="fwx">🌦️ 10°/4°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--rail-bg);color:var(--rail);">🚃 愛之風</span><span class="fedge-time">≈25分</span></div>
+      <span class="nodewrap"><span class="fnode border-teal-700 text-teal-700">高岡（轉車）</span><span class="fwx">🌦️ 10°/4°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-blue-50 text-blue-700">🚃 愛之風</span><span class="fedge-time">≈25分</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--teal);color:var(--teal);">富山站<br><small style="font-weight:500;">晚餐</small></span><span class="fwx">🌦️ 10°/4°</span></span>
+      <span class="nodewrap"><span class="fnode border-teal-700 text-teal-700">富山站<br><small style="font-weight:500;">晚餐</small></span><span class="fwx">🌦️ 10°/4°</span></span>
     </div>
     <div class="note">✅ ぶりかにバス時刻核對無誤（10:00富山發車、11:05抵岩崎=雨晴海岸站，11/23週一國定假日符合該巴士運行規則：10–11月主跑五六日一+假日）。💡 原本早上的高岡大佛/古城公園已搬到11/26，省下的時間用在雨晴/冰見。⚠ 雨晴→冰見這段假設下車走走後另搭JR——巴士本身其實直接開到冰見（11:05→11:25同一班車），若不特地在雨晴下車，這段JR可省略、更簡單，實際JR冰見線中午班次也待確認。</div>
     <div class="ins-sec">
       <div class="ins-label">🍜 冰見番屋街午餐＋下午茶（約12:30–15:30適合時段）</div>
       <div class="ins-grid">
-        <div class="icard" style="background:#FBF3EC;border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">🍣</span><span class="icard-name" style="color:#7A4A1E;">寿し竹</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">番屋街內・午餐</span></div>
+        <div class="icard">
+          <div class="icard-hd"><span style="font-size:15px;">🍣</span><span class="icard-name">寿し竹</span><span class="itag">番屋街內・午餐</span></div>
           <div class="idesc">原本因14:40–16:30時段卡在午晚餐空檔被移除，現在時間提早到中午，11:00–15:00午餐時段重新適用，可當正式午餐。</div>
           <div class="plist"><div class="pnote">📍 冰見番屋街內 · 11:00–15:00、17:00–21:00</div></div>
         </div>
-        <div class="icard cafe" style="background:#FBF3EC;border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">🍨</span><span class="icard-name" style="color:#7A4A1E;">ヴィヴァーチェ 冰見番屋街店</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.38分</span></div>
+        <div class="icard cafe">
+          <div class="icard-hd"><span style="font-size:15px;">🍨</span><span class="icard-name">ヴィヴァーチェ 冰見番屋街店</span><span class="itag">tabelog 3.38分</span></div>
           <div class="idesc">工廠直送手作義式冰淇淋，搭配冰見牛乳與當季水果現打果汁。飯後散步順路甜點。</div>
           <div class="plist">
             <div class="prow"><span class="pname">手作義式冰淇淋 / 鮮果汁</span><span class="pprice cafe">¥400~800</span></div>
             <div class="pnote">📍 冰見番屋街內（東の番屋①）· フードコート 8:30–18:00</div>
           </div>
         </div>
-        <div class="icard cafe" style="background:#FBF3EC;border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">♨</span><span class="icard-name" style="color:#7A4A1E;">番屋街免費足湯</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">無料</span></div>
+        <div class="icard cafe">
+          <div class="icard-hd"><span style="font-size:15px;">♨</span><span class="icard-name">番屋街免費足湯</span><span class="itag">無料</span></div>
           <div class="idesc">眺望立山連峰的免費足湯，散步逛街之餘小歇放鬆雙腳，不需預約。</div>
           <div class="plist"><div class="pnote">📍 冰見番屋街往總湯方向 · 08:30–17:30</div></div>
         </div>
@@ -342,29 +522,29 @@
 <!-- Day 4 -->
 <div class="day-card" id="day4">
   <div class="day-hd" onclick="tog(this)">
-    <div class="dbadge" style="background:var(--green-bg);color:var(--green);">11/24</div>
+    <div class="dbadge bg-emerald-50 text-emerald-700">11/24</div>
     <div class="dinfo">
       <div class="dtitle">黑部峽谷小火車 · 入住延對寺莊溫泉</div>
       <div class="dsub">峽谷紅葉 · 懸崖露天風呂 · 海鮮會席料理</div>
-      <div style="font-size:11.5px;color:var(--green);margin-top:3px;">✅ 已確認 小火車車票（Relax車廂）去程10:03／回程12:28，總金額 ¥34,480</div>
+      <div class="text-xs text-emerald-700 mt-1">✅ 已確認 小火車車票（Relax車廂）去程10:03／回程12:28，總金額 ¥34,480</div>
     </div>
     <span class="chev">▾</span>
   </div>
-  <div class="day-body">
+  <div class="day-body hidden">
     <div class="flow">
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--green);color:var(--green);">富山站<br><small style="font-weight:500;">07:10退房</small></span><span class="fwx">⛅ 15°/1°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--shin-bg);color:var(--shin);">🚅 新幹線</span><span class="fedge-time">07:43→07:55<br>12分+候16分</span></div>
+      <span class="nodewrap"><span class="fnode border-emerald-700 text-emerald-700">富山站<br><small style="font-weight:500;">07:10退房</small></span><span class="fwx">⛅ 15°/1°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-red-50 text-red-600">🚅 新幹線</span><span class="fedge-time">07:43→07:55<br>12分+候16分</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--green);color:var(--green);">新黒部</span><span class="fwx">⛅ 約13°/0°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--rail-bg);color:var(--rail);">🚃 富山地鐵</span><span class="fedge-time">08:11→08:39<br>28分</span></div>
+      <span class="nodewrap"><span class="fnode border-emerald-700 text-emerald-700">新黒部</span><span class="fwx">⛅ 約13°/0°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-blue-50 text-blue-700">🚃 富山地鐵</span><span class="fedge-time">08:11→08:39<br>28分</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--green);color:var(--green);">宇奈月溫泉站<br><small style="font-weight:500;">寄行李・咖啡</small></span><span class="fwx">⛅ 約12°/-1°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--torokko-bg);color:var(--torokko);">🚂 小火車</span><span class="fedge-time">10:03→11:21<br>78分</span><span class="fedge-flag">👉 去程建議坐右側</span></div>
+      <span class="nodewrap"><span class="fnode border-emerald-700 text-emerald-700">宇奈月溫泉站<br><small style="font-weight:500;">寄行李・咖啡</small></span><span class="fwx">⛅ 約12°/-1°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-violet-50 text-violet-700">🚂 小火車</span><span class="fedge-time">10:03→11:21<br>78分</span><span class="fedge-flag">👉 去程建議坐右側</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--green);color:var(--green);">欅平<br><small style="font-weight:500;">11:21–12:28</small></span><span class="fwx">⛅ 約9°/-3°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--torokko-bg);color:var(--torokko);">🚂 小火車</span><span class="fedge-time">12:28→13:46<br>78分</span><span class="fedge-flag">👈 回程建議坐左側</span></div>
+      <span class="nodewrap"><span class="fnode border-emerald-700 text-emerald-700">欅平<br><small style="font-weight:500;">11:21–12:28</small></span><span class="fwx">⛅ 約9°/-3°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-violet-50 text-violet-700">🚂 小火車</span><span class="fedge-time">12:28→13:46<br>78分</span><span class="fedge-flag">👈 回程建議坐左側</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--green);color:var(--green);">延對寺莊<br><small style="font-weight:500;">入住過夜</small></span><span class="fwx">⛅ 約12°/-1°</span></span>
+      <span class="nodewrap"><span class="fnode border-emerald-700 text-emerald-700">延對寺莊<br><small style="font-weight:500;">入住過夜</small></span><span class="fwx">⛅ 約12°/-1°</span></span>
     </div>
     <div class="note">⚠ 紅葉進度：黑部峽谷沿線（欅平方向，色づき較早）最新預測落葉約從11/22起，11/24搭乘時段後已進入落葉初期，深處路段顏色會打折；宇奈月側轉色較慢，預測落葉約11/26起，下段的溫泉街散步應仍能看到不錯的紅葉。</div>
     <div class="note">💡 座位側邊：Relax車廂是「指定車廂不指定座位」，上車時自己找位子——去程坐右側可看黑部川翡翠綠河水、新柳河原發電所、出し平ダム；回程坐左側以山壁、隧道、森林景觀為主。欅平僅停留67分鐘較緊湊。13:46返宇奈月後：溫泉街散步、紅橋、山彥展望台拍鐵橋紅葉、泡站台免費足湯，16:30+正式入住延對寺莊，換浴衣泡峽谷懸崖露天溫泉，享海鮮會席料理。⚠ 新黒部/宇奈月/欅平沒有獨立測站，溫度為富山市區數字往山區推估，信心度較低。</div>
@@ -409,37 +589,37 @@
 <!-- Day 5 -->
 <div class="day-card" id="day5">
   <div class="day-hd" onclick="tog(this)">
-    <div class="dbadge" style="background:var(--coral-bg);color:var(--coral);">11/25</div>
+    <div class="dbadge bg-orange-50 text-orange-700">11/25</div>
     <div class="dinfo">
       <div class="dtitle">魚津水族館 · 高岡過夜</div>
       <div class="dsub">宇奈月道別 · 魚津水族館（海豚・企鵝） · 入住APA Hotel高岡駅前</div>
     </div>
     <span class="chev">▾</span>
   </div>
-  <div class="day-body">
+  <div class="day-body hidden">
     <div class="flow">
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--coral);color:var(--coral);">宇奈月溫泉<br><small style="font-weight:500;">~10:30退房</small></span><span class="fwx">🌦️ 約14°/6°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--rail-bg);color:var(--rail);">🚃 富山地鐵</span><span class="fedge-time">25分</span></div>
+      <span class="nodewrap"><span class="fnode border-orange-700 text-orange-700">宇奈月溫泉<br><small style="font-weight:500;">~10:30退房</small></span><span class="fwx">🌦️ 約14°/6°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-blue-50 text-blue-700">🚃 富山地鐵</span><span class="fedge-time">25分</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--coral);color:var(--coral);">新黒部</span><span class="fwx">🌦️ 約15°/7°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--rail-bg);color:var(--rail);">🚃 地鐵（轉乘）</span><span class="fedge-time">≈44分</span></div>
+      <span class="nodewrap"><span class="fnode border-orange-700 text-orange-700">新黒部</span><span class="fwx">🌦️ 約15°/7°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-blue-50 text-blue-700">🚃 地鐵（轉乘）</span><span class="fedge-time">≈44分</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--coral);color:var(--coral);">魚津水族館<br><small style="font-weight:500;">海豚秀・企鵝</small></span><span class="fwx">🌦️ 15°/8°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--rail-bg);color:var(--rail);">🚃 あいの風+愛之風</span><span class="fedge-time">≈60–70分<br>(含轉乘等車)</span></div>
+      <span class="nodewrap"><span class="fnode border-orange-700 text-orange-700">魚津水族館<br><small style="font-weight:500;">海豚秀・企鵝</small></span><span class="fwx">🌦️ 15°/8°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-blue-50 text-blue-700">🚃 あいの風+愛之風</span><span class="fedge-time">≈60–70分<br>(含轉乘等車)</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--coral);color:var(--coral);">APA Hotel高岡駅前<br><small style="font-weight:500;">Check-in・晚餐</small></span><span class="fwx">🌦️ 15°/8°</span></span>
+      <span class="nodewrap"><span class="fnode border-orange-700 text-orange-700">APA Hotel高岡駅前<br><small style="font-weight:500;">Check-in・晚餐</small></span><span class="fwx">🌦️ 15°/8°</span></span>
     </div>
     <div class="note warn">⚠ 這整天取代了原本的上越妙高/高田/Umigatari水族館——原「✓已確定」的Toyoko Inn上越妙高（¥34,965）<strong>需要取消</strong>，高田百年町家、雁木通黃昏、Umigatari海豚秀都不會出現在這趟旅程裡了。北陸新幹線（新黑部→上越妙高）那段車票也不需要了。</div>
     <div class="note">⏱ 時間抓法：退房~10:30出發，魚津水族館9:00–17:00都開，扣掉移動約2hr，留給水族館本身約1.5–2hr，之後到高岡再抓70分左右，順利的話傍晚前能check-in；這天幾乎整天都在移動+轉乘，體感會比原本的上越妙高行程更奔波。晚餐可在高岡駅周邊自理，或參考11/26當天的高岡飲食選擇提前吃。</div>
     <div class="ins-sec">
       <div class="ins-label">🐬 魚津水族館</div>
       <div class="ins-grid">
-        <div class="icard" style="background:#FBF3EC;border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">🐬</span><span class="icard-name" style="color:#7A4A1E;">魚津水族館</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">日本現存最古老水族館</span></div>
+        <div class="icard">
+          <div class="icard-hd"><span style="font-size:15px;">🐬</span><span class="icard-name">魚津水族館</span><span class="itag">日本現存最古老水族館</span></div>
           <div class="idesc">約330種1萬點生物，北アルプス渓流到富山灣深海都有。アザラシ餵食11:15/15:15、ペンギン餵食11:15、おさかなショー10:30/13:15/14:45（時段可能微調）。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">一般（高中以上）</span><span class="pprice" style="color:#7A4A1E;">¥1,000</span></div>
-            <div class="prow"><span class="pname">國小・國中</span><span class="pprice" style="color:#7A4A1E;">¥500</span></div>
+            <div class="prow"><span class="pname">一般（高中以上）</span><span class="pprice">¥1,000</span></div>
+            <div class="prow"><span class="pname">國小・國中</span><span class="pprice">¥500</span></div>
             <div class="pnote">📍 魚津市 · 9:00–17:00（入館16:30前）· 11月無休館</div>
           </div>
         </div>
@@ -451,25 +631,25 @@
 <!-- Day 6 -->
 <div class="day-card" id="day6">
   <div class="day-hd" onclick="tog(this)">
-    <div class="dbadge" style="background:var(--purple-bg);color:var(--purple);">11/26</div>
+    <div class="dbadge bg-violet-50 text-violet-700">11/26</div>
     <div class="dinfo">
       <div class="dtitle">高岡大佛 · 古城公園 · AEON MALL</div>
       <div class="dsub">高岡駅前出發 · 大佛/古城公園紅葉 · AEON MALL採買 · 晚上回富山</div>
     </div>
     <span class="chev">▾</span>
   </div>
-  <div class="day-body">
+  <div class="day-body hidden">
     <div class="flow">
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--purple);color:var(--purple);">APA Hotel高岡駅前<br><small style="font-weight:500;">退房</small></span><span class="fwx">☁️ 14°/9°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--walk-bg);color:var(--walk);">🚶 步行</span><span class="fedge-time">≈10分</span></div>
+      <span class="nodewrap"><span class="fnode border-violet-700 text-violet-700">APA Hotel高岡駅前<br><small style="font-weight:500;">退房</small></span><span class="fwx">☁️ 14°/9°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-slate-100 text-slate-500">🚶 步行</span><span class="fedge-time">≈10分</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--purple);color:var(--purple);">高岡大佛/古城公園</span><span class="fwx">☁️ 14°/9°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--walk-bg);color:var(--walk);">🚶 步行</span><span class="fedge-time">≈20分</span></div>
+      <span class="nodewrap"><span class="fnode border-violet-700 text-violet-700">高岡大佛/古城公園</span><span class="fwx">☁️ 14°/9°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-slate-100 text-slate-500">🚶 步行</span><span class="fedge-time">≈20分</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--purple);color:var(--purple);">AEON MALL高岡<br><small style="font-weight:500;">採買・晚餐</small></span><span class="fwx">☁️ 14°/9°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--shin-bg);color:var(--shin);">🚅 新幹線（新高岡）</span><span class="fedge-time">8分</span></div>
+      <span class="nodewrap"><span class="fnode border-violet-700 text-violet-700">AEON MALL高岡<br><small style="font-weight:500;">採買・晚餐</small></span><span class="fwx">☁️ 14°/9°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-red-50 text-red-600">🚅 新幹線（新高岡）</span><span class="fedge-time">8分</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--purple);color:var(--purple);">富山站<br><small style="font-weight:500;">住宿</small></span><span class="fwx">🌧️ 14°/9°</span></span>
+      <span class="nodewrap"><span class="fnode border-violet-700 text-violet-700">富山站<br><small style="font-weight:500;">住宿</small></span><span class="fwx">🌧️ 14°/9°</span></span>
     </div>
     <div class="note">💡 這天最輕鬆：3個點都步行可達（高岡市區本身很小），最後搭8分鐘新幹線回富山。晚上直接用原本就訂好的大和Roynet（涵蓋11/26–27），不用額外訂房。🍁 高岡古城公園紅葉官方給的是「11月中旬～下旬」這種籠統區間，11/26還在範圍內。</div>
     <div class="ins-sec">
@@ -482,12 +662,12 @@
             <div class="prow"><span class="pname">手沖精品咖啡</span><span class="pprice cafe">¥600~</span></div>
           </div>
         </div>
-        <div class="icard cafe" style="background:#FBF3EC;border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name" style="color:#7A4A1E;">MATSUKI COFFEE ROASTERY</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.07分・2025新開幕</span></div>
+        <div class="icard cafe">
+          <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name">MATSUKI COFFEE ROASTERY</span><span class="itag">tabelog 3.07分・2025新開幕</span></div>
           <div class="idesc">緊鄰高岡関野神社的夫妻經營自家焙煎咖啡館，前護理師店主親手烘豆，高岡駅北口（古城公園口）徒步約8分。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">巴西咖啡</span><span class="pprice" style="color:#7A4A1E;">¥650</span></div>
-            <div class="prow"><span class="pname">蘋果磅蛋糕</span><span class="pprice" style="color:#7A4A1E;">¥500</span></div>
+            <div class="prow"><span class="pname">巴西咖啡</span><span class="pprice">¥650</span></div>
+            <div class="prow"><span class="pname">蘋果磅蛋糕</span><span class="pprice">¥500</span></div>
             <div class="pnote">📍 富山県高岡市末広町9-56 · 週五10:00–18:00（週二、每月第2・4週三公休）</div>
           </div>
         </div>
@@ -498,45 +678,45 @@
       <div class="aw">⚠ 這三家原本是針對「11/23週一」查的公休資訊，高岡大佛改到11/26週四之後，公休情況整個反過來：原本首選糸庄週四公休變成去不了，原本去不了的吉宗現在變成可去且評分最高。</div>
       <div class="ins-grid">
         <div class="icard">
-          <div class="icard-hd"><span style="font-size:15px;">🍜</span><span class="icard-name" style="color:#5F4A3B;">吉宗（よしむね）</span><span class="itag" style="background:#F5EBE0;color:#5F4A3B;border:1px solid #D4B5A0;">tabelog 3.48分 · 評分最高</span></div>
+          <div class="icard-hd"><span style="font-size:15px;">🍜</span><span class="icard-name">吉宗（よしむね）</span><span class="itag">tabelog 3.48分 · 評分最高</span></div>
           <div class="idesc">✅ 月火休，11/26週四正常營業，改版後變成首選。高岡在地招牌濃厚咖哩烏冬名店。</div>
           <div class="plist">
             <div class="pnote">📍 高岡市宝町7-4 · 水木金11:00–15:00/17:00–20:00、土日祝11:00–20:00 · 月火休</div>
           </div>
         </div>
         <div class="icard" style="opacity:0.55;">
-          <div class="icard-hd"><span style="font-size:15px;">🍜</span><span class="icard-name" style="color:#5F4A3B;">糸庄 高岡店</span><span class="itag" style="background:#F5EBE0;color:#5F4A3B;border:1px solid #D4B5A0;">tabelog 3.46分</span></div>
+          <div class="icard-hd"><span style="font-size:15px;">🍜</span><span class="icard-name">糸庄 高岡店</span><span class="itag">tabelog 3.46分</span></div>
           <div class="idesc">❌ 週四公休，11/26剛好去不了（原本11/23週一是首選，現在反過來）。富山名物もつ煮込みうどん專門店，僅供參考。</div>
           <div class="plist">
             <div class="pnote">📍 高岡市宝町2-5 · 11:00–15:00、17:00–21:00（週四休）</div>
           </div>
         </div>
         <div class="icard">
-          <div class="icard-hd"><span style="font-size:15px;">🍜</span><span class="icard-name" style="color:#5F4A3B;">うどん・そば 今庄 高岡駅南店</span><span class="itag" style="background:#F5EBE0;color:#5F4A3B;border:1px solid #D4B5A0;">tabelog 3.43分</span></div>
+          <div class="icard-hd"><span style="font-size:15px;">🍜</span><span class="icard-name">うどん・そば 今庄 高岡駅南店</span><span class="itag">tabelog 3.43分</span></div>
           <div class="idesc">✅ 週二休，11/26週四正常營業。高岡車站南口老字號和風うどん・そば，座位含小上がり，適合親子家族。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">かけうどん / 天玉そば</span><span class="pprice" style="color:#5F4A3B;">¥350~900</span></div>
+            <div class="prow"><span class="pname">かけうどん / 天玉そば</span><span class="pprice">¥350~900</span></div>
             <div class="pnote">📍 高岡市駅南5-1-2 · 6:00–21:30（週二休）· 高岡駅徒步3分</div>
           </div>
         </div>
       </div>
     </div>
     <div class="ins-sec">
-      <div class="ins-label" style="color:#E67E22;">🍽 AEON MALL 高岡 · 晚餐兩選一</div>
+      <div class="ins-label text-orange-700">🍽 AEON MALL 高岡 · 晚餐兩選一</div>
       <div class="ins-grid">
-        <div class="icard" style="background:#FBF3EC;border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">🍣</span><span class="icard-name" style="color:#7A4A1E;">すし処 鳴海</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.64分 ⭐ 全行程最高</span></div>
+        <div class="icard">
+          <div class="icard-hd"><span style="font-size:15px;">🍣</span><span class="icard-name">すし処 鳴海</span><span class="itag">tabelog 3.64分 ⭐ 全行程最高</span></div>
           <div class="idesc">新高岡駅近。高品質握壽司，食材直送，家族包廂可預約。全行程外食評分最高3.64，強烈建議預約！含生食，適合能接受的人。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">握壽司套餐 / 特選盛合</span><span class="pprice" style="color:#7A4A1E;">¥8,000~12,000/人</span></div>
+            <div class="prow"><span class="pname">握壽司套餐 / 特選盛合</span><span class="pprice">¥8,000~12,000/人</span></div>
             <div class="pnote">📍 新高岡駅近・AEON MALL外・步行可達 · ⚠️ 預約推薦</div>
           </div>
         </div>
-        <div class="icard" style="background:#FBF3EC;border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">🍚</span><span class="icard-name" style="color:#7A4A1E;">大戸屋 イオンモール高岡店</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.04分</span></div>
+        <div class="icard">
+          <div class="icard-hd"><span style="font-size:15px;">🍚</span><span class="icard-name">大戸屋 イオンモール高岡店</span><span class="itag">tabelog 3.04分</span></div>
           <div class="idesc">AEON MALL東館1F，走路0分鐘。日式定食連鎖，全熟料理不含生食，有兒童餐點，適合長輩小孩。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">雞肉味噌炸豬排定食等</span><span class="pprice" style="color:#7A4A1E;">¥1,000~1,999/人</span></div>
+            <div class="prow"><span class="pname">雞肉味噌炸豬排定食等</span><span class="pprice">¥1,000~1,999/人</span></div>
             <div class="pnote">📍 AEON MALL 高岡 東館1F · 11:00–22:00（L.O. 21:30）· 無需預約</div>
           </div>
         </div>
@@ -548,51 +728,51 @@
 <!-- Day 7 -->
 <div class="day-card" id="day7">
   <div class="day-hd" onclick="tog(this)">
-    <div class="dbadge" style="background:var(--pink-bg);color:var(--pink);">11/27</div>
+    <div class="dbadge bg-rose-50 text-rose-700">11/27</div>
     <div class="dinfo">
       <div class="dtitle">新湊內川遊覽船 · 富山城賞楓</div>
       <div class="dsub">富山ぶりかにバス直達海王丸 · 紅葉蟹市場 · 富山城址公園・まめやコーヒー・GRANDE CLASSE</div>
     </div>
     <span class="chev">▾</span>
   </div>
-  <div class="day-body">
+  <div class="day-body hidden">
     <div class="flow">
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--pink);color:var(--pink);">富山站<br><small style="font-weight:500;">10:00出發</small></span><span class="fwx">☁️ 16°/6°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--fbus-bg);color:var(--fbus);">🚌 ぶりかにバス</span><span class="fedge-time">10:00→10:35（35分）</span></div>
+      <span class="nodewrap"><span class="fnode border-rose-700 text-rose-700">富山站<br><small style="font-weight:500;">10:00出發</small></span><span class="fwx">☁️ 16°/6°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-amber-50 text-amber-700">🚌 ぶりかにバス</span><span class="fedge-time">10:00→10:35（35分）</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--pink);color:var(--pink);">海王丸公園<br><small style="font-weight:500;">新湊觀光船</small></span><span class="fwx">☁️ 16°/5°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--fbus-bg);color:var(--fbus);">🚌 ぶりかにバス</span><span class="fedge-time">14:15→14:50（35分）</span><span class="fedge-flag">⚠ 非同一班車折返</span></div>
+      <span class="nodewrap"><span class="fnode border-rose-700 text-rose-700">海王丸公園<br><small style="font-weight:500;">新湊觀光船</small></span><span class="fwx">☁️ 16°/5°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-amber-50 text-amber-700">🚌 ぶりかにバス</span><span class="fedge-time">14:15→14:50（35分）</span><span class="fedge-flag">⚠ 非同一班車折返</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--pink);color:var(--pink);">富山站</span><span class="fwx">☁️ 16°/6°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--walk-bg);color:var(--walk);">🚶 步行</span><span class="fedge-time">10分</span></div>
+      <span class="nodewrap"><span class="fnode border-rose-700 text-rose-700">富山站</span><span class="fwx">☁️ 16°/6°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-slate-100 text-slate-500">🚶 步行</span><span class="fedge-time">10分</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--pink);color:var(--pink);">富山城址公園<br><small style="font-weight:500;">賞楓</small></span><span class="fwx">☁️ 16°/5°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--walk-bg);color:var(--walk);">🚶 步行</span><span class="fedge-time">≈5分</span></div>
+      <span class="nodewrap"><span class="fnode border-rose-700 text-rose-700">富山城址公園<br><small style="font-weight:500;">賞楓</small></span><span class="fwx">☁️ 16°/5°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-slate-100 text-slate-500">🚶 步行</span><span class="fedge-time">≈5分</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--pink);color:var(--pink);">まめやコーヒー</span><span class="fwx">☁️ 16°/5°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--walk-bg);color:var(--walk);">🚶 步行</span><span class="fedge-time">≈5分</span></div>
+      <span class="nodewrap"><span class="fnode border-rose-700 text-rose-700">まめやコーヒー</span><span class="fwx">☁️ 16°/5°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-slate-100 text-slate-500">🚶 步行</span><span class="fedge-time">≈5分</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--pink);color:var(--pink);">GRANDE CLASSE<br><small style="font-weight:500;">藥妝採買</small></span><span class="fwx">☁️ 16°/5°</span></span>
+      <span class="nodewrap"><span class="fnode border-rose-700 text-rose-700">GRANDE CLASSE<br><small style="font-weight:500;">藥妝採買</small></span><span class="fwx">☁️ 16°/5°</span></span>
     </div>
     <div class="note">✅ 巴士時刻核對：去程10:00→10:35完全正確；回程實際時刻表是14:15從海王丸發車、14:50抵富山站，且技術上是另一班次（新湊⇔富山短程車）不是同一輛車原地折返，但不影響可行性。10:35–14:15中間近3.5小時，除了遊覽船約50分，還能順路走到新湊きっときと市場（海王丸旁）。⚠ 富山城2026紅葉預測見頂窗口約11/8–11/22（信心度60%），11/27已經晚了5天，已經在窗口之後，算是賭運氣。城址公園→まめやコーヒー→GRANDE CLASSE三點幾乎在同一街區（合計約0.7km），走路動線很順，原為11/26內容、現搬到這天。整段行程換乘次數從原本的7次降到2次，這天是全週最輕鬆的一天之一。</div>
     <div class="ins-sec">
-      <div class="ins-label" style="color:#B7460A;">🦀 新湊精選</div>
+      <div class="ins-label text-orange-700">🦀 新湊精選</div>
       <div class="ins-grid">
-        <div class="icard" style="background:#FFF3E0;border-color:#E67E22;">
-          <div class="icard-hd"><span style="font-size:15px;">🦀</span><span class="icard-name" style="color:#B7460A;">新湊きっときと市場</span><span class="itag" style="background:#FFF3E0;color:#B7460A;border:1px solid #E67E22;">tabelog 3.16分</span></div>
+        <div class="icard bg-orange-50 border-orange-200">
+          <div class="icard-hd"><span style="font-size:15px;">🦀</span><span class="icard-name text-orange-700">新湊きっときと市場</span><span class="itag bg-orange-50 text-orange-700 border border-orange-200">tabelog 3.16分</span></div>
           <div class="idesc">日本最大紅葉蟹（ベニズワイガニ）市場。11月底正是紅葉蟹與寒鰤最肥美季節，市場內現買現煮，海王丸公園步行可達。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">紅葉蟹套餐 / 海鮮丼</span><span class="pprice" style="color:#B7460A;">¥2,000~5,000</span></div>
+            <div class="prow"><span class="pname">紅葉蟹套餐 / 海鮮丼</span><span class="pprice text-orange-700">¥2,000~5,000</span></div>
             <div class="pnote">📍 射水市 新湊 · 通年營業</div>
           </div>
         </div>
       </div>
     </div>
     <div class="ins-sec">
-      <div class="ins-label" style="color:#7A4A1E;">☕ まめやコーヒー</div>
+      <div class="ins-label">☕ まめやコーヒー</div>
       <div class="ins-grid">
-        <div class="icard cafe" style="background:#FBF3EC;border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name" style="color:#7A4A1E;">まめやコーヒー</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.28分</span></div>
+        <div class="icard cafe">
+          <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name">まめやコーヒー</span><span class="itag">tabelog 3.28分</span></div>
           <div class="idesc">總曲輪通り自家烘焙咖啡豆專賣店，可買豆也可內用，從富山城址公園步行約5分。</div>
           <div class="plist"><div class="pnote">📍 富山市總曲輪3-2-21 · 10:00–18:00（烘焙豆收件至17:00）· 週二、三公休，另有不定休</div></div>
         </div>
@@ -604,39 +784,39 @@
 <!-- Day 8 -->
 <div class="day-card" id="day8">
   <div class="day-hd" onclick="tog(this)">
-    <div class="dbadge" style="background:var(--green-bg);color:var(--green);">11/28</div>
+    <div class="dbadge bg-emerald-50 text-emerald-700">11/28</div>
     <div class="dinfo">
       <div class="dtitle">富山最後早晨 · ANA 飛羽田</div>
       <div class="dsub">環水公園 · 星巴克 · 最後採買 · NH322 18:00 起飛</div>
     </div>
     <span class="chev">▾</span>
   </div>
-  <div class="day-body">
+  <div class="day-body hidden">
     <div class="flow">
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--green);color:var(--green);">富山站/飯店<br><small style="font-weight:500;">早餐</small></span><span class="fwx">☁️ 15°/7°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--walk-bg);color:var(--walk);">🚶 步行（推測）</span><span class="fedge-time">未標明</span></div>
+      <span class="nodewrap"><span class="fnode border-emerald-700 text-emerald-700">富山站/飯店<br><small style="font-weight:500;">早餐</small></span><span class="fwx">☁️ 15°/7°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-slate-100 text-slate-500">🚶 步行（推測）</span><span class="fedge-time">未標明</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--green);color:var(--green);">富山環水公園<br><small style="font-weight:500;">09:00–12:00</small></span><span class="fwx">⛅ 15°/7°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--walk-bg);color:var(--walk);">🚶 步行</span><span class="fedge-time">返回市區</span></div>
+      <span class="nodewrap"><span class="fnode border-emerald-700 text-emerald-700">富山環水公園<br><small style="font-weight:500;">09:00–12:00</small></span><span class="fwx">⛅ 15°/7°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-slate-100 text-slate-500">🚶 步行</span><span class="fedge-time">返回市區</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--green);color:var(--green);">飯店/市區<br><small style="font-weight:500;">Check-out・採買</small></span><span class="fwx">⛅ 15°/7°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--fbus-bg);color:var(--fbus);">🚌 巴士</span><span class="fedge-time">16:15→16:45<br>約30分</span></div>
+      <span class="nodewrap"><span class="fnode border-emerald-700 text-emerald-700">飯店/市區<br><small style="font-weight:500;">Check-out・採買</small></span><span class="fwx">⛅ 15°/7°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-amber-50 text-amber-700">🚌 巴士</span><span class="fedge-time">16:15→16:45<br>約30分</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--green);color:var(--green);">富山機場</span><span class="fwx">⛅ 15°/7°</span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--flight-bg);color:var(--flight);">✈️ NH322</span><span class="fedge-time">18:00→19:05<br>65分</span><span class="fedge-flag">座位21A已確定</span></div>
+      <span class="nodewrap"><span class="fnode border-emerald-700 text-emerald-700">富山機場</span><span class="fwx">⛅ 15°/7°</span></span>
+      <div class="fedge"><span class="fedge-mode bg-cyan-50 text-cyan-700">✈️ NH322</span><span class="fedge-time">18:00→19:05<br>65分</span><span class="fedge-flag">座位21A已確定</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--green);color:var(--green);">羽田T2<br><small style="font-weight:500;">Hotel Villa Fontaine Grand</small></span></span>
+      <span class="nodewrap"><span class="fnode border-emerald-700 text-emerald-700">羽田T2<br><small style="font-weight:500;">Hotel Villa Fontaine Grand</small></span></span>
     </div>
     <div class="note">環水公園→富山站方向其實是富山城址公園（Day7現在的位置）的反方向（環水公園在站北、城址公園在站南，兩者相距約1km），這天沒有和前面任何一天重疊的路線。16:15–16:45搭巴士前往富山機場，抓18:00起飛前約1.5小時登機緩衝。</div>
     <div class="note warn">⚠ 若Day1（11/21）沒買到Bose耳機：check-in放妥行李後，可輕裝搭接駁巴士至T3（約20–25分）到Air BicCamera（22:00關門），回程再接駁回T2。純粹是晚上多一趟來回＋最後機會沒貨無退路的風險，優先度低，只當Day1的備案。</div>
     <div class="ins-sec">
       <div class="ins-label">🍱 11/28 富山最後午餐推薦</div>
       <div class="ins-grid">
-        <div class="icard" style="background:var(--blue-bg);border-color:var(--info-bd);">
-          <div class="icard-hd"><span style="font-size:15px;">🦐</span><span class="icard-name" style="color:#7A4A1E;">富山湾食堂 Maruto 店</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.48分</span></div>
+        <div class="icard bg-blue-50 border-blue-200">
+          <div class="icard-hd"><span style="font-size:15px;">🦐</span><span class="icard-name">富山湾食堂 Maruto 店</span><span class="itag">tabelog 3.48分</span></div>
           <div class="idesc">若 Day 2 未前往，此為告別富山最後海鮮丼首選。前付制快速入退，行李可寄存飯店，容易銜接 15:00 機場巴士。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">海鮮丼 / 白蝦かき揚げ丼</span><span class="pprice" style="color:#7A4A1E;">¥1,200–2,500</span></div>
+            <div class="prow"><span class="pname">海鮮丼 / 白蝦かき揚げ丼</span><span class="pprice">¥1,200–2,500</span></div>
             <div class="pnote">📍 富山駅北口 · 11:00–15:00（午餐）· 快速</div>
           </div>
         </div>
@@ -646,32 +826,32 @@
       <div class="ins-label">🍜 11/28 羽田夜晚推薦（NH322 已確定 19:05 抵達）</div>
       <div class="aw">⚠ 確定航班 19:05 抵達，離 cuud L.O.19:30 只剩約25分鐘，扣掉下機、走到 T2 4F 賣場的時間，對帶著行李與小孩的六人家族來說不切實際，已降為輕裝快速的備註選項。改推薦「羽田エアポートガーデン」商場內兩家餐廳——與入住的 Hotel Villa Fontaine Grand 同一棟建築，Check-in 後不需跨航廈即可抵達，時間壓力最小。</div>
       <div class="ins-grid">
-        <div class="icard" style="background:var(--amber-bg);border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">🍽</span><span class="icard-name" style="color:#7A4A1E;">All Day Dining Grand Ale（飯店內）</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.45分 · 首選</span></div>
+        <div class="icard bg-amber-50 border-amber-200">
+          <div class="icard-hd"><span style="font-size:15px;">🍽</span><span class="icard-name">All Day Dining Grand Ale（飯店內）</span><span class="itag">tabelog 3.45分 · 首選</span></div>
           <div class="idesc">Hotel Villa Fontaine Grand 羽田機場自營餐廳，Check-in 後直接下樓即達，完全不受下機時間壓力。深夜單點時段涵蓋到凌晨1點。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">晚餐自助餐 / 深夜單點</span><span class="pprice" style="color:#7A4A1E;">依菜單</span></div>
+            <div class="prow"><span class="pname">晚餐自助餐 / 深夜單點</span><span class="pprice">依菜單</span></div>
             <div class="pnote">📍 飯店 1F · 晚餐自助餐17:00–22:00，深夜單點22:00–凌晨1:00</div>
           </div>
         </div>
-        <div class="icard" style="background:var(--amber-bg);border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">🐟</span><span class="icard-name" style="color:#7A4A1E;">うなぎ四代目菊川 羽田エアポートガーデン店</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.55分 · 全行程最高分</span></div>
+        <div class="icard bg-amber-50 border-amber-200">
+          <div class="icard-hd"><span style="font-size:15px;">🐟</span><span class="icard-name">うなぎ四代目菊川 羽田エアポートガーデン店</span><span class="itag">tabelog 3.55分 · 全行程最高分</span></div>
           <div class="idesc">90年鰻魚卸問屋直營，一本鰻現場現烤。與飯店同棟「羽田エアポートガーデン」商場1F，不需跨航廈，適合當最後一晚的壓軸大餐。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">一本鰻重 / 鰻魚御膳</span><span class="pprice" style="color:#7A4A1E;">¥5,000–7,000</span></div>
+            <div class="prow"><span class="pname">一本鰻重 / 鰻魚御膳</span><span class="pprice">¥5,000–7,000</span></div>
             <div class="pnote">📍 羽田エアポートガーデン 1F ハネダフードセレクション · 11:00–22:00（L.O.21:00）</div>
           </div>
         </div>
-        <div class="icard" style="background:var(--amber-bg);border-color:#E8C99A;">
-          <div class="icard-hd"><span style="font-size:15px;">🍱</span><span class="icard-name" style="color:#7A4A1E;">みそかつ 矢場とん 羽田エアポートガーデン店</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.16分 · 親子友善</span></div>
+        <div class="icard bg-amber-50 border-amber-200">
+          <div class="icard-hd"><span style="font-size:15px;">🍱</span><span class="icard-name">みそかつ 矢場とん 羽田エアポートガーデン店</span><span class="itag">tabelog 3.16分 · 親子友善</span></div>
           <div class="idesc">名古屋老店味噌豬排，官方標示「お子様連れOK」，出餐快、價位親民，對帶小孩又拖著行李的家族最實際。與飯店同棟商場1F。</div>
           <div class="plist">
-            <div class="prow"><span class="pname">みそかつ定食 / わらじとんかつ</span><span class="pprice" style="color:#7A4A1E;">¥1,000–1,999</span></div>
+            <div class="prow"><span class="pname">みそかつ定食 / わらじとんかつ</span><span class="pprice">¥1,000–1,999</span></div>
             <div class="pnote">📍 羽田エアポートガーデン 1F ハネダフードセレクション · 11:00–23:00（L.O.22:30）</div>
           </div>
         </div>
         <div class="icard" style="opacity:0.6;">
-          <div class="icard-hd"><span style="font-size:15px;">🍛</span><span class="icard-name" style="color:#5F4A3B;">cuud（クウド）第2ターミナル</span><span class="itag" style="background:#F5EBE0;color:#5F4A3B;border:1px solid #D4B5A0;">tabelog 3.52分 · 僅輕裝快速適用</span></div>
+          <div class="icard-hd"><span style="font-size:15px;">🍛</span><span class="icard-name">cuud（クウド）第2ターミナル</span><span class="itag">tabelog 3.52分 · 僅輕裝快速適用</span></div>
           <div class="idesc">⚠ 不在同棟商場，需跨航廈至 T2 4F マーケットプレイス，19:05下機後只剩約25分鐘到L.O.19:30，不建議帶著行李與小孩嘗試，僅供輕裝單獨行動參考。</div>
           <div class="plist">
             <div class="pnote">📍 羽田空港第 2 ターミナル 4F · 11:00–20:00（L.O.19:30）</div>
@@ -685,22 +865,22 @@
 <!-- Day 9 -->
 <div class="day-card" id="day9">
   <div class="day-hd" onclick="tog(this)">
-    <div class="dbadge" style="background:var(--blue-bg);color:var(--blue);">11/29</div>
+    <div class="dbadge bg-blue-50 text-blue-700">11/29</div>
     <div class="dinfo">
       <div class="dtitle">羽田→台北松山 · 圓滿歸來</div>
       <div class="dsub">飯店接駁 · 07:55 CI223 起飛 · 台北松山 10:55 抵達</div>
     </div>
     <span class="chev">▾</span>
   </div>
-  <div class="day-body">
+  <div class="day-body hidden">
     <div class="flow">
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--blue);color:var(--blue);">羽田飯店<br><small style="font-weight:500;">05:30起床</small></span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--fbus-bg);color:var(--fbus);">🚌 飯店接駁車</span><span class="fedge-time">06:00→06:30</span></div>
+      <span class="nodewrap"><span class="fnode border-blue-700 text-blue-700">羽田飯店<br><small style="font-weight:500;">05:30起床</small></span></span>
+      <div class="fedge"><span class="fedge-mode bg-amber-50 text-amber-700">🚌 飯店接駁車</span><span class="fedge-time">06:00→06:30</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--blue);color:var(--blue);">羽田 T2<br><small style="font-weight:500;">Check-in・出關</small></span></span>
-      <div class="fedge"><span class="fedge-mode" style="background:var(--flight-bg);color:var(--flight);">✈️ CI223</span><span class="fedge-time">07:55→10:55<br>約3h</span></div>
+      <span class="nodewrap"><span class="fnode border-blue-700 text-blue-700">羽田 T2<br><small style="font-weight:500;">Check-in・出關</small></span></span>
+      <div class="fedge"><span class="fedge-mode bg-cyan-50 text-cyan-700">✈️ CI223</span><span class="fedge-time">07:55→10:55<br>約3h</span></div>
       <span class="fedge-arrow">→</span>
-      <span class="nodewrap"><span class="fnode" style="border-color:var(--blue);color:var(--blue);">台北松山機場<br><small style="font-weight:500;">11:30出關 ✓</small></span></span>
+      <span class="nodewrap"><span class="fnode border-blue-700 text-blue-700">台北松山機場<br><small style="font-weight:500;">11:30出關 ✓</small></span></span>
     </div>
   </div>
 </div>
@@ -709,7 +889,7 @@
 </div>
 </div><!-- /itin -->
 
-<div id="hotels" class="tab-pane">
+<div id="hotels" class="tab-pane hidden">
 
 <div class="sec-hd">
   <div>
@@ -736,34 +916,34 @@
 </div>
 
 <div class="ins-sec">
-  <div class="ins-label" style="color:#7A4A1E;">☕ 飯店周邊精品咖啡參考（單品豆・外帶可，未排入行程）</div>
+  <div class="ins-label">☕ 飯店周邊精品咖啡參考（單品豆・外帶可，未排入行程）</div>
   <div class="ins-grid">
-    <div class="icard" style="background:#FBF3EC;border-color:#E8C99A;">
-      <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name" style="color:#7A4A1E;">hazeru coffee BAKE STAND</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">離飯店最近</span></div>
+    <div class="icard">
+      <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name">hazeru coffee BAKE STAND</span><span class="itag">離飯店最近</span></div>
       <div class="idesc">自家烘焙精品咖啡，常態備約7種不同產地單品豆、依產地調整烘焙度，可試飲後再選，純外帶專門店。搭配東京「OYATSUYA SUN」監修的烘焙點心（可頌、司康）。</div>
       <div class="plist">
-        <div class="prow"><span class="pname">地點</span><span class="pprice" style="color:#7A4A1E;">富山市神通本町1-10-2</span></div>
-        <div class="prow"><span class="pname">距離</span><span class="pprice" style="color:#7A4A1E;">富山站南口／飯店 徒步約9–10分</span></div>
-        <div class="prow"><span class="pname">營業</span><span class="pprice" style="color:#7A4A1E;">每日 8:00–16:00（2026/6起週末比照平日）</span></div>
+        <div class="prow"><span class="pname">地點</span><span class="pprice">富山市神通本町1-10-2</span></div>
+        <div class="prow"><span class="pname">距離</span><span class="pprice">富山站南口／飯店 徒步約9–10分</span></div>
+        <div class="prow"><span class="pname">營業</span><span class="pprice">每日 8:00–16:00（2026/6起週末比照平日）</span></div>
         <div class="pnote">⚠ 公休週二；店家IG另標「不定休」，意指偶有臨時加休，出發前建議看一下限動確認</div>
       </div>
     </div>
-    <div class="icard" style="background:#FBF3EC;border-color:#E8C99A;">
-      <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name" style="color:#7A4A1E;">SIXTH OR THIRD COFFEE STAND</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">總曲輪・近富山城址公園</span></div>
+    <div class="icard">
+      <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name">SIXTH OR THIRD COFFEE STAND</span><span class="itag">總曲輪・近富山城址公園</span></div>
       <div class="idesc">英國回流咖啡師經營的咖啡站，單品手沖（シングルオリジン）與義式特調兩條線並行，自家製烘焙點心可配，純站立式外帶為主（店內僅8席）。與富山城址公園同在「國際會議場前」電車站周邊，步行約5分可達——Day7行程若在城址公園後有空檔，路過可外帶一杯，不需特別排時段。</div>
       <div class="plist">
-        <div class="prow"><span class="pname">地點</span><span class="pprice" style="color:#7A4A1E;">富山市總曲輪2-7-12</span></div>
-        <div class="prow"><span class="pname">營業</span><span class="pprice" style="color:#7A4A1E;">10:00–17:00</span></div>
+        <div class="prow"><span class="pname">地點</span><span class="pprice">富山市總曲輪2-7-12</span></div>
+        <div class="prow"><span class="pname">營業</span><span class="pprice">10:00–17:00</span></div>
         <div class="pnote">⚠ 公休週二、三；11/27（Day7，週五）不受影響</div>
       </div>
     </div>
-    <div class="icard" style="background:#FBF3EC;border-color:#E8C99A;">
-      <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name" style="color:#7A4A1E;">まめやコーヒー</span><span class="itag" style="background:#FBF3EC;color:#7A4A1E;border:1px solid #E8C99A;">tabelog 3.28分 · 已排入Day7</span></div>
+    <div class="icard">
+      <div class="icard-hd"><span style="font-size:15px;">☕</span><span class="icard-name">まめやコーヒー</span><span class="itag">tabelog 3.28分 · 已排入Day7</span></div>
       <div class="idesc">總曲輪通り商店街的自家烘焙咖啡豆專賣店，2016年開業，店主萩原浩先生主打「誰來煮都好喝的咖啡」，可依個人喜好（酸味/苦味/甜感）客製烘焙調整，現場可買豆也可內用。與SIXTH OR THIRD同在總曲輪，距富山城址公園約5分步行，已排入Day7城址公園後的行程。</div>
       <div class="plist">
-        <div class="prow"><span class="pname">地點</span><span class="pprice" style="color:#7A4A1E;">富山市總曲輪3-2-21</span></div>
-        <div class="prow"><span class="pname">烘焙豆</span><span class="pprice" style="color:#7A4A1E;">200g 約¥1,300起</span></div>
-        <div class="prow"><span class="pname">營業</span><span class="pprice" style="color:#7A4A1E;">10:00–18:00（烘焙豆收件至17:00）</span></div>
+        <div class="prow"><span class="pname">地點</span><span class="pprice">富山市總曲輪3-2-21</span></div>
+        <div class="prow"><span class="pname">烘焙豆</span><span class="pprice">200g 約¥1,300起</span></div>
+        <div class="prow"><span class="pname">營業</span><span class="pprice">10:00–18:00（烘焙豆收件至17:00）</span></div>
         <div class="pnote">⚠ 公休週二、三，另有不定休</div>
       </div>
     </div>
@@ -807,7 +987,7 @@
     <div class="hotel-hd">
       <div class="hotel-icon">🏔</div>
       <div class="hotel-name">APA Hotel〈高岡駅前〉</div>
-      <span class="hotel-rank" style="background:#FEF3E2;color:#B45309;border:1px solid #F5C675;">⚠ 待訂房</span>
+      <span class="hotel-rank bg-amber-50 text-amber-700 border border-amber-200">⚠ 待訂房</span>
     </div>
     <div class="hotel-desc">高岡駅直結（雨天不用淋雨移動），富山縣內客室數最多（373室）。取代原本的上越妙高Toyoko Inn，隔天步行即可到高岡大佛/古城公園。</div>
     <div class="hotel-specs">
@@ -844,7 +1024,7 @@
 
 </div><!-- /hotels -->
 
-<div id="budget" class="tab-pane">
+<div id="budget" class="tab-pane hidden">
 <div style="margin-top:3px;margin-bottom:13px;">
   <div class="ctrl-row">
     <span class="ctrl-lbl">大人</span>
@@ -914,7 +1094,7 @@
 
 </div><!-- /budget -->
 
-<div id="map" class="tab-pane">
+<div id="map" class="tab-pane hidden">
   <div class="map-day-bar" id="map-day-bar"></div>
   <div id="map-canvas"></div>
   <div class="map-legend" id="map-legend"></div>
@@ -923,15 +1103,17 @@
 </div><!-- /main -->
 
 <script>
+const TAB_BTN_ON=['text-ink','border-ink'],TAB_BTN_OFF=['text-stone-500','border-transparent'];
 function showTab(id,btn){
-  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');btn.classList.add('active');
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.add('hidden'));
+  document.querySelectorAll('.tab-btn').forEach(b=>{b.classList.remove(...TAB_BTN_ON);b.classList.add(...TAB_BTN_OFF);});
+  document.getElementById(id).classList.remove('hidden');
+  btn.classList.remove(...TAB_BTN_OFF);btn.classList.add(...TAB_BTN_ON);
   if(id==='map')setTimeout(()=>{initMap();if(mapObj)mapObj.invalidateSize();},50);
 }
 function tog(hd){
-  const b=hd.nextElementSibling,c=hd.querySelector('.chev'),o=b.classList.contains('open');
-  b.classList.toggle('open',!o);c.classList.toggle('open',!o);
+  const b=hd.nextElementSibling,c=hd.querySelector('.chev'),o=!b.classList.contains('hidden');
+  b.classList.toggle('hidden',o);c.classList.toggle('rotate-180',!o);
 }
 function switchPlan(btn, panelId) {
   const sw = btn.parentElement;
@@ -943,7 +1125,7 @@ function switchPlan(btn, panelId) {
 }
 
 const RATE=0.215;
-const CATS=[{l:'機票',c:'#185FA5'},{l:'交通',c:'#0F6E56'},{l:'住宿',c:'#534AB7'},{l:'餐飲',c:'#993C1D'},{l:'門票活動',c:'#854F0B'},{l:'購物雜費',c:'#5F5E5A'}];
+const CATS=[{l:'機票',c:'#1D4ED8'},{l:'交通',c:'#047857'},{l:'住宿',c:'#6D28D9'},{l:'餐飲',c:'#C2410C'},{l:'門票活動',c:'#B45309'},{l:'購物雜費',c:'#64748B'}];
 const jpy=n=>'¥'+Math.round(n).toLocaleString();
 const ntd=n=>'NT$'+Math.round(n).toLocaleString();
 const j2t=y=>ntd(y*RATE);
@@ -1064,7 +1246,7 @@ function calc(){
   ];
   document.getElementById('cat-bars').innerHTML=CATS.map((c,i)=>{
     const pct=total_C>0?Math.round(cats_c[i]/total_C*100):0;
-    return`<div class="cat-row"><span class="cdot" style="background:${c.c}"></span><span style="font-size:12px;color:var(--muted);flex:1;">${c.l}</span><div class="bbg"><div class="bf" style="width:${pct}%;background:${c.c};"></div></div><span style="font-size:12px;font-weight:700;font-family:'DM Mono',monospace;min-width:90px;text-align:right;">NT$${Math.round(cats_c[i]).toLocaleString()}</span><span style="font-size:11px;color:var(--hint);min-width:30px;text-align:right;">${pct}%</span></div>`;
+    return`<div class="cat-row"><span class="cdot" style="background:${c.c}"></span><span class="text-xs text-stone-500 flex-1">${c.l}</span><div class="bbg"><div class="bf" style="width:${pct}%;background:${c.c};"></div></div><span style="font-size:12px;font-weight:700;font-family:'DM Mono',monospace;min-width:90px;text-align:right;">NT$${Math.round(cats_c[i]).toLocaleString()}</span><span class="text-[11px] text-stone-400 min-w-[30px] text-right">${pct}%</span></div>`;
   }).join('');
 }
 calc();
@@ -1072,43 +1254,43 @@ calc();
 // ===== MAP =====
 let mapObj=null,mapInited=false,mapLayers=[];
 const mapDays=[
-  {day:'11/21',label:'台北→羽田→富山',color:'#6366F1',points:[
+  {day:'11/21',label:'台北→羽田→富山',color:'#1D4ED8',points:[
     {name:'台北松山機場（TPE）',lat:25.0797,lng:121.5624,note:'CI 09:00 起飛'},
     {name:'羽田機場 T2（HND）',lat:35.5494,lng:139.7798,note:'12:50 抵達，轉 ANA 國內線'},
     {name:'富山機場（TOY）',lat:36.6483,lng:137.1878,note:'富山機場'},
     {name:'富山站飯店',lat:36.7019,lng:137.2125,note:'傍晚 Check-in，大浴場'}
   ]},
-  {day:'11/22',label:'富山市家族動物園・岩瀨老街・金泉晚餐',color:'#3B82F6',points:[
+  {day:'11/22',label:'富山市家族動物園・岩瀨老街・金泉晚餐',color:'#B45309',points:[
     {name:'富山站',lat:36.7019,lng:137.2125,note:'09:45 公車出發'},
     {name:'富山市家族動物園',lat:36.6665,lng:137.1610,note:'10:15–12:30'},
     {name:'岩瀨老街',lat:36.7282,lng:137.2680,note:'LRT 30分・15:40–16:25・沙石試飲滿寿泉'},
     {name:'金泉',lat:36.6978,lng:137.2148,note:'18:00 晚餐・居酒屋海鮮・桜橋駅徒步3分'}
   ]},
-  {day:'11/23',label:'雨晴海岸・冰見番屋街',color:'#0EA5E9',points:[
+  {day:'11/23',label:'雨晴海岸・冰見番屋街',color:'#0F766E',points:[
     {name:'富山站',lat:36.7019,lng:137.2125,note:'10:00 ぶりかにバス出發'},
     {name:'雨晴海岸（岩崎）',lat:36.8232,lng:137.1052,note:'11:05 抵達'},
     {name:'冰見番屋街',lat:36.8411,lng:137.0177,note:'午餐・漫步'},
     {name:'高岡（轉車）',lat:36.7520,lng:137.0241,note:'JR冰見線→愛之風'}
   ]},
-  {day:'11/24',label:'黑部峽谷・宇奈月溫泉',color:'#F59E0B',points:[
+  {day:'11/24',label:'黑部峽谷・宇奈月溫泉',color:'#047857',points:[
     {name:'富山站',lat:36.7019,lng:137.2125,note:'08:42 出發'},
     {name:'宇奈月溫泉站',lat:36.8664,lng:137.5497,note:'宇奈月溫泉駅'},
     {name:'貓又折返點',lat:36.8835,lng:137.5877,note:'黑部峽谷'},
     {name:'延對寺莊',lat:36.8680,lng:137.5510,note:'懸崖露天風呂'}
   ]},
-  {day:'11/25',label:'魚津水族館・高岡過夜',color:'#EF4444',points:[
+  {day:'11/25',label:'魚津水族館・高岡過夜',color:'#C2410C',points:[
     {name:'宇奈月溫泉',lat:36.8664,lng:137.5497,note:'退房出發'},
     {name:'新黒部駅',lat:36.8730,lng:137.5760,note:'轉乘'},
     {name:'魚津水族館',lat:36.8200,lng:137.4080,note:'海豚秀・企鵝'},
     {name:'APA Hotel高岡駅前',lat:36.7520,lng:137.0241,note:'入住過夜'}
   ]},
-  {day:'11/26',label:'高岡大佛・古城公園・AEON MALL',color:'#8B5CF6',points:[
+  {day:'11/26',label:'高岡大佛・古城公園・AEON MALL',color:'#6D28D9',points:[
     {name:'APA Hotel高岡駅前',lat:36.7520,lng:137.0241,note:'退房'},
     {name:'高岡大佛/古城公園',lat:36.7589,lng:137.0263,note:'紅葉'},
     {name:'AEON MALL 高岡',lat:36.7500,lng:137.0130,note:'採買・晚餐'},
     {name:'富山駅',lat:36.7019,lng:137.2125,note:'新幹線8分・住宿'}
   ]},
-  {day:'11/27',label:'新湊内川遊覽船・富山城賞楓',color:'#EC4899',points:[
+  {day:'11/27',label:'新湊内川遊覽船・富山城賞楓',color:'#BE123C',points:[
     {name:'富山駅',lat:36.7019,lng:137.2125,note:'10:00 ぶりかにバス出發'},
     {name:'海王丸公園（新湊）',lat:36.7685,lng:137.0620,note:'内川遊覽船'},
     {name:'新湊きっときと市場',lat:36.7700,lng:137.0650,note:'紅葉蟹'},
@@ -1117,13 +1299,13 @@ const mapDays=[
     {name:'まめやコーヒー',lat:36.6978,lng:137.2127,note:'自家烘焙咖啡豆'},
     {name:'GRANDE CLASSE 百貨',lat:36.7025,lng:137.2134,note:'藥妝採買'}
   ]},
-  {day:'11/28',label:'富山→羽田 · 環水公園散步',color:'#10B981',points:[
+  {day:'11/28',label:'富山→羽田 · 環水公園散步',color:'#047857',points:[
     {name:'富山環水公園（星巴克）',lat:36.6905,lng:137.2092,note:'全球最美星巴克'},
     {name:'富山機場（TOY）',lat:36.6483,lng:137.1878,note:'NH322 18:00 出發'},
     {name:'羽田機場 T2（HND）',lat:35.5494,lng:139.7798,note:'NH322 19:05 抵達'},
     {name:'Hotel Villa Fontaine Grand 羽田',lat:35.5490,lng:139.7780,note:'直結機場入住'}
   ]},
-  {day:'11/29',label:'羽田→台北松山 · 圓滿歸來',color:'#6366F1',points:[
+  {day:'11/29',label:'羽田→台北松山 · 圓滿歸來',color:'#1D4ED8',points:[
     {name:'羽田機場 T2（HND）',lat:35.5494,lng:139.7798,note:'CI223 07:55 起飛'},
     {name:'台北松山機場（TSA）',lat:25.0797,lng:121.5624,note:'10:55 抵達'}
   ]}
@@ -1136,11 +1318,14 @@ function initMap(){
     subdomains:'abc',maxZoom:19
   }).addTo(mapObj);
   const bar=document.getElementById('map-day-bar');
-  const ab=document.createElement('button');ab.className='mdb on';ab.textContent='全部日程';
+  const MDB_BASE='px-3 py-1 rounded-full text-xs font-medium border whitespace-nowrap cursor-pointer transition-colors';
+  const MDB_ON='bg-ink border-ink text-white';
+  const MDB_OFF='bg-white border-stone-200 text-stone-500 hover:border-ink hover:text-ink';
+  const ab=document.createElement('button');ab.className=`mdb ${MDB_BASE} ${MDB_ON}`;ab.textContent='全部日程';
   ab.onclick=()=>renderMapDay(-1);bar.appendChild(ab);
   mapDays.forEach((d,i)=>{
-    const b=document.createElement('button');b.className='mdb';
-    b.innerHTML=`<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${d.color};margin-right:4px;vertical-align:middle;"></span>${d.day}`;
+    const b=document.createElement('button');b.className=`mdb ${MDB_BASE} ${MDB_OFF}`;
+    b.innerHTML=`<span class="inline-block w-2 h-2 rounded-full mr-1 align-middle" style="background:${d.color};"></span>${d.day}`;
     b.title=d.label;b.onclick=()=>renderMapDay(i);bar.appendChild(b);
   });
   renderMapDay(-1);
@@ -1148,7 +1333,12 @@ function initMap(){
 function renderMapDay(idx){
   if(!mapObj)return;
   mapLayers.forEach(l=>mapObj.removeLayer(l));mapLayers=[];
-  document.querySelectorAll('.mdb').forEach((b,i)=>b.classList.toggle('on',i===idx+1||(idx===-1&&i===0)));
+  const MDB_ON='bg-ink border-ink text-white',MDB_OFF='bg-white border-stone-200 text-stone-500 hover:border-ink hover:text-ink';
+  document.querySelectorAll('.mdb').forEach((b,i)=>{
+    const on=i===idx+1||(idx===-1&&i===0);
+    b.classList.remove(...MDB_ON.split(' '),...MDB_OFF.split(' '));
+    b.classList.add(...(on?MDB_ON:MDB_OFF).split(' '));
+  });
   const days=idx===-1?mapDays:[mapDays[idx]];
   const all=[];
   days.forEach(d=>{
