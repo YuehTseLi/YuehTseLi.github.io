@@ -23,7 +23,7 @@
   --hotel:#3D5A99;--hotel-bg:#EEF2FB;--hotel-bd:#B3C4EE;
   --r:10px;--rl:14px;
 }
-body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;overflow-x:hidden;}
 
 /* ---- 版面寬度：clamp() 連續彈性縮放，不是固定斷點 ----
    <~1095px 視窗：floor 760px 不生效（本來就比視窗窄），維持現有手機/平板體驗
@@ -104,16 +104,28 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
   --flight:#0891B2;--flight-bg:#ECFEFF;
   --wx:#0369A1;--wx-bg:#F0F9FF;--wx-bd:#BAE6FD;
 }
-.flow{display:flex;flex-wrap:wrap;align-items:center;gap:0;margin:4px 0 2px;}
-.flow .nodewrap{display:inline-flex;flex-direction:column;align-items:center;margin:4px 0;}
-.flow .fnode{font-size:12px;font-weight:700;padding:6px 11px;border-radius:999px;border:1.5px solid;white-space:nowrap;}
-.flow .fwx{font-size:9.5px;font-weight:700;color:var(--wx);background:var(--wx-bg);border:1px solid var(--wx-bd);border-radius:999px;padding:1px 7px;margin-top:3px;white-space:nowrap;}
-.flow .fedge{display:flex;flex-direction:column;align-items:center;margin:0 6px;min-width:70px;}
-.flow .fedge-mode{font-size:10px;font-weight:700;padding:1px 7px;border-radius:6px;white-space:nowrap;}
-.flow .fedge-time{font-size:10.5px;color:var(--text);font-weight:700;margin-top:2px;text-align:center;}
-.flow .fedge-dist{font-size:9.5px;color:var(--hint);}
-.flow .fedge-arrow{font-size:13px;color:var(--hint);line-height:1;}
-.flow .fedge-flag{font-size:9px;color:var(--amber);margin-top:1px;max-width:100px;text-align:center;line-height:1.2;}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px 0;margin:6px 0 2px;max-width:100%;}
+.flow .nodewrap{display:inline-flex;flex-direction:column;align-items:center;margin:4px 0;max-width:100%;min-width:0;}
+.flow .fnode{font-size:13.5px;font-weight:700;padding:7px 14px;border-radius:999px;border:1.5px solid;white-space:nowrap;line-height:1.4;}
+.flow .fwx{font-size:10.5px;font-weight:700;color:var(--wx);background:var(--wx-bg);border:1px solid var(--wx-bd);border-radius:999px;padding:2px 8px;margin-top:4px;white-space:nowrap;}
+.flow .fedge{display:flex;flex-direction:column;align-items:center;margin:0 8px;min-width:78px;max-width:100%;min-height:0;}
+.flow .fedge-mode{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;white-space:nowrap;}
+.flow .fedge-time{font-size:11.5px;color:var(--text);font-weight:700;margin-top:3px;text-align:center;}
+.flow .fedge-dist{font-size:10.5px;color:var(--hint);}
+.flow .fedge-arrow{font-size:14px;color:var(--hint);line-height:1;margin:0 2px;flex-shrink:0;}
+.flow .fedge-flag{font-size:10px;color:var(--amber);margin-top:2px;max-width:120px;text-align:center;line-height:1.3;overflow-wrap:break-word;}
+
+/* 手機：橫向流程圖容易因為節點/連線寬度加總超過螢幕而跑版溢出，
+   改成直向逐站排列，箭頭轉90度指向下方，每一站佔滿一行寬度 */
+@media (max-width:640px){
+  .flow{flex-direction:column;align-items:stretch;gap:2px 0;}
+  .flow .nodewrap{width:100%;min-width:0;box-sizing:border-box;}
+  .flow .fnode{display:block;text-align:center;white-space:normal;overflow-wrap:break-word;width:100%;box-sizing:border-box;}
+  .flow .fedge{flex-direction:column;width:100%;min-width:0;max-width:100%;box-sizing:border-box;margin:2px 0;}
+  .flow .fedge-mode,.flow .fedge-time,.flow .fedge-dist,.flow .fedge-flag{min-width:0;max-width:100%;width:auto;overflow-wrap:break-word;white-space:normal;}
+  .flow .fedge-time{margin-top:2px;}
+  .flow .fedge-arrow{display:block;transform:rotate(90deg);margin:1px 0;}
+}
 .daywx{font-size:11px;font-weight:700;color:var(--wx);background:var(--wx-bg);border:1px solid var(--wx-bd);border-radius:999px;padding:2px 9px;}
 
 .ins-sec{margin-top:13px;}
@@ -126,8 +138,8 @@ h1{font-size:28px;font-weight:800;line-height:1.25;margin-bottom:12px;letter-spa
 .icard.onsen{background:var(--onsen-bg);border-color:var(--onsen-bd);}
 /* 已確定訂位的店家：粗邊框+陰影，跟一般推薦卡片拉出視覺差異 */
 .icard.confirmed{border-width:3px;border-color:#D97706;box-shadow:0 2px 6px rgba(217,119,6,.3);}
-.icard-hd{display:flex;align-items:center;gap:7px;margin-bottom:5px;}
-.icard-name{font-size:13px;font-weight:700;}
+.icard-hd{display:flex;flex-wrap:wrap;align-items:center;gap:4px 7px;margin-bottom:5px;}
+.icard-name{font-size:13px;font-weight:700;min-width:0;overflow-wrap:break-word;}
 .icard-name.sake{color:var(--sake);}
 .icard-name.cafe{color:var(--cafe);}
 .icard-name.onsen{color:var(--onsen);}
